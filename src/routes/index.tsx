@@ -6,11 +6,13 @@ import Hero from '~/components/starter/hero/hero';
 import Infobox from '~/components/starter/infobox/infobox';
 import Starter from '~/components/starter/next-steps/next-steps';
 import { TailwindExample } from '~/components/starter/tailwind/tailwind-example';
+import RealScoutListings from '~/components/realscout/realscout-listings';
 
 export default component$(() => {
   return (
     <>
       <Hero />
+      <RealScoutListings />
       <Starter />
       <TailwindExample />
 
@@ -72,26 +74,26 @@ export default component$(() => {
             <ul>
               <li>
                 <span>Questions or just want to say hi? </span>
-                <a href="https://qwik.builder.io/chat" target="_blank">
+                <a href="https://qwik.builder.io/chat" target="_blank" rel="noopener">
                   Chat on discord!
                 </a>
               </li>
               <li>
                 <span>Follow </span>
-                <a href="https://twitter.com/QwikDev" target="_blank">
+                <a href="https://twitter.com/QwikDev" target="_blank" rel="noopener">
                   @QwikDev
                 </a>
                 <span> on Twitter</span>
               </li>
               <li>
                 <span>Open issues and contribute on </span>
-                <a href="https://github.com/BuilderIO/qwik" target="_blank">
+                <a href="https://github.com/BuilderIO/qwik" target="_blank" rel="noopener">
                   GitHub
                 </a>
               </li>
               <li>
                 <span>Watch </span>
-                <a href="https://qwik.builder.io/media/" target="_blank">
+                <a href="https://qwik.builder.io/media/" target="_blank" rel="noopener">
                   Presentations, Podcasts, Videos, etc.
                 </a>
               </li>
@@ -104,11 +106,11 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: 'Welcome to Qwik',
+  title: 'Open House Update - Las Vegas Real Estate',
   meta: [
     {
       name: 'description',
-      content: 'Qwik site description',
+      content: 'Discover your perfect home in Las Vegas. Browse featured listings, get market insights, and connect with expert real estate professionals.',
     },
   ],
 };
