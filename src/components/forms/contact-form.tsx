@@ -14,7 +14,7 @@ export default component$(() => {
   const isSubmitting = useSignal(false);
   const submitStatus = useSignal<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = $(async (event: Event) => {
+  const handleSubmit = $(async (event: any) => {
     event.preventDefault();
     isSubmitting.value = true;
     submitStatus.value = 'idle';

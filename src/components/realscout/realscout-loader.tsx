@@ -3,7 +3,7 @@ import { component$, useVisibleTask$, useSignal } from '@builder.io/qwik';
 interface RealScoutLoaderProps {
   agentId: string;
   widgetType: 'listings' | 'home-value' | 'simple-search' | 'advanced-search';
-  children: any;
+  children?: any;
   className?: string;
 }
 

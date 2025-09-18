@@ -31,7 +31,7 @@ export default component$(() => {
   const updateCalculations = $(() => {
     const payment = calculatePayment();
     const principal = loanAmount.value - downPayment.value;
-    const totalPayments = payment * loanTerm.value * 12;
+    const totalPayments = payment * (loanTerm.value * 12);
     const interest = totalPayments - principal;
     const total = totalPayments + propertyTax.value + insurance.value + pmi.value;
     
