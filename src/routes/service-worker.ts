@@ -24,12 +24,13 @@ addEventListener('activate', (event) => {
 
 // Cache RealScout widgets for better performance
 addEventListener('fetch', (event) => {
-  const request = event.request;
+  const fetchEvent = event as FetchEvent;
+  const request = fetchEvent.request;
   const url = new URL(request.url);
   
   // Cache RealScout widget scripts
   if (url.hostname === 'em.realscout.com' && url.pathname.includes('realscout-web-components')) {
-    event.respondWith(
+    fetchEvent.respondWith(
       caches.open('realscout-cache').then(cache => {
         return cache.match(request).then(response => {
           if (response) {
