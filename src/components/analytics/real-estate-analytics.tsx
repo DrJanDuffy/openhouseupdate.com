@@ -21,7 +21,6 @@ export default component$<RealEstateAnalyticsProps>(({ measurementId }) => {
             cd4: 'conversionValue', // Custom dimension 4
           },
           user_type: details?.userType || 'visitor',
-          widget_type: widgetType,
           interaction_depth: details?.depth || 'basic',
           conversion_value: details?.value || 0,
         });
