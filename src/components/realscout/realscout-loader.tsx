@@ -7,7 +7,7 @@ interface RealScoutLoaderProps {
   className?: string;
 }
 
-export default component$<RealScoutLoaderProps>(({ agentId, widgetType, children, className = '' }) => {
+export default component$<RealScoutLoaderProps>(({ agentId: _agentId, widgetType, children, className = '' }) => {
   const isLoading = useSignal(true);
   const hasError = useSignal(false);
   const scriptLoaded = useSignal(false);

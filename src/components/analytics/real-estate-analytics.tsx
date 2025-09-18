@@ -4,7 +4,7 @@ interface RealEstateAnalyticsProps {
   measurementId: string;
 }
 
-export default component$<RealEstateAnalyticsProps>(({ measurementId }) => {
+export default component$<RealEstateAnalyticsProps>(({ measurementId: _measurementId }) => {
   useVisibleTask$(() => {
     // Track RealScout widget interactions
     const trackWidgetInteraction = (widgetType: string, action: string, details?: any) => {

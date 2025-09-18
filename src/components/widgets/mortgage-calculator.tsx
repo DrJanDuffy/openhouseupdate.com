@@ -9,7 +9,7 @@ export default component$(() => {
   const insurance = useSignal(1200);
   const pmi = useSignal(0);
 
-  const calculatePayment = () => {
+  const calculatePayment = $(() => {
     const principal = loanAmount.value - downPayment.value;
     const monthlyRate = interestRate.value / 100 / 12;
     const numPayments = loanTerm.value * 12;
@@ -22,7 +22,7 @@ export default component$(() => {
                           (Math.pow(1 + monthlyRate, numPayments) - 1);
     
     return monthlyPayment;
-  };
+  });
 
   const monthlyPayment = useSignal(0);
   const totalInterest = useSignal(0);
