@@ -1,5 +1,12 @@
 import { component$, useSignal, useVisibleTask$, $ } from '@builder.io/qwik';
 
+// Declare Google Maps types inline to avoid TypeScript compilation issues
+declare global {
+  interface Window {
+    google: any;
+  }
+}
+
 interface OpenHouseLocation {
   id: string;
   address: string;
@@ -283,7 +290,7 @@ export default component$<OpenHouseMapProps>(({
       waypoints: waypoints,
       travelMode: google.maps.TravelMode.DRIVING,
       optimizeWaypoints: true,
-    }, (result, status) => {
+    }, (result: any, status: any) => {
       if (status === 'OK') {
         directionsRenderer.setDirections(result);
         onRouteClick?.(selectedOpenHouses.value);
