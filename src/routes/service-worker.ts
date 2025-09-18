@@ -23,7 +23,7 @@ addEventListener('activate', (event) => {
 });
 
 // Cache RealScout widgets for better performance
-addEventListener('fetch', (event) => {
+addEventListener('fetch', (event: FetchEvent) => {
   const request = event.request;
   const url = new URL(request.url);
   
