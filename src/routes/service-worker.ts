@@ -12,12 +12,12 @@ import { setupServiceWorker } from '@builder.io/qwik-city/service-worker';
 setupServiceWorker();
 
 // Enhanced service worker for real estate website
-addEventListener('install', (_event) => {
+addEventListener('install', () => {
   console.log('Service Worker installing...');
   self.skipWaiting();
 });
 
-addEventListener('activate', (_event) => {
+addEventListener('activate', () => {
   console.log('Service Worker activating...');
   self.clients.claim();
 });

@@ -9,29 +9,25 @@ export default component$(() => {
   const insurance = useSignal(1200);
   const pmi = useSignal(0);
 
-  const calculatePayment = () => {
-    const principal = loanAmount.value - downPayment.value;
-    const monthlyRate = interestRate.value / 100 / 12;
-    const numPayments = loanTerm.value * 12;
-    
-    if (monthlyRate === 0) {
-      return principal / numPayments;
-    }
-    
-    const monthlyPayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
-                          (Math.pow(1 + monthlyRate, numPayments) - 1);
-    
-    return monthlyPayment;
-  };
-
   const monthlyPayment = useSignal(0);
   const totalInterest = useSignal(0);
   const totalCost = useSignal(0);
 
   const updateCalculations = $(() => {
-    const payment = calculatePayment();
+    // Calculate payment directly here to avoid serialization issues
     const principal = loanAmount.value - downPayment.value;
-    const totalPayments = payment * (loanTerm.value * 12);
+    const monthlyRate = interestRate.value / 100 / 12;
+    const numPayments = loanTerm.value * 12;
+    
+    let payment: number;
+    if (monthlyRate === 0) {
+      payment = principal / numPayments;
+    } else {
+      payment = principal * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
+                (Math.pow(1 + monthlyRate, numPayments) - 1);
+    }
+    
+    const totalPayments = payment * numPayments;
     const interest = totalPayments - principal;
     const total = totalPayments + propertyTax.value + insurance.value + pmi.value;
     
