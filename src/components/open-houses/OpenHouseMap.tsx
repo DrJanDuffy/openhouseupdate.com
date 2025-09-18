@@ -1,11 +1,7 @@
 import { component$, useSignal, useVisibleTask$, $ } from '@builder.io/qwik';
 
-// Declare Google Maps types inline to avoid TypeScript compilation issues
-declare global {
-  interface Window {
-    google: any;
-  }
-}
+// Type assertion for Google Maps API
+const googleMaps = (window as any).google;
 
 interface OpenHouseLocation {
   id: string;
@@ -52,7 +48,7 @@ export default component$<OpenHouseMapProps>(({
 
   useVisibleTask$(async () => {
     // Load Google Maps API
-    if (!window.google) {
+    if (!(window as any).google) {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&libraries=geometry`;
       script.async = true;
@@ -65,7 +61,7 @@ export default component$<OpenHouseMapProps>(({
 
     if (mapContainer.value) {
       // Initialize map
-      map.value = new google.maps.Map(mapContainer.value, {
+      map.value = new (window as any).google.maps.Map(mapContainer.value, {
         center: center,
         zoom: 11,
         styles: [
@@ -96,19 +92,19 @@ export default component$<OpenHouseMapProps>(({
     markers.value = [];
 
     openHouses.forEach(openHouse => {
-      const marker = new google.maps.Marker({
+      const marker = new (window as any).google.maps.Marker({
         position: { lat: openHouse.lat, lng: openHouse.lng },
         map: map.value,
         title: openHouse.address,
         icon: {
           url: createCustomMarkerIcon(openHouse),
-          scaledSize: new google.maps.Size(40, 50),
-          anchor: new google.maps.Point(20, 50),
+          scaledSize: new (window as any).google.maps.Size(40, 50),
+          anchor: new (window as any).google.maps.Point(20, 50),
         },
-        animation: google.maps.Animation.DROP,
+        animation: (window as any).google.maps.Animation.DROP,
       });
 
-      const infoWindow = new google.maps.InfoWindow({
+      const infoWindow = new (window as any).google.maps.InfoWindow({
         content: createInfoWindowContent(openHouse),
       });
 
@@ -130,7 +126,7 @@ export default component$<OpenHouseMapProps>(({
 
     // Fit bounds to show all markers
     if (markers.value.length > 0) {
-      const bounds = new google.maps.LatLngBounds();
+      const bounds = new (window as any).google.maps.LatLngBounds();
       markers.value.forEach(marker => {
         bounds.extend(marker.getPosition());
       });
@@ -241,8 +237,8 @@ export default component$<OpenHouseMapProps>(({
       const openHouse = openHouses[index];
       marker.setIcon({
         url: createCustomMarkerIcon(openHouse),
-        scaledSize: new google.maps.Size(40, 50),
-        anchor: new google.maps.Point(20, 50),
+        scaledSize: new (window as any).google.maps.Size(40, 50),
+        anchor: new (window as any).google.maps.Point(20, 50),
       });
     });
   });
@@ -265,8 +261,8 @@ export default component$<OpenHouseMapProps>(({
       
       marker.setIcon({
         url: createCustomMarkerIcon(openHouse),
-        scaledSize: new google.maps.Size(isSelected ? 50 : 40, isSelected ? 60 : 50),
-        anchor: new google.maps.Point(isSelected ? 25 : 20, isSelected ? 60 : 50),
+        scaledSize: new (window as any).google.maps.Size(isSelected ? 50 : 40, isSelected ? 60 : 50),
+        anchor: new (window as any).google.maps.Point(isSelected ? 25 : 20, isSelected ? 60 : 50),
       });
     }
   });
@@ -274,8 +270,8 @@ export default component$<OpenHouseMapProps>(({
   const createRoute = $(() => {
     if (selectedOpenHouses.value.length < 2) return;
     
-    const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer();
+    const directionsService = new (window as any).google.maps.DirectionsService();
+    const directionsRenderer = new (window as any).google.maps.DirectionsRenderer();
     
     directionsRenderer.setMap(map.value);
 
@@ -288,7 +284,7 @@ export default component$<OpenHouseMapProps>(({
       origin: { lat: selectedOpenHouses.value[0].lat, lng: selectedOpenHouses.value[0].lng },
       destination: { lat: selectedOpenHouses.value[selectedOpenHouses.value.length - 1].lat, lng: selectedOpenHouses.value[selectedOpenHouses.value.length - 1].lng },
       waypoints: waypoints,
-      travelMode: google.maps.TravelMode.DRIVING,
+      travelMode: (window as any).google.maps.TravelMode.DRIVING,
       optimizeWaypoints: true,
     }, (result: any, status: any) => {
       if (status === 'OK') {
@@ -299,7 +295,7 @@ export default component$<OpenHouseMapProps>(({
   });
 
   const clearRoute = $(() => {
-    const directionsRenderer = new google.maps.DirectionsRenderer();
+    const directionsRenderer = new (window as any).google.maps.DirectionsRenderer();
     directionsRenderer.setMap(map.value);
     directionsRenderer.setDirections({ routes: [] });
     selectedOpenHouses.value = [];
