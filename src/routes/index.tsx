@@ -7,12 +7,18 @@ import Infobox from '~/components/starter/infobox/infobox';
 import Starter from '~/components/starter/next-steps/next-steps';
 import { TailwindExample } from '~/components/starter/tailwind/tailwind-example';
 import RealScoutListings from '~/components/realscout/realscout-listings';
+import RealScoutHomeValue from '~/components/realscout/realscout-home-value';
+import RealScoutSimpleSearch from '~/components/realscout/realscout-simple-search';
+import RealScoutAdvancedSearch from '~/components/realscout/realscout-advanced-search';
 
 export default component$(() => {
   return (
     <>
       <Hero />
+      <RealScoutSimpleSearch />
+      <RealScoutHomeValue />
       <RealScoutListings />
+      <RealScoutAdvancedSearch />
       <Starter />
       <TailwindExample />
 
