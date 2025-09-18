@@ -11,8 +11,38 @@ import { setupServiceWorker } from '@builder.io/qwik-city/service-worker';
 
 setupServiceWorker();
 
-addEventListener('install', () => self.skipWaiting());
+// Enhanced service worker for real estate website
+addEventListener('install', (event) => {
+  console.log('Service Worker installing...');
+  self.skipWaiting();
+});
 
-addEventListener('activate', () => self.clients.claim());
+addEventListener('activate', (event) => {
+  console.log('Service Worker activating...');
+  self.clients.claim();
+});
+
+// Cache RealScout widgets for better performance
+addEventListener('fetch', (event) => {
+  const request = event.request;
+  const url = new URL(request.url);
+  
+  // Cache RealScout widget scripts
+  if (url.hostname === 'em.realscout.com' && url.pathname.includes('realscout-web-components')) {
+    event.respondWith(
+      caches.open('realscout-cache').then(cache => {
+        return cache.match(request).then(response => {
+          if (response) {
+            return response;
+          }
+          return fetch(request).then(fetchResponse => {
+            cache.put(request, fetchResponse.clone());
+            return fetchResponse;
+          });
+        });
+      })
+    );
+  }
+});
 
 declare const self: ServiceWorkerGlobalScope;

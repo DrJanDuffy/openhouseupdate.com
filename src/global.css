@@ -8,6 +8,13 @@
 
 @layer base {
   :root {
+    /* Real Estate Design System Colors */
+    --primary-50: #F7F9FC;
+    --primary-500: #3A8DDE;
+    --primary-800: #0A2540;
+    --secondary-500: #16B286;
+    
+    /* Legacy Qwik colors for compatibility */
     --qwik-dark-blue: #006ce9;
     --qwik-light-blue: #18b6f6;
     --qwik-light-purple: #ac7ff4;
@@ -15,6 +22,59 @@
     --qwik-dirty-black: #1d2033;
     --qwik-dark-background: #151934;
     --qwik-dark-text: #ffffff;
+  }
+
+  /* Enhanced typography */
+  html {
+    font-family: 'Poppins', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    line-height: 1.6;
+    color: var(--primary-800);
+  }
+
+  /* Improved focus styles for accessibility */
+  *:focus {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 2px;
+  }
+
+  /* Smooth transitions for interactive elements */
+  button, a, input, select, textarea {
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+@layer components {
+  /* Real Estate specific components */
+  .btn-primary {
+    @apply bg-primary-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-600 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-secondary-600 focus:ring-2 focus:ring-secondary-500 focus:ring-offset-2 transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-soft p-6 border border-neutral-100;
+  }
+
+  .widget-container {
+    @apply bg-primary-50 rounded-xl shadow-soft p-6 my-8;
+  }
+
+  .section-header {
+    @apply text-center mb-8;
+  }
+
+  .section-title {
+    @apply text-primary-800 text-3xl font-bold mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-primary-500 text-lg;
   }
 }
 

@@ -10,6 +10,8 @@ import RealScoutListings from '~/components/realscout/realscout-listings';
 import RealScoutHomeValue from '~/components/realscout/realscout-home-value';
 import RealScoutSimpleSearch from '~/components/realscout/realscout-simple-search';
 import RealScoutAdvancedSearch from '~/components/realscout/realscout-advanced-search';
+import ContactForm from '~/components/forms/contact-form';
+import MortgageCalculator from '~/components/widgets/mortgage-calculator';
 
 export default component$(() => {
   return (
@@ -19,6 +21,8 @@ export default component$(() => {
       <RealScoutHomeValue />
       <RealScoutListings />
       <RealScoutAdvancedSearch />
+      <MortgageCalculator />
+      <ContactForm />
       <Starter />
       <TailwindExample />
 
