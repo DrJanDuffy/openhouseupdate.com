@@ -1,4 +1,5 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik';
+// Mobile Search Analytics Hook
+// Provides tracking functions for mobile search interactions
 
 interface MobileSearchAnalytics {
   trackButtonClick: () => void;
