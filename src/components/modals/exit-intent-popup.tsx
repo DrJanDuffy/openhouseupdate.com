@@ -1,4 +1,4 @@
-import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useSignal, $, useVisibleTask$, type QwikMouseEvent } from '@builder.io/qwik';
 
 interface ExitIntentPopupProps {
   isVisible: boolean;
@@ -12,7 +12,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
   const isSubmitted = useSignal(false);
   const selectedOffer = useSignal('');
 
-  const handleClose = $((event: Event) => {
+  const handleClose = $((event: QwikMouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
     // Use setTimeout to avoid serialization issues
     setTimeout(() => onClose(), 0);
