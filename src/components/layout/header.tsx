@@ -1,7 +1,7 @@
 import { component$, useVisibleTask$, useSignal } from '@builder.io/qwik';
 
 export default component$(() => {
-  const isScrolled = useSignal(false);
+  const isScrolled = useSignal(true); // Always show for testing
 
   useVisibleTask$(() => {
     // Ensure RealScout components are available
@@ -17,7 +17,7 @@ export default component$(() => {
       // Handle scroll detection
       const handleScroll = () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        isScrolled.value = scrollTop > 100; // Show after 100px scroll
+        isScrolled.value = scrollTop > 50; // Show after 50px scroll
       };
 
       // Add scroll listener
@@ -38,19 +38,25 @@ export default component$(() => {
           top: 0;
           left: 0;
           right: 0;
-          z-index: 9999;
-          background: rgba(10, 37, 64, 0.98);
-          backdrop-filter: blur(10px);
-          border-bottom: 2px solid #3A8DDE;
+          z-index: 99999;
+          background: #0A2540;
+          border-bottom: 3px solid #3A8DDE;
           transition: all 0.3s ease;
           transform: translateY(-100%);
           opacity: 0;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
         
         .sticky-header.visible {
           transform: translateY(0);
           opacity: 1;
+        }
+        
+        /* Force visibility for testing */
+        .sticky-header.always-visible {
+          transform: translateY(0) !important;
+          opacity: 1 !important;
+          background: #0A2540 !important;
         }
         
         .sticky-search-bar {
@@ -186,7 +192,9 @@ export default component$(() => {
       `}</style>
       
       {/* Shows on scroll */}
-      <div class={`sticky-search-bar ${isScrolled.value ? 'visible' : ''}`}>
+      <div class={`sticky-search-bar ${isScrolled.value ? 'visible' : ''} always-visible`}>
+        {/* Debug indicator */}
+        <div style="position: absolute; top: -25px; left: 0; background: red; color: white; padding: 2px 5px; font-size: 10px; z-index: 100000;">STICKY HEADER ACTIVE</div>
         <div class="sticky-header-brand">
           <a href="/" class="sticky-header-logo">
             Open House Update
