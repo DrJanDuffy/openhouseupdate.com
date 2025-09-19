@@ -115,7 +115,7 @@ export default component$<EnhancedRealScoutLoaderProps>(({
     }
   });
 
-  const initializeWidget = () => {
+  const initializeWidget = $(() => {
     // Wait for custom elements to be defined
     const checkElements = () => {
       const elementName = `realscout-${widgetType.replace('-', '-')}`;
@@ -158,7 +158,7 @@ export default component$<EnhancedRealScoutLoaderProps>(({
       setTimeout(checkElements, 100);
     };
     checkElements();
-  };
+  });
 
   const retryWidget = $(() => {
     hasError.value = false;

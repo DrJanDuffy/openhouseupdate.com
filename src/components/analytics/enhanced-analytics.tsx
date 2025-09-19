@@ -4,7 +4,7 @@ interface EnhancedAnalyticsProps {
   measurementId: string;
 }
 
-export default component$<EnhancedAnalyticsProps>(({ measurementId: _measurementId }) => {
+export default component$<EnhancedAnalyticsProps>(({ measurementId }) => {
   useVisibleTask$(() => {
     // Enhanced Real Estate Analytics with Custom Dimensions
     const trackRealEstateEvent = (eventName: string, parameters: any = {}) => {

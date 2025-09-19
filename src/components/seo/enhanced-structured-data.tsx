@@ -12,8 +12,8 @@ interface EnhancedStructuredDataProps {
 export default component$<EnhancedStructuredDataProps>(({ 
   type, 
   data = {}, 
-  pageType = 'general',
-  propertyData = {},
+  pageType: _pageType = 'general',
+  propertyData: _propertyData = {},
   breadcrumbs = [],
   faqs = []
 }) => {

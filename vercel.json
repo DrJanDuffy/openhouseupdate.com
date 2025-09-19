@@ -78,11 +78,15 @@
   "rewrites": [
     {
       "source": "/sitemap.xml",
-      "destination": "/sitemap"
+      "destination": "/sitemap.xml"
     },
     {
       "source": "/robots.txt",
       "destination": "/robots.txt"
+    },
+    {
+      "source": "/rss.xml",
+      "destination": "/rss.xml"
     }
   ],
   "crons": [

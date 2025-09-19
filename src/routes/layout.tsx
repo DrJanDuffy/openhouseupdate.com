@@ -7,7 +7,7 @@ import Footer from '~/components/starter/footer/footer';
 import EnhancedStructuredData from '~/components/seo/enhanced-structured-data';
 import StickyHeader from '~/components/layout/header';
 import { MobileSearchButton } from '~/components/modals';
-import EnhancedErrorBoundary from '~/components/error-boundary/enhanced-error-boundary';
+// import EnhancedErrorBoundary from '~/components/error-boundary/enhanced-error-boundary';
 import EnhancedAnalytics from '~/components/analytics/enhanced-analytics';
 
 import styles from './styles.css?inline';
@@ -53,13 +53,14 @@ export default component$(() => {
 export const head: DocumentHead = {
   title: 'Open House Update - Las Vegas Real Estate | Dr. Janet Duffy',
   meta: [
+    // Basic SEO
     {
       name: 'description',
       content: 'Professional real estate services in Las Vegas. Find your perfect home with Dr. Janet Duffy. Browse listings, get home valuations, and expert guidance.',
     },
     {
       name: 'keywords',
-      content: 'Las Vegas real estate, Nevada homes, property search, home valuation, real estate agent, Dr. Janet Duffy, open house, property listings',
+      content: 'Las Vegas real estate, Nevada homes, property search, home valuation, real estate agent, Dr. Janet Duffy, open house, property listings, Summerlin, Henderson, North Las Vegas',
     },
     {
       name: 'author',
@@ -67,7 +68,7 @@ export const head: DocumentHead = {
     },
     {
       name: 'robots',
-      content: 'index, follow',
+      content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
     },
     {
       name: 'viewport',
@@ -97,10 +98,18 @@ export const head: DocumentHead = {
       name: 'format-detection',
       content: 'telephone=no',
     },
+    {
+      name: 'mobile-web-app-capable',
+      content: 'yes',
+    },
+    {
+      name: 'application-name',
+      content: 'Open House Update',
+    },
     // Open Graph metadata
     {
       property: 'og:title',
-      content: 'Open House Update - Las Vegas Real Estate',
+      content: 'Open House Update - Las Vegas Real Estate | Dr. Janet Duffy',
     },
     {
       property: 'og:description',
@@ -123,7 +132,15 @@ export const head: DocumentHead = {
       content: 'en_US',
     },
     {
+      property: 'og:locale:alternate',
+      content: 'es_US',
+    },
+    {
       property: 'og:image',
+      content: 'https://openhouseupdate.com/images/og-default.jpg',
+    },
+    {
+      property: 'og:image:secure_url',
       content: 'https://openhouseupdate.com/images/og-default.jpg',
     },
     {
@@ -137,6 +154,10 @@ export const head: DocumentHead = {
     {
       property: 'og:image:alt',
       content: 'Las Vegas Real Estate - Open House Update',
+    },
+    {
+      property: 'og:image:type',
+      content: 'image/jpeg',
     },
     // Twitter Card metadata
     {
@@ -159,6 +180,14 @@ export const head: DocumentHead = {
       name: 'twitter:image:alt',
       content: 'Las Vegas Real Estate - Open House Update',
     },
+    {
+      name: 'twitter:site',
+      content: '@drjanetduffy',
+    },
+    {
+      name: 'twitter:creator',
+      content: '@drjanetduffy',
+    },
     // Additional SEO meta tags
     {
       name: 'geo.region',
@@ -175,6 +204,30 @@ export const head: DocumentHead = {
     {
       name: 'ICBM',
       content: '36.1699, -115.1398',
+    },
+    {
+      name: 'rating',
+      content: 'general',
+    },
+    {
+      name: 'distribution',
+      content: 'global',
+    },
+    {
+      name: 'language',
+      content: 'en-US',
+    },
+    {
+      name: 'revisit-after',
+      content: '1 days',
+    },
+    {
+      name: 'expires',
+      content: 'never',
+    },
+    {
+      name: 'cache-control',
+      content: 'public',
     },
   ],
   links: [
@@ -204,12 +257,40 @@ export const head: DocumentHead = {
       href: 'https://www.googletagmanager.com',
     },
     {
+      rel: 'preconnect',
+      href: 'https://fonts.googleapis.com',
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com',
+      crossorigin: 'anonymous',
+    },
+    {
       rel: 'dns-prefetch',
       href: 'https://em.realscout.com',
     },
     {
       rel: 'dns-prefetch',
       href: 'https://www.googletagmanager.com',
+    },
+    {
+      rel: 'dns-prefetch',
+      href: 'https://fonts.googleapis.com',
+    },
+    {
+      rel: 'dns-prefetch',
+      href: 'https://fonts.gstatic.com',
+    },
+    {
+      rel: 'alternate',
+      type: 'application/rss+xml',
+      title: 'Open House Update RSS Feed',
+      href: '/rss.xml',
+    },
+    {
+      rel: 'sitemap',
+      type: 'application/xml',
+      href: '/sitemap.xml',
     },
   ],
 };

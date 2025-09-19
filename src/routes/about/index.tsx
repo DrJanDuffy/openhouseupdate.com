@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import { openGraphConfigs } from '~/utils/open-graph-utils';
+// import { openGraphConfigs } from '~/utils/open-graph-utils';
 
 export default component$(() => {
   return (

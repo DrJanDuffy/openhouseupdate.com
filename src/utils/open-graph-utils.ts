@@ -1,4 +1,4 @@
-import type { DocumentHeadValue, DocumentMeta } from '@builder.io/qwik-city';
+import type { DocumentMeta } from '@builder.io/qwik-city';
 
 export interface OpenGraphMeta {
   title: string;

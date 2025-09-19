@@ -4,6 +4,9 @@ import RealScoutMap from '~/components/realscout/RealScoutMap';
 import EnhancedRealScoutLoader from '~/components/realscout/enhanced-realscout-loader';
 import EnhancedMortgageCalculator from '~/components/widgets/enhanced-mortgage-calculator';
 import PerformanceMonitor from '~/components/performance/performance-monitor';
+import Breadcrumbs from '~/components/seo/breadcrumbs';
+import FAQSection from '~/components/seo/faq-section';
+import { createSEOHead } from '~/components/seo/seo-head';
 
 export default component$(() => {
   const showAdvanced = useSignal(true);
@@ -430,60 +433,71 @@ export default component$(() => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={[
+          {
+            question: "How do I start searching for a home in Las Vegas?",
+            answer: "You can start by using our advanced property search tool above, browsing by neighborhood, or contacting Dr. Janet Duffy directly for personalized assistance. We also offer map-based searches and weekend open house listings."
+          },
+          {
+            question: "What areas of Las Vegas do you serve?",
+            answer: "Dr. Janet Duffy serves the entire Las Vegas Valley including Summerlin, Henderson, North Las Vegas, Spring Valley, Enterprise, and surrounding areas. We have extensive local market knowledge across all neighborhoods."
+          },
+          {
+            question: "How accurate are home valuations?",
+            answer: "Our home valuations use current market data, comparable sales, and local market trends to provide accurate estimates. For the most precise valuation, we recommend scheduling a professional assessment with Dr. Janet Duffy."
+          },
+          {
+            question: "What services do you offer for buyers?",
+            answer: "We provide comprehensive buyer services including property search assistance, market analysis, negotiation support, inspection coordination, and guidance through the entire closing process."
+          },
+          {
+            question: "How can I prepare my home for sale?",
+            answer: "We offer staging consultations, market analysis, pricing strategies, and professional marketing services. Dr. Janet Duffy will provide personalized recommendations to maximize your home's value and appeal."
+          }
+        ]}
+        title="Frequently Asked Questions"
+      />
     </>
   );
 });
 
-export const head: DocumentHead = {
-  title: 'Las Vegas Real Estate - Find Your Dream Home | Open House Update',
-  meta: [
-    {
-      name: 'description',
-      content: 'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance.',
-    },
-    {
-      name: 'keywords',
-      content: 'Las Vegas real estate, property search, home valuation, Dr. Janet Duffy, real estate agent, home buying, home selling',
-    },
-    {
-      name: 'author',
-      content: 'Dr. Janet Duffy',
-    },
-    {
-      name: 'robots',
-      content: 'index, follow',
-    },
-    // Open Graph metadata
-    { property: 'og:title', content: 'Las Vegas Real Estate - Find Your Dream Home | Open House Update' },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:description', content: 'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance.' },
-    { property: 'og:url', content: 'https://openhouseupdate.com' },
-    { property: 'og:site_name', content: 'Open House Update' },
-    { property: 'og:locale', content: 'en_US' },
-    { property: 'og:locale:alternate', content: 'es_US' },
-    { property: 'og:determiner', content: 'auto' },
-    { property: 'og:image', content: 'https://openhouseupdate.com/images/og-homepage.jpg' },
-    { property: 'og:image:secure_url', content: 'https://openhouseupdate.com/images/og-homepage.jpg' },
-    { property: 'og:image:type', content: 'image/jpeg' },
-    { property: 'og:image:width', content: '1200' },
-    { property: 'og:image:height', content: '630' },
-    { property: 'og:image:alt', content: 'Las Vegas Real Estate - Open House Update' },
-    { property: 'article:tag', content: 'real estate' },
-    { property: 'article:tag', content: 'Las Vegas' },
-    { property: 'article:tag', content: 'home search' },
-    { property: 'article:tag', content: 'property' },
-    { property: 'article:tag', content: 'Dr. Janet Duffy' },
-    // Twitter Card metadata
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'Las Vegas Real Estate - Find Your Dream Home | Open House Update' },
-    { name: 'twitter:description', content: 'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance.' },
-    { name: 'twitter:image', content: 'https://openhouseupdate.com/images/og-homepage.jpg' },
-    { name: 'twitter:image:alt', content: 'Las Vegas Real Estate - Open House Update' },
+export const head: DocumentHead = createSEOHead({
+  title: 'Las Vegas Real Estate - Find Your Dream Home',
+  description: 'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance. Serving Summerlin, Henderson, North Las Vegas and all Las Vegas Valley neighborhoods.',
+  keywords: [
+    'Las Vegas real estate',
+    'Nevada homes',
+    'property search',
+    'home valuation',
+    'real estate agent',
+    'Dr. Janet Duffy',
+    'open house',
+    'property listings',
+    'Summerlin homes',
+    'Henderson real estate',
+    'North Las Vegas',
+    'Spring Valley',
+    'Enterprise',
+    'home buying',
+    'home selling',
+    'market analysis',
+    'Las Vegas neighborhoods'
   ],
-  links: [
-    {
-      rel: 'canonical',
-      href: 'https://openhouseupdate.com',
-    },
-  ],
-};
+  canonicalUrl: 'https://openhouseupdate.com',
+  ogImage: 'https://openhouseupdate.com/images/og-homepage.jpg',
+  ogImageAlt: 'Las Vegas Real Estate - Open House Update Homepage',
+  ogType: 'website',
+  articleTags: [
+    'real estate',
+    'Las Vegas',
+    'home search',
+    'property',
+    'Dr. Janet Duffy',
+    'Nevada',
+    'Summerlin',
+    'Henderson'
+  ]
+});

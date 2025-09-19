@@ -6,10 +6,8 @@ interface EnhancedErrorBoundaryProps {
   children: any;
 }
 
-export default component$<EnhancedErrorBoundaryProps>(({ 
-  fallback: _fallback, 
-  onError: _onError, 
-  children 
+export default component$<EnhancedErrorBoundaryProps>(({
+  children
 }) => {
   const hasError = useSignal(false);
   const error = useSignal<Error | null>(null);
