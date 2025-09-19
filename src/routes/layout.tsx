@@ -5,7 +5,7 @@ import { inject } from '@vercel/analytics';
 import Header from '~/components/starter/header/header';
 import Footer from '~/components/starter/footer/footer';
 import StructuredData from '~/components/seo/structured-data';
-import StickyHeader from '~/components/layout/sticky-header';
+import StickyHeader from '~/components/layout/header';
 
 import styles from './styles.css?inline';
 
