@@ -1,0 +1,147 @@
+/* RealScout Theme System - Shared CSS Custom Properties */
+
+/* Light Theme (Default) */
+realscout-advanced-search,
+realscout-simple-search,
+realscout-home-value,
+realscout-office-listings {
+  /* Advanced Search Variables */
+  --rs-as-button-text-color: #ffffff;
+  --rs-as-background-color: #ffffff;
+  --rs-as-button-color: rgb(35, 93, 137);
+  
+  /* Simple Search Variables */
+  --rs-ss-font-primary-color: #6a6d72;
+  --rs-ss-searchbar-border-color: hsl(0, 0%, 80%);
+  --rs-ss-box-shadow: 0 10px 15px -3px #0000001a;
+  
+  /* Home Value Variables */
+  --rs-hvw-background-color: #ffffff;
+  --rs-hvw-title-color: #000000;
+  --rs-hvw-subtitle-color: rgba(28, 30, 38, 0.5);
+  --rs-hvw-primary-button-text-color: #ffffff;
+  --rs-hvw-primary-button-color: rgb(35, 93, 137);
+  --rs-hvw-secondary-button-text-color: rgb(35, 93, 137);
+  --rs-hvw-secondary-button-color: #ffffff;
+  
+  /* Listings Variables */
+  --rs-listing-divider-color: rgb(101, 141, 172);
+  --rs-listing-background-color: #ffffff;
+  --rs-listing-text-color: #000000;
+}
+
+/* Dark Theme */
+realscout-advanced-search.dark,
+realscout-simple-search.dark,
+realscout-home-value.dark,
+realscout-office-listings.dark {
+  /* Advanced Search Dark */
+  --rs-as-button-text-color: #ffffff;
+  --rs-as-background-color: #1f2937;
+  --rs-as-button-color: #3b82f6;
+  --rs-as-text-color: #ffffff;
+  
+  /* Simple Search Dark */
+  --rs-ss-font-primary-color: #ffffff;
+  --rs-ss-searchbar-border-color: #4b5563;
+  --rs-ss-background-color: #1f2937;
+  --rs-ss-button-color: #3b82f6;
+  
+  /* Home Value Dark */
+  --rs-hvw-background-color: #1f2937;
+  --rs-hvw-title-color: #ffffff;
+  --rs-hvw-subtitle-color: rgba(255, 255, 255, 0.7);
+  --rs-hvw-primary-button-color: #3b82f6;
+  --rs-hvw-secondary-button-color: #374151;
+  --rs-hvw-secondary-button-text-color: #ffffff;
+  
+  /* Listings Dark */
+  --rs-listing-divider-color: #4b5563;
+  --rs-listing-background-color: #1f2937;
+  --rs-listing-text-color: #ffffff;
+  --rs-listing-button-color: #3b82f6;
+}
+
+/* Vegas Theme */
+realscout-advanced-search.vegas,
+realscout-simple-search.vegas,
+realscout-home-value.vegas,
+realscout-office-listings.vegas {
+  /* Advanced Search Vegas */
+  --rs-as-button-color: #dc2626; /* Red */
+  --rs-as-accent-color: #eab308; /* Gold */
+  
+  /* Simple Search Vegas */
+  --rs-ss-button-color: #dc2626;
+  --rs-ss-accent-color: #eab308;
+  --rs-ss-searchbar-border-color: #dc2626;
+  
+  /* Home Value Vegas */
+  --rs-hvw-primary-button-color: #dc2626;
+  --rs-hvw-secondary-button-color: #eab308;
+  --rs-hvw-secondary-button-text-color: #000000;
+  
+  /* Listings Vegas */
+  --rs-listing-divider-color: #dc2626;
+  --rs-listing-button-color: #dc2626;
+  --rs-listing-accent-color: #eab308;
+}
+
+/* Common Widget Styles */
+realscout-advanced-search,
+realscout-simple-search,
+realscout-home-value,
+realscout-office-listings {
+  width: 100%;
+  min-height: 480px;
+  z-index: 1000;
+}
+
+realscout-simple-search {
+  --rs-ss-widget-width: 500px !important;
+  min-height: 200px;
+}
+
+realscout-home-value {
+  --rs-hvw-widget-width: auto;
+}
+
+/* Widget Configuration Styles */
+/* Compact */
+.compact realscout-advanced-search {
+  --rs-as-widget-width: 350px !important;
+  --rs-as-compact-mode: true;
+}
+
+/* Full Width */
+.full realscout-advanced-search {
+  --rs-as-widget-width: 100% !important;
+}
+
+/* Large Hero */
+.hero realscout-advanced-search {
+  --rs-as-widget-width: 900px !important;
+  --rs-as-padding: 32px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  realscout-simple-search {
+    --rs-ss-widget-width: 100% !important;
+    min-height: 150px;
+  }
+  
+  realscout-office-listings {
+    min-height: 400px;
+  }
+  
+  /* Mobile responsive adjustments for widget configurations */
+  .compact realscout-advanced-search {
+    --rs-as-widget-width: 100% !important;
+  }
+  
+  .hero realscout-advanced-search {
+    --rs-as-widget-width: 100% !important;
+    --rs-as-padding: 16px;
+  }
+}

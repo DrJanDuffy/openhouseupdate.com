@@ -76,6 +76,26 @@
   .section-subtitle {
     @apply text-primary-500 text-lg;
   }
+
+  /* Mobile floating button styles */
+  .mobile-search-trigger {
+    @apply fixed bottom-5 right-5 z-50 bg-gradient-to-r from-primary-500 to-secondary-500 text-white border-none rounded-full px-5 py-3 text-sm font-semibold cursor-pointer shadow-lg transition-all duration-300 flex items-center gap-2 min-w-40 justify-center;
+  }
+
+  .mobile-search-trigger:hover {
+    @apply transform -translate-y-1 shadow-xl;
+  }
+
+  .mobile-search-trigger:active {
+    @apply transform translate-y-0;
+  }
+
+  /* Hide mobile button on desktop */
+  @media (min-width: 769px) {
+    .mobile-search-trigger {
+      @apply hidden;
+    }
+  }
 }
 
 /**

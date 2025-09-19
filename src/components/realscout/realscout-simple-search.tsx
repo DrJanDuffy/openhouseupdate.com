@@ -1,11 +1,13 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useSignal } from '@builder.io/qwik';
 import RealScoutLoader from './realscout-loader';
 
 export default component$(() => {
+  const currentTheme = useSignal<'light' | 'dark' | 'vegas'>('light');
   return (
     <RealScoutLoader agentId="QWdlbnQtMjI1MDUw" widgetType="simple-search">
       <div class="realscout-simple-search-container">
         <style>{`
+          /* Light Theme (Default) */
           realscout-simple-search {
             --rs-ss-font-primary-color: #6a6d72;
             --rs-ss-searchbar-border-color: hsl(0, 0%, 80%);
@@ -14,6 +16,21 @@ export default component$(() => {
             width: 100%;
             min-height: 200px;
             z-index: 1000;
+          }
+
+          /* Dark Theme */
+          realscout-simple-search.dark {
+            --rs-ss-font-primary-color: #ffffff;
+            --rs-ss-searchbar-border-color: #4b5563;
+            --rs-ss-background-color: #1f2937;
+            --rs-ss-button-color: #3b82f6;
+          }
+
+          /* Vegas Theme */
+          realscout-simple-search.vegas {
+            --rs-ss-button-color: #dc2626;
+            --rs-ss-accent-color: #eab308;
+            --rs-ss-searchbar-border-color: #dc2626;
           }
           
           .realscout-simple-search-container {
@@ -42,6 +59,35 @@ export default component$(() => {
             font-size: 1.1rem;
           }
 
+          .theme-switcher {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+          }
+
+          .theme-button {
+            padding: 0.5rem 1rem;
+            border: 2px solid #3A8DDE;
+            background: transparent;
+            color: #3A8DDE;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+          }
+
+          .theme-button:hover {
+            background: #3A8DDE;
+            color: white;
+          }
+
+          .theme-button.active {
+            background: #3A8DDE;
+            color: white;
+          }
+
           @media (max-width: 768px) {
             .realscout-simple-search-container {
               margin: 1rem 0;
@@ -62,10 +108,32 @@ export default component$(() => {
         <div class="realscout-simple-search-header">
           <h2>Quick Property Search</h2>
           <p>Search for homes by address, neighborhood, or city</p>
+          
+          <div class="theme-switcher">
+            <button 
+              class={`theme-button ${currentTheme.value === 'light' ? 'active' : ''}`}
+              onClick$={() => currentTheme.value = 'light'}
+            >
+              Light
+            </button>
+            <button 
+              class={`theme-button ${currentTheme.value === 'dark' ? 'active' : ''}`}
+              onClick$={() => currentTheme.value = 'dark'}
+            >
+              Dark
+            </button>
+            <button 
+              class={`theme-button ${currentTheme.value === 'vegas' ? 'active' : ''}`}
+              onClick$={() => currentTheme.value = 'vegas'}
+            >
+              Vegas
+            </button>
+          </div>
         </div>
         
         <realscout-simple-search 
           agent-encoded-id="QWdlbnQtMjI1MDUw"
+          class={currentTheme.value}
         ></realscout-simple-search>
       </div>
     </RealScoutLoader>
