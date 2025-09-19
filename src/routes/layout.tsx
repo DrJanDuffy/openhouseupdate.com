@@ -27,6 +27,11 @@ export default component$(() => {
       </main>
       <Footer />
       <script dangerouslySetInnerHTML={`${inject()}`} />
+      <script 
+        src="https://em.realscout.com/widgets/realscout-web-components.umd.js" 
+        type="module" 
+        crossOrigin="anonymous"
+      />
     </>
   );
 });
@@ -87,13 +92,6 @@ export const head: DocumentHead = {
     {
       rel: 'canonical',
       href: 'https://openhouseupdate.com',
-    },
-  ],
-  scripts: [
-    {
-      src: 'https://em.realscout.com/widgets/realscout-web-components.umd.js',
-      type: 'module',
-      crossorigin: 'anonymous',
     },
   ],
 };

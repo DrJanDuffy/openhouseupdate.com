@@ -1,5 +1,5 @@
-import { component$, useVisibleTask$, type DocumentHead } from '@builder.io/qwik';
-import { useLocation } from '@builder.io/qwik-city';
+import { component$, useVisibleTask$ } from '@builder.io/qwik';
+import { useLocation, type DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
   const location = useLocation();
@@ -177,11 +177,11 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = ({ params }) => {
+export const head: DocumentHead = ({ params }: { params: { neighborhood: string } }) => {
   const neighborhood = params.neighborhood;
   const neighborhoodName = neighborhood
     .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
   return {
