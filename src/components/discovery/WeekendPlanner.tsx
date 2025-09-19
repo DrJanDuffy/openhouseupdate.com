@@ -47,6 +47,83 @@ interface RouteStop {
   visitDuration: number;
 }
 
+// Helper functions outside component
+const getWeekendDate = (day: 'saturday' | 'sunday') => {
+  const today = new Date();
+  const currentDay = today.getDay();
+  const daysUntilSaturday = (6 - currentDay) % 7;
+  const daysUntilSunday = (7 - currentDay) % 7;
+  
+  const targetDate = new Date(today);
+  targetDate.setDate(today.getDate() + (day === 'saturday' ? daysUntilSaturday : daysUntilSunday));
+  
+  return targetDate.toISOString().split('T')[0];
+};
+
+const parseTime = (timeStr: string) => {
+  const [hours, minutes] = timeStr.split(':').map(Number);
+  return hours * 60 + minutes;
+};
+
+const formatTime = (minutes: number) => {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const displayHours = hours % 12 || 12;
+  return `${displayHours}:${mins.toString().padStart(2, '0')} ${ampm}`;
+};
+
+const getDistance = (lat1: number, lng1: number, lat2: number, lng2: number) => {
+  const R = 3959; // Earth's radius in miles
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLng/2) * Math.sin(dLng/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+};
+
+const calculateTravelTime = (from: OpenHouse, to: OpenHouse) => {
+  // Simplified travel time calculation (15-30 minutes between houses)
+  const distance = getDistance(from.lat, from.lng, to.lat, to.lng);
+  return Math.max(15, Math.min(30, distance * 2)); // Rough estimate
+};
+
+const calculateTotalDistance = (stops: RouteStop[]) => {
+  let total = 0;
+  for (let i = 1; i < stops.length; i++) {
+    total += getDistance(
+      stops[i - 1].openHouse.lat, stops[i - 1].openHouse.lng,
+      stops[i].openHouse.lat, stops[i].openHouse.lng
+    );
+  }
+  return total;
+};
+
+const sortHousesByOptimization = (houses: OpenHouse[]) => {
+  // Sort by neighborhood clustering and price range
+  return houses.sort((a, b) => {
+    // Prioritize houses in similar price ranges
+    const priceDiff = Math.abs(a.price - b.price);
+    const priceScore = priceDiff < 100000 ? 1 : 0;
+    
+    // Prioritize houses in same or nearby neighborhoods
+    const neighborhoodScore = a.neighborhood === b.neighborhood ? 1 : 0;
+    
+    return (neighborhoodScore + priceScore) * -1;
+  });
+};
+
+const formatPrice = (price: number) => {
+  if (price >= 1000000) {
+    return `$${(price / 1000000).toFixed(1)}M`;
+  } else if (price >= 1000) {
+    return `$${(price / 1000).toFixed(0)}K`;
+  }
+  return `$${price.toLocaleString()}`;
+};
+
 export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) => {
   const selectedDay = useSignal<'saturday' | 'sunday'>('saturday');
   const startTime = useSignal('09:00');
@@ -55,12 +132,12 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
   const isGenerating = useSignal(false);
 
   // Filter open houses for selected day
-  const availableOpenHouses = $((day: string) => {
+  const availableOpenHouses = (day: string) => {
     const targetDate = getWeekendDate(day as 'saturday' | 'sunday');
     return openHouses.filter(oh => 
       oh.openHouseTimes.some(time => time.date === targetDate)
     );
-  });
+  };
 
   const generateOptimalRoute = $(async () => {
     isGenerating.value = true;
@@ -143,82 +220,6 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
     }
   });
 
-  const sortHousesByOptimization = $((houses: OpenHouse[]) => {
-    // Sort by neighborhood clustering and price range
-    return houses.sort((a, b) => {
-      // Prioritize houses in similar price ranges
-      const priceDiff = Math.abs(a.price - b.price);
-      const priceScore = priceDiff < 100000 ? 1 : 0;
-      
-      // Prioritize houses in same or nearby neighborhoods
-      const neighborhoodScore = a.neighborhood === b.neighborhood ? 1 : 0;
-      
-      return (neighborhoodScore + priceScore) * -1;
-    });
-  });
-
-  const calculateTravelTime = $((from: OpenHouse, to: OpenHouse) => {
-    // Simplified travel time calculation (15-30 minutes between houses)
-    const distance = getDistance(from.lat, from.lng, to.lat, to.lng);
-    return Math.max(15, Math.min(30, distance * 2)); // Rough estimate
-  });
-
-  const calculateTotalDistance = $((stops: RouteStop[]) => {
-    let total = 0;
-    for (let i = 1; i < stops.length; i++) {
-      total += getDistance(
-        stops[i - 1].openHouse.lat, stops[i - 1].openHouse.lng,
-        stops[i].openHouse.lat, stops[i].openHouse.lng
-      );
-    }
-    return total;
-  });
-
-  const getDistance = (lat1: number, lng1: number, lat2: number, lng2: number) => {
-    const R = 3959; // Earth's radius in miles
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLng = (lng2 - lng1) * Math.PI / 180;
-    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-              Math.sin(dLng/2) * Math.sin(dLng/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    return R * c;
-  };
-
-  const parseTime = $((timeStr: string) => {
-    const [hours, minutes] = timeStr.split(':').map(Number);
-    return hours * 60 + minutes;
-  });
-
-  const formatTime = $((minutes: number) => {
-    const hours = Math.floor(minutes / 60);
-    const mins = minutes % 60;
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    const displayHours = hours % 12 || 12;
-    return `${displayHours}:${mins.toString().padStart(2, '0')} ${ampm}`;
-  });
-
-  const getWeekendDate = $((day: 'saturday' | 'sunday') => {
-    const today = new Date();
-    const currentDay = today.getDay();
-    const daysUntilSaturday = (6 - currentDay) % 7;
-    const daysUntilSunday = (7 - currentDay) % 7;
-    
-    const targetDate = new Date(today);
-    targetDate.setDate(today.getDate() + (day === 'saturday' ? daysUntilSaturday : daysUntilSunday));
-    
-    return targetDate.toISOString().split('T')[0];
-  });
-
-  const formatPrice = (price: number) => {
-    if (price >= 1000000) {
-      return `$${(price / 1000000).toFixed(1)}M`;
-    } else if (price >= 1000) {
-      return `$${(price / 1000).toFixed(0)}K`;
-    }
-    return `$${price.toLocaleString()}`;
-  };
-
   const deleteRoute = $((routeId: string) => {
     const index = plannedRoutes.findIndex(route => route.id === routeId);
     if (index >= 0) {
@@ -250,97 +251,65 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
         }
 
         .planner-header p {
-          color: #6a6d72;
+          color: #6B7280;
           font-size: 1.1rem;
         }
 
         .planner-controls {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 1.5rem;
+          gap: 1rem;
           margin-bottom: 2rem;
           padding: 1.5rem;
-          background: #f8f9fa;
+          background: #F7F9FC;
           border-radius: 12px;
         }
 
         .control-group {
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
         }
 
         .control-group label {
           font-weight: 600;
           color: #0A2540;
+          margin-bottom: 0.5rem;
           font-size: 0.9rem;
         }
 
         .control-group select,
         .control-group input {
           padding: 0.75rem;
-          border: 2px solid #e9ecef;
+          border: 2px solid #E5E7EB;
           border-radius: 8px;
           font-size: 1rem;
-          transition: border-color 0.2s ease;
+          transition: border-color 0.2s;
         }
 
         .control-group select:focus,
         .control-group input:focus {
           outline: none;
-          border-color: #16B286;
-        }
-
-        .day-selector {
-          display: flex;
-          gap: 0.5rem;
-          margin-bottom: 1rem;
-        }
-
-        .day-btn {
-          flex: 1;
-          padding: 1rem;
-          border: 2px solid #e9ecef;
-          border-radius: 12px;
-          background: white;
-          cursor: pointer;
-          font-weight: 600;
-          font-size: 1.1rem;
-          transition: all 0.2s ease;
-          text-align: center;
-        }
-
-        .day-btn:hover {
-          border-color: #16B286;
-          background: #f8fffe;
-        }
-
-        .day-btn.active {
-          border-color: #16B286;
-          background: #16B286;
-          color: white;
+          border-color: #3A8DDE;
         }
 
         .generate-btn {
-          width: 100%;
-          padding: 1rem 2rem;
-          background: #16B286;
+          background: linear-gradient(135deg, #3A8DDE 0%, #16B286 100%);
           color: white;
           border: none;
+          padding: 1rem 2rem;
           border-radius: 12px;
           font-size: 1.1rem;
           font-weight: 600;
           cursor: pointer;
-          transition: all 0.2s ease;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.5rem;
+          transition: transform 0.2s, box-shadow 0.2s;
+          grid-column: 1 / -1;
+          justify-self: center;
+          min-width: 200px;
         }
 
-        .generate-btn:hover {
-          background: #14a078;
-          transform: translateY(-1px);
+        .generate-btn:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(58, 141, 222, 0.3);
         }
 
         .generate-btn:disabled {
@@ -363,22 +332,21 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
         .routes-header h3 {
           color: #0A2540;
           font-size: 1.5rem;
-          font-weight: 700;
-          margin: 0;
+          font-weight: 600;
         }
 
         .route-card {
           background: white;
-          border: 2px solid #e9ecef;
+          border: 2px solid #E5E7EB;
           border-radius: 12px;
           padding: 1.5rem;
           margin-bottom: 1rem;
-          transition: all 0.2s ease;
+          transition: border-color 0.2s, box-shadow 0.2s;
         }
 
         .route-card:hover {
-          border-color: #16B286;
-          box-shadow: 0 4px 12px rgba(22, 178, 134, 0.1);
+          border-color: #3A8DDE;
+          box-shadow: 0 4px 12px rgba(58, 141, 222, 0.1);
         }
 
         .route-header {
@@ -390,294 +358,212 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
 
         .route-title {
           font-size: 1.2rem;
-          font-weight: 700;
+          font-weight: 600;
           color: #0A2540;
-          margin: 0;
         }
 
-        .route-meta {
+        .route-stats {
           display: flex;
           gap: 1rem;
           font-size: 0.9rem;
-          color: #6a6d72;
+          color: #6B7280;
         }
 
         .route-stops {
-          display: grid;
-          gap: 0.75rem;
+          margin-top: 1rem;
         }
 
-        .route-stop {
+        .stop-item {
           display: flex;
           align-items: center;
-          gap: 1rem;
           padding: 0.75rem;
-          background: #f8f9fa;
+          background: #F7F9FC;
           border-radius: 8px;
-        }
-
-        .stop-number {
-          width: 32px;
-          height: 32px;
-          background: #16B286;
-          color: white;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 600;
-          font-size: 0.9rem;
-        }
-
-        .stop-details {
-          flex: 1;
-        }
-
-        .stop-address {
-          font-weight: 600;
-          color: #0A2540;
-          margin-bottom: 0.25rem;
-        }
-
-        .stop-meta {
-          font-size: 0.8rem;
-          color: #6a6d72;
-          display: flex;
-          gap: 1rem;
+          margin-bottom: 0.5rem;
         }
 
         .stop-time {
           font-weight: 600;
-          color: #16B286;
+          color: #0A2540;
           min-width: 120px;
         }
 
-        .route-actions {
-          display: flex;
-          gap: 0.75rem;
-          margin-top: 1rem;
+        .stop-details {
+          flex: 1;
+          margin-left: 1rem;
         }
 
-        .btn {
-          padding: 0.5rem 1rem;
-          border: none;
-          border-radius: 6px;
+        .stop-address {
+          font-weight: 500;
+          color: #0A2540;
+          margin-bottom: 0.25rem;
+        }
+
+        .stop-price {
+          color: #16B286;
           font-weight: 600;
-          cursor: pointer;
-          transition: all 0.2s ease;
+          font-size: 1.1rem;
+        }
+
+        .stop-info {
+          display: flex;
+          gap: 1rem;
           font-size: 0.9rem;
+          color: #6B7280;
+          margin-top: 0.25rem;
         }
 
-        .btn-primary {
-          background: #16B286;
+        .delete-btn {
+          background: #EF4444;
           color: white;
+          border: none;
+          padding: 0.5rem 1rem;
+          border-radius: 6px;
+          font-size: 0.9rem;
+          cursor: pointer;
+          transition: background-color 0.2s;
         }
 
-        .btn-primary:hover {
-          background: #14a078;
-        }
-
-        .btn-secondary {
-          background: #6c757d;
-          color: white;
-        }
-
-        .btn-secondary:hover {
-          background: #5a6268;
-        }
-
-        .btn-outline {
-          background: transparent;
-          color: #dc3545;
-          border: 2px solid #dc3545;
-        }
-
-        .btn-outline:hover {
-          background: #dc3545;
-          color: white;
+        .delete-btn:hover {
+          background: #DC2626;
         }
 
         .empty-state {
           text-align: center;
-          padding: 3rem 1rem;
-          color: #6a6d72;
+          padding: 3rem;
+          color: #6B7280;
         }
 
-        .empty-state h3 {
-          color: #0A2540;
+        .empty-state h4 {
+          font-size: 1.2rem;
           margin-bottom: 0.5rem;
+          color: #0A2540;
         }
 
         @media (max-width: 768px) {
-          .weekend-planner {
-            padding: 1rem;
-          }
-
           .planner-controls {
             grid-template-columns: 1fr;
-            gap: 1rem;
           }
-
-          .day-selector {
-            flex-direction: column;
-          }
-
+          
           .route-header {
             flex-direction: column;
             align-items: flex-start;
             gap: 0.5rem;
           }
-
-          .route-meta {
+          
+          .route-stats {
             flex-direction: column;
             gap: 0.25rem;
-          }
-
-          .route-stop {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
-          }
-
-          .stop-time {
-            min-width: auto;
-          }
-
-          .route-actions {
-            flex-direction: column;
           }
         }
       `}</style>
 
       <div class="planner-header">
-        <h2>🏠 Weekend House Tour Planner</h2>
-        <p>Plan your perfect Saturday or Sunday open house route</p>
-      </div>
-
-      <div class="day-selector">
-        <button 
-          class={`day-btn ${selectedDay.value === 'saturday' ? 'active' : ''}`}
-          onClick$={() => selectedDay.value = 'saturday'}
-        >
-          📅 Saturday
-        </button>
-        <button 
-          class={`day-btn ${selectedDay.value === 'sunday' ? 'active' : ''}`}
-          onClick$={() => selectedDay.value = 'sunday'}
-        >
-          📅 Sunday
-        </button>
+        <h2>Weekend House Tour Planner</h2>
+        <p>Plan your perfect weekend open house tour with optimized routes</p>
       </div>
 
       <div class="planner-controls">
         <div class="control-group">
-          <label for="startTime">Start Time</label>
-          <input 
-            type="time" 
-            id="startTime"
-            bind:value={startTime}
-          />
-        </div>
-
-        <div class="control-group">
-          <label for="maxHouses">Max Houses</label>
-          <select id="maxHouses" bind:value={maxHouses}>
-            <option value={3}>3 Houses</option>
-            <option value={4}>4 Houses</option>
-            <option value={5}>5 Houses</option>
-            <option value={6}>6 Houses</option>
-            <option value={7}>7 Houses</option>
-            <option value={8}>8 Houses</option>
+          <label for="day-select">Select Day</label>
+          <select 
+            id="day-select"
+            value={selectedDay.value}
+            onChange$={(e) => selectedDay.value = e.target.value as 'saturday' | 'sunday'}
+          >
+            <option value="saturday">Saturday</option>
+            <option value="sunday">Sunday</option>
           </select>
         </div>
 
         <div class="control-group">
-          <label>Available Houses</label>
-          <div style="padding: 0.75rem; background: #f8f9fa; border-radius: 8px; font-weight: 600; color: #16B286;">
-            {availableOpenHouses(selectedDay.value).length} houses
-          </div>
+          <label for="start-time">Start Time</label>
+          <input 
+            id="start-time"
+            type="time" 
+            value={startTime.value}
+            onChange$={(e) => startTime.value = e.target.value}
+          />
         </div>
+
+        <div class="control-group">
+          <label for="max-houses">Max Houses</label>
+          <input 
+            id="max-houses"
+            type="number" 
+            min="1" 
+            max="10" 
+            value={maxHouses.value}
+            onChange$={(e) => maxHouses.value = e.target.value}
+          />
+        </div>
+
+        <button 
+          class="generate-btn"
+          onClick$={generateOptimalRoute}
+          disabled={isGenerating.value || availableOpenHouses(selectedDay.value).length === 0}
+        >
+          {isGenerating.value ? 'Generating Route...' : 'Generate Optimal Route'}
+        </button>
       </div>
 
-      <button 
-        class="generate-btn"
-        onClick$={generateOptimalRoute}
-        disabled={isGenerating.value || availableOpenHouses(selectedDay.value).length === 0}
-      >
-        {isGenerating.value ? (
-          <>
-            <span>⏳</span>
-            Generating Route...
-          </>
-        ) : (
-          <>
-            <span>🗺️</span>
-            Generate Optimal Route
-          </>
-        )}
-      </button>
+      <div class="routes-section">
+        <div class="routes-header">
+          <h3>Your Planned Routes</h3>
+          <span class="route-stats">
+            {availableOpenHouses(selectedDay.value).length} houses available
+          </span>
+        </div>
 
-      {plannedRoutes.length > 0 && (
-        <div class="routes-section">
-          <div class="routes-header">
-            <h3>Your Planned Routes</h3>
-            <span style="color: #6a6d72; font-size: 0.9rem;">
-              {plannedRoutes.length} route{plannedRoutes.length !== 1 ? 's' : ''}
-            </span>
+        {plannedRoutes.length === 0 ? (
+          <div class="empty-state">
+            <h4>No routes planned yet</h4>
+            <p>Generate your first optimized route to get started!</p>
           </div>
-
-          {plannedRoutes.map((route) => (
+        ) : (
+          plannedRoutes.map((route) => (
             <div key={route.id} class="route-card">
               <div class="route-header">
-                <h4 class="route-title">{route.name}</h4>
-                <div class="route-meta">
-                  <span>⏱️ {Math.floor(route.totalDuration / 60)}h {route.totalDuration % 60}m</span>
-                  <span>📏 {route.totalDistance.toFixed(1)} mi</span>
-                  <span>🏠 {route.stops.length} stops</span>
+                <div class="route-title">{route.name}</div>
+                <div class="route-stats">
+                  <span>{route.stops.length} stops</span>
+                  <span>{Math.round(route.totalDuration / 60)}h {route.totalDuration % 60}m total</span>
+                  <span>{route.totalDistance.toFixed(1)} miles</span>
                 </div>
               </div>
 
               <div class="route-stops">
                 {route.stops.map((stop, index) => (
-                  <div key={stop.openHouse.id} class="route-stop">
-                    <div class="stop-number">{index + 1}</div>
+                  <div key={index} class="stop-item">
+                    <div class="stop-time">
+                      {stop.arrivalTime} - {stop.departureTime}
+                    </div>
                     <div class="stop-details">
                       <div class="stop-address">{stop.openHouse.address}</div>
-                      <div class="stop-meta">
-                        <span class="stop-time">
-                          {stop.arrivalTime} - {stop.departureTime}
-                        </span>
-                        <span>{formatPrice(stop.openHouse.price)}</span>
-                        <span>{stop.openHouse.beds}bed {stop.openHouse.baths}bath</span>
+                      <div class="stop-price">{formatPrice(stop.openHouse.price)}</div>
+                      <div class="stop-info">
+                        <span>{stop.openHouse.beds} bed • {stop.openHouse.baths} bath</span>
+                        <span>{stop.openHouse.sqft.toLocaleString()} sqft</span>
                         <span>{stop.openHouse.neighborhood}</span>
+                        {stop.travelTimeFromPrevious > 0 && (
+                          <span>{stop.travelTimeFromPrevious}min travel</span>
+                        )}
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div class="route-actions">
-                <button class="btn btn-primary">
-                  📱 Send to Phone
-                </button>
-                <button class="btn btn-secondary">
-                  🗺️ View on Map
-                </button>
-                <button class="btn btn-outline" onClick$={() => deleteRoute(route.id)}>
-                  🗑️ Delete
-                </button>
-              </div>
+              <button 
+                class="delete-btn"
+                onClick$={() => deleteRoute(route.id)}
+              >
+                Delete Route
+              </button>
             </div>
-          ))}
-        </div>
-      )}
-
-      {plannedRoutes.length === 0 && !isGenerating.value && (
-        <div class="empty-state">
-          <h3>No routes planned yet</h3>
-          <p>Generate your first weekend house tour route above!</p>
-        </div>
-      )}
+          ))
+        )}
+      </div>
     </div>
   );
 });

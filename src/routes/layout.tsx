@@ -1,6 +1,6 @@
 import { component$, Slot, useStyles$ } from '@builder.io/qwik';
 import { routeLoader$, DocumentHead } from '@builder.io/qwik-city';
-import { Analytics } from '@vercel/analytics';
+import { inject } from '@vercel/analytics';
 
 import Header from '~/components/starter/header/header';
 import Footer from '~/components/starter/footer/footer';
@@ -26,7 +26,7 @@ export default component$(() => {
         <Slot />
       </main>
       <Footer />
-      <Analytics />
+      <script dangerouslySetInnerHTML={`${inject()}`} />
     </>
   );
 });
