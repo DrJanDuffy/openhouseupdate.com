@@ -44,7 +44,6 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
   ];
 
   const handleSubmit = $(async (event: QwikSubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
     isSubmitting.value = true;
 
     // Track exit intent conversion

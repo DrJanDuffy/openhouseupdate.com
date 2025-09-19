@@ -40,7 +40,6 @@ export default component$<FirstTimeBuyerGuideProps>(({
   });
 
   const handleDownload = $(async (event: QwikSubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
     isSubmitting.value = true;
 
     // Track download attempt
