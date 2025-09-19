@@ -7,13 +7,29 @@ export default component$(() => {
 
   const showSimpleSearch = $(() => {
     showAdvanced.value = false;
+    
+    // Track in analytics
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'search_mode', {
+        event_category: 'engagement',
+        event_label: 'simple'
+      });
+    }
   });
 
   const showAdvancedSearch = $(() => {
     showAdvanced.value = true;
+    
+    // Track in analytics
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'search_mode', {
+        event_category: 'engagement',
+        event_label: 'advanced'
+      });
+    }
   });
 
-  // Ensure RealScout components are available
+  // Ensure RealScout components are available and add analytics
   useVisibleTask$(() => {
     // Script is now loaded globally in document head
     // Just ensure components are ready
@@ -21,6 +37,32 @@ export default component$(() => {
       // Wait for custom elements to be defined
       const checkElements = () => {
         if (customElements.get('realscout-advanced-search') && customElements.get('realscout-simple-search')) {
+          // Add event listeners for search interactions
+          const advancedSearch = document.querySelector('realscout-advanced-search');
+          const simpleSearch = document.querySelector('realscout-simple-search');
+          
+          if (advancedSearch && window.gtag) {
+            // Track when advanced search is used
+            advancedSearch.addEventListener('search', () => {
+              window.gtag('event', 'search_performed', {
+                event_category: 'search',
+                event_label: 'advanced_search',
+                value: 1
+              });
+            });
+          }
+          
+          if (simpleSearch && window.gtag) {
+            // Track when simple search is used
+            simpleSearch.addEventListener('search', () => {
+              window.gtag('event', 'search_performed', {
+                event_category: 'search',
+                event_label: 'simple_search',
+                value: 1
+              });
+            });
+          }
+          
           return;
         }
         setTimeout(checkElements, 100);
