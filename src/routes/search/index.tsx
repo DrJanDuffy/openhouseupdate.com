@@ -1,11 +1,26 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
   const showFilters = useSignal(true);
+  const resultsCount = useSignal(12); // Sample results count
 
   const toggleFilters = $(() => {
     showFilters.value = !showFilters.value;
+  });
+
+  // Ensure RealScout components are available
+  useVisibleTask$(() => {
+    // Script is loaded globally in document head
+    if (typeof window !== 'undefined') {
+      const checkElements = () => {
+        if (customElements.get('realscout-advanced-search')) {
+          return;
+        }
+        setTimeout(checkElements, 100);
+      };
+      checkElements();
+    }
   });
 
   return (
@@ -90,6 +105,9 @@ export default component$(() => {
           --rs-as-border-radius: 8px;
           --rs-as-box-shadow: 0 2px 8px rgba(0,0,0,0.08);
           margin-bottom: 2rem;
+          width: 100%;
+          min-height: 400px;
+          z-index: 1000;
         }
 
         .quick-filters {
@@ -163,7 +181,9 @@ export default component$(() => {
 
         .results-grid {
           display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
           gap: 1.5rem;
+          margin-bottom: 2rem;
         }
 
         .result-card {
@@ -244,6 +264,27 @@ export default component$(() => {
         }
 
         .search-again-btn:hover {
+          background: #2a7bc7;
+        }
+
+        .load-more-section {
+          text-align: center;
+          padding: 2rem 0;
+        }
+
+        .load-more-btn {
+          background: #3A8DDE;
+          color: white;
+          border: none;
+          padding: 0.75rem 2rem;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 1rem;
+          transition: background-color 0.2s;
+        }
+
+        .load-more-btn:hover {
           background: #2a7bc7;
         }
 
@@ -345,7 +386,7 @@ export default component$(() => {
         
         <main class="results">
           <div class="results-header">
-            <div class="results-count">Showing 0 properties</div>
+            <div class="results-count">Showing {resultsCount.value} properties</div>
             <div class="sort-controls">
               <label>Sort by:</label>
               <select title="Sort properties by">
@@ -359,16 +400,90 @@ export default component$(() => {
           </div>
 
           <div class="results-grid">
-            <div class="no-results">
-              <h3>No Properties Found</h3>
-              <p>
-                We couldn't find any properties matching your search criteria. 
-                Try adjusting your filters or search terms.
-              </p>
-              <button class="search-again-btn" onClick$={() => window.location.href = '/'}>
-                Start New Search
-              </button>
+            {/* Sample Property Results */}
+            <div class="result-card">
+              <div class="result-image">🏠 Property Image</div>
+              <div class="result-content">
+                <div class="result-price">$485,000</div>
+                <div class="result-address">1234 Summerlin Pkwy, Las Vegas, NV 89135</div>
+                <div class="result-details">
+                  <span class="result-detail">🛏️ 3 bed</span>
+                  <span class="result-detail">🛁 2 bath</span>
+                  <span class="result-detail">📐 1,850 sqft</span>
+                </div>
+              </div>
             </div>
+
+            <div class="result-card">
+              <div class="result-image">🏠 Property Image</div>
+              <div class="result-content">
+                <div class="result-price">$625,000</div>
+                <div class="result-address">5678 Red Rock Canyon Dr, Las Vegas, NV 89135</div>
+                <div class="result-details">
+                  <span class="result-detail">🛏️ 4 bed</span>
+                  <span class="result-detail">🛁 3 bath</span>
+                  <span class="result-detail">📐 2,200 sqft</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="result-image">🏠 Property Image</div>
+              <div class="result-content">
+                <div class="result-price">$395,000</div>
+                <div class="result-address">9012 Charleston Blvd, Las Vegas, NV 89117</div>
+                <div class="result-details">
+                  <span class="result-detail">🛏️ 2 bed</span>
+                  <span class="result-detail">🛁 2 bath</span>
+                  <span class="result-detail">📐 1,400 sqft</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="result-image">🏠 Property Image</div>
+              <div class="result-content">
+                <div class="result-price">$750,000</div>
+                <div class="result-address">3456 Spanish Trail Dr, Las Vegas, NV 89135</div>
+                <div class="result-details">
+                  <span class="result-detail">🛏️ 5 bed</span>
+                  <span class="result-detail">🛁 4 bath</span>
+                  <span class="result-detail">📐 3,100 sqft</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="result-image">🏠 Property Image</div>
+              <div class="result-content">
+                <div class="result-price">$425,000</div>
+                <div class="result-address">7890 Desert Inn Rd, Las Vegas, NV 89117</div>
+                <div class="result-details">
+                  <span class="result-detail">🛏️ 3 bed</span>
+                  <span class="result-detail">🛁 2 bath</span>
+                  <span class="result-detail">📐 1,650 sqft</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="result-image">🏠 Property Image</div>
+              <div class="result-content">
+                <div class="result-price">$550,000</div>
+                <div class="result-address">2468 Sahara Ave, Las Vegas, NV 89102</div>
+                <div class="result-details">
+                  <span class="result-detail">🛏️ 4 bed</span>
+                  <span class="result-detail">🛁 3 bath</span>
+                  <span class="result-detail">📐 2,000 sqft</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="load-more-section">
+            <button class="load-more-btn">
+              Load More Properties
+            </button>
           </div>
         </main>
       </div>

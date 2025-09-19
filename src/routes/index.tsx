@@ -1,4 +1,4 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import RealScoutMap from '~/components/realscout/RealScoutMap';
 
@@ -11,6 +11,22 @@ export default component$(() => {
 
   const showAdvancedSearch = $(() => {
     showAdvanced.value = true;
+  });
+
+  // Ensure RealScout components are available
+  useVisibleTask$(() => {
+    // Script is now loaded globally in document head
+    // Just ensure components are ready
+    if (typeof window !== 'undefined') {
+      // Wait for custom elements to be defined
+      const checkElements = () => {
+        if (customElements.get('realscout-advanced-search') && customElements.get('realscout-simple-search')) {
+          return;
+        }
+        setTimeout(checkElements, 100);
+      };
+      checkElements();
+    }
   });
 
   return (
@@ -111,66 +127,18 @@ export default component$(() => {
             min-height: 400px;
           }
 
-          .simple-search {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
+          realscout-simple-search {
+            --rs-ss-font-primary-color: #6a6d72;
+            --rs-ss-searchbar-border-color: hsl(0, 0%, 80%);
+            --rs-ss-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --rs-ss-widget-width: 500px !important;
+            --rs-ss-border-radius: 12px;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
+            border-radius: 12px;
+            overflow: hidden;
             width: 100%;
-          }
-
-          .simple-search h3 {
-            color: #0A2540;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-          }
-
-          .search-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-          }
-
-          .search-form input,
-          .search-form select {
-            padding: 0.75rem 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.2s;
-            background: white;
-          }
-
-          .search-form input:focus,
-          .search-form select:focus {
-            outline: none;
-            border-color: #3A8DDE;
-          }
-
-          .price-inputs,
-          .bed-bath-inputs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-          }
-
-          .search-form button {
-            background: #3A8DDE;
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 0.5rem;
-          }
-
-          .search-form button:hover {
-            background: #2a7bc7;
+            min-height: 200px;
+            z-index: 1000;
           }
 
           realscout-advanced-search {
@@ -183,6 +151,9 @@ export default component$(() => {
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             border-radius: 12px;
             overflow: hidden;
+            width: 100%;
+            min-height: 480px;
+            z-index: 1000;
           }
 
           @media (max-width: 768px) {
@@ -202,13 +173,8 @@ export default component$(() => {
               --rs-as-widget-width: 90vw !important;
             }
             
-            .simple-search {
-              max-width: 90vw;
-            }
-
-            .price-inputs,
-            .bed-bath-inputs {
-              grid-template-columns: 1fr;
+            realscout-simple-search {
+              --rs-ss-widget-width: 90vw !important;
             }
           }
         `}</style>
@@ -239,49 +205,7 @@ export default component$(() => {
           {showAdvanced.value ? (
             <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
           ) : (
-            <div class="simple-search">
-              <h3>Quick Property Search</h3>
-              <form class="search-form" action="/search" method="get">
-                <input 
-                  type="text" 
-                  placeholder="Enter city, neighborhood, or address"
-                  name="location"
-                  required
-                />
-                <div class="price-inputs">
-                  <input 
-                    type="number" 
-                    placeholder="Min Price"
-                    name="minPrice"
-                    min="0"
-                  />
-                  <input 
-                    type="number" 
-                    placeholder="Max Price"
-                    name="maxPrice"
-                    min="0"
-                  />
-                </div>
-                <div class="bed-bath-inputs">
-                  <select name="bedrooms" title="Number of bedrooms">
-                    <option value="">Any Bedrooms</option>
-                    <option value="1">1+ Bedrooms</option>
-                    <option value="2">2+ Bedrooms</option>
-                    <option value="3">3+ Bedrooms</option>
-                    <option value="4">4+ Bedrooms</option>
-                    <option value="5">5+ Bedrooms</option>
-                  </select>
-                  <select name="bathrooms" title="Number of bathrooms">
-                    <option value="">Any Bathrooms</option>
-                    <option value="1">1+ Bathrooms</option>
-                    <option value="2">2+ Bathrooms</option>
-                    <option value="3">3+ Bathrooms</option>
-                    <option value="4">4+ Bathrooms</option>
-                  </select>
-                </div>
-                <button type="submit">Search Properties</button>
-              </form>
-            </div>
+            <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-simple-search>
           )}
         </div>
       </section>

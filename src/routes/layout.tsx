@@ -89,4 +89,11 @@ export const head: DocumentHead = {
       href: 'https://openhouseupdate.com',
     },
   ],
+  scripts: [
+    {
+      src: 'https://em.realscout.com/widgets/realscout-web-components.umd.js',
+      type: 'module',
+      crossorigin: 'anonymous',
+    },
+  ],
 };
