@@ -12,6 +12,10 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
   const isSubmitted = useSignal(false);
   const selectedOffer = useSignal('');
 
+  const handleClose = $(() => {
+    onClose();
+  });
+
   const openHouseOffers = [
     {
       id: 'weekend-tour',
@@ -43,7 +47,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
     }
   ];
 
-  const handleSubmit = $(async (event: QwikSubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = $(async () => {
     isSubmitting.value = true;
 
     // Track exit intent conversion
@@ -112,7 +116,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
             </p>
           </div>
           <button
-            onClick$={onClose}
+            onClick$={handleClose}
             class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 w-full"
           >
             Close
@@ -151,7 +155,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
               </p>
             </div>
             <button
-              onClick$={onClose}
+              onClick$={handleClose}
               class="text-gray-400 hover:text-gray-600 text-3xl ml-4"
             >
               ×
@@ -246,7 +250,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
 
           <div class="mt-6 text-center">
             <button
-              onClick$={onClose}
+              onClick$={handleClose}
               class="text-gray-500 hover:text-gray-700 text-sm underline"
             >
               No thanks, I'll pass

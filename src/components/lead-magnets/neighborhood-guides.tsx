@@ -109,7 +109,7 @@ export default component$(() => {
     }
   });
 
-  const handleDownload = $(async (event: QwikSubmitEvent<HTMLFormElement>) => {
+  const handleDownload = $(async () => {
     isSubmitting.value = true;
 
     // Track download attempt
