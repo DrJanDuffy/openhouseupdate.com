@@ -5,10 +5,14 @@ export default component$(() => {
   const debugMode = useSignal(true); // Set to true for testing
 
   useVisibleTask$(() => {
+    // Debug: Log that component is mounting
+    console.log('Sticky header component mounted');
+    
     // Ensure RealScout components are available
     if (typeof window !== 'undefined') {
       const checkElements = () => {
         if (customElements.get('realscout-advanced-search')) {
+          console.log('RealScout component found');
           return;
         }
         setTimeout(checkElements, 100);
@@ -19,6 +23,7 @@ export default component$(() => {
       const handleScroll = () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         isScrolled.value = scrollTop > 100; // Show after 100px scroll
+        console.log('Scroll detected:', scrollTop, 'isScrolled:', isScrolled.value);
       };
 
       // Add scroll listener
@@ -39,13 +44,14 @@ export default component$(() => {
           top: 0;
           left: 0;
           right: 0;
-          z-index: 1000;
-          background: rgba(10, 37, 64, 0.95);
+          z-index: 9999;
+          background: rgba(10, 37, 64, 0.98);
           backdrop-filter: blur(10px);
-          border-bottom: 1px solid rgba(58, 141, 222, 0.2);
+          border-bottom: 2px solid #3A8DDE;
           transition: all 0.3s ease;
           transform: translateY(-100%);
           opacity: 0;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
         
         .sticky-header.visible {
@@ -194,6 +200,8 @@ export default component$(() => {
       
       {/* Shows on scroll */}
       <div class={`sticky-search-bar ${isScrolled.value || debugMode.value ? 'visible' : ''} ${debugMode.value ? 'debug' : ''}`}>
+        {/* Debug indicator */}
+        {debugMode.value && <div style="position: absolute; top: -20px; left: 0; background: red; color: white; padding: 2px 5px; font-size: 10px;">STICKY HEADER DEBUG</div>}
         <div class="sticky-header-brand">
           <a href="/" class="sticky-header-logo">
             Open House Update
