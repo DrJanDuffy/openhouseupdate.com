@@ -1,4 +1,4 @@
-import { component$, useSignal, $, useVisibleTask$, type QwikSubmitEvent } from '@builder.io/qwik';
+import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
 
 interface ExitIntentPopupProps {
   isVisible: boolean;
@@ -12,8 +12,10 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
   const isSubmitted = useSignal(false);
   const selectedOffer = useSignal('');
 
-  const handleClose = $(() => {
-    onClose();
+  const handleClose = $((event: Event) => {
+    event.preventDefault();
+    // Use setTimeout to avoid serialization issues
+    setTimeout(() => onClose(), 0);
   });
 
   const openHouseOffers = [

@@ -1,4 +1,4 @@
-import { component$, useSignal, $, type QwikSubmitEvent } from '@builder.io/qwik';
+import { component$, useSignal, $ } from '@builder.io/qwik';
 
 interface FirstTimeBuyerGuideProps {
   variant?: 'card' | 'banner' | 'inline';
