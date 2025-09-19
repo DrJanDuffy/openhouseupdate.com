@@ -85,18 +85,18 @@ export default component$<OpenHouseMapProps>(({
     }
   });
 
-  const addMarkers = $(() => {
+  const addMarkers = $(async () => {
     // Clear existing markers
     markers.value.forEach(marker => marker.setMap(null));
     markers.value = [];
 
-    openHouses.forEach(openHouse => {
+    for (const openHouse of openHouses) {
       const marker = new (window as any).google.maps.Marker({
         position: { lat: openHouse.lat, lng: openHouse.lng },
         map: map.value,
         title: openHouse.address,
         icon: {
-          url: createCustomMarkerIcon(openHouse),
+          url: await createCustomMarkerIcon(openHouse),
           scaledSize: new (window as any).google.maps.Size(40, 50),
           anchor: new (window as any).google.maps.Point(20, 50),
         },
@@ -133,7 +133,7 @@ export default component$<OpenHouseMapProps>(({
     }
   });
 
-  const createCustomMarkerIcon = $((openHouse: OpenHouseLocation) => {
+  const createCustomMarkerIcon = $(async (openHouse: OpenHouseLocation) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = 40;
@@ -159,7 +159,7 @@ export default component$<OpenHouseMapProps>(({
       ctx.fillStyle = 'white';
       ctx.font = 'bold 10px Arial';
       ctx.textAlign = 'center';
-      const priceText = formatPrice(openHouse.price);
+      const priceText = await formatPrice(openHouse.price);
       ctx.fillText(priceText, 20, 25);
     }
 
@@ -227,22 +227,23 @@ export default component$<OpenHouseMapProps>(({
     return `${displayHour}:${minutes} ${ampm}`;
   });
 
-  const toggleRouteMode = $(() => {
+  const toggleRouteMode = $(async () => {
     isRouteMode.value = !isRouteMode.value;
     selectedOpenHouses.value = [];
     
     // Update marker icons
-    markers.value.forEach((marker, index) => {
+    for (let index = 0; index < markers.value.length; index++) {
+      const marker = markers.value[index];
       const openHouse = openHouses[index];
       marker.setIcon({
-        url: createCustomMarkerIcon(openHouse),
+        url: await createCustomMarkerIcon(openHouse),
         scaledSize: new (window as any).google.maps.Size(40, 50),
         anchor: new (window as any).google.maps.Point(20, 50),
       });
-    });
+    }
   });
 
-  const selectForRoute = $((openHouse: OpenHouseLocation) => {
+  const selectForRoute = $(async (openHouse: OpenHouseLocation) => {
     if (!isRouteMode.value) return;
 
     const index = selectedOpenHouses.value.findIndex(oh => oh.id === openHouse.id);
@@ -259,7 +260,7 @@ export default component$<OpenHouseMapProps>(({
       const isSelected = selectedOpenHouses.value.some(oh => oh.id === openHouse.id);
       
       marker.setIcon({
-        url: createCustomMarkerIcon(openHouse),
+        url: await createCustomMarkerIcon(openHouse),
         scaledSize: new (window as any).google.maps.Size(isSelected ? 50 : 40, isSelected ? 60 : 50),
         anchor: new (window as any).google.maps.Point(isSelected ? 25 : 20, isSelected ? 60 : 50),
       });
