@@ -1,4 +1,4 @@
-import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useSignal, $, useVisibleTask$, type QwikSubmitEvent } from '@builder.io/qwik';
 
 interface ExitIntentPopupProps {
   isVisible: boolean;
@@ -43,7 +43,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
     }
   ];
 
-  const handleSubmit = $(async (event: Event) => {
+  const handleSubmit = $(async (event: QwikSubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     isSubmitting.value = true;
 

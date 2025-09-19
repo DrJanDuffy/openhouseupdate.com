@@ -1,4 +1,4 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { component$, useSignal, $, type QwikSubmitEvent } from '@builder.io/qwik';
 
 interface FirstTimeBuyerGuideProps {
   variant?: 'card' | 'banner' | 'inline';
@@ -39,7 +39,7 @@ export default component$<FirstTimeBuyerGuideProps>(({
     }
   });
 
-  const handleDownload = $(async (event: Event) => {
+  const handleDownload = $(async (event: QwikSubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     isSubmitting.value = true;
 
