@@ -1,5 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutMap from '~/components/realscout/RealScoutMap';
 
 export default component$(() => {
   return (
@@ -46,46 +47,29 @@ export default component$(() => {
 
         .map-container {
           flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: linear-gradient(135deg, #0A2540 0%, #3A8DDE 100%);
-          color: white;
-          text-align: center;
           padding: 2rem;
+          background: #f8f9fa;
         }
 
-        .map-placeholder {
-          max-width: 600px;
+        .map-wrapper {
+          max-width: 1200px;
+          margin: 0 auto;
         }
 
-        .map-placeholder h2 {
-          font-size: 2.5rem;
-          margin-bottom: 1rem;
-        }
-
-        .map-placeholder p {
-          font-size: 1.2rem;
+        .map-title-section {
+          text-align: center;
           margin-bottom: 2rem;
-          opacity: 0.9;
         }
 
-        .search-btn {
-          background: white;
+        .map-title-section h2 {
+          font-size: 2rem;
           color: #0A2540;
-          border: none;
-          padding: 1rem 2rem;
-          border-radius: 8px;
-          font-size: 1.1rem;
-          font-weight: 600;
-          cursor: pointer;
-          text-decoration: none;
-          display: inline-block;
-          transition: transform 0.2s;
+          margin-bottom: 0.5rem;
         }
 
-        .search-btn:hover {
-          transform: translateY(-2px);
+        .map-title-section p {
+          color: #666;
+          font-size: 1.1rem;
         }
       `}</style>
 
@@ -97,15 +81,20 @@ export default component$(() => {
       </div>
 
       <div class="map-container">
-        <div class="map-placeholder">
-          <h2>Interactive Property Map</h2>
-          <p>
-            Use our advanced search to find properties, then view them on an interactive map.
-            The map feature is integrated with our RealScout search widget.
-          </p>
-          <a href="/" class="search-btn">
-            Start Your Search
-          </a>
+        <div class="map-wrapper">
+          <div class="map-title-section">
+            <h2>Interactive Property Map</h2>
+            <p>
+              Explore properties in Las Vegas with our interactive map powered by RealScout
+            </p>
+          </div>
+          
+          <RealScoutMap 
+            geoType="city" 
+            geoId="3240000" 
+            height="600px" 
+            width="100%"
+          />
         </div>
       </div>
     </div>

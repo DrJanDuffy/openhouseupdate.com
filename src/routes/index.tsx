@@ -1,5 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import RealScoutMap from '~/components/realscout/RealScoutMap';
 
 export default component$(() => {
   return (
@@ -97,6 +98,109 @@ export default component$(() => {
 
         <div class="widget-container">
           <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section class="map-section">
+        <style>{`
+          .map-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+          }
+
+          .map-section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+          }
+
+          .map-section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+          }
+
+          .map-section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0A2540;
+            margin-bottom: 1rem;
+          }
+
+          .map-section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+          }
+
+          .map-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+          }
+
+          .map-action-btn {
+            background: #3A8DDE;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+          }
+
+          .map-action-btn:hover {
+            background: #2a7bc7;
+          }
+
+          .map-action-btn.secondary {
+            background: white;
+            color: #0A2540;
+            border: 2px solid #3A8DDE;
+          }
+
+          .map-action-btn.secondary:hover {
+            background: #f8f9fa;
+          }
+
+          @media (max-width: 768px) {
+            .map-actions {
+              flex-direction: column;
+              align-items: center;
+            }
+            
+            .map-action-btn {
+              width: 200px;
+            }
+          }
+        `}</style>
+
+        <div class="map-section-content">
+          <div class="map-section-title">
+            <h2>Explore Properties on the Map</h2>
+            <p>
+              View all available properties in Las Vegas on our interactive map. 
+              Find the perfect location for your next home.
+            </p>
+          </div>
+
+          <RealScoutMap 
+            geoType="city" 
+            geoId="3240000" 
+            height="500px" 
+            width="100%"
+          />
+
+          <div class="map-actions">
+            <a href="/map" class="map-action-btn">
+              View Full Map
+            </a>
+            <a href="/this-weekend" class="map-action-btn secondary">
+              This Weekend's Open Houses
+            </a>
+          </div>
         </div>
       </section>
 
