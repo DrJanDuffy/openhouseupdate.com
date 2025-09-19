@@ -48,7 +48,7 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
   });
 
   // Calculate live status for each open house
-  const getLiveStatus = $((openHouse: OpenHouse) => {
+  const getLiveStatus = (openHouse: OpenHouse): 'starting' | 'active' | 'ending' | 'ended' => {
     const now = currentTime.value;
     const today = now.toISOString().split('T')[0];
 
@@ -69,10 +69,10 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
     if (currentMinutes >= endMinutes) return 'ended';
     
     return 'ended';
-  });
+  };
 
   // Get time until start/end
-  const getTimeUntil = $((openHouse: OpenHouse, type: 'start' | 'end') => {
+  const getTimeUntil = (openHouse: OpenHouse, type: 'start' | 'end'): string | null => {
     const now = currentTime.value;
     const today = now.toISOString().split('T')[0];
     const todaysOpenHouse = openHouse.openHouseTimes.find(oh => oh.date === today);
@@ -92,58 +92,27 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
       return `${hours}h ${minutes}m`;
     }
     return `${minutes}m`;
-  });
-
-  // Filter and sort open houses
-  const filteredAndSortedHouses = $((houses: OpenHouse[]) => {
-    let filtered = houses;
-
-    // Filter by status
-    if (filterStatus.value !== 'all') {
-      filtered = filtered.filter(house => {
-        const status = getLiveStatus(house);
-        return status === filterStatus.value;
-      });
-    }
-
-    // Sort
-    return filtered.sort((a, b) => {
-      switch (sortBy.value) {
-        case 'time':
-          const aStatus = getLiveStatus(a);
-          const bStatus = getLiveStatus(b);
-          const statusOrder = { 'starting': 0, 'active': 1, 'ending': 2, 'ended': 3 };
-          return statusOrder[aStatus] - statusOrder[bStatus];
-        case 'price':
-          return a.price - b.price;
-        case 'distance':
-          return (a.lat - b.lat) + (a.lng - b.lng); // Simplified distance
-        case 'visitors':
-          return (b.visitorCount || 0) - (a.visitorCount || 0);
-        default:
-          return 0;
-      }
-    });
   };
 
-  const formatPrice = $((price: number) => {
+
+  const formatPrice = (price: number) => {
     if (price >= 1000000) {
       return `$${(price / 1000000).toFixed(1)}M`;
     } else if (price >= 1000) {
       return `$${(price / 1000).toFixed(0)}K`;
     }
     return `$${price.toLocaleString()}`;
-  });
+  };
 
-  const formatTime = $((time: string) => {
+  const formatTime = (time: string) => {
     const [hours, minutes] = time.split(':');
     const hour = parseInt(hours);
     const ampm = hour >= 12 ? 'PM' : 'AM';
     const displayHour = hour % 12 || 12;
     return `${displayHour}:${minutes} ${ampm}`;
-  });
+  };
 
-  const getStatusColor = $((status: string) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
       case 'starting': return '#ffc107';
       case 'active': return '#28a745';
@@ -151,9 +120,9 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
       case 'ended': return '#6c757d';
       default: return '#6c757d';
     }
-  });
+  };
 
-  const getStatusIcon = $((status: string) => {
+  const getStatusIcon = (status: string) => {
     switch (status) {
       case 'starting': return '⏰';
       case 'active': return '🔴';
@@ -161,9 +130,9 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
       case 'ended': return '⏹️';
       default: return '❓';
     }
-  });
+  };
 
-  const getStatusText = $((status: string) => {
+  const getStatusText = (status: string) => {
     switch (status) {
       case 'starting': return 'Starting Soon';
       case 'active': return 'Live Now';
@@ -171,7 +140,7 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
       case 'ended': return 'Ended';
       default: return 'Unknown';
     }
-  });
+  };
 
   const handleVisit = $((openHouse: OpenHouse) => {
     onVisit?.(openHouse);
@@ -180,8 +149,6 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
   const handleDirections = $((openHouse: OpenHouse) => {
     onDirections?.(openHouse);
   });
-
-  const houses = filteredAndSortedHouses(openHouses);
 
   return (
     <div class="live-open-houses">
@@ -563,24 +530,24 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
       <div class="stats-bar">
         <div class="stat-item">
           <div class="stat-number">
-            {houses.filter(h => getLiveStatus(h) === 'active').length}
+            {openHouses.filter(h => getLiveStatus(h) === 'active').length}
           </div>
           <div class="stat-label">Live Now</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">
-            {houses.filter(h => getLiveStatus(h) === 'starting').length}
+            {openHouses.filter(h => getLiveStatus(h) === 'starting').length}
           </div>
           <div class="stat-label">Starting Soon</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">
-            {houses.filter(h => getLiveStatus(h) === 'ending').length}
+            {openHouses.filter(h => getLiveStatus(h) === 'ending').length}
           </div>
           <div class="stat-label">Ending Soon</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number">{houses.length}</div>
+          <div class="stat-number">{openHouses.length}</div>
           <div class="stat-label">Total Today</div>
         </div>
       </div>
@@ -602,31 +569,31 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
           class={`status-filter ${filterStatus.value === 'all' ? 'active' : ''}`}
           onClick$={() => filterStatus.value = 'all'}
         >
-          📋 All ({houses.length})
+          📋 All ({openHouses.length})
         </button>
         <button 
           class={`status-filter ${filterStatus.value === 'active' ? 'active' : ''}`}
           onClick$={() => filterStatus.value = 'active'}
         >
-          🔴 Live Now ({houses.filter(h => getLiveStatus(h) === 'active').length})
+          🔴 Live Now ({openHouses.filter(h => getLiveStatus(h) === 'active').length})
         </button>
         <button 
           class={`status-filter ${filterStatus.value === 'starting' ? 'active' : ''}`}
           onClick$={() => filterStatus.value = 'starting'}
         >
-          ⏰ Starting Soon ({houses.filter(h => getLiveStatus(h) === 'starting').length})
+          ⏰ Starting Soon ({openHouses.filter(h => getLiveStatus(h) === 'starting').length})
         </button>
         <button 
           class={`status-filter ${filterStatus.value === 'ending' ? 'active' : ''}`}
           onClick$={() => filterStatus.value = 'ending'}
         >
-          ⚠️ Ending Soon ({houses.filter(h => getLiveStatus(h) === 'ending').length})
+          ⚠️ Ending Soon ({openHouses.filter(h => getLiveStatus(h) === 'ending').length})
         </button>
       </div>
 
-      {houses.length > 0 ? (
+      {openHouses.length > 0 ? (
         <div class="houses-grid">
-          {houses.map((house) => {
+          {openHouses.map((house) => {
             const status = getLiveStatus(house);
             const timeUntilStart = getTimeUntil(house, 'start');
             const timeUntilEnd = getTimeUntil(house, 'end');

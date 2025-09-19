@@ -58,31 +58,31 @@ export default component$<OpenHouseCardProps>(({ openHouse, onFavorite, onVisit,
       : currentPhotoIndex.value - 1;
   });
 
-  const formatPrice = $((price: number) => {
+  const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
-  });
+  };
 
-  const formatTime = $((time: string) => {
+  const formatTime = (time: string) => {
     const [hours, minutes] = time.split(':');
     const hour = parseInt(hours);
     const ampm = hour >= 12 ? 'PM' : 'AM';
     const displayHour = hour % 12 || 12;
     return `${displayHour}:${minutes} ${ampm}`;
-  });
+  };
 
-  const getNextOpenHouse = $(() => {
+  const getNextOpenHouse = () => {
     const now = new Date();
     const today = now.toISOString().split('T')[0];
     
     return openHouse.openHouseTimes
       .filter(oh => oh.date >= today)
       .sort((a, b) => a.date.localeCompare(b.date))[0];
-  });
+  };
 
   const nextOpenHouse = getNextOpenHouse();
 

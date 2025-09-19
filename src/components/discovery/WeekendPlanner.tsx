@@ -55,12 +55,12 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
   const isGenerating = useSignal(false);
 
   // Filter open houses for selected day
-  const availableOpenHouses = $((day: string) => {
+  const availableOpenHouses = (day: string) => {
     const targetDate = getWeekendDate(day as 'saturday' | 'sunday');
     return openHouses.filter(oh => 
       oh.openHouseTimes.some(time => time.date === targetDate)
     );
-  });
+  };
 
   const generateOptimalRoute = $(async () => {
     isGenerating.value = true;
@@ -143,7 +143,7 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
     }
   });
 
-  const sortHousesByOptimization = $((houses: OpenHouse[]) => {
+  const sortHousesByOptimization = (houses: OpenHouse[]) => {
     // Sort by neighborhood clustering and price range
     return houses.sort((a, b) => {
       // Prioritize houses in similar price ranges
@@ -155,15 +155,15 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
       
       return (neighborhoodScore + priceScore) * -1;
     });
-  });
+  };
 
-  const calculateTravelTime = $((from: OpenHouse, to: OpenHouse) => {
+  const calculateTravelTime = (from: OpenHouse, to: OpenHouse) => {
     // Simplified travel time calculation (15-30 minutes between houses)
     const distance = getDistance(from.lat, from.lng, to.lat, to.lng);
     return Math.max(15, Math.min(30, distance * 2)); // Rough estimate
-  });
+  };
 
-  const calculateTotalDistance = $((stops: RouteStop[]) => {
+  const calculateTotalDistance = (stops: RouteStop[]) => {
     let total = 0;
     for (let i = 1; i < stops.length; i++) {
       total += getDistance(
@@ -172,9 +172,9 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
       );
     }
     return total;
-  });
+  };
 
-  const getDistance = $((lat1: number, lng1: number, lat2: number, lng2: number) => {
+  const getDistance = (lat1: number, lng1: number, lat2: number, lng2: number) => {
     const R = 3959; // Earth's radius in miles
     const dLat = (lat2 - lat1) * Math.PI / 180;
     const dLng = (lng2 - lng1) * Math.PI / 180;
@@ -183,22 +183,22 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
               Math.sin(dLng/2) * Math.sin(dLng/2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     return R * c;
-  });
+  };
 
-  const parseTime = $((timeStr: string) => {
+  const parseTime = (timeStr: string) => {
     const [hours, minutes] = timeStr.split(':').map(Number);
     return hours * 60 + minutes;
-  });
+  };
 
-  const formatTime = $((minutes: number) => {
+  const formatTime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     const ampm = hours >= 12 ? 'PM' : 'AM';
     const displayHours = hours % 12 || 12;
     return `${displayHours}:${mins.toString().padStart(2, '0')} ${ampm}`;
-  });
+  };
 
-  const getWeekendDate = $((day: 'saturday' | 'sunday') => {
+  const getWeekendDate = (day: 'saturday' | 'sunday') => {
     const today = new Date();
     const currentDay = today.getDay();
     const daysUntilSaturday = (6 - currentDay) % 7;
@@ -208,23 +208,23 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
     targetDate.setDate(today.getDate() + (day === 'saturday' ? daysUntilSaturday : daysUntilSunday));
     
     return targetDate.toISOString().split('T')[0];
-  });
+  };
 
-  const formatPrice = $((price: number) => {
+  const formatPrice = (price: number) => {
     if (price >= 1000000) {
       return `$${(price / 1000000).toFixed(1)}M`;
     } else if (price >= 1000) {
       return `$${(price / 1000).toFixed(0)}K`;
     }
     return `$${price.toLocaleString()}`;
-  });
+  };
 
-  const deleteRoute = $((routeId: string) => {
+  const deleteRoute = (routeId: string) => {
     const index = plannedRoutes.findIndex(route => route.id === routeId);
     if (index >= 0) {
       plannedRoutes.splice(index, 1);
     }
-  });
+  };
 
   return (
     <div class="weekend-planner">
