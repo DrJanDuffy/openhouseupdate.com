@@ -7,8 +7,8 @@ interface EnhancedErrorBoundaryProps {
 }
 
 export default component$<EnhancedErrorBoundaryProps>(({ 
-  fallback, 
-  onError, 
+  fallback: _fallback, 
+  onError: _onError, 
   children 
 }) => {
   const hasError = useSignal(false);
@@ -16,28 +16,7 @@ export default component$<EnhancedErrorBoundaryProps>(({
   const retryCount = useSignal(0);
   const maxRetries = 3;
 
-  const handleError = $((err: Error, errorInfo: any) => {
-    console.error('Enhanced Error Boundary caught an error:', err, errorInfo);
-    
-    hasError.value = true;
-    error.value = err;
-    
-    // Track error in analytics
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
-      window.enhancedRealEstateAnalytics.trackPageEngagement('error_boundary', {
-        error_message: err.message,
-        error_stack: err.stack,
-        retry_count: retryCount.value,
-        user_agent: navigator.userAgent,
-        url: window.location.href,
-      });
-    }
-    
-    // Call custom error handler
-    if (onError) {
-      onError(err, errorInfo);
-    }
-  });
+  // Error handling is now done inline in the component
 
   const retry = $(() => {
     if (retryCount.value < maxRetries) {

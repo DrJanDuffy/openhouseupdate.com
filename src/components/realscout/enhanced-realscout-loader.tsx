@@ -25,34 +25,7 @@ export default component$<EnhancedRealScoutLoaderProps>(({
   const retryCount = useSignal(0);
   const widgetReady = useSignal(false);
 
-  useVisibleTask$(async () => {
-    // Set up intersection observer for lazy loading
-    if (lazyLoad) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !isInViewport.value) {
-              isInViewport.value = true;
-              loadRealScoutScript();
-            }
-          });
-        },
-        { threshold: viewportThreshold }
-      );
-
-      const element = document.querySelector(`.realscout-widget-container-${widgetType}`);
-      if (element) {
-        observer.observe(element);
-      }
-
-      return () => observer.disconnect();
-    } else {
-      // Load immediately if not lazy loading
-      loadRealScoutScript();
-    }
-  });
-
-  const loadRealScoutScript = async () => {
+  const loadRealScoutScript = $(async () => {
     try {
       // Check if script is already loaded
       if (document.querySelector('script[src*="realscout-web-components"]')) {
@@ -86,7 +59,7 @@ export default component$<EnhancedRealScoutLoaderProps>(({
       };
 
       document.head.appendChild(script);
-
+      
       // Set timeout for loading with progressive backoff
       const timeout = Math.min(10000 + (retryCount.value * 2000), 30000);
       setTimeout(() => {
@@ -94,14 +67,41 @@ export default component$<EnhancedRealScoutLoaderProps>(({
           handleScriptError();
         }
       }, timeout);
-
     } catch (error) {
       console.error('Error loading RealScout script:', error);
       handleScriptError();
     }
-  };
+  });
 
-  const handleScriptError = () => {
+  useVisibleTask$(async () => {
+    // Set up intersection observer for lazy loading
+    if (lazyLoad) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !isInViewport.value) {
+              isInViewport.value = true;
+              loadRealScoutScript();
+            }
+          });
+        },
+        { threshold: viewportThreshold }
+      );
+
+      const element = document.querySelector(`.realscout-widget-container-${widgetType}`);
+      if (element) {
+        observer.observe(element);
+      }
+
+      return () => observer.disconnect();
+    } else {
+      // Load immediately if not lazy loading
+      loadRealScoutScript();
+    }
+  });
+
+
+  const handleScriptError = $(() => {
     retryCount.value++;
     if (retryCount.value < retryAttempts) {
       console.log(`Retrying RealScout script load (attempt ${retryCount.value + 1})`);
@@ -113,7 +113,7 @@ export default component$<EnhancedRealScoutLoaderProps>(({
       isLoading.value = false;
       console.error('RealScout script failed to load after all retry attempts');
     }
-  };
+  });
 
   const initializeWidget = () => {
     // Wait for custom elements to be defined
