@@ -660,13 +660,13 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
                 <div class="action-buttons">
                   <button 
                     class="btn btn-primary"
-                    onClick$={() => handleVisit(house)}
+                    onClick$={() => onVisit?.(house)}
                   >
                     {status === 'active' ? 'Visit Now' : 'Get Details'}
                   </button>
                   <button 
                     class="btn btn-secondary"
-                    onClick$={() => handleDirections(house)}
+                    onClick$={() => onDirections?.(house)}
                   >
                     Directions
                   </button>

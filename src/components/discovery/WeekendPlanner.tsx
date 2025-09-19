@@ -558,7 +558,12 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
 
               <button 
                 class="delete-btn"
-                onClick$={() => deleteRoute(route.id)}
+                onClick$={() => {
+                  const index = plannedRoutes.findIndex(r => r.id === route.id);
+                  if (index >= 0) {
+                    plannedRoutes.splice(index, 1);
+                  }
+                }}
               >
                 Delete Route
               </button>

@@ -606,7 +606,10 @@ export default component$<OpenHouseFiltersProps>(({
                 <button
                   key={id}
                   class={`time-range-btn ${filters.timeRange === id ? 'active' : ''}`}
-                  onClick$={() => updateTimeRange(id as FilterState['timeRange'])}
+                  onClick$={() => {
+                    filters.timeRange = id as FilterState['timeRange'];
+                    onFiltersChange?.(filters);
+                  }}
                 >
                   <span>{icon}</span>
                   <span>{label}</span>
@@ -622,7 +625,15 @@ export default component$<OpenHouseFiltersProps>(({
                 <div
                   key={slot.id}
                   class={`time-slot ${filters.timeSlots.includes(slot.id) ? 'selected' : ''}`}
-                  onClick$={() => toggleTimeSlot(slot.id)}
+                  onClick$={() => {
+                    const index = filters.timeSlots.indexOf(slot.id);
+                    if (index >= 0) {
+                      filters.timeSlots.splice(index, 1);
+                    } else {
+                      filters.timeSlots.push(slot.id);
+                    }
+                    onFiltersChange?.(filters);
+                  }}
                 >
                   <span style="font-size: 1.2rem;">{slot.icon}</span>
                   <div class="time-slot-info">
@@ -643,14 +654,20 @@ export default component$<OpenHouseFiltersProps>(({
                   class="price-input"
                   placeholder="Min Price"
                   value={filters.priceRange.min}
-                  onInput$={(e) => updatePriceRange('min', parseInt((e.target as HTMLInputElement).value) || 0)}
+                  onInput$={(e) => {
+                    filters.priceRange.min = parseInt((e.target as HTMLInputElement).value) || 0;
+                    onFiltersChange?.(filters);
+                  }}
                 />
                 <input
                   type="number"
                   class="price-input"
                   placeholder="Max Price"
                   value={filters.priceRange.max}
-                  onInput$={(e) => updatePriceRange('max', parseInt((e.target as HTMLInputElement).value) || 2000000)}
+                  onInput$={(e) => {
+                    filters.priceRange.max = parseInt((e.target as HTMLInputElement).value) || 2000000;
+                    onFiltersChange?.(filters);
+                  }}
                 />
               </div>
               <div class="price-display">
@@ -667,7 +684,15 @@ export default component$<OpenHouseFiltersProps>(({
                 <button
                   key={beds}
                   class={`option-btn ${filters.bedrooms.includes(beds) ? 'selected' : ''}`}
-                  onClick$={() => toggleBedroom(beds)}
+                  onClick$={() => {
+                    const index = filters.bedrooms.indexOf(beds);
+                    if (index >= 0) {
+                      filters.bedrooms.splice(index, 1);
+                    } else {
+                      filters.bedrooms.push(beds);
+                    }
+                    onFiltersChange?.(filters);
+                  }}
                 >
                   {beds}+
                 </button>
@@ -682,7 +707,15 @@ export default component$<OpenHouseFiltersProps>(({
                 <button
                   key={baths}
                   class={`option-btn ${filters.bathrooms.includes(baths) ? 'selected' : ''}`}
-                  onClick$={() => toggleBathroom(baths)}
+                  onClick$={() => {
+                    const index = filters.bathrooms.indexOf(baths);
+                    if (index >= 0) {
+                      filters.bathrooms.splice(index, 1);
+                    } else {
+                      filters.bathrooms.push(baths);
+                    }
+                    onFiltersChange?.(filters);
+                  }}
                 >
                   {baths}
                 </button>
@@ -697,7 +730,15 @@ export default component$<OpenHouseFiltersProps>(({
                 <div
                   key={neighborhood}
                   class={`neighborhood-item ${filters.neighborhoods.includes(neighborhood) ? 'selected' : ''}`}
-                  onClick$={() => toggleNeighborhood(neighborhood)}
+                  onClick$={() => {
+                    const index = filters.neighborhoods.indexOf(neighborhood);
+                    if (index >= 0) {
+                      filters.neighborhoods.splice(index, 1);
+                    } else {
+                      filters.neighborhoods.push(neighborhood);
+                    }
+                    onFiltersChange?.(filters);
+                  }}
                 >
                   <div class="neighborhood-checkbox">
                     {filters.neighborhoods.includes(neighborhood) && '✓'}
@@ -715,7 +756,15 @@ export default component$<OpenHouseFiltersProps>(({
                 <div
                   key={agent.id}
                   class={`neighborhood-item ${filters.agents.includes(agent.id) ? 'selected' : ''}`}
-                  onClick$={() => toggleAgent(agent.id)}
+                  onClick$={() => {
+                    const index = filters.agents.indexOf(agent.id);
+                    if (index >= 0) {
+                      filters.agents.splice(index, 1);
+                    } else {
+                      filters.agents.push(agent.id);
+                    }
+                    onFiltersChange?.(filters);
+                  }}
                 >
                   <div class="neighborhood-checkbox">
                     {filters.agents.includes(agent.id) && '✓'}
@@ -736,7 +785,10 @@ export default component$<OpenHouseFiltersProps>(({
                 min="1"
                 max="50"
                 value={filters.radius}
-                onInput$={(e) => updateRadius(parseInt((e.target as HTMLInputElement).value))}
+                onInput$={(e) => {
+                  filters.radius = parseInt((e.target as HTMLInputElement).value);
+                  onFiltersChange?.(filters);
+                }}
               />
             </div>
           </div>
@@ -747,7 +799,10 @@ export default component$<OpenHouseFiltersProps>(({
               <select 
                 class="sort-select"
                 value={filters.sortBy}
-                onChange$={(e) => updateSortBy((e.target as HTMLSelectElement).value as FilterState['sortBy'])}
+                onChange$={(e) => {
+                  filters.sortBy = (e.target as HTMLSelectElement).value as FilterState['sortBy'];
+                  onFiltersChange?.(filters);
+                }}
               >
                 <option value="time">Time</option>
                 <option value="price">Price</option>
@@ -756,7 +811,10 @@ export default component$<OpenHouseFiltersProps>(({
               </select>
               <button
                 class={`sort-order-btn ${filters.sortOrder === 'asc' ? 'active' : ''}`}
-                onClick$={() => updateSortOrder(filters.sortOrder === 'asc' ? 'desc' : 'asc')}
+                onClick$={() => {
+                  filters.sortOrder = filters.sortOrder === 'asc' ? 'desc' : 'asc';
+                  onFiltersChange?.(filters);
+                }}
               >
                 {filters.sortOrder === 'asc' ? '↑' : '↓'}
               </button>
@@ -766,13 +824,27 @@ export default component$<OpenHouseFiltersProps>(({
       )}
 
       <div class="filter-actions">
-        <button class="btn btn-primary" onClick$={() => updateFilters()}>
+        <button class="btn btn-primary" onClick$={() => onFiltersChange?.(filters)}>
           Apply Filters
         </button>
         <button class="btn btn-secondary">
           Save Search
         </button>
-        <button class="btn btn-outline" onClick$={() => clearAllFilters()}>
+        <button class="btn btn-outline" onClick$={() => {
+          filters.timeRange = 'this-weekend';
+          filters.timeSlots = [];
+          filters.priceRange = { min: 0, max: 2000000 };
+          filters.bedrooms = [];
+          filters.bathrooms = [];
+          filters.neighborhoods = [];
+          filters.agents = [];
+          filters.radius = 10;
+          filters.sortBy = 'time';
+          filters.sortOrder = 'asc';
+          if (onClearFilters) {
+            onClearFilters();
+          }
+        }}>
           Clear All
         </button>
       </div>

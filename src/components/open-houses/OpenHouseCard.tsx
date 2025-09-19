@@ -417,7 +417,10 @@ export default component$<OpenHouseCardProps>(({ openHouse, onFavorite, onVisit,
 
         <button 
           class={`favorite-btn ${isFavorited.value ? 'favorited' : ''}`}
-          onClick$={() => handleFavorite()}
+          onClick$={() => {
+            isFavorited.value = !isFavorited.value;
+            onFavorite?.(openHouse.id);
+          }}
           aria-label={isFavorited.value ? 'Remove from favorites' : 'Add to favorites'}
         >
           {isFavorited.value ? '♥' : '♡'}
@@ -492,10 +495,10 @@ export default component$<OpenHouseCardProps>(({ openHouse, onFavorite, onVisit,
         )}
 
         <div class="action-buttons">
-          <button class="btn btn-primary" onClick$={() => handleVisit()}>
+          <button class="btn btn-primary" onClick$={() => onVisit?.(openHouse.id)}>
             Visit Now
           </button>
-          <button class="btn btn-secondary" onClick$={() => handleDirections()}>
+          <button class="btn btn-secondary" onClick$={() => onDirections?.(openHouse.address)}>
             Directions
           </button>
         </div>
