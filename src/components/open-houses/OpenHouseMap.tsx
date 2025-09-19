@@ -294,33 +294,6 @@ export default component$<OpenHouseMapProps>(({
     });
   });
 
-  const createRoute = $(() => {
-    if (selectedOpenHouses.value.length < 2) return;
-    
-    const directionsService = new (window as any).google.maps.DirectionsService();
-    const directionsRenderer = new (window as any).google.maps.DirectionsRenderer();
-    
-    directionsRenderer.setMap(map.value);
-
-    const waypoints = selectedOpenHouses.value.slice(1, -1).map(oh => ({
-      location: { lat: oh.lat, lng: oh.lng },
-      stopover: true,
-    }));
-
-    directionsService.route({
-      origin: { lat: selectedOpenHouses.value[0].lat, lng: selectedOpenHouses.value[0].lng },
-      destination: { lat: selectedOpenHouses.value[selectedOpenHouses.value.length - 1].lat, lng: selectedOpenHouses.value[selectedOpenHouses.value.length - 1].lng },
-      waypoints: waypoints,
-      travelMode: (window as any).google.maps.TravelMode.DRIVING,
-      optimizeWaypoints: true,
-    }, (result: any, status: any) => {
-      if (status === 'OK') {
-        directionsRenderer.setDirections(result);
-        onRouteClick?.(selectedOpenHouses.value);
-      }
-    });
-  });
-
   const clearRoute = $(() => {
     const directionsRenderer = new (window as any).google.maps.DirectionsRenderer();
     directionsRenderer.setMap(map.value);
