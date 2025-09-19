@@ -5,6 +5,7 @@ import { inject } from '@vercel/analytics';
 import Header from '~/components/starter/header/header';
 import Footer from '~/components/starter/footer/footer';
 import StructuredData from '~/components/seo/structured-data';
+import StickyHeader from '~/components/layout/sticky-header';
 
 import styles from './styles.css?inline';
 
@@ -22,6 +23,7 @@ export default component$(() => {
       <StructuredData type="RealEstateService" data={{}} />
       <StructuredData type="WebSite" data={{}} />
       <Header />
+      <StickyHeader />
       <main>
         <Slot />
       </main>
