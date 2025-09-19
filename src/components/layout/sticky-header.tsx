@@ -2,6 +2,7 @@ import { component$, useVisibleTask$, useSignal } from '@builder.io/qwik';
 
 export default component$(() => {
   const isScrolled = useSignal(false);
+  const debugMode = useSignal(true); // Set to true for testing
 
   useVisibleTask$(() => {
     // Ensure RealScout components are available
@@ -50,6 +51,13 @@ export default component$(() => {
         .sticky-header.visible {
           transform: translateY(0);
           opacity: 1;
+        }
+        
+        /* Debug: Make it always visible for testing */
+        .sticky-header.debug {
+          transform: translateY(0);
+          opacity: 1;
+          background: rgba(10, 37, 64, 1);
         }
         
         .sticky-search-bar {
@@ -185,7 +193,7 @@ export default component$(() => {
       `}</style>
       
       {/* Shows on scroll */}
-      <div class={`sticky-search-bar ${isScrolled.value ? 'visible' : ''}`}>
+      <div class={`sticky-search-bar ${isScrolled.value || debugMode.value ? 'visible' : ''} ${debugMode.value ? 'debug' : ''}`}>
         <div class="sticky-header-brand">
           <a href="/" class="sticky-header-logo">
             Open House Update
