@@ -133,17 +133,27 @@ export default component$(() => {
             gap: 1rem;
           }
 
-          .search-form input {
+          .search-form input,
+          .search-form select {
             padding: 0.75rem 1rem;
             border: 2px solid #e2e8f0;
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.2s;
+            background: white;
           }
 
-          .search-form input:focus {
+          .search-form input:focus,
+          .search-form select:focus {
             outline: none;
             border-color: #3A8DDE;
+          }
+
+          .price-inputs,
+          .bed-bath-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
           }
 
           .search-form button {
@@ -156,6 +166,7 @@ export default component$(() => {
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.2s;
+            margin-top: 0.5rem;
           }
 
           .search-form button:hover {
@@ -194,6 +205,11 @@ export default component$(() => {
             .simple-search {
               max-width: 90vw;
             }
+
+            .price-inputs,
+            .bed-bath-inputs {
+              grid-template-columns: 1fr;
+            }
           }
         `}</style>
 
@@ -225,22 +241,44 @@ export default component$(() => {
           ) : (
             <div class="simple-search">
               <h3>Quick Property Search</h3>
-              <form class="search-form">
+              <form class="search-form" action="/search" method="get">
                 <input 
                   type="text" 
                   placeholder="Enter city, neighborhood, or address"
                   name="location"
+                  required
                 />
-                <input 
-                  type="text" 
-                  placeholder="Min Price"
-                  name="minPrice"
-                />
-                <input 
-                  type="text" 
-                  placeholder="Max Price"
-                  name="maxPrice"
-                />
+                <div class="price-inputs">
+                  <input 
+                    type="number" 
+                    placeholder="Min Price"
+                    name="minPrice"
+                    min="0"
+                  />
+                  <input 
+                    type="number" 
+                    placeholder="Max Price"
+                    name="maxPrice"
+                    min="0"
+                  />
+                </div>
+                <div class="bed-bath-inputs">
+                  <select name="bedrooms" title="Number of bedrooms">
+                    <option value="">Any Bedrooms</option>
+                    <option value="1">1+ Bedrooms</option>
+                    <option value="2">2+ Bedrooms</option>
+                    <option value="3">3+ Bedrooms</option>
+                    <option value="4">4+ Bedrooms</option>
+                    <option value="5">5+ Bedrooms</option>
+                  </select>
+                  <select name="bathrooms" title="Number of bathrooms">
+                    <option value="">Any Bathrooms</option>
+                    <option value="1">1+ Bathrooms</option>
+                    <option value="2">2+ Bathrooms</option>
+                    <option value="3">3+ Bathrooms</option>
+                    <option value="4">4+ Bathrooms</option>
+                  </select>
+                </div>
                 <button type="submit">Search Properties</button>
               </form>
             </div>
