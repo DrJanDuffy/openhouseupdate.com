@@ -23,7 +23,7 @@ export default component$(() => {
         widget.setAttribute('default-location', `${neighborhoodName}, Las Vegas, NV`);
         
         // Set price filters based on neighborhood (you can customize these)
-        const priceRanges = {
+        const priceRanges: Record<string, string> = {
           'summerlin': '800000',
           'henderson': '600000', 
           'north-las-vegas': '400000',
