@@ -1,59 +1,39 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik'
+import { component$ } from '@builder.io/qwik'
 
 interface GoogleAnalyticsProps {
   measurementId: string
 }
 
 export default component$<GoogleAnalyticsProps>(({ measurementId }) => {
-  useVisibleTask$(() => {
-    // Load Google Analytics script
+  // Create a script element and append it to the document head
+  if (typeof document !== 'undefined') {
+    // Check if the script is already loaded
+    const existingScript = document.querySelector(`script[src*="${measurementId}"]`)
+    if (existingScript) return null
+
+    // Create the Google Analytics script
     const script = document.createElement('script')
     script.async = true
     script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
+    script.crossOrigin = 'anonymous'
+    script.integrity = 'sha384-...' // Add proper integrity hash if needed
+
+    // Create the gtag configuration script
+    const configScript = document.createElement('script')
+    configScript.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${measurementId}', {
+        page_title: document.title,
+        page_location: window.location.href,
+      });
+    `
+
+    // Append scripts to document head
     document.head.appendChild(script)
-
-    // Initialize gtag
-    window.dataLayer = window.dataLayer || []
-    function gtag(...args: unknown[]) {
-      window.dataLayer.push(args)
-    }
-
-    gtag('js', new Date())
-    gtag('config', measurementId, {
-      page_title: document.title,
-      page_location: window.location.href,
-    })
-
-    // Track page views
-    gtag('event', 'page_view', {
-      page_title: document.title,
-      page_location: window.location.href,
-      page_path: window.location.pathname,
-    })
-  })
-
-  return (
-    <>
-      {/* Google Analytics Global Site Tag */}
-      <script
-        dangerouslySetInnerHTML={`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${measurementId}', {
-            page_title: document.title,
-            page_location: window.location.href,
-          });
-        `}
-      />
-    </>
-  )
-})
-
-// Declare global gtag function
-declare global {
-  interface Window {
-    dataLayer: unknown[]
-    gtag: (...args: unknown[]) => void
+    document.head.appendChild(configScript)
   }
-}
+
+  return null // This component doesn't render anything
+})

@@ -187,18 +187,19 @@ export default component$(() => {
 
       {!isExpanded.value ? (
         <div class="text-center">
-          <button
-            onClick$={toggleExpanded}
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
-          >
-            View All Neighborhood Guides →
-          </button>
+            <button
+              type="button"
+              onClick$={toggleExpanded}
+              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
+            >
+              View All Neighborhood Guides →
+            </button>
         </div>
       ) : (
         <div>
           <div class="flex justify-between items-center mb-6">
             <h3 class="text-xl font-bold text-gray-900">Choose Your Guide</h3>
-            <button onClick$={toggleExpanded} class="text-gray-400 hover:text-gray-600 text-2xl">
+            <button type="button" onClick$={toggleExpanded} class="text-gray-400 hover:text-gray-600 text-2xl">
               ×
             </button>
           </div>

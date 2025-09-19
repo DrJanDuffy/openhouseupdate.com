@@ -14,7 +14,7 @@ export default component$(() => {
   const isSubmitting = useSignal(false)
   const submitStatus = useSignal<'idle' | 'success' | 'error'>('idle')
 
-  const handleSubmit = $(async (event: any) => {
+  const handleSubmit = $(async (event: Event) => {
     event.preventDefault()
     isSubmitting.value = true
     submitStatus.value = 'idle'
@@ -24,7 +24,7 @@ export default component$(() => {
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
       // Here you would typically send the data to your backend
-      console.log('Form submitted:', formData.value)
+      // Form data would be sent to backend API here
 
       submitStatus.value = 'success'
 
@@ -39,7 +39,7 @@ export default component$(() => {
         timeline: '',
       }
     } catch (error) {
-      console.error('Form submission error:', error)
+      // Handle form submission error
       submitStatus.value = 'error'
     } finally {
       isSubmitting.value = false

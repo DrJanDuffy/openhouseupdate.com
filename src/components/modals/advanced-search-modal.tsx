@@ -1,5 +1,12 @@
 import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
+// Declare gtag function for TypeScript
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void
+  }
+}
+
 export default component$(() => {
   const isOpen = useSignal(false)
 
@@ -25,8 +32,8 @@ export default component$(() => {
   const openModal = $(() => {
     isOpen.value = true
     // Track modal open event
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      ;(window as any).gtag('event', 'modal_open', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'modal_open', {
         event_category: 'search',
         event_label: 'advanced_search_modal',
       })
@@ -36,8 +43,8 @@ export default component$(() => {
   const closeModal = $(() => {
     isOpen.value = false
     // Track modal close event
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      ;(window as any).gtag('event', 'modal_close', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'modal_close', {
         event_category: 'search',
         event_label: 'advanced_search_modal',
       })

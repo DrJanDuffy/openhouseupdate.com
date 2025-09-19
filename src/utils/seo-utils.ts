@@ -147,8 +147,29 @@ export const extractKeywords = (content: string, maxKeywords = 10): string[] => 
     .map(([word]) => word)
 }
 
+// Define property data interface
+interface PropertyData {
+  name?: string
+  description?: string
+  address?: string
+  price?: number
+  bedrooms?: number
+  bathrooms?: number
+  squareFeet?: number
+  lotSize?: number
+  yearBuilt?: number
+  propertyType?: string
+  listingStatus?: string
+  images?: string[]
+  coordinates?: {
+    latitude: number
+    longitude: number
+  }
+  [key: string]: unknown
+}
+
 // Generate structured data for real estate
-export const generateRealEstateStructuredData = (propertyData: any) => {
+export const generateRealEstateStructuredData = (propertyData: PropertyData) => {
   return {
     '@context': 'https://schema.org',
     '@type': 'RealEstateListing',

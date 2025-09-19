@@ -339,14 +339,14 @@ export default component$(() => {
           </p>
         </div>
 
-        <div class="search-toggle">
-          <button class={showAdvanced.value ? '' : 'active'} onClick$={showSimpleSearch}>
-            Quick Search
-          </button>
-          <button class={showAdvanced.value ? 'active' : ''} onClick$={showAdvancedSearch}>
-            Advanced Search
-          </button>
-        </div>
+         <div class="search-toggle">
+           <button type="button" class={showAdvanced.value ? '' : 'active'} onClick$={showSimpleSearch}>
+             Quick Search
+           </button>
+           <button type="button" class={showAdvanced.value ? 'active' : ''} onClick$={showAdvancedSearch}>
+             Advanced Search
+           </button>
+         </div>
 
         <div class="widget-container">
           {showAdvanced.value ? (
@@ -356,11 +356,11 @@ export default component$(() => {
           )}
         </div>
 
-        <div class="calculator-toggle">
-          <button onClick$={toggleCalculator}>
-            {showCalculator.value ? 'Hide' : 'Show'} Mortgage Calculator
-          </button>
-        </div>
+         <div class="calculator-toggle">
+           <button type="button" onClick$={toggleCalculator}>
+             {showCalculator.value ? 'Hide' : 'Show'} Mortgage Calculator
+           </button>
+         </div>
       </section>
 
       {/* Enhanced Mortgage Calculator Section */}
@@ -532,10 +532,10 @@ export default component$(() => {
       />
 
       {/* Exit Intent Popup */}
-      <ExitIntentPopup
-        isVisible={showExitIntent.value}
-        onClose={() => (showExitIntent.value = false)}
-      />
+       <ExitIntentPopup
+         isVisible={showExitIntent.value}
+         onClose$={() => (showExitIntent.value = false)}
+       />
     </>
   )
 })

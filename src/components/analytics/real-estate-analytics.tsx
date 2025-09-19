@@ -4,10 +4,27 @@ interface RealEstateAnalyticsProps {
   measurementId: string
 }
 
+// Define proper types for analytics parameters
+interface WidgetInteractionDetails {
+  userType?: string
+  depth?: string
+  value?: number
+  [key: string]: unknown
+}
+
+interface SearchFilters {
+  priceRange?: string
+  bedrooms?: number
+  bathrooms?: number
+  neighborhood?: string
+  propertyType?: string
+  [key: string]: unknown
+}
+
 export default component$<RealEstateAnalyticsProps>(() => {
   useVisibleTask$(() => {
     // Track RealScout widget interactions
-    const trackWidgetInteraction = (widgetType: string, action: string, details?: any) => {
+    const trackWidgetInteraction = (widgetType: string, action: string, details?: WidgetInteractionDetails) => {
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'widget_interaction', {
           widget_type: widgetType,
@@ -34,34 +51,49 @@ export default component$<RealEstateAnalyticsProps>(() => {
           form_type: formType,
           success: success,
           event_category: 'Lead Generation',
-          event_label: `${formType} - ${success ? 'Success' : 'Error'}`,
-          value: success ? 1 : 0,
+          event_label: formType,
+          custom_map: {
+            cd1: 'userType',
+            cd2: 'widgetType',
+            cd3: 'interactionDepth',
+            cd4: 'conversionValue',
+          },
         })
       }
     }
 
-    // Track mortgage calculator usage
+    // Track mortgage calculations
     const trackMortgageCalculation = (loanAmount: number, monthlyPayment: number) => {
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'mortgage_calculation', {
           loan_amount: loanAmount,
           monthly_payment: monthlyPayment,
-          event_category: 'Financial Tools',
-          event_label: 'Mortgage Calculator',
-          value: Math.round(loanAmount / 1000), // Value in thousands
+          event_category: 'Mortgage Calculator',
+          event_label: `$${loanAmount.toLocaleString()} loan`,
+          custom_map: {
+            cd1: 'userType',
+            cd2: 'widgetType',
+            cd3: 'interactionDepth',
+            cd4: 'conversionValue',
+          },
         })
       }
     }
 
     // Track property searches
-    const trackPropertySearch = (searchType: string, filters?: any) => {
+    const trackPropertySearch = (searchType: string, filters?: SearchFilters) => {
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'property_search', {
           search_type: searchType,
-          filters: filters,
           event_category: 'Property Search',
-          event_label: `${searchType} Search`,
-          value: 1,
+          event_label: searchType,
+          custom_map: {
+            cd1: 'userType',
+            cd2: 'widgetType',
+            cd3: 'interactionDepth',
+            cd4: 'conversionValue',
+          },
+          ...filters,
         })
       }
     }
@@ -70,32 +102,26 @@ export default component$<RealEstateAnalyticsProps>(() => {
     const trackHomeValueRequest = (address?: string) => {
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'home_value_request', {
-          address: address,
+          property_address: address || 'unknown',
           event_category: 'Home Valuation',
-          event_label: 'Home Value Request',
-          value: 1,
+          event_label: address || 'unknown',
+          custom_map: {
+            cd1: 'userType',
+            cd2: 'widgetType',
+            cd3: 'interactionDepth',
+            cd4: 'conversionValue',
+          },
         })
       }
     }
 
     // Expose tracking functions globally for use by other components
-    ;(window as any).realEstateAnalytics = {
+    ;(window as Window & { realEstateAnalytics: typeof window.realEstateAnalytics }).realEstateAnalytics = {
       trackWidgetInteraction,
       trackFormSubmission,
       trackMortgageCalculation,
       trackPropertySearch,
       trackHomeValueRequest,
-    }
-
-    // Track initial page load
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'page_view', {
-        page_title: document.title,
-        page_location: window.location.href,
-        page_path: window.location.pathname,
-        event_category: 'Page Views',
-        event_label: 'Real Estate Website',
-      })
     }
   })
 
@@ -106,10 +132,10 @@ export default component$<RealEstateAnalyticsProps>(() => {
 declare global {
   interface Window {
     realEstateAnalytics: {
-      trackWidgetInteraction: (widgetType: string, action: string, details?: any) => void
+      trackWidgetInteraction: (widgetType: string, action: string, details?: WidgetInteractionDetails) => void
       trackFormSubmission: (formType: string, success: boolean) => void
       trackMortgageCalculation: (loanAmount: number, monthlyPayment: number) => void
-      trackPropertySearch: (searchType: string, filters?: any) => void
+      trackPropertySearch: (searchType: string, filters?: SearchFilters) => void
       trackHomeValueRequest: (address?: string) => void
     }
   }
