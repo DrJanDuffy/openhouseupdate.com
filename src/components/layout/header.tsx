@@ -1,7 +1,7 @@
 import { component$, useVisibleTask$, useSignal } from '@builder.io/qwik';
 
 export default component$(() => {
-  const isScrolled = useSignal(true); // Always show for testing
+  const isScrolled = useSignal(false);
 
   useVisibleTask$(() => {
     // Ensure RealScout components are available
@@ -17,7 +17,7 @@ export default component$(() => {
       // Handle scroll detection
       const handleScroll = () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        isScrolled.value = scrollTop > 50; // Show after 50px scroll
+        isScrolled.value = scrollTop > 100; // Show after 100px scroll
       };
 
       // Add scroll listener
@@ -52,12 +52,6 @@ export default component$(() => {
           opacity: 1;
         }
         
-        /* Force visibility for testing */
-        .sticky-header.always-visible {
-          transform: translateY(0) !important;
-          opacity: 1 !important;
-          background: #0A2540 !important;
-        }
         
         .sticky-search-bar {
           max-width: 1200px;
@@ -192,9 +186,7 @@ export default component$(() => {
       `}</style>
       
       {/* Shows on scroll */}
-      <div class={`sticky-search-bar ${isScrolled.value ? 'visible' : ''} always-visible`}>
-        {/* Debug indicator */}
-        <div style="position: absolute; top: -25px; left: 0; background: red; color: white; padding: 2px 5px; font-size: 10px; z-index: 100000;">STICKY HEADER ACTIVE</div>
+      <div class={`sticky-search-bar ${isScrolled.value ? 'visible' : ''}`}>
         <div class="sticky-header-brand">
           <a href="/" class="sticky-header-logo">
             Open House Update
