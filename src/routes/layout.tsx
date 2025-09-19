@@ -76,6 +76,8 @@ export default component$(() => {
         src="https://em.realscout.com/widgets/realscout-web-components.umd.js" 
         type="module" 
         crossOrigin="anonymous"
+        async
+        defer
       />
     </>
   );

@@ -6,6 +6,7 @@ import EnhancedMortgageCalculator from '~/components/widgets/enhanced-mortgage-c
 import PerformanceMonitor from '~/components/performance/performance-monitor';
 import FAQSection from '~/components/seo/faq-section';
 import { createSEOHead } from '~/components/seo/seo-head';
+import RealScoutTest from '~/components/realscout/realscout-test';
 
 export default component$(() => {
   const showAdvanced = useSignal(true);
@@ -109,6 +110,9 @@ export default component$(() => {
     <>
       {/* Performance Monitoring */}
       <PerformanceMonitor />
+      
+      {/* RealScout Debug Test */}
+      <RealScoutTest />
       
       {/* Enhanced RealScout Search Section */}
       <section class="realscout-section">
@@ -307,6 +311,7 @@ export default component$(() => {
           <EnhancedRealScoutLoader 
             agentId="QWdlbnQtMjI1MDUw"
             widgetType={showAdvanced.value ? 'advanced-search' : 'simple-search'}
+            lazyLoad={false}
           >
             {showAdvanced.value ? (
               <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
