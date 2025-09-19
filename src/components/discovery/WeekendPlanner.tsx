@@ -132,12 +132,12 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
   const isGenerating = useSignal(false);
 
   // Filter open houses for selected day
-  const availableOpenHouses = (day: string) => {
+  const availableOpenHouses = $((day: string) => {
     const targetDate = getWeekendDate(day as 'saturday' | 'sunday');
     return openHouses.filter(oh => 
       oh.openHouseTimes.some(time => time.date === targetDate)
     );
-  };
+  });
 
   const deleteRoute = $((routeId: string) => {
     const index = plannedRoutes.findIndex(route => route.id === routeId);
@@ -220,7 +220,9 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
       };
       
       plannedRoutes.push(route);
-      onRouteCreated?.(route);
+      if (onRouteCreated) {
+        onRouteCreated(route);
+      }
       
     } finally {
       isGenerating.value = false;

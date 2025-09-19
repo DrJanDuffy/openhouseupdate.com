@@ -116,7 +116,9 @@ export default component$<OpenHouseMapProps>(({
         });
 
         infoWindow.open(map.value, marker);
-        onMarkerClick?.(openHouse);
+        if (onMarkerClick) {
+          onMarkerClick(openHouse);
+        }
       });
 
       marker.infoWindow = infoWindow;
@@ -243,29 +245,6 @@ export default component$<OpenHouseMapProps>(({
     }
   });
 
-  const selectForRoute = $(async (openHouse: OpenHouseLocation) => {
-    if (!isRouteMode.value) return;
-
-    const index = selectedOpenHouses.value.findIndex(oh => oh.id === openHouse.id);
-    if (index >= 0) {
-      selectedOpenHouses.value.splice(index, 1);
-    } else {
-      selectedOpenHouses.value.push(openHouse);
-    }
-
-    // Update marker appearance
-    const markerIndex = openHouses.findIndex(oh => oh.id === openHouse.id);
-    if (markerIndex >= 0) {
-      const marker = markers.value[markerIndex];
-      const isSelected = selectedOpenHouses.value.some(oh => oh.id === openHouse.id);
-      
-      marker.setIcon({
-        url: await createCustomMarkerIcon(openHouse),
-        scaledSize: new (window as any).google.maps.Size(isSelected ? 50 : 40, isSelected ? 60 : 50),
-        anchor: new (window as any).google.maps.Point(isSelected ? 25 : 20, isSelected ? 60 : 50),
-      });
-    }
-  });
 
   const createRoute = $(() => {
     if (selectedOpenHouses.value.length < 2) return;
@@ -289,7 +268,9 @@ export default component$<OpenHouseMapProps>(({
     }, (result: any, status: any) => {
       if (status === 'OK') {
         directionsRenderer.setDirections(result);
-        onRouteClick?.(selectedOpenHouses.value);
+        if (onRouteClick) {
+          onRouteClick(selectedOpenHouses.value);
+        }
       }
     });
   });

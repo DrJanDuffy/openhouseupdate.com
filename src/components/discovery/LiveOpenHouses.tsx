@@ -142,13 +142,13 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
     }
   };
 
-  const handleVisit = $((openHouse: OpenHouse) => {
+  const handleVisit = (openHouse: OpenHouse) => {
     onVisit?.(openHouse);
-  });
+  };
 
-  const handleDirections = $((openHouse: OpenHouse) => {
+  const handleDirections = (openHouse: OpenHouse) => {
     onDirections?.(openHouse);
-  });
+  };
 
   return (
     <div class="live-open-houses">
