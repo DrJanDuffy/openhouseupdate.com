@@ -85,11 +85,6 @@
       "destination": "/robots.txt"
     }
   ],
-  "functions": {
-    "src/entry.vercel-edge.tsx": {
-      "maxDuration": 30
-    }
-  },
   "crons": [
     {
       "path": "/api/sitemap-update",
