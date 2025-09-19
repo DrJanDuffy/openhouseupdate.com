@@ -1,9 +1,9 @@
 import { component$ } from '@builder.io/qwik';
-import { routeLoader$, redirect } from '@builder.io/qwik-city';
+import { type RequestHandler } from '@builder.io/qwik-city';
 
-export const useBuyerServicesLoader = routeLoader$(() => {
+export const onGet: RequestHandler = async ({ redirect }) => {
   throw redirect(302, '/services/buyer-services');
-});
+};
 
 export default component$(() => {
   return (
