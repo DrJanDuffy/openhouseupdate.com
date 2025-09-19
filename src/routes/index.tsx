@@ -1,18 +1,23 @@
 import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import RealScoutMap from '~/components/realscout/RealScoutMap';
+import EnhancedRealScoutLoader from '~/components/realscout/enhanced-realscout-loader';
+import EnhancedMortgageCalculator from '~/components/widgets/enhanced-mortgage-calculator';
+import PerformanceMonitor from '~/components/performance/performance-monitor';
 
 export default component$(() => {
   const showAdvanced = useSignal(true);
+  const showCalculator = useSignal(false);
 
   const showSimpleSearch = $(() => {
     showAdvanced.value = false;
     
-    // Track in analytics
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'search_mode', {
-        event_category: 'engagement',
-        event_label: 'simple'
+    // Track in enhanced analytics
+    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+      window.enhancedRealEstateAnalytics.trackPropertySearch('simple_search', {
+        search_mode: 'simple',
+        depth: 'moderate',
+        value: 1,
       });
     }
   });
@@ -20,60 +25,90 @@ export default component$(() => {
   const showAdvancedSearch = $(() => {
     showAdvanced.value = true;
     
-    // Track in analytics
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'search_mode', {
-        event_category: 'engagement',
-        event_label: 'advanced'
+    // Track in enhanced analytics
+    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+      window.enhancedRealEstateAnalytics.trackPropertySearch('advanced_search', {
+        search_mode: 'advanced',
+        depth: 'high',
+        value: 2,
       });
     }
   });
 
-  // Ensure RealScout components are available and add analytics
+  const toggleCalculator = $(() => {
+    showCalculator.value = !showCalculator.value;
+    
+    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+      window.enhancedRealEstateAnalytics.trackWidgetInteraction(
+        'mortgage_calculator',
+        showCalculator.value ? 'calculator_opened' : 'calculator_closed',
+        { depth: 'moderate', value: 1 }
+      );
+    }
+  });
+
+  // Enhanced RealScout component monitoring
   useVisibleTask$(() => {
-    // Script is now loaded globally in document head
-    // Just ensure components are ready
-    if (typeof window !== 'undefined') {
-      // Wait for custom elements to be defined
-      const checkElements = () => {
-        if (customElements.get('realscout-advanced-search') && customElements.get('realscout-simple-search')) {
-          // Add event listeners for search interactions
-          const advancedSearch = document.querySelector('realscout-advanced-search');
-          const simpleSearch = document.querySelector('realscout-simple-search');
-          
-          if (advancedSearch && window.gtag) {
-            // Track when advanced search is used
-            advancedSearch.addEventListener('search', () => {
-              window.gtag('event', 'search_performed', {
-                event_category: 'search',
-                event_label: 'advanced_search',
-                value: 1
-              });
+    // Wait for custom elements to be defined
+    const checkElements = () => {
+      if (customElements.get('realscout-advanced-search') && customElements.get('realscout-simple-search')) {
+        // Add enhanced event listeners for search interactions
+        const advancedSearch = document.querySelector('realscout-advanced-search');
+        const simpleSearch = document.querySelector('realscout-simple-search');
+        
+        if (advancedSearch && window.enhancedRealEstateAnalytics) {
+          // Track when advanced search is used
+          advancedSearch.addEventListener('search', () => {
+            window.enhancedRealEstateAnalytics.trackPropertySearch('advanced_search_performed', {
+              search_mode: 'advanced',
+              depth: 'high',
+              value: 3,
             });
-          }
-          
-          if (simpleSearch && window.gtag) {
-            // Track when simple search is used
-            simpleSearch.addEventListener('search', () => {
-              window.gtag('event', 'search_performed', {
-                event_category: 'search',
-                event_label: 'simple_search',
-                value: 1
-              });
-            });
-          }
-          
-          return;
+          });
+
+          advancedSearch.addEventListener('filter', () => {
+            window.enhancedRealEstateAnalytics.trackWidgetInteraction(
+              'realscout_advanced_search',
+              'filter_applied',
+              { depth: 'moderate', value: 1 }
+            );
+          });
         }
-        setTimeout(checkElements, 100);
-      };
-      checkElements();
+        
+        if (simpleSearch && window.enhancedRealEstateAnalytics) {
+          // Track when simple search is used
+          simpleSearch.addEventListener('search', () => {
+            window.enhancedRealEstateAnalytics.trackPropertySearch('simple_search_performed', {
+              search_mode: 'simple',
+              depth: 'moderate',
+              value: 2,
+            });
+          });
+        }
+        
+        return;
+      }
+      setTimeout(checkElements, 100);
+    };
+    checkElements();
+
+    // Track initial page engagement
+    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+      window.enhancedRealEstateAnalytics.trackPageEngagement('homepage_view', {
+        page_type: 'homepage',
+        search_mode: showAdvanced.value ? 'advanced' : 'simple',
+        depth: 'high',
+        value: 1,
+      });
     }
   });
 
   return (
     <>
-      {/* RealScout Search Section */}
+      {/* Performance Monitoring */}
+      <PerformanceMonitor />
+      
+      {/* Enhanced RealScout Search Section */}
       <section class="realscout-section">
         <style>{`
           .realscout-section {
@@ -169,6 +204,29 @@ export default component$(() => {
             min-height: 400px;
           }
 
+          .calculator-toggle {
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+          }
+
+          .calculator-toggle button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+          }
+
+          .calculator-toggle button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+          }
+
           realscout-simple-search {
             --rs-ss-font-primary-color: #6a6d72;
             --rs-ss-searchbar-border-color: hsl(0, 0%, 80%);
@@ -244,15 +302,33 @@ export default component$(() => {
         </div>
 
         <div class="widget-container">
-          {showAdvanced.value ? (
-            <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
-          ) : (
-            <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-simple-search>
-          )}
+          <EnhancedRealScoutLoader 
+            agentId="QWdlbnQtMjI1MDUw"
+            widgetType={showAdvanced.value ? 'advanced-search' : 'simple-search'}
+          >
+            {showAdvanced.value ? (
+              <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+            ) : (
+              <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-simple-search>
+            )}
+          </EnhancedRealScoutLoader>
+        </div>
+
+        <div class="calculator-toggle">
+          <button onClick$={toggleCalculator}>
+            {showCalculator.value ? 'Hide' : 'Show'} Mortgage Calculator
+          </button>
         </div>
       </section>
 
-      {/* Map Section */}
+      {/* Enhanced Mortgage Calculator Section */}
+      {showCalculator.value && (
+        <section class="calculator-section">
+          <EnhancedMortgageCalculator />
+        </section>
+      )}
+
+      {/* Enhanced Map Section */}
       <section class="map-section">
         <style>{`
           .map-section {
@@ -354,41 +430,60 @@ export default component$(() => {
           </div>
         </div>
       </section>
-
     </>
   );
 });
 
 export const head: DocumentHead = {
-  title: 'Real Estate Search - Find Your Dream Home',
+  title: 'Las Vegas Real Estate - Find Your Dream Home | Open House Update',
   meta: [
     {
       name: 'description',
-      content: 'Search thousands of properties with our advanced real estate search. Find your perfect home today.',
+      content: 'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance.',
     },
     {
-      property: 'og:title',
-      content: 'Real Estate Search - Find Your Dream Home',
+      name: 'keywords',
+      content: 'Las Vegas real estate, property search, home valuation, Dr. Janet Duffy, real estate agent, home buying, home selling',
     },
     {
-      property: 'og:description',
-      content: 'Search thousands of properties with our advanced real estate search. Find your perfect home today.',
+      name: 'author',
+      content: 'Dr. Janet Duffy',
     },
     {
-      property: 'og:type',
-      content: 'website',
+      name: 'robots',
+      content: 'index, follow',
     },
+    // Open Graph metadata
+    { property: 'og:title', content: 'Las Vegas Real Estate - Find Your Dream Home | Open House Update' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:description', content: 'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance.' },
+    { property: 'og:url', content: 'https://openhouseupdate.com' },
+    { property: 'og:site_name', content: 'Open House Update' },
+    { property: 'og:locale', content: 'en_US' },
+    { property: 'og:locale:alternate', content: 'es_US' },
+    { property: 'og:determiner', content: 'auto' },
+    { property: 'og:image', content: 'https://openhouseupdate.com/images/og-homepage.jpg' },
+    { property: 'og:image:secure_url', content: 'https://openhouseupdate.com/images/og-homepage.jpg' },
+    { property: 'og:image:type', content: 'image/jpeg' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:image:alt', content: 'Las Vegas Real Estate - Open House Update' },
+    { property: 'article:tag', content: 'real estate' },
+    { property: 'article:tag', content: 'Las Vegas' },
+    { property: 'article:tag', content: 'home search' },
+    { property: 'article:tag', content: 'property' },
+    { property: 'article:tag', content: 'Dr. Janet Duffy' },
+    // Twitter Card metadata
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Las Vegas Real Estate - Find Your Dream Home | Open House Update' },
+    { name: 'twitter:description', content: 'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance.' },
+    { name: 'twitter:image', content: 'https://openhouseupdate.com/images/og-homepage.jpg' },
+    { name: 'twitter:image:alt', content: 'Las Vegas Real Estate - Open House Update' },
+  ],
+  links: [
     {
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    },
-    {
-      name: 'twitter:title',
-      content: 'Real Estate Search - Find Your Dream Home',
-    },
-    {
-      name: 'twitter:description',
-      content: 'Search thousands of properties with our advanced real estate search. Find your perfect home today.',
+      rel: 'canonical',
+      href: 'https://openhouseupdate.com',
     },
   ],
 };

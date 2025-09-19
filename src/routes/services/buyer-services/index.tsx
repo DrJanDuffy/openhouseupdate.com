@@ -396,38 +396,32 @@ export const head: DocumentHead = {
       name: 'robots',
       content: 'index, follow',
     },
-    {
-      property: 'og:title',
-      content: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy',
-    },
-    {
-      property: 'og:description',
-      content: 'Professional buyer services in Las Vegas. Complete support from property search to closing with expert market knowledge.',
-    },
-    {
-      property: 'og:type',
-      content: 'website',
-    },
-    {
-      property: 'og:url',
-      content: 'https://openhouseupdate.com/services/buyer-services',
-    },
-    {
-      property: 'og:site_name',
-      content: 'Open House Update',
-    },
-    {
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    },
-    {
-      name: 'twitter:title',
-      content: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy',
-    },
-    {
-      name: 'twitter:description',
-      content: 'Professional buyer services in Las Vegas. Complete support from property search to closing with expert market knowledge.',
-    },
+    // Open Graph metadata
+    { property: 'og:title', content: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:description', content: 'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.' },
+    { property: 'og:url', content: 'https://openhouseupdate.com/services/buyer-services' },
+    { property: 'og:site_name', content: 'Open House Update' },
+    { property: 'og:locale', content: 'en_US' },
+    { property: 'og:locale:alternate', content: 'es_US' },
+    { property: 'og:determiner', content: 'auto' },
+    { property: 'og:image', content: 'https://openhouseupdate.com/images/og-buyer-services.jpg' },
+    { property: 'og:image:secure_url', content: 'https://openhouseupdate.com/images/og-buyer-services.jpg' },
+    { property: 'og:image:type', content: 'image/jpeg' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:image:alt', content: 'Buyer Services - Las Vegas Real Estate' },
+    { property: 'article:tag', content: 'buyer services' },
+    { property: 'article:tag', content: 'home buying' },
+    { property: 'article:tag', content: 'property search' },
+    { property: 'article:tag', content: 'real estate agent' },
+    { property: 'article:tag', content: 'Las Vegas' },
+    // Twitter Card metadata
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy' },
+    { name: 'twitter:description', content: 'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.' },
+    { name: 'twitter:image', content: 'https://openhouseupdate.com/images/og-buyer-services.jpg' },
+    { name: 'twitter:image:alt', content: 'Buyer Services - Las Vegas Real Estate' },
   ],
   links: [
     {
