@@ -1,7 +1,6 @@
 import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import RealScoutMap from '~/components/realscout/RealScoutMap';
-import EnhancedRealScoutLoader from '~/components/realscout/enhanced-realscout-loader';
 import EnhancedMortgageCalculator from '~/components/widgets/enhanced-mortgage-calculator';
 import PerformanceMonitor from '~/components/performance/performance-monitor';
 import FAQSection from '~/components/seo/faq-section';
@@ -51,48 +50,67 @@ export default component$(() => {
 
   // Enhanced RealScout component monitoring
   useVisibleTask$(() => {
-    // Wait for custom elements to be defined
-    const checkElements = () => {
-      if (customElements.get('realscout-advanced-search') && customElements.get('realscout-simple-search')) {
-        // Add enhanced event listeners for search interactions
-        const advancedSearch = document.querySelector('realscout-advanced-search');
-        const simpleSearch = document.querySelector('realscout-simple-search');
-        
-        if (advancedSearch && window.enhancedRealEstateAnalytics) {
-          // Track when advanced search is used
-          advancedSearch.addEventListener('search', () => {
-            window.enhancedRealEstateAnalytics.trackPropertySearch('advanced_search_performed', {
-              search_mode: 'advanced',
-              depth: 'high',
-              value: 3,
-            });
-          });
-
-          advancedSearch.addEventListener('filter', () => {
-            window.enhancedRealEstateAnalytics.trackWidgetInteraction(
-              'realscout_advanced_search',
-              'filter_applied',
-              { depth: 'moderate', value: 1 }
-            );
-          });
-        }
-        
-        if (simpleSearch && window.enhancedRealEstateAnalytics) {
-          // Track when simple search is used
-          simpleSearch.addEventListener('search', () => {
-            window.enhancedRealEstateAnalytics.trackPropertySearch('simple_search_performed', {
-              search_mode: 'simple',
-              depth: 'moderate',
-              value: 2,
-            });
-          });
-        }
-        
+    // Wait for RealScout script to load and custom elements to be defined
+    const initializeRealScout = () => {
+      // Check if RealScout script is loaded
+      const script = document.querySelector('script[src*="realscout-web-components"]');
+      if (!script) {
+        console.log('RealScout script not found, retrying...');
+        setTimeout(initializeRealScout, 500);
         return;
       }
-      setTimeout(checkElements, 100);
+
+      // Wait for custom elements to be defined
+      const checkElements = () => {
+        if (customElements.get('realscout-advanced-search') && customElements.get('realscout-simple-search')) {
+          console.log('RealScout custom elements found, initializing...');
+          
+          // Add enhanced event listeners for search interactions
+          const advancedSearch = document.querySelector('realscout-advanced-search');
+          const simpleSearch = document.querySelector('realscout-simple-search');
+          
+          if (advancedSearch && window.enhancedRealEstateAnalytics) {
+            // Track when advanced search is used
+            advancedSearch.addEventListener('search', () => {
+              window.enhancedRealEstateAnalytics.trackPropertySearch('advanced_search_performed', {
+                search_mode: 'advanced',
+                depth: 'high',
+                value: 3,
+              });
+            });
+
+            advancedSearch.addEventListener('filter', () => {
+              window.enhancedRealEstateAnalytics.trackWidgetInteraction(
+                'realscout_advanced_search',
+                'filter_applied',
+                { depth: 'moderate', value: 1 }
+              );
+            });
+          }
+          
+          if (simpleSearch && window.enhancedRealEstateAnalytics) {
+            // Track when simple search is used
+            simpleSearch.addEventListener('search', () => {
+              window.enhancedRealEstateAnalytics.trackPropertySearch('simple_search_performed', {
+                search_mode: 'simple',
+                depth: 'moderate',
+                value: 2,
+              });
+            });
+          }
+          
+          return;
+        }
+        
+        console.log('Waiting for RealScout custom elements...');
+        setTimeout(checkElements, 200);
+      };
+      
+      checkElements();
     };
-    checkElements();
+
+    // Start initialization
+    initializeRealScout();
 
     // Track initial page engagement
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
@@ -304,17 +322,11 @@ export default component$(() => {
         </div>
 
         <div class="widget-container">
-          <EnhancedRealScoutLoader 
-            agentId="QWdlbnQtMjI1MDUw"
-            widgetType={showAdvanced.value ? 'advanced-search' : 'simple-search'}
-            lazyLoad={false}
-          >
-            {showAdvanced.value ? (
-              <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
-            ) : (
-              <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-simple-search>
-            )}
-          </EnhancedRealScoutLoader>
+          {showAdvanced.value ? (
+            <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+          ) : (
+            <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-simple-search>
+          )}
         </div>
 
         <div class="calculator-toggle">
