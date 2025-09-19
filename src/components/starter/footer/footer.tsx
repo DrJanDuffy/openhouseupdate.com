@@ -62,6 +62,7 @@ export default component$(() => {
           <div class={styles.footerSection}>
             <h4 class={styles.footerSubtitle}>Services</h4>
             <ul class={styles.footerLinks}>
+              <li><a href="/about" class={styles.footerLink}>About Dr. Duffy</a></li>
               <li><a href="/home-valuation" class={styles.footerLink}>Home Valuation</a></li>
               <li><a href="/buyer-services" class={styles.footerLink}>Buyer Services</a></li>
               <li><a href="/seller-services" class={styles.footerLink}>Seller Services</a></li>
