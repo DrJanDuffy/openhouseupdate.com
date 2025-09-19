@@ -6,7 +6,7 @@ import Header from '~/components/starter/header/header';
 import Footer from '~/components/starter/footer/footer';
 import StructuredData from '~/components/seo/structured-data';
 import StickyHeader from '~/components/layout/header';
-import { AdvancedSearchModal, MobileSearchButton } from '~/components/modals';
+import { MobileSearchButton } from '~/components/modals';
 
 import styles from './styles.css?inline';
 
@@ -29,7 +29,6 @@ export default component$(() => {
         <Slot />
       </main>
       <Footer />
-      <AdvancedSearchModal />
       <MobileSearchButton />
       <script dangerouslySetInnerHTML={`${inject()}`} />
       <script 
