@@ -128,11 +128,6 @@ export default component$<OpenHouseFiltersProps>(({
     updateFilters();
   });
 
-  const updateTimeRange = $((timeRange: FilterState['timeRange']) => {
-    filters.timeRange = timeRange;
-    updateFilters();
-  });
-
   const clearAllFilters = $(() => {
     filters.timeRange = 'this-weekend';
     filters.timeSlots = [];
