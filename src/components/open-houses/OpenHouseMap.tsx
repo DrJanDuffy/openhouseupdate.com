@@ -121,7 +121,7 @@ export default component$<OpenHouseMapProps>(({
 
       marker.infoWindow = infoWindow;
       markers.value.push(marker);
-    });
+    }
 
     // Fit bounds to show all markers
     if (markers.value.length > 0) {
