@@ -1,7 +1,37 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useVisibleTask$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
+  // Initialize RealScout widget
+  useVisibleTask$(() => {
+    if (typeof window !== 'undefined') {
+      // Wait for RealScout script to load and custom elements to be defined
+      const initializeRealScout = () => {
+        // Check if RealScout script is loaded
+        const script = document.querySelector('script[src*="realscout-web-components"]');
+        if (!script) {
+          console.log('RealScout script not found, retrying...');
+          setTimeout(initializeRealScout, 500);
+          return;
+        }
+
+        // Wait for custom elements to be defined
+        const checkElements = () => {
+          if (customElements.get('realscout-advanced-search')) {
+            console.log('RealScout advanced search widget ready');
+            return;
+          }
+          console.log('Waiting for RealScout advanced search widget...');
+          setTimeout(checkElements, 200);
+        };
+        
+        checkElements();
+      };
+
+      // Start initialization
+      initializeRealScout();
+    }
+  });
   return (
     <div class="weekend-page">
       <style>{`
@@ -172,11 +202,6 @@ export default component$(() => {
         </div>
       </div>
 
-      {/* RealScout Script */}
-      <script 
-        src="https://em.realscout.com/widgets/realscout-web-components.umd.js" 
-        type="module"
-      ></script>
     </div>
   );
 });

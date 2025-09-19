@@ -35,14 +35,34 @@ export default component$(() => {
     isSubmitted.value = true;
   });
 
-  // Load RealScout script
+  // Initialize RealScout widget
   useVisibleTask$(() => {
     if (typeof window !== 'undefined') {
-      const script = document.createElement('script');
-      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
-      script.type = 'module';
-      script.async = true;
-      document.head.appendChild(script);
+      // Wait for RealScout script to load and custom elements to be defined
+      const initializeRealScout = () => {
+        // Check if RealScout script is loaded
+        const script = document.querySelector('script[src*="realscout-web-components"]');
+        if (!script) {
+          console.log('RealScout script not found, retrying...');
+          setTimeout(initializeRealScout, 500);
+          return;
+        }
+
+        // Wait for custom elements to be defined
+        const checkElements = () => {
+          if (customElements.get('realscout-home-value')) {
+            console.log('RealScout home value widget ready');
+            return;
+          }
+          console.log('Waiting for RealScout home value widget...');
+          setTimeout(checkElements, 200);
+        };
+        
+        checkElements();
+      };
+
+      // Start initialization
+      initializeRealScout();
     }
   });
 

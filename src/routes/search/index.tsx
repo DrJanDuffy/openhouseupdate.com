@@ -9,17 +9,34 @@ export default component$(() => {
     showFilters.value = !showFilters.value;
   });
 
-  // Ensure RealScout components are available
+  // Initialize RealScout widget
   useVisibleTask$(() => {
-    // Script is loaded globally in document head
     if (typeof window !== 'undefined') {
-      const checkElements = () => {
-        if (customElements.get('realscout-advanced-search')) {
+      // Wait for RealScout script to load and custom elements to be defined
+      const initializeRealScout = () => {
+        // Check if RealScout script is loaded
+        const script = document.querySelector('script[src*="realscout-web-components"]');
+        if (!script) {
+          console.log('RealScout script not found, retrying...');
+          setTimeout(initializeRealScout, 500);
           return;
         }
-        setTimeout(checkElements, 100);
+
+        // Wait for custom elements to be defined
+        const checkElements = () => {
+          if (customElements.get('realscout-advanced-search')) {
+            console.log('RealScout advanced search widget ready');
+            return;
+          }
+          console.log('Waiting for RealScout advanced search widget...');
+          setTimeout(checkElements, 200);
+        };
+        
+        checkElements();
       };
-      checkElements();
+
+      // Start initialization
+      initializeRealScout();
     }
   });
 

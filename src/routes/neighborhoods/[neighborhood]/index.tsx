@@ -6,52 +6,63 @@ export default component$(() => {
   const neighborhood = location.params.neighborhood;
 
   useVisibleTask$(() => {
-    // Load RealScout script if not already loaded
-    if (!document.querySelector('script[src*="realscout-web-components"]')) {
-      const script = document.createElement('script');
-      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
-      script.type = 'module';
-      script.crossOrigin = 'anonymous';
-      document.head.appendChild(script);
-    }
+    if (typeof window !== 'undefined') {
+      // Wait for RealScout script to load and custom elements to be defined
+      const initializeRealScout = () => {
+        // Check if RealScout script is loaded
+        const script = document.querySelector('script[src*="realscout-web-components"]');
+        if (!script) {
+          console.log('RealScout script not found, retrying...');
+          setTimeout(initializeRealScout, 500);
+          return;
+        }
 
-    // Wait for RealScout components to be ready, then set default values
-    const waitForWidget = () => {
-      const widget = document.querySelector('realscout-advanced-search');
-      if (widget) {
-        // Set default location based on neighborhood
-        widget.setAttribute('default-location', `${neighborhoodName}, Las Vegas, NV`);
-        
-        // Set price filters based on neighborhood (you can customize these)
-        const priceRanges: Record<string, string> = {
-          'summerlin': '800000',
-          'henderson': '600000', 
-          'north-las-vegas': '400000',
-          'spring-valley': '500000',
-          'enterprise': '700000'
+        // Wait for custom elements to be defined
+        const checkElements = () => {
+          if (customElements.get('realscout-advanced-search')) {
+            console.log('RealScout advanced search widget ready');
+            
+            // Set default values for the widget
+            const widget = document.querySelector('realscout-advanced-search');
+            if (widget) {
+              // Set default location based on neighborhood
+              widget.setAttribute('default-location', `${neighborhoodName}, Las Vegas, NV`);
+              
+              // Set price filters based on neighborhood
+              const priceRanges: Record<string, string> = {
+                'summerlin': '800000',
+                'henderson': '600000', 
+                'north-las-vegas': '400000',
+                'spring-valley': '500000',
+                'enterprise': '700000'
+              };
+              
+              const maxPrice = priceRanges[neighborhood.toLowerCase()] || '600000';
+              widget.setAttribute('price-max', maxPrice);
+              
+              // Track neighborhood page view
+              if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'neighborhood_page_view', {
+                  event_category: 'neighborhood',
+                  event_label: neighborhoodName,
+                  value: 1
+                });
+              }
+              
+              console.log(`Neighborhood page loaded: ${neighborhoodName} with max price: $${maxPrice}`);
+            }
+            return;
+          }
+          console.log('Waiting for RealScout advanced search widget...');
+          setTimeout(checkElements, 200);
         };
         
-        const maxPrice = priceRanges[neighborhood.toLowerCase()] || '600000';
-        widget.setAttribute('price-max', maxPrice);
-        
-        // Track neighborhood page view
-        if (typeof window !== 'undefined' && window.gtag) {
-          window.gtag('event', 'neighborhood_page_view', {
-            event_category: 'neighborhood',
-            event_label: neighborhoodName,
-            value: 1
-          });
-        }
-        
-        console.log(`Neighborhood page loaded: ${neighborhoodName} with max price: $${maxPrice}`);
-      } else {
-        // Retry if widget not ready yet
-        setTimeout(waitForWidget, 100);
-      }
-    };
-    
-    // Start checking for widget after a short delay
-    setTimeout(waitForWidget, 500);
+        checkElements();
+      };
+
+      // Start initialization
+      initializeRealScout();
+    }
   });
 
   // Format neighborhood name for display
