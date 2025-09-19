@@ -1,8 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 
-interface CrawlerManagementProps {
-  pageType?: 'home' | 'listing' | 'service' | 'neighborhood' | 'search';
-  lastModified?: string;
+export interface CrawlerManagementProps {
+  pageType: 'home' | 'service' | 'listing' | 'neighborhood' | 'blog';
   hasImages?: boolean;
   hasVideo?: boolean;
   hasNews?: boolean;
@@ -10,137 +9,72 @@ interface CrawlerManagementProps {
   changeFrequency?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
 }
 
-export default component$<CrawlerManagementProps>(({ 
-  pageType = 'home',
-  lastModified,
+export default component$<CrawlerManagementProps>(({
+  pageType,
   hasImages = false,
   hasVideo = false,
   hasNews = false,
-  priority = 0.8,
-  changeFrequency = 'weekly'
+  priority = 0.5,
+  changeFrequency = 'weekly',
 }) => {
-  const getCrawlDirectives = () => {
-    const directives = [];
+  // Generate crawl hints based on page type and content
+  const getCrawlHints = () => {
+    const hints = [];
     
-    // Page-specific crawl directives
-    switch (pageType) {
-      case 'listing':
-        directives.push('max-snippet:-1', 'max-image-preview:large', 'max-video-preview:-1');
-        break;
-      case 'service':
-        directives.push('max-snippet:-1', 'max-image-preview:standard');
-        break;
-      case 'neighborhood':
-        directives.push('max-snippet:-1', 'max-image-preview:large');
-        break;
-      case 'search':
-        directives.push('max-snippet:-1', 'noarchive');
-        break;
-      default:
-        directives.push('max-snippet:-1', 'max-image-preview:large', 'max-video-preview:-1');
+    if (hasImages) {
+      hints.push('image');
     }
     
-    return directives.join(', ');
+    if (hasVideo) {
+      hints.push('video');
+    }
+    
+    if (hasNews) {
+      hints.push('news');
+    }
+    
+    // Page type specific hints
+    switch (pageType) {
+      case 'home':
+        hints.push('homepage', 'navigation');
+        break;
+      case 'service':
+        hints.push('service', 'contact');
+        break;
+      case 'listing':
+        hints.push('property', 'real-estate');
+        break;
+      case 'neighborhood':
+        hints.push('location', 'area');
+        break;
+      case 'blog':
+        hints.push('article', 'content');
+        break;
+    }
+    
+    return hints;
   };
 
-  const getStructuredCrawlData = () => {
-    return {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "mainEntity": {
-        "@type": "RealEstateService",
-        "name": "Las Vegas Real Estate Services",
-        "provider": {
-          "@type": "RealEstateAgent",
-          "name": "Dr. Janet Duffy"
-        }
-      },
-      "dateModified": lastModified || new Date().toISOString(),
-      "datePublished": "2024-01-01T00:00:00Z",
-      "inLanguage": "en-US",
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "Open House Update",
-        "url": "https://openhouseupdate.com"
-      },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://openhouseupdate.com"
-          }
-        ]
-      }
-    };
-  };
+  const crawlHints = getCrawlHints();
 
   return (
     <>
-      {/* Enhanced robots meta tag */}
-      <meta name="robots" content={`index, follow, ${getCrawlDirectives()}`} />
+      {/* Crawl hints meta tag */}
+      <meta name="crawl-hints" content={crawlHints.join(', ')} />
       
-      {/* Page-specific crawl hints */}
-      <meta name="googlebot" content={`index, follow, ${getCrawlDirectives()}`} />
-      <meta name="bingbot" content={`index, follow, ${getCrawlDirectives()}`} />
+      {/* Priority hint */}
+      <meta name="page-priority" content={priority.toString()} />
       
-      {/* Crawl budget optimization */}
-      <meta name="crawl-budget" content={`priority:${priority}, frequency:${changeFrequency}`} />
+      {/* Change frequency hint */}
+      <meta name="change-frequency" content={changeFrequency} />
       
-      {/* Content type hints for crawlers */}
-      {hasImages && <meta name="content-type" content="text/html; images=true" />}
-      {hasVideo && <meta name="content-type" content="text/html; video=true" />}
-      {hasNews && <meta name="content-type" content="text/html; news=true" />}
+      {/* Content type hints */}
+      {hasImages && <meta name="has-images" content="true" />}
+      {hasVideo && <meta name="has-video" content="true" />}
+      {hasNews && <meta name="has-news" content="true" />}
       
-      {/* Structured data for crawler understanding */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={JSON.stringify(getStructuredCrawlData())}
-      />
-      
-      {/* Crawl-friendly navigation hints */}
-      <link rel="canonical" href={`https://openhouseupdate.com/${pageType}`} />
-      
-      {/* Preload critical resources for crawlers */}
-      <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-      <link rel="preload" href="/images/logo.svg" as="image" />
-      
-      {/* Crawler-friendly error handling */}
-      <meta name="crawler-error-handling" content="graceful-degradation" />
+      {/* Page type hint */}
+      <meta name="page-type" content={pageType} />
     </>
   );
 });
-
-// Crawl budget optimization utilities
-export const getCrawlBudgetRecommendations = (pageType: string, contentSize: number) => {
-  const recommendations = [];
-  
-  if (contentSize > 10000) {
-    recommendations.push('Consider pagination for large content');
-  }
-  
-  if (pageType === 'listing' && contentSize < 500) {
-    recommendations.push('Add more descriptive content for better indexing');
-  }
-  
-  return recommendations;
-};
-
-// Dynamic crawl frequency based on content type
-export const getOptimalCrawlFrequency = (pageType: string, lastUpdate: Date) => {
-  const now = new Date();
-  const daysSinceUpdate = Math.floor((now.getTime() - lastUpdate.getTime()) / (1000 * 60 * 60 * 24));
-  
-  switch (pageType) {
-    case 'listing':
-      return daysSinceUpdate < 7 ? 'daily' : 'weekly';
-    case 'service':
-      return daysSinceUpdate < 30 ? 'weekly' : 'monthly';
-    case 'neighborhood':
-      return daysSinceUpdate < 14 ? 'weekly' : 'monthly';
-    default:
-      return 'weekly';
-  }
-};

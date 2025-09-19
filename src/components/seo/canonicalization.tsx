@@ -1,102 +1,44 @@
 import { component$ } from '@builder.io/qwik';
 
-interface CanonicalizationProps {
+export interface CanonicalizationProps {
   currentUrl: string;
-  preferredUrl?: string;
+  preferredUrl: string;
   alternateUrls?: Array<{
     url: string;
-    hreflang: string;
+    hreflang?: string;
     rel?: 'alternate' | 'canonical';
-  }>;
-  duplicateContent?: Array<{
-    url: string;
-    type: 'duplicate' | 'similar' | 'redirect';
-    reason?: string;
   }>;
 }
 
-export default component$<CanonicalizationProps>(({ 
+export default component$<CanonicalizationProps>(({
   currentUrl,
   preferredUrl,
   alternateUrls = [],
-  duplicateContent = []
 }) => {
-  const getCanonicalUrl = () => {
-    return preferredUrl || currentUrl;
-  };
-
-  const getHreflangAlternates = () => {
-    return alternateUrls.filter(alt => alt.rel === 'alternate');
-  };
-
-  const getCanonicalAlternates = () => {
-    return alternateUrls.filter(alt => alt.rel === 'canonical');
-  };
-
-  const generateCanonicalStructuredData = () => {
-    return {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "url": getCanonicalUrl(),
-      "mainEntity": {
-        "@type": "RealEstateService",
-        "name": "Las Vegas Real Estate Services",
-        "url": getCanonicalUrl()
-      },
-      "alternateName": alternateUrls.map(alt => alt.url),
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "Open House Update",
-        "url": "https://openhouseupdate.com"
-      }
-    };
-  };
-
   return (
     <>
-      {/* Primary canonical URL */}
-      <link rel="canonical" href={getCanonicalUrl()} />
+      {/* Canonical URL */}
+      <link rel="canonical" href={preferredUrl} />
       
-      {/* Hreflang alternates for internationalization */}
-      {getHreflangAlternates().map((alt, index) => (
-        <link 
+      {/* Alternate URLs with hreflang */}
+      {alternateUrls.map((alt, index) => (
+        <link
           key={index}
-          rel="alternate" 
-          hrefLang={alt.hreflang} 
-          href={alt.url} 
+          rel={alt.rel || 'alternate'}
+          href={alt.url}
+          {...(alt.hreflang && { hreflang: alt.hreflang })}
         />
       ))}
       
-      {/* Canonical alternates for duplicate content */}
-      {getCanonicalAlternates().map((alt, index) => (
-        <link 
-          key={index}
-          rel="canonical" 
-          href={alt.url} 
-        />
-      ))}
-      
-      {/* Self-referencing canonical for consistency */}
-      <link rel="canonical" href={currentUrl} />
-      
-      {/* Structured data for canonicalization */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={JSON.stringify(generateCanonicalStructuredData())}
-      />
-      
-      {/* Duplicate content detection hints */}
-      {duplicateContent.length > 0 && (
-        <meta name="duplicate-content" content={duplicateContent.map(dup => `${dup.url}:${dup.type}`).join(',')} />
+      {/* Prevent indexing of non-canonical URLs */}
+      {currentUrl !== preferredUrl && (
+        <meta name="robots" content="noindex, follow" />
       )}
-      
-      {/* Canonicalization preferences */}
-      <meta name="canonical-preference" content="preferred" />
     </>
   );
 });
 
-// Canonicalization utilities
+// Utility function to detect duplicate content patterns
 export const detectDuplicateContent = (urls: string[]): Array<{
   url: string;
   type: 'duplicate' | 'similar' | 'redirect';
@@ -153,51 +95,29 @@ export const detectDuplicateContent = (urls: string[]): Array<{
 export const generateCanonicalUrl = (
   baseUrl: string,
   path: string,
-  options: {
-    forceHttps?: boolean;
-    forceWww?: boolean;
-    removeTrailingSlash?: boolean;
-  } = {}
+  params?: { [key: string]: string }
 ): string => {
-  let canonical = `${baseUrl}${path}`;
+  let canonicalUrl = `${baseUrl}${path}`;
   
-  // Force HTTPS
-  if (options.forceHttps) {
-    canonical = canonical.replace('http://', 'https://');
+  // Add query parameters if provided
+  if (params && Object.keys(params).length > 0) {
+    const searchParams = new URLSearchParams(params);
+    canonicalUrl += `?${searchParams.toString()}`;
   }
   
-  // Force www
-  if (options.forceWww) {
-    canonical = canonical.replace('://', '://www.');
-  }
-  
-  // Remove trailing slash
-  if (options.removeTrailingSlash && canonical.endsWith('/') && canonical !== baseUrl) {
-    canonical = canonical.slice(0, -1);
-  }
-  
-  return canonical;
+  return canonicalUrl;
 };
 
-export const getCanonicalizationRecommendations = (url: string): string[] => {
-  const recommendations = [];
-  
-  // Check for common canonicalization issues
-  if (url.includes('?')) {
-    recommendations.push('Consider removing query parameters for canonical URL');
+export const normalizeUrl = (url: string): string => {
+  // Remove trailing slash unless it's the root
+  if (url.endsWith('/') && url !== '/') {
+    return url.slice(0, -1);
   }
   
-  if (url.includes('#')) {
-    recommendations.push('Remove fragment identifiers from canonical URL');
+  // Ensure HTTPS
+  if (url.startsWith('http://')) {
+    return url.replace('http://', 'https://');
   }
   
-  if (url.includes('www.') && !url.includes('https://www.')) {
-    recommendations.push('Use consistent www subdomain');
-  }
-  
-  if (url.endsWith('/') && url !== 'https://openhouseupdate.com/') {
-    recommendations.push('Consider removing trailing slash for consistency');
-  }
-  
-  return recommendations;
+  return url;
 };

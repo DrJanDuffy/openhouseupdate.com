@@ -79,14 +79,20 @@ export const createSEOHead = (props: SEOHeadProps): DocumentHead => {
     { name: 'ICBM', content: '36.1699, -115.1398' },
   ];
 
-  // Add article-specific meta tags
-  if (ogType === 'article') {
-    if (articleAuthor) metaTags.push({ property: 'article:author', content: articleAuthor });
-    if (articlePublishedTime) metaTags.push({ property: 'article:published_time', content: articlePublishedTime });
-    if (articleModifiedTime) metaTags.push({ property: 'article:modified_time', content: articleModifiedTime });
-    if (articleSection) metaTags.push({ property: 'article:section', content: articleSection });
-    articleTags.forEach(tag => metaTags.push({ property: 'article:tag', content: tag }));
-  }
+    // Add article-specific meta tags
+    if (ogType === 'article') {
+      if (articleAuthor) metaTags.push({ property: 'article:author', content: articleAuthor });
+      if (articlePublishedTime) metaTags.push({ property: 'article:published_time', content: articlePublishedTime });
+      if (articleModifiedTime) metaTags.push({ property: 'article:modified_time', content: articleModifiedTime });
+      if (articleSection) metaTags.push({ property: 'article:section', content: articleSection });
+      articleTags.forEach(tag => metaTags.push({ property: 'article:tag', content: tag }));
+    }
+
+    // Google Site Verification
+    metaTags.push({
+      name: 'google-site-verification',
+      content: '3MLLpJH2Mfg7igpQ-qC_wpBTzvBGvsOUe7V_pJdYAcM',
+    });
 
   const links = [
     {

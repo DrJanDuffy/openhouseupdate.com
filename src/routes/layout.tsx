@@ -260,6 +260,11 @@ export const head: DocumentHead = {
       name: 'cache-control',
       content: 'public',
     },
+    // Google Site Verification
+    {
+      name: 'google-site-verification',
+      content: '3MLLpJH2Mfg7igpQ-qC_wpBTzvBGvsOUe7V_pJdYAcM',
+    },
   ],
   links: [
     {
