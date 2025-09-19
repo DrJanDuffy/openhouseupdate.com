@@ -1,5 +1,5 @@
 import { component$, Slot, useStyles$ } from '@builder.io/qwik';
-import { routeLoader$, DocumentHead } from '@builder.io/qwik-city';
+import { routeLoader$, type DocumentHead } from '@builder.io/qwik-city';
 import { inject } from '@vercel/analytics';
 
 import Header from '~/components/starter/header/header';

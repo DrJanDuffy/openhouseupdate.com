@@ -139,12 +139,12 @@ export default component$<WeekendPlannerProps>(({ openHouses, onRouteCreated }) 
     );
   };
 
-  const deleteRoute = $((routeId: string) => {
+  const deleteRoute = (routeId: string) => {
     const index = plannedRoutes.findIndex(route => route.id === routeId);
     if (index >= 0) {
       plannedRoutes.splice(index, 1);
     }
-  });
+  };
 
   const generateOptimalRoute = $(async () => {
     isGenerating.value = true;

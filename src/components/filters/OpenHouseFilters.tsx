@@ -53,7 +53,7 @@ export default component$<OpenHouseFiltersProps>(({
     onFiltersChange?.(filters);
   };
 
-  const toggleTimeSlot = $((slotId: string) => {
+  const toggleTimeSlot = (slotId: string) => {
     const index = filters.timeSlots.indexOf(slotId);
     if (index >= 0) {
       filters.timeSlots.splice(index, 1);
@@ -61,9 +61,9 @@ export default component$<OpenHouseFiltersProps>(({
       filters.timeSlots.push(slotId);
     }
     updateFilters();
-  });
+  };
 
-  const toggleBedroom = $((bedroom: number) => {
+  const toggleBedroom = (bedroom: number) => {
     const index = filters.bedrooms.indexOf(bedroom);
     if (index >= 0) {
       filters.bedrooms.splice(index, 1);
@@ -71,9 +71,9 @@ export default component$<OpenHouseFiltersProps>(({
       filters.bedrooms.push(bedroom);
     }
     updateFilters();
-  });
+  };
 
-  const toggleBathroom = $((bathroom: number) => {
+  const toggleBathroom = (bathroom: number) => {
     const index = filters.bathrooms.indexOf(bathroom);
     if (index >= 0) {
       filters.bathrooms.splice(index, 1);
@@ -81,9 +81,9 @@ export default component$<OpenHouseFiltersProps>(({
       filters.bathrooms.push(bathroom);
     }
     updateFilters();
-  });
+  };
 
-  const toggleNeighborhood = $((neighborhood: string) => {
+  const toggleNeighborhood = (neighborhood: string) => {
     const index = filters.neighborhoods.indexOf(neighborhood);
     if (index >= 0) {
       filters.neighborhoods.splice(index, 1);
@@ -91,9 +91,9 @@ export default component$<OpenHouseFiltersProps>(({
       filters.neighborhoods.push(neighborhood);
     }
     updateFilters();
-  });
+  };
 
-  const toggleAgent = $((agentId: string) => {
+  const toggleAgent = (agentId: string) => {
     const index = filters.agents.indexOf(agentId);
     if (index >= 0) {
       filters.agents.splice(index, 1);
@@ -101,32 +101,32 @@ export default component$<OpenHouseFiltersProps>(({
       filters.agents.push(agentId);
     }
     updateFilters();
-  });
+  };
 
-  const updatePriceRange = $((field: 'min' | 'max', value: number) => {
+  const updatePriceRange = (field: 'min' | 'max', value: number) => {
     filters.priceRange[field] = value;
     updateFilters();
-  });
+  };
 
-  const updateRadius = $((radius: number) => {
+  const updateRadius = (radius: number) => {
     filters.radius = radius;
     updateFilters();
-  });
+  };
 
-  const updateTimeRange = $((timeRange: FilterState['timeRange']) => {
+  const updateTimeRange = (timeRange: FilterState['timeRange']) => {
     filters.timeRange = timeRange;
     updateFilters();
-  });
+  };
 
-  const updateSortBy = $((sortBy: FilterState['sortBy']) => {
+  const updateSortBy = (sortBy: FilterState['sortBy']) => {
     filters.sortBy = sortBy;
     updateFilters();
-  });
+  };
 
-  const updateSortOrder = $((sortOrder: FilterState['sortOrder']) => {
+  const updateSortOrder = (sortOrder: FilterState['sortOrder']) => {
     filters.sortOrder = sortOrder;
     updateFilters();
-  });
+  };
 
   const clearAllFilters = () => {
     filters.timeRange = 'this-weekend';
@@ -766,13 +766,13 @@ export default component$<OpenHouseFiltersProps>(({
       )}
 
       <div class="filter-actions">
-        <button class="btn btn-primary" onClick$={updateFilters}>
+        <button class="btn btn-primary" onClick$={() => updateFilters()}>
           Apply Filters
         </button>
         <button class="btn btn-secondary">
           Save Search
         </button>
-        <button class="btn btn-outline" onClick$={clearAllFilters}>
+        <button class="btn btn-outline" onClick$={() => clearAllFilters()}>
           Clear All
         </button>
       </div>

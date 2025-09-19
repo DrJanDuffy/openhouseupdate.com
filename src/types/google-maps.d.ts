@@ -28,13 +28,6 @@ declare namespace google.maps {
     lng: number;
   }
 
-  interface LatLngBounds {
-    extend(point: LatLng): void;
-  }
-
-  class LatLngBounds {
-    constructor();
-  }
 
   class LatLng {
     constructor(lat: number, lng: number);
@@ -75,19 +68,7 @@ declare namespace google.maps {
     anchor?: Point;
   }
 
-  class InfoWindow {
-    constructor(opts?: InfoWindowOptions);
-    open(map?: Map, anchor?: Marker): void;
-    close(): void;
-  }
 
-  interface InfoWindowOptions {
-    content?: string | Element;
-  }
-
-  class DirectionsService {
-    route(request: DirectionsRequest, callback: (result: DirectionsResult, status: DirectionsStatus) => void): void;
-  }
 
   interface DirectionsRequest {
     origin: LatLng | LatLngLiteral | string;
@@ -136,11 +117,6 @@ declare namespace google.maps {
     // Add properties as needed
   }
 
-  class DirectionsRenderer {
-    constructor();
-    setMap(map: Map | null): void;
-    setDirections(result: DirectionsResult): void;
-  }
 
   interface MapTypeStyle {
     featureType?: string;
@@ -152,11 +128,6 @@ declare namespace google.maps {
     visibility?: string;
   }
 
-  namespace geometry {
-    class Spherical {
-      static computeDistanceBetween(from: LatLng, to: LatLng): number;
-    }
-  }
 }
 
 export {};
