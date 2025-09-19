@@ -1,4 +1,6 @@
-# Qwik City App ⚡️
+# Open House Update - Las Vegas Real Estate ⚡️
+
+Professional real estate services website built with Qwik and deployed on Vercel.
 
 - [Qwik Docs](https://qwik.builder.io/)
 - [Discord](https://qwik.builder.io/chat)
