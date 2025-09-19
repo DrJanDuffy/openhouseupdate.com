@@ -1,0 +1,46 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Package files
+package.json text eol=lf
+package-lock.json text eol=lf
+pnpm-lock.yaml text eol=lf
+
+# Config files
+*.config.js text eol=lf
+*.config.ts text eol=lf
+tsconfig.json text eol=lf
+tailwind.config.js text eol=lf
+vite.config.ts text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text eol=lf
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# Generated files (don't diff)
+dist/ export-ignore
+build/ export-ignore
+.vercel/ export-ignore
+node_modules/ export-ignore
+
+# OS generated files
+.DS_Store export-ignore
+Thumbs.db export-ignore
