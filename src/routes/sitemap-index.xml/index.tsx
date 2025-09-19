@@ -1,6 +1,6 @@
 import { type RequestHandler } from '@builder.io/qwik-city';
 
-export const onGet: RequestHandler = async ({ response }) => {
+export const onGet: RequestHandler = async (requestEvent) => {
   const currentDate = new Date().toISOString().split('T')[0];
   
   const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
@@ -19,11 +19,11 @@ export const onGet: RequestHandler = async ({ response }) => {
   </sitemap>
 </sitemapindex>`;
 
-  response.headers.set('Content-Type', 'application/xml');
-  response.headers.set('Cache-Control', 'public, max-age=3600');
+  requestEvent.response.headers.set('Content-Type', 'application/xml');
+  requestEvent.response.headers.set('Cache-Control', 'public, max-age=3600');
   
   return new Response(sitemapIndex, {
     status: 200,
-    headers: response.headers,
+    headers: requestEvent.response.headers,
   });
 };

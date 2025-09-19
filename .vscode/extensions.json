@@ -1,4 +1,4 @@
 {
-  "recommendations": ["dbaeumer.vscode-eslint", "unifiedjs.vscode-mdx"],
-  "unwantedRecommendations": []
+  "recommendations": ["biomejs.biome", "unifiedjs.vscode-mdx"],
+  "unwantedRecommendations": ["dbaeumer.vscode-eslint"]
 }

@@ -14,9 +14,12 @@
     "deploy": "vercel deploy",
     "dev": "vite --mode ssr",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
-    "fmt": "prettier --write .",
-    "fmt.check": "prettier --check .",
-    "lint": "eslint \"src/**/*.ts*\"",
+    "fmt": "biome format --write .",
+    "fmt.check": "biome format .",
+    "lint": "biome lint .",
+    "lint.fix": "biome lint --write .",
+    "check": "biome check .",
+    "check.fix": "biome check --write .",
     "preview": "qwik build preview && vite preview --open",
     "git:optimize": "powershell -ExecutionPolicy Bypass -File scripts/optimize-git.ps1",
     "git:status": "git status --porcelain",
@@ -26,6 +29,7 @@
     "qwik": "qwik"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.0.6",
     "@builder.io/qwik": "1.0.0",
     "@builder.io/qwik-city": "~1.0.0",
     "@types/eslint": "8.37.0",

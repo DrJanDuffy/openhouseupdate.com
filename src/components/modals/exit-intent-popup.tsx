@@ -13,7 +13,6 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
   const selectedOffer = useSignal('');
 
   const handleClose = $((event: QwikMouseEvent<HTMLButtonElement, MouseEvent>) => {
-    event.preventDefault();
     // Use setTimeout to avoid serialization issues
     setTimeout(() => onClose(), 0);
   });
