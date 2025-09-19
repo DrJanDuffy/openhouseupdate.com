@@ -5,14 +5,10 @@ export default component$(() => {
   const debugMode = useSignal(true) // Set to true for testing
 
   useVisibleTask$(() => {
-    // Debug: Log that component is mounting
-    console.log('Sticky header component mounted')
-
     // Ensure RealScout components are available
     if (typeof window !== 'undefined') {
       const checkElements = () => {
         if (customElements.get('realscout-advanced-search')) {
-          console.log('RealScout component found')
           return
         }
         setTimeout(checkElements, 100)
@@ -23,7 +19,6 @@ export default component$(() => {
       const handleScroll = () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop
         isScrolled.value = scrollTop > 100 // Show after 100px scroll
-        console.log('Scroll detected:', scrollTop, 'isScrolled:', isScrolled.value)
       }
 
       // Add scroll listener

@@ -82,6 +82,7 @@ export default component$<FreeHomeValuationCTAProps>(
           <div class="flex justify-between items-center mb-4">
             <h3 class="text-xl font-bold text-gray-900">Get Your Free Home Valuation</h3>
             <button
+              type="button"
               onClick$={() => {
                 showRealScoutWidget.value = false
                 isExpanded.value = false
@@ -137,6 +138,7 @@ export default component$<FreeHomeValuationCTAProps>(
                 estimate plus a detailed report from Dr. Janet Duffy.
               </p>
               <button
+                type="button"
                 onClick$={openRealScoutWidget}
                 class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 w-full"
               >
@@ -151,7 +153,7 @@ export default component$<FreeHomeValuationCTAProps>(
           <div>
             <div class="flex justify-between items-center mb-4">
               <h3 class="text-xl font-bold text-gray-900">Free Home Valuation</h3>
-              <button onClick$={toggleExpanded} class="text-gray-400 hover:text-gray-600 text-2xl">
+              <button type="button" onClick$={toggleExpanded} class="text-gray-400 hover:text-gray-600 text-2xl">
                 ×
               </button>
             </div>
@@ -162,6 +164,7 @@ export default component$<FreeHomeValuationCTAProps>(
                 an instant estimate and detailed market analysis.
               </p>
               <button
+                type="button"
                 onClick$={openRealScoutWidget}
                 class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 w-full"
               >

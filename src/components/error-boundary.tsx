@@ -1,8 +1,8 @@
-import { $, component$, useSignal } from '@builder.io/qwik'
+import { $, component$, useSignal, type QwikJSX } from '@builder.io/qwik'
 
 interface ErrorBoundaryProps {
-  fallback?: any
-  children: any
+  fallback?: QwikJSX.Element
+  children: QwikJSX.Element
 }
 
 export default component$<ErrorBoundaryProps>(({ fallback, children }) => {
@@ -118,11 +118,11 @@ export default component$<ErrorBoundaryProps>(({ fallback, children }) => {
 
         <div class="error-actions">
           {retryCount.value < 3 && (
-            <button class="btn-retry" onClick$={retry}>
+            <button type="button" class="btn-retry" onClick$={retry}>
               Try Again ({3 - retryCount.value} attempts left)
             </button>
           )}
-          <button class="btn-reset" onClick$={resetError}>
+          <button type="button" class="btn-reset" onClick$={resetError}>
             Reset
           </button>
         </div>

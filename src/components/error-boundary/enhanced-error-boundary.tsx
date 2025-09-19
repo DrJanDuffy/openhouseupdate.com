@@ -1,9 +1,9 @@
-import { $, component$, useSignal } from '@builder.io/qwik'
+import { $, component$, useSignal, type QwikJSX } from '@builder.io/qwik'
 
 interface EnhancedErrorBoundaryProps {
-  fallback?: any
-  onError?: (error: Error, errorInfo: any) => void
-  children: any
+  fallback?: QwikJSX.Element
+  onError?: (error: Error, errorInfo: unknown) => void
+  children: QwikJSX.Element
 }
 
 export default component$<EnhancedErrorBoundaryProps>(({ children }) => {
@@ -63,12 +63,12 @@ export default component$<EnhancedErrorBoundaryProps>(({ children }) => {
 
           <div class="error-actions">
             {retryCount.value < maxRetries && (
-              <button class="retry-button" onClick$={retry} aria-label="Try again">
+              <button type="button" class="retry-button" onClick$={retry} aria-label="Try again">
                 Try Again ({maxRetries - retryCount.value} attempts left)
               </button>
             )}
 
-            <button class="contact-button" onClick$={contactSupport} aria-label="Contact support">
+            <button type="button" class="contact-button" onClick$={contactSupport} aria-label="Contact support">
               Contact Support
             </button>
 
