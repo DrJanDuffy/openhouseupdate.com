@@ -2,18 +2,16 @@ import { component$, useSignal, $ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
-  const formData = useSignal({
-    propertyAddress: '',
-    ownerName: '',
-    email: '',
-    phone: '',
-    propertyType: 'single-family',
-    bedrooms: '',
-    bathrooms: '',
-    squareFootage: '',
-    yearBuilt: '',
-    additionalInfo: ''
-  });
+  const propertyAddress = useSignal('');
+  const ownerName = useSignal('');
+  const email = useSignal('');
+  const phone = useSignal('');
+  const propertyType = useSignal('single-family');
+  const bedrooms = useSignal('');
+  const bathrooms = useSignal('');
+  const squareFootage = useSignal('');
+  const yearBuilt = useSignal('');
+  const additionalInfo = useSignal('');
 
   const isSubmitting = useSignal(false);
   const isSubmitted = useSignal(false);

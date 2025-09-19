@@ -2,13 +2,11 @@ import { component$, useSignal, $ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
-  const formData = useSignal({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-    inquiryType: 'general'
-  });
+  const name = useSignal('');
+  const email = useSignal('');
+  const phone = useSignal('');
+  const message = useSignal('');
+  const inquiryType = useSignal('general');
 
   const isSubmitting = useSignal(false);
   const isSubmitted = useSignal(false);
@@ -23,7 +21,7 @@ export default component$(() => {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'contact_form_submit', {
         event_category: 'lead_generation',
-        event_label: formData.value.inquiryType,
+        event_label: inquiryType.value,
         value: 1
       });
     }
@@ -61,7 +59,7 @@ export default component$(() => {
                       type="text"
                       id="name"
                       required
-                      bind:value={formData.value.name}
+                      bind:value={name}
                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Your full name"
                     />
@@ -75,7 +73,7 @@ export default component$(() => {
                       type="email"
                       id="email"
                       required
-                      bind:value={formData.value.email}
+                      bind:value={email}
                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="your@email.com"
                     />
@@ -88,7 +86,7 @@ export default component$(() => {
                     <input
                       type="tel"
                       id="phone"
-                      bind:value={formData.value.phone}
+                      bind:value={phone}
                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="(702) 555-0123"
                     />
@@ -100,7 +98,7 @@ export default component$(() => {
                     </label>
                     <select
                       id="inquiryType"
-                      bind:value={formData.value.inquiryType}
+                      bind:value={inquiryType}
                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="general">General Question</option>
@@ -119,7 +117,7 @@ export default component$(() => {
                       id="message"
                       required
                       rows={5}
-                      bind:value={formData.value.message}
+                      bind:value={message}
                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Tell me about your real estate needs..."
                     />
@@ -144,13 +142,11 @@ export default component$(() => {
                 <button
                   onClick$={() => {
                     isSubmitted.value = false;
-                    formData.value = {
-                      name: '',
-                      email: '',
-                      phone: '',
-                      message: '',
-                      inquiryType: 'general'
-                    };
+                    name.value = '';
+                    email.value = '';
+                    phone.value = '';
+                    message.value = '';
+                    inquiryType.value = 'general';
                   }}
                   class="bg-blue-600 text-white py-2 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                 >
