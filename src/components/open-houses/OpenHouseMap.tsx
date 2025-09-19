@@ -1,7 +1,6 @@
 import { component$, useSignal, useVisibleTask$, $ } from '@builder.io/qwik';
 
-// Type assertion for Google Maps API
-const googleMaps = (window as any).google;
+// Google Maps API will be loaded dynamically
 
 interface OpenHouseLocation {
   id: string;

@@ -155,14 +155,14 @@ export default component$<OpenHouseFiltersProps>(({
     return count;
   };
 
-  const formatPrice = (price: number) => {
+  const formatPrice = $((price: number) => {
     if (price >= 1000000) {
       return `$${(price / 1000000).toFixed(1)}M`;
     } else if (price >= 1000) {
       return `$${(price / 1000).toFixed(0)}K`;
     }
     return `$${price.toLocaleString()}`;
-  };
+  });
 
   return (
     <div class="open-house-filters">

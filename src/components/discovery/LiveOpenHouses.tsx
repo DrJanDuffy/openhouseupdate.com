@@ -48,10 +48,9 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
   });
 
   // Calculate live status for each open house
-  const getLiveStatus = (openHouse: OpenHouse) => {
+  const getLiveStatus = $((openHouse: OpenHouse) => {
     const now = currentTime.value;
     const today = now.toISOString().split('T')[0];
-    const currentTimeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
 
     const todaysOpenHouse = openHouse.openHouseTimes.find(oh => oh.date === today);
     if (!todaysOpenHouse) return 'ended';
@@ -70,10 +69,10 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
     if (currentMinutes >= endMinutes) return 'ended';
     
     return 'ended';
-  };
+  });
 
   // Get time until start/end
-  const getTimeUntil = (openHouse: OpenHouse, type: 'start' | 'end') => {
+  const getTimeUntil = $((openHouse: OpenHouse, type: 'start' | 'end') => {
     const now = currentTime.value;
     const today = now.toISOString().split('T')[0];
     const todaysOpenHouse = openHouse.openHouseTimes.find(oh => oh.date === today);
@@ -93,10 +92,10 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
       return `${hours}h ${minutes}m`;
     }
     return `${minutes}m`;
-  };
+  });
 
   // Filter and sort open houses
-  const filteredAndSortedHouses = (houses: OpenHouse[]) => {
+  const filteredAndSortedHouses = $((houses: OpenHouse[]) => {
     let filtered = houses;
 
     // Filter by status
@@ -127,24 +126,24 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
     });
   };
 
-  const formatPrice = (price: number) => {
+  const formatPrice = $((price: number) => {
     if (price >= 1000000) {
       return `$${(price / 1000000).toFixed(1)}M`;
     } else if (price >= 1000) {
       return `$${(price / 1000).toFixed(0)}K`;
     }
     return `$${price.toLocaleString()}`;
-  };
+  });
 
-  const formatTime = (time: string) => {
+  const formatTime = $((time: string) => {
     const [hours, minutes] = time.split(':');
     const hour = parseInt(hours);
     const ampm = hour >= 12 ? 'PM' : 'AM';
     const displayHour = hour % 12 || 12;
     return `${displayHour}:${minutes} ${ampm}`;
-  };
+  });
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = $((status: string) => {
     switch (status) {
       case 'starting': return '#ffc107';
       case 'active': return '#28a745';
@@ -152,9 +151,9 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
       case 'ended': return '#6c757d';
       default: return '#6c757d';
     }
-  };
+  });
 
-  const getStatusIcon = (status: string) => {
+  const getStatusIcon = $((status: string) => {
     switch (status) {
       case 'starting': return '⏰';
       case 'active': return '🔴';
@@ -162,9 +161,9 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
       case 'ended': return '⏹️';
       default: return '❓';
     }
-  };
+  });
 
-  const getStatusText = (status: string) => {
+  const getStatusText = $((status: string) => {
     switch (status) {
       case 'starting': return 'Starting Soon';
       case 'active': return 'Live Now';
@@ -172,7 +171,7 @@ export default component$<LiveOpenHousesProps>(({ openHouses, onVisit, onDirecti
       case 'ended': return 'Ended';
       default: return 'Unknown';
     }
-  };
+  });
 
   const handleVisit = $((openHouse: OpenHouse) => {
     onVisit?.(openHouse);
