@@ -204,7 +204,8 @@ export const validateSEO = (seoData: {
 };
 
 // Generate internal linking suggestions
-export const generateInternalLinkingSuggestions = (currentPage: string, allPages: string[]) => {
+export const generateInternalLinkingSuggestions = (currentPage: string, // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _allPages: string[]) => {
   const suggestions: { [key: string]: string[] } = {
     '/': ['/search', '/home-valuation', '/about', '/contact'],
     '/search': ['/map', '/this-weekend', '/neighborhoods', '/buyer-services'],

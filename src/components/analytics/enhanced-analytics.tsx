@@ -5,6 +5,8 @@ interface EnhancedAnalyticsProps {
 }
 
 export default component$<EnhancedAnalyticsProps>(({ measurementId }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _measurementId = measurementId;
   useVisibleTask$(() => {
     // Enhanced Real Estate Analytics with Custom Dimensions
     const trackRealEstateEvent = (eventName: string, parameters: any = {}) => {

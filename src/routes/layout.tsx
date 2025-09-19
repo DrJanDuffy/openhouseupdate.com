@@ -9,6 +9,9 @@ import StickyHeader from '~/components/layout/header';
 import { MobileSearchButton } from '~/components/modals';
 // import EnhancedErrorBoundary from '~/components/error-boundary/enhanced-error-boundary';
 import EnhancedAnalytics from '~/components/analytics/enhanced-analytics';
+import CrawlerManagement from '~/components/seo/crawler-management';
+import Canonicalization from '~/components/seo/canonicalization';
+import JavaScriptCrawling from '~/components/seo/javascript-crawling';
 
 import styles from './styles.css?inline';
 
@@ -22,11 +25,39 @@ export default component$(() => {
   useStyles$(styles);
   return (
     <>
+      {/* Enhanced Structured Data */}
       <EnhancedStructuredData type="RealEstateAgent" data={{}} />
       <EnhancedStructuredData type="RealEstateService" data={{}} />
       <EnhancedStructuredData type="WebSite" data={{}} />
       <EnhancedStructuredData type="Organization" data={{}} />
       <EnhancedStructuredData type="LocalBusiness" data={{}} />
+      
+      {/* Crawling and Indexing Optimization */}
+      <CrawlerManagement 
+        pageType="home" 
+        hasImages={true} 
+        hasVideo={false} 
+        hasNews={true}
+        priority={1.0}
+        changeFrequency="daily"
+      />
+      
+      <Canonicalization 
+        currentUrl="https://openhouseupdate.com"
+        preferredUrl="https://openhouseupdate.com"
+        alternateUrls={[
+          { url: "https://openhouseupdate.com", hreflang: "en-US", rel: "alternate" }
+        ]}
+      />
+      
+      <JavaScriptCrawling 
+        hasJavaScript={true}
+        criticalJS={[
+          "https://em.realscout.com/widgets/realscout-web-components.umd.js"
+        ]}
+        nonCriticalJS={[]}
+        progressiveEnhancement={true}
+      />
       
       <Header />
       <StickyHeader />

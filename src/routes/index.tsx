@@ -4,7 +4,6 @@ import RealScoutMap from '~/components/realscout/RealScoutMap';
 import EnhancedRealScoutLoader from '~/components/realscout/enhanced-realscout-loader';
 import EnhancedMortgageCalculator from '~/components/widgets/enhanced-mortgage-calculator';
 import PerformanceMonitor from '~/components/performance/performance-monitor';
-import Breadcrumbs from '~/components/seo/breadcrumbs';
 import FAQSection from '~/components/seo/faq-section';
 import { createSEOHead } from '~/components/seo/seo-head';
 

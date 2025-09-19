@@ -115,6 +115,6 @@ export const createSEOHead = (props: SEOHeadProps): DocumentHead => {
   };
 };
 
-export default component$<SEOHeadProps>((props) => {
+export default component$<SEOHeadProps>(() => {
   return null; // This component is for type safety and utility functions only
 });

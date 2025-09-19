@@ -1,26 +1,62 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Sitemap locations
 Sitemap: https://openhouseupdate.com/sitemap.xml
+Sitemap: https://openhouseupdate.com/sitemap-images.xml
+Sitemap: https://openhouseupdate.com/sitemap-news.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
 
-# Block access to admin areas (if any)
+# Block access to admin areas and sensitive content
 Disallow: /admin/
 Disallow: /private/
 Disallow: /tmp/
+Disallow: /api/
+Disallow: /_vercel/
+Disallow: /build/
+Disallow: /node_modules/
 
-# Allow all search engines
+# Block duplicate content patterns
+Disallow: /*?*
+Disallow: /*#*
+Disallow: /*.json$
+Disallow: /*.xml$except=sitemap
+
+# Allow specific file types
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Search engine specific directives
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
+# Allow Google to access JavaScript and CSS
+Allow: /*.js$
+Allow: /*.css$
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
 
 # Block AI training crawlers (optional)
 User-agent: GPTBot
@@ -37,3 +73,33 @@ Disallow: /
 
 User-agent: Claude-Web
 Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+# Block aggressive crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Allow social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Real estate specific crawlers
+User-agent: ZillowBot
+Allow: /
+
+User-agent: RealtorBot
+Allow: /

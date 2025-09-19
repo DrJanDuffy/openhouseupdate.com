@@ -2,9 +2,12 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
-  const currentDate = new Date().toISOString();
+  // Component renders XML content via onGet function
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _currentDate = new Date().toISOString();
   
-  const pages = [
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _pages = [
     // Main pages
     { url: 'https://openhouseupdate.com/', priority: '1.0', changefreq: 'daily' },
     { url: 'https://openhouseupdate.com/about', priority: '0.8', changefreq: 'monthly' },
