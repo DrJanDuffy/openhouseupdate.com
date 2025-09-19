@@ -16,6 +16,40 @@ export default component$(() => {
       };
       checkElements();
     }
+
+    // Wait for RealScout components to be ready, then set default values
+    const waitForWidget = () => {
+      const widget = document.querySelector('realscout-advanced-search');
+      if (widget) {
+        // Set price filters based on URL parameter
+        if (priceInfo.min) {
+          widget.setAttribute('price-min', priceInfo.min.toString());
+        }
+        if (priceInfo.max) {
+          widget.setAttribute('price-max', priceInfo.max.toString());
+        }
+        
+        // Set default location to Las Vegas
+        widget.setAttribute('default-location', 'Las Vegas, NV');
+        
+        // Track price range page view
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'price_range_page_view', {
+            event_category: 'price_range',
+            event_label: priceInfo.display,
+            value: 1
+          });
+        }
+        
+        console.log(`Price range page loaded: ${priceInfo.display} (min: ${priceInfo.min || 'none'}, max: ${priceInfo.max || 'none'})`);
+      } else {
+        // Retry if widget not ready yet
+        setTimeout(waitForWidget, 100);
+      }
+    };
+    
+    // Start checking for widget after a short delay
+    setTimeout(waitForWidget, 500);
   });
 
   // Parse price range and format for display

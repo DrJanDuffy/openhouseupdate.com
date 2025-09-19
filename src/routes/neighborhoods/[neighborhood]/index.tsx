@@ -14,6 +14,44 @@ export default component$(() => {
       script.crossOrigin = 'anonymous';
       document.head.appendChild(script);
     }
+
+    // Wait for RealScout components to be ready, then set default values
+    const waitForWidget = () => {
+      const widget = document.querySelector('realscout-advanced-search');
+      if (widget) {
+        // Set default location based on neighborhood
+        widget.setAttribute('default-location', `${neighborhoodName}, Las Vegas, NV`);
+        
+        // Set price filters based on neighborhood (you can customize these)
+        const priceRanges = {
+          'summerlin': '800000',
+          'henderson': '600000', 
+          'north-las-vegas': '400000',
+          'spring-valley': '500000',
+          'enterprise': '700000'
+        };
+        
+        const maxPrice = priceRanges[neighborhood.toLowerCase()] || '600000';
+        widget.setAttribute('price-max', maxPrice);
+        
+        // Track neighborhood page view
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'neighborhood_page_view', {
+            event_category: 'neighborhood',
+            event_label: neighborhoodName,
+            value: 1
+          });
+        }
+        
+        console.log(`Neighborhood page loaded: ${neighborhoodName} with max price: $${maxPrice}`);
+      } else {
+        // Retry if widget not ready yet
+        setTimeout(waitForWidget, 100);
+      }
+    };
+    
+    // Start checking for widget after a short delay
+    setTimeout(waitForWidget, 500);
   });
 
   // Format neighborhood name for display
@@ -140,7 +178,12 @@ export default component$(() => {
         
         <realscout-advanced-search 
           agent-encoded-id="QWdlbnQtMjI1MDUw"
-          default-location={neighborhoodName}
+          default-location={`${neighborhoodName}, Las Vegas, NV`}
+          price-max={neighborhood.toLowerCase() === 'summerlin' ? '800000' : 
+                     neighborhood.toLowerCase() === 'henderson' ? '600000' :
+                     neighborhood.toLowerCase() === 'north-las-vegas' ? '400000' :
+                     neighborhood.toLowerCase() === 'spring-valley' ? '500000' :
+                     neighborhood.toLowerCase() === 'enterprise' ? '700000' : '600000'}
         ></realscout-advanced-search>
       </div>
       
