@@ -1,4 +1,4 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
@@ -33,6 +33,17 @@ export default component$(() => {
     
     isSubmitting.value = false;
     isSubmitted.value = true;
+  });
+
+  // Load RealScout script
+  useVisibleTask$(() => {
+    if (typeof window !== 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
+      script.type = 'module';
+      script.async = true;
+      document.head.appendChild(script);
+    }
   });
 
   return (
@@ -252,8 +263,30 @@ export default component$(() => {
           </ul>
         </div>
 
+        <div class="instant-valuation">
+          <h2>Get Your Instant Home Value</h2>
+          <p>Enter your address below for an immediate market estimate:</p>
+          
+          <style>{`
+            realscout-home-value {
+              --rs-hvw-background-color: #ffffff;
+              --rs-hvw-title-color: #000000;
+              --rs-hvw-subtitle-color: rgba(28, 30, 38, 0.5);
+              --rs-hvw-primary-button-text-color: #ffffff;
+              --rs-hvw-primary-button-color: rgb(35, 93, 137);
+              --rs-hvw-secondary-button-text-color: rgb(35, 93, 137);
+              --rs-hvw-secondary-button-color: #ffffff;
+              --rs-hvw-widget-width: auto;
+              margin: 2rem 0;
+            }
+          `}</style>
+          
+          <realscout-home-value agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-home-value>
+        </div>
+
         <div class="valuation-form">
-          <h2>Request Your Free Valuation</h2>
+          <h2>Request Your Detailed Valuation</h2>
+          <p>For a comprehensive analysis with personalized recommendations, please fill out the form below:</p>
           
           {!isSubmitted.value ? (
             <form preventdefault:submit onSubmit$={handleSubmit}>
@@ -262,8 +295,7 @@ export default component$(() => {
                 <input
                   type="text"
                   id="propertyAddress"
-                  value={formData.value.propertyAddress}
-                  onInput$={(e) => formData.value = { ...formData.value, propertyAddress: (e.target as HTMLInputElement).value }}
+                  bind:value={propertyAddress}
                   required
                   placeholder="123 Main Street, Las Vegas, NV 89101"
                 />
@@ -274,8 +306,7 @@ export default component$(() => {
                 <input
                   type="text"
                   id="ownerName"
-                  value={formData.value.ownerName}
-                  onInput$={(e) => formData.value = { ...formData.value, ownerName: (e.target as HTMLInputElement).value }}
+                  bind:value={ownerName}
                   required
                   placeholder="John Smith"
                 />
@@ -286,8 +317,7 @@ export default component$(() => {
                 <input
                   type="email"
                   id="email"
-                  value={formData.value.email}
-                  onInput$={(e) => formData.value = { ...formData.value, email: (e.target as HTMLInputElement).value }}
+                  bind:value={email}
                   required
                   placeholder="john@example.com"
                 />
@@ -298,8 +328,7 @@ export default component$(() => {
                 <input
                   type="tel"
                   id="phone"
-                  value={formData.value.phone}
-                  onInput$={(e) => formData.value = { ...formData.value, phone: (e.target as HTMLInputElement).value }}
+                  bind:value={phone}
                   placeholder="(702) 555-0123"
                 />
               </div>
@@ -308,8 +337,7 @@ export default component$(() => {
                 <label for="propertyType">Property Type *</label>
                 <select
                   id="propertyType"
-                  value={formData.value.propertyType}
-                  onChange$={(e) => formData.value = { ...formData.value, propertyType: (e.target as HTMLSelectElement).value }}
+                  bind:value={propertyType}
                   required
                 >
                   <option value="single-family">Single Family Home</option>
@@ -325,8 +353,7 @@ export default component$(() => {
                 <input
                   type="number"
                   id="bedrooms"
-                  value={formData.value.bedrooms}
-                  onInput$={(e) => formData.value = { ...formData.value, bedrooms: (e.target as HTMLInputElement).value }}
+                  bind:value={bedrooms}
                   placeholder="3"
                 />
               </div>
@@ -336,8 +363,7 @@ export default component$(() => {
                 <input
                   type="number"
                   id="bathrooms"
-                  value={formData.value.bathrooms}
-                  onInput$={(e) => formData.value = { ...formData.value, bathrooms: (e.target as HTMLInputElement).value }}
+                  bind:value={bathrooms}
                   placeholder="2"
                   step="0.5"
                 />
@@ -348,8 +374,7 @@ export default component$(() => {
                 <input
                   type="number"
                   id="squareFootage"
-                  value={formData.value.squareFootage}
-                  onInput$={(e) => formData.value = { ...formData.value, squareFootage: (e.target as HTMLInputElement).value }}
+                  bind:value={squareFootage}
                   placeholder="2000"
                 />
               </div>
@@ -359,8 +384,7 @@ export default component$(() => {
                 <input
                   type="number"
                   id="yearBuilt"
-                  value={formData.value.yearBuilt}
-                  onInput$={(e) => formData.value = { ...formData.value, yearBuilt: (e.target as HTMLInputElement).value }}
+                  bind:value={yearBuilt}
                   placeholder="2010"
                   min="1900"
                   max="2024"
@@ -371,8 +395,7 @@ export default component$(() => {
                 <label for="additionalInfo">Additional Information</label>
                 <textarea
                   id="additionalInfo"
-                  value={formData.value.additionalInfo}
-                  onInput$={(e) => formData.value = { ...formData.value, additionalInfo: (e.target as HTMLTextAreaElement).value }}
+                  bind:value={additionalInfo}
                   placeholder="Any special features, recent renovations, or other details..."
                 ></textarea>
               </div>
