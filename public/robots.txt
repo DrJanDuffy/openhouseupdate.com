@@ -2,9 +2,9 @@ User-agent: *
 Allow: /
 
 # Sitemap locations
-Sitemap: https://openhouseupdate.com/sitemap.xml
-Sitemap: https://openhouseupdate.com/sitemap-images.xml
-Sitemap: https://openhouseupdate.com/sitemap-news.xml
+Sitemap: https://www.openhouseupdate.com/sitemap.xml
+Sitemap: https://www.openhouseupdate.com/sitemap-images.xml
+Sitemap: https://www.openhouseupdate.com/sitemap-news.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

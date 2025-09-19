@@ -43,10 +43,10 @@ export default component$(() => {
       />
       
       <Canonicalization 
-        currentUrl="https://openhouseupdate.com"
-        preferredUrl="https://openhouseupdate.com"
+        currentUrl="https://www.openhouseupdate.com"
+        preferredUrl="https://www.openhouseupdate.com"
         alternateUrls={[
-          { url: "https://openhouseupdate.com", hreflang: "en-US", rel: "alternate" }
+          { url: "https://www.openhouseupdate.com", hreflang: "en-US", rel: "alternate" }
         ]}
       />
       

@@ -5,10 +5,16 @@ import EnhancedMortgageCalculator from '~/components/widgets/enhanced-mortgage-c
 import PerformanceMonitor from '~/components/performance/performance-monitor';
 import FAQSection from '~/components/seo/faq-section';
 import { createSEOHead } from '~/components/seo/seo-head';
+import FreeHomeValuationCTA from '~/components/cta/free-home-valuation-cta';
+import NeighborhoodGuides from '~/components/lead-magnets/neighborhood-guides';
+import ClientTestimonials from '~/components/testimonials/client-testimonials';
+import FirstTimeBuyerGuide from '~/components/lead-magnets/first-time-buyer-guide';
+import ExitIntentPopup from '~/components/modals/exit-intent-popup';
 
 export default component$(() => {
   const showAdvanced = useSignal(true);
   const showCalculator = useSignal(false);
+  const showExitIntent = useSignal(false);
 
   const showSimpleSearch = $(() => {
     showAdvanced.value = false;
@@ -121,6 +127,30 @@ export default component$(() => {
         value: 1,
       });
     }
+
+    // Exit intent detection
+    let hasShownExitIntent = false;
+    const handleMouseLeave = (event: MouseEvent) => {
+      if (event.clientY <= 0 && !hasShownExitIntent) {
+        hasShownExitIntent = true;
+        showExitIntent.value = true;
+        
+        // Track exit intent
+        if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+          window.enhancedRealEstateAnalytics.trackWidgetInteraction(
+            'exit_intent_detected',
+            'mouse_leave',
+            { depth: 'high', value: 2 }
+          );
+        }
+      }
+    };
+
+    document.addEventListener('mouseleave', handleMouseLeave);
+    
+    return () => {
+      document.removeEventListener('mouseleave', handleMouseLeave);
+    };
   });
 
   return (
@@ -446,6 +476,36 @@ export default component$(() => {
         </div>
       </section>
 
+      {/* Client Testimonials */}
+      <ClientTestimonials />
+
+      {/* Lead Magnets Section */}
+      <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              Free Resources for Your Real Estate Journey
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              Get expert insights and tools to help you make informed decisions about buying or selling your Las Vegas home.
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Free Home Valuation CTA */}
+            <FreeHomeValuationCTA variant="card" />
+            
+            {/* First-Time Buyer Guide */}
+            <FirstTimeBuyerGuide variant="card" />
+          </div>
+          
+          <div class="mt-8">
+            {/* Neighborhood Guides */}
+            <NeighborhoodGuides />
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <FAQSection 
         faqs={[
@@ -471,6 +531,12 @@ export default component$(() => {
           }
         ]}
         title="Frequently Asked Questions"
+      />
+
+      {/* Exit Intent Popup */}
+      <ExitIntentPopup 
+        isVisible={showExitIntent.value} 
+        onClose={() => showExitIntent.value = false} 
       />
     </>
   );

@@ -26,25 +26,25 @@ export const onGet = async () => {
   
   const newsItems = [
     {
-      url: 'https://openhouseupdate.com/market-analysis',
+      url: 'https://www.openhouseupdate.com/market-analysis',
       title: 'Las Vegas Real Estate Market Update',
       publicationDate,
       keywords: 'Las Vegas real estate, market trends, property values',
     },
     {
-      url: 'https://openhouseupdate.com/this-weekend',
+      url: 'https://www.openhouseupdate.com/this-weekend',
       title: 'This Weekend\'s Open Houses in Las Vegas',
       publicationDate,
       keywords: 'open houses, Las Vegas, weekend, property viewing',
     },
     {
-      url: 'https://openhouseupdate.com/buyer-services',
+      url: 'https://www.openhouseupdate.com/buyer-services',
       title: 'Home Buying Guide for Las Vegas',
       publicationDate,
       keywords: 'home buying, Las Vegas, buyer guide, real estate',
     },
     {
-      url: 'https://openhouseupdate.com/seller-services',
+      url: 'https://www.openhouseupdate.com/seller-services',
       title: 'Selling Your Home in Las Vegas',
       publicationDate,
       keywords: 'home selling, Las Vegas, seller services, real estate',

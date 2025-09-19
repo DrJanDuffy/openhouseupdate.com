@@ -9,40 +9,40 @@ export default component$(() => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const _pages = [
     // Main pages
-    { url: 'https://openhouseupdate.com/', priority: '1.0', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/about', priority: '0.8', changefreq: 'monthly' },
-    { url: 'https://openhouseupdate.com/contact', priority: '0.9', changefreq: 'monthly' },
+    { url: 'https://www.openhouseupdate.com/', priority: '1.0', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/about', priority: '0.8', changefreq: 'monthly' },
+    { url: 'https://www.openhouseupdate.com/contact', priority: '0.9', changefreq: 'monthly' },
     
     // Services
-    { url: 'https://openhouseupdate.com/services', priority: '0.9', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/services/home-valuation', priority: '0.8', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/services/buyer-services', priority: '0.8', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/services/seller-services', priority: '0.8', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/services/market-analysis', priority: '0.8', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/services', priority: '0.9', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/services/home-valuation', priority: '0.8', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/services/buyer-services', priority: '0.8', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/services/seller-services', priority: '0.8', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/services/market-analysis', priority: '0.8', changefreq: 'weekly' },
     
     // Property search
-    { url: 'https://openhouseupdate.com/search', priority: '0.9', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/map', priority: '0.8', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/this-weekend', priority: '0.9', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/search', priority: '0.9', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/map', priority: '0.8', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/this-weekend', priority: '0.9', changefreq: 'daily' },
     
     // Price ranges
-    { url: 'https://openhouseupdate.com/open-houses-for-sale/under-400k', priority: '0.7', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/open-houses-for-sale/400k-600k', priority: '0.7', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/open-houses-for-sale/600k-800k', priority: '0.7', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/open-houses-for-sale/800k-1m', priority: '0.7', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/open-houses-for-sale/over-1m', priority: '0.7', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/open-houses-for-sale/under-400k', priority: '0.7', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/open-houses-for-sale/400k-600k', priority: '0.7', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/open-houses-for-sale/600k-800k', priority: '0.7', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/open-houses-for-sale/800k-1m', priority: '0.7', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/open-houses-for-sale/over-1m', priority: '0.7', changefreq: 'daily' },
     
     // Neighborhoods
-    { url: 'https://openhouseupdate.com/neighborhoods/summerlin', priority: '0.6', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/neighborhoods/henderson', priority: '0.6', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/neighborhoods/north-las-vegas', priority: '0.6', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/neighborhoods/spring-valley', priority: '0.6', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/neighborhoods/enterprise', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/neighborhoods/summerlin', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/neighborhoods/henderson', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/neighborhoods/north-las-vegas', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/neighborhoods/spring-valley', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/neighborhoods/enterprise', priority: '0.6', changefreq: 'weekly' },
     
     // Legal pages
-    { url: 'https://openhouseupdate.com/privacy-policy', priority: '0.3', changefreq: 'yearly' },
-    { url: 'https://openhouseupdate.com/terms-of-service', priority: '0.3', changefreq: 'yearly' },
-    { url: 'https://openhouseupdate.com/faq', priority: '0.5', changefreq: 'monthly' },
+    { url: 'https://www.openhouseupdate.com/privacy-policy', priority: '0.3', changefreq: 'yearly' },
+    { url: 'https://www.openhouseupdate.com/terms-of-service', priority: '0.3', changefreq: 'yearly' },
+    { url: 'https://www.openhouseupdate.com/faq', priority: '0.5', changefreq: 'monthly' },
   ];
 
   return (
@@ -68,40 +68,40 @@ export const onGet = async () => {
   
   const pages = [
     // Main pages
-    { url: 'https://openhouseupdate.com/', priority: '1.0', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/about', priority: '0.8', changefreq: 'monthly' },
-    { url: 'https://openhouseupdate.com/contact', priority: '0.9', changefreq: 'monthly' },
+    { url: 'https://www.openhouseupdate.com/', priority: '1.0', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/about', priority: '0.8', changefreq: 'monthly' },
+    { url: 'https://www.openhouseupdate.com/contact', priority: '0.9', changefreq: 'monthly' },
     
     // Services
-    { url: 'https://openhouseupdate.com/services', priority: '0.9', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/services/home-valuation', priority: '0.8', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/services/buyer-services', priority: '0.8', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/services/seller-services', priority: '0.8', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/services/market-analysis', priority: '0.8', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/services', priority: '0.9', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/services/home-valuation', priority: '0.8', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/services/buyer-services', priority: '0.8', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/services/seller-services', priority: '0.8', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/services/market-analysis', priority: '0.8', changefreq: 'weekly' },
     
     // Property search
-    { url: 'https://openhouseupdate.com/search', priority: '0.9', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/map', priority: '0.8', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/this-weekend', priority: '0.9', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/search', priority: '0.9', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/map', priority: '0.8', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/this-weekend', priority: '0.9', changefreq: 'daily' },
     
     // Price ranges
-    { url: 'https://openhouseupdate.com/open-houses-for-sale/under-400k', priority: '0.7', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/open-houses-for-sale/400k-600k', priority: '0.7', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/open-houses-for-sale/600k-800k', priority: '0.7', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/open-houses-for-sale/800k-1m', priority: '0.7', changefreq: 'daily' },
-    { url: 'https://openhouseupdate.com/open-houses-for-sale/over-1m', priority: '0.7', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/open-houses-for-sale/under-400k', priority: '0.7', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/open-houses-for-sale/400k-600k', priority: '0.7', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/open-houses-for-sale/600k-800k', priority: '0.7', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/open-houses-for-sale/800k-1m', priority: '0.7', changefreq: 'daily' },
+    { url: 'https://www.openhouseupdate.com/open-houses-for-sale/over-1m', priority: '0.7', changefreq: 'daily' },
     
     // Neighborhoods
-    { url: 'https://openhouseupdate.com/neighborhoods/summerlin', priority: '0.6', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/neighborhoods/henderson', priority: '0.6', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/neighborhoods/north-las-vegas', priority: '0.6', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/neighborhoods/spring-valley', priority: '0.6', changefreq: 'weekly' },
-    { url: 'https://openhouseupdate.com/neighborhoods/enterprise', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/neighborhoods/summerlin', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/neighborhoods/henderson', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/neighborhoods/north-las-vegas', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/neighborhoods/spring-valley', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://www.openhouseupdate.com/neighborhoods/enterprise', priority: '0.6', changefreq: 'weekly' },
     
     // Legal pages
-    { url: 'https://openhouseupdate.com/privacy-policy', priority: '0.3', changefreq: 'yearly' },
-    { url: 'https://openhouseupdate.com/terms-of-service', priority: '0.3', changefreq: 'yearly' },
-    { url: 'https://openhouseupdate.com/faq', priority: '0.5', changefreq: 'monthly' },
+    { url: 'https://www.openhouseupdate.com/privacy-policy', priority: '0.3', changefreq: 'yearly' },
+    { url: 'https://www.openhouseupdate.com/terms-of-service', priority: '0.3', changefreq: 'yearly' },
+    { url: 'https://www.openhouseupdate.com/faq', priority: '0.5', changefreq: 'monthly' },
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
