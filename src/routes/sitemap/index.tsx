@@ -2,8 +2,6 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
-  const currentYear = new Date().getFullYear();
-
   return (
     <section class="sitemap-page">
       <div class="container mx-auto px-6 py-16 max-w-4xl">
