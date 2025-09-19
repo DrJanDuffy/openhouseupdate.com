@@ -159,7 +159,7 @@ export default component$<OpenHouseMapProps>(({
       ctx.fillStyle = 'white';
       ctx.font = 'bold 10px Arial';
       ctx.textAlign = 'center';
-      const priceText = formatPrice(openHouse.price);
+      const priceText = formatPrice()(openHouse.price);
       ctx.fillText(priceText, 20, 25);
     }
 
@@ -174,7 +174,7 @@ export default component$<OpenHouseMapProps>(({
     return `
       <div style="padding: 10px; max-width: 250px;">
         <div style="font-weight: bold; color: #0A2540; margin-bottom: 5px;">
-          ${formatPrice(openHouse.price)}
+          ${formatPrice()(openHouse.price)}
         </div>
         <div style="color: #333; margin-bottom: 5px;">
           ${openHouse.address}
@@ -192,7 +192,7 @@ export default component$<OpenHouseMapProps>(({
                 weekday: 'short',
                 month: 'short',
                 day: 'numeric'
-              })} • ${formatTime(nextOpenHouse.startTime)} - ${formatTime(nextOpenHouse.endTime)}
+              })} • ${formatTime()(nextOpenHouse.startTime)} - ${formatTime()(nextOpenHouse.endTime)}
             </div>
           </div>
         ` : ''}
@@ -210,22 +210,26 @@ export default component$<OpenHouseMapProps>(({
     `;
   });
 
-  const formatPrice = (price: number) => {
-    if (price >= 1000000) {
-      return `$${(price / 1000000).toFixed(1)}M`;
-    } else if (price >= 1000) {
-      return `$${(price / 1000).toFixed(0)}K`;
-    }
-    return `$${price.toLocaleString()}`;
-  };
+  const formatPrice = $(() => {
+    return (price: number) => {
+      if (price >= 1000000) {
+        return `$${(price / 1000000).toFixed(1)}M`;
+      } else if (price >= 1000) {
+        return `$${(price / 1000).toFixed(0)}K`;
+      }
+      return `$${price.toLocaleString()}`;
+    };
+  });
 
-  const formatTime = (time: string) => {
-    const [hours, minutes] = time.split(':');
-    const hour = parseInt(hours);
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-    const displayHour = hour % 12 || 12;
-    return `${displayHour}:${minutes} ${ampm}`;
-  };
+  const formatTime = $(() => {
+    return (time: string) => {
+      const [hours, minutes] = time.split(':');
+      const hour = parseInt(hours);
+      const ampm = hour >= 12 ? 'PM' : 'AM';
+      const displayHour = hour % 12 || 12;
+      return `${displayHour}:${minutes} ${ampm}`;
+    };
+  });
 
   const toggleRouteMode = $(() => {
     isRouteMode.value = !isRouteMode.value;

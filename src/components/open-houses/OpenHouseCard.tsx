@@ -35,18 +35,18 @@ export default component$<OpenHouseCardProps>(({ openHouse, onFavorite, onVisit,
   const isFavorited = useSignal(false);
   const currentPhotoIndex = useSignal(0);
 
-  const handleFavorite = () => {
+  const handleFavorite = $(() => {
     isFavorited.value = !isFavorited.value;
     onFavorite?.(openHouse.id);
-  };
+  });
 
-  const handleVisit = () => {
+  const handleVisit = $(() => {
     onVisit?.(openHouse.id);
-  };
+  });
 
-  const handleDirections = () => {
+  const handleDirections = $(() => {
     onDirections?.(openHouse.address);
-  };
+  });
 
   const nextPhoto = $(() => {
     currentPhotoIndex.value = (currentPhotoIndex.value + 1) % openHouse.photos.length;
