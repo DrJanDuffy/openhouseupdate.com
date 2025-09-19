@@ -325,11 +325,14 @@ export default component$(() => {
         }
 
         /* Hide on desktop - only show on mobile */
+        /* Temporarily commented out for testing - uncomment for production */
+        /*
         @media (min-width: 769px) {
           .mobile-search-trigger {
             display: none;
           }
         }
+        */
 
         /* Accessibility */
         @media (prefers-reduced-motion: reduce) {

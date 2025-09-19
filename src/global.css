@@ -91,11 +91,14 @@
   }
 
   /* Hide mobile button on desktop */
+  /* Temporarily commented out for testing - uncomment for production */
+  /*
   @media (min-width: 769px) {
     .mobile-search-trigger {
       @apply hidden;
     }
   }
+  */
 }
 
 /**
