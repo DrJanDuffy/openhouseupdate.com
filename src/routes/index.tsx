@@ -1,11 +1,21 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useSignal, $ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import RealScoutMap from '~/components/realscout/RealScoutMap';
 
 export default component$(() => {
+  const showAdvanced = useSignal(true);
+
+  const showSimpleSearch = $(() => {
+    showAdvanced.value = false;
+  });
+
+  const showAdvancedSearch = $(() => {
+    showAdvanced.value = true;
+  });
+
   return (
     <>
-      {/* RealScout Advanced Search Widget */}
+      {/* RealScout Search Section */}
       <section class="realscout-section">
         <style>{`
           .realscout-section {
@@ -55,6 +65,43 @@ export default component$(() => {
             font-weight: 300;
           }
 
+          .search-toggle {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .search-toggle button {
+            background: transparent;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+          }
+
+          .search-toggle button.active {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          }
+
+          .search-toggle button:hover {
+            background: rgba(255, 255, 255, 0.15);
+          }
+
           .widget-container {
             position: relative;
             z-index: 1;
@@ -64,12 +111,65 @@ export default component$(() => {
             min-height: 400px;
           }
 
+          .simple-search {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+          }
+
+          .simple-search h3 {
+            color: #0A2540;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+          }
+
+          .search-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+          }
+
+          .search-form input {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+          }
+
+          .search-form input:focus {
+            outline: none;
+            border-color: #3A8DDE;
+          }
+
+          .search-form button {
+            background: #3A8DDE;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+          }
+
+          .search-form button:hover {
+            background: #2a7bc7;
+          }
+
           realscout-advanced-search {
             --rs-as-button-text-color: #ffffff;
             --rs-as-background-color: #ffffff;
             --rs-as-button-color: rgb(35, 93, 137);
-            --rs-as-widget-width: 500px !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --rs-as-widget-width: 800px !important;
+            --rs-as-border-radius: 12px;
+            --rs-as-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             border-radius: 12px;
             overflow: hidden;
           }
@@ -83,21 +183,68 @@ export default component$(() => {
               font-size: 1.2rem;
             }
             
+            .search-toggle {
+              max-width: 90vw;
+            }
+            
             realscout-advanced-search {
               --rs-as-widget-width: 90vw !important;
+            }
+            
+            .simple-search {
+              max-width: 90vw;
             }
           }
         `}</style>
 
         <div class="hero-content">
-          <h1 class="hero-title">Find Your Dream Home</h1>
+          <h1 class="hero-title">Find Your Dream Vegas Home</h1>
           <p class="hero-subtitle">
             Search thousands of properties with our advanced real estate search
           </p>
         </div>
 
+        <div class="search-toggle">
+          <button 
+            class={showAdvanced.value ? '' : 'active'}
+            onClick$={showSimpleSearch}
+          >
+            Quick Search
+          </button>
+          <button 
+            class={showAdvanced.value ? 'active' : ''}
+            onClick$={showAdvancedSearch}
+          >
+            Advanced Search
+          </button>
+        </div>
+
         <div class="widget-container">
-          <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+          {showAdvanced.value ? (
+            <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+          ) : (
+            <div class="simple-search">
+              <h3>Quick Property Search</h3>
+              <form class="search-form">
+                <input 
+                  type="text" 
+                  placeholder="Enter city, neighborhood, or address"
+                  name="location"
+                />
+                <input 
+                  type="text" 
+                  placeholder="Min Price"
+                  name="minPrice"
+                />
+                <input 
+                  type="text" 
+                  placeholder="Max Price"
+                  name="maxPrice"
+                />
+                <button type="submit">Search Properties</button>
+              </form>
+            </div>
+          )}
         </div>
       </section>
 
@@ -204,11 +351,6 @@ export default component$(() => {
         </div>
       </section>
 
-      {/* RealScout Script */}
-      <script 
-        src="https://em.realscout.com/widgets/realscout-web-components.umd.js" 
-        type="module"
-      ></script>
     </>
   );
 });

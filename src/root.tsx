@@ -17,6 +17,10 @@ export default component$(() => {
       <head>
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />
+        <script 
+          src="https://em.realscout.com/widgets/realscout-web-components.umd.js" 
+          type="module"
+        ></script>
         <RouterHead />
       </head>
       <body lang="en">
