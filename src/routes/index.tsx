@@ -1,7 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
-import OpenHouseCard from '~/components/open-houses/OpenHouseCard';
 import OpenHouseMap from '~/components/open-houses/OpenHouseMap';
 import WeekendPlanner from '~/components/discovery/WeekendPlanner';
 import LiveOpenHouses from '~/components/discovery/LiveOpenHouses';

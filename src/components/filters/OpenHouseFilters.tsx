@@ -49,9 +49,9 @@ export default component$<OpenHouseFiltersProps>(({
   const bedroomOptions = [1, 2, 3, 4, 5, 6];
   const bathroomOptions = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
 
-  const updateFilters = $(() => {
+  const updateFilters = () => {
     onFiltersChange?.(filters);
-  });
+  };
 
   const toggleTimeSlot = $((slotId: string) => {
     const index = filters.timeSlots.indexOf(slotId);
@@ -128,7 +128,7 @@ export default component$<OpenHouseFiltersProps>(({
     updateFilters();
   });
 
-  const clearAllFilters = $(() => {
+  const clearAllFilters = () => {
     filters.timeRange = 'this-weekend';
     filters.timeSlots = [];
     filters.priceRange = { min: 0, max: 2000000 };
@@ -140,7 +140,7 @@ export default component$<OpenHouseFiltersProps>(({
     filters.sortBy = 'time';
     filters.sortOrder = 'asc';
     onClearFilters?.();
-  });
+  };
 
   const getActiveFilterCount = () => {
     let count = 0;

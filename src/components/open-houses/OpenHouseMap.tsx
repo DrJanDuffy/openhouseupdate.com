@@ -133,7 +133,7 @@ export default component$<OpenHouseMapProps>(({
     }
   });
 
-  const createCustomMarkerIcon = (openHouse: OpenHouseLocation) => {
+  const createCustomMarkerIcon = $((openHouse: OpenHouseLocation) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = 40;
@@ -164,9 +164,9 @@ export default component$<OpenHouseMapProps>(({
     }
 
     return canvas.toDataURL();
-  };
+  });
 
-  const createInfoWindowContent = (openHouse: OpenHouseLocation) => {
+  const createInfoWindowContent = $((openHouse: OpenHouseLocation) => {
     const nextOpenHouse = openHouse.openHouseTimes
       .filter(oh => new Date(oh.date) >= new Date())
       .sort((a, b) => a.date.localeCompare(b.date))[0];
@@ -208,7 +208,7 @@ export default component$<OpenHouseMapProps>(({
         </div>
       </div>
     `;
-  };
+  });
 
   const formatPrice = (price: number) => {
     if (price >= 1000000) {

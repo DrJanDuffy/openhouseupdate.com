@@ -1,5 +1,6 @@
 import { component$, Slot, useStyles$ } from '@builder.io/qwik';
 import { routeLoader$, DocumentHead } from '@builder.io/qwik-city';
+import { Analytics } from '@vercel/analytics/qwik';
 
 import Header from '~/components/starter/header/header';
 import Footer from '~/components/starter/footer/footer';
@@ -25,6 +26,7 @@ export default component$(() => {
         <Slot />
       </main>
       <Footer />
+      <Analytics />
     </>
   );
 });
