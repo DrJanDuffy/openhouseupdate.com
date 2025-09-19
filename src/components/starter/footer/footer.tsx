@@ -71,6 +71,24 @@ export default component$(() => {
           </div>
         </div>
 
+        {/* Footer Search Section */}
+        <div class={styles.footerSearch}>
+          <h3 class={styles.footerSearchTitle}>Can't Find What You're Looking For?</h3>
+          <p class={styles.footerSearchDescription}>Use our advanced search to filter by all criteria</p>
+          
+          <style>
+            {`
+              footer realscout-advanced-search {
+                --rs-as-background-color: #1f2937;
+                --rs-as-text-color: #ffffff;
+                --rs-as-widget-width: 600px !important;
+              }
+            `}
+          </style>
+          
+          <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+        </div>
+
         {/* Footer Bottom */}
         <div class={styles.footerBottom}>
           <div class={styles.footerBottomContent}>
