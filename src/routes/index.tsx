@@ -20,7 +20,7 @@ export default component$(() => {
     showAdvanced.value = false
 
     // Track in enhanced analytics
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackPropertySearch('simple_search', {
         search_mode: 'simple',
         depth: 'moderate',
@@ -33,7 +33,7 @@ export default component$(() => {
     showAdvanced.value = true
 
     // Track in enhanced analytics
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackPropertySearch('advanced_search', {
         search_mode: 'advanced',
         depth: 'high',
@@ -45,7 +45,7 @@ export default component$(() => {
   const toggleCalculator = $(() => {
     showCalculator.value = !showCalculator.value
 
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'mortgage_calculator',
         showCalculator.value ? 'calculator_opened' : 'calculator_closed',
@@ -61,7 +61,6 @@ export default component$(() => {
       // Check if RealScout script is loaded
       const script = document.querySelector('script[src*="realscout-web-components"]')
       if (!script) {
-        console.log('RealScout script not found, retrying...')
         setTimeout(initializeRealScout, 500)
         return
       }
@@ -72,8 +71,7 @@ export default component$(() => {
           customElements.get('realscout-advanced-search') &&
           customElements.get('realscout-simple-search')
         ) {
-          console.log('RealScout custom elements found, initializing...')
-
+          c
           // Add enhanced event listeners for search interactions
           const advancedSearch = document.querySelector('realscout-advanced-search')
           const simpleSearch = document.querySelector('realscout-simple-search')
@@ -111,9 +109,7 @@ export default component$(() => {
           return
         }
 
-        console.log('Waiting for RealScout custom elements...')
-        setTimeout(checkElements, 200)
-      }
+        c
 
       checkElements()
     }
@@ -122,7 +118,7 @@ export default component$(() => {
     initializeRealScout()
 
     // Track initial page engagement
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackPageEngagement('homepage_view', {
         page_type: 'homepage',
         search_mode: showAdvanced.value ? 'advanced' : 'simple',
@@ -139,7 +135,7 @@ export default component$(() => {
         showExitIntent.value = true
 
         // Track exit intent
-        if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+        if (window?.enhancedRealEstateAnalytics) {
           window.enhancedRealEstateAnalytics.trackWidgetInteraction(
             'exit_intent_detected',
             'mouse_leave',
@@ -339,14 +335,22 @@ export default component$(() => {
           </p>
         </div>
 
-         <div class="search-toggle">
-           <button type="button" class={showAdvanced.value ? '' : 'active'} onClick$={showSimpleSearch}>
-             Quick Search
-           </button>
-           <button type="button" class={showAdvanced.value ? 'active' : ''} onClick$={showAdvancedSearch}>
-             Advanced Search
-           </button>
-         </div>
+        <div class="search-toggle">
+          <button
+            type="button"
+            class={showAdvanced.value ? '' : 'active'}
+            onClick$={showSimpleSearch}
+          >
+            Quick Search
+          </button>
+          <button
+            type="button"
+            class={showAdvanced.value ? 'active' : ''}
+            onClick$={showAdvancedSearch}
+          >
+            Advanced Search
+          </button>
+        </div>
 
         <div class="widget-container">
           {showAdvanced.value ? (
@@ -356,11 +360,11 @@ export default component$(() => {
           )}
         </div>
 
-         <div class="calculator-toggle">
-           <button type="button" onClick$={toggleCalculator}>
-             {showCalculator.value ? 'Hide' : 'Show'} Mortgage Calculator
-           </button>
-         </div>
+        <div class="calculator-toggle">
+          <button type="button" onClick$={toggleCalculator}>
+            {showCalculator.value ? 'Hide' : 'Show'} Mortgage Calculator
+          </button>
+        </div>
       </section>
 
       {/* Enhanced Mortgage Calculator Section */}
@@ -532,10 +536,12 @@ export default component$(() => {
       />
 
       {/* Exit Intent Popup */}
-       <ExitIntentPopup
-         isVisible={showExitIntent.value}
-         onClose$={() => (showExitIntent.value = false)}
-       />
+      <ExitIntentPopup
+        isVisible={showExitIntent.value}
+        onClose$={() => {
+          showExitIntent.value = false
+        }}
+      />
     </>
   )
 })

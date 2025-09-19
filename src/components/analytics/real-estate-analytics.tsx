@@ -24,7 +24,11 @@ interface SearchFilters {
 export default component$<RealEstateAnalyticsProps>(() => {
   useVisibleTask$(() => {
     // Track RealScout widget interactions
-    const trackWidgetInteraction = (widgetType: string, action: string, details?: WidgetInteractionDetails) => {
+    const trackWidgetInteraction = (
+      widgetType: string,
+      action: string,
+      details?: WidgetInteractionDetails
+    ) => {
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'widget_interaction', {
           widget_type: widgetType,
@@ -116,7 +120,9 @@ export default component$<RealEstateAnalyticsProps>(() => {
     }
 
     // Expose tracking functions globally for use by other components
-    ;(window as Window & { realEstateAnalytics: typeof window.realEstateAnalytics }).realEstateAnalytics = {
+    ;(
+      window as Window & { realEstateAnalytics: typeof window.realEstateAnalytics }
+    ).realEstateAnalytics = {
       trackWidgetInteraction,
       trackFormSubmission,
       trackMortgageCalculation,
@@ -132,7 +138,11 @@ export default component$<RealEstateAnalyticsProps>(() => {
 declare global {
   interface Window {
     realEstateAnalytics: {
-      trackWidgetInteraction: (widgetType: string, action: string, details?: WidgetInteractionDetails) => void
+      trackWidgetInteraction: (
+        widgetType: string,
+        action: string,
+        details?: WidgetInteractionDetails
+      ) => void
       trackFormSubmission: (formType: string, success: boolean) => void
       trackMortgageCalculation: (loanAmount: number, monthlyPayment: number) => void
       trackPropertySearch: (searchType: string, filters?: SearchFilters) => void

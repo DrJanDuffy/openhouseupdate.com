@@ -87,7 +87,7 @@ export default component$(() => {
     isExpanded.value = !isExpanded.value
 
     // Track guide interaction
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'neighborhood_guides',
         isExpanded.value ? 'guides_expanded' : 'guides_collapsed',
@@ -100,7 +100,7 @@ export default component$(() => {
     selectedGuide.value = guide
 
     // Track guide selection
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'neighborhood_guide_selection',
         'guide_selected',
@@ -118,7 +118,7 @@ export default component$(() => {
     isSubmitting.value = true
 
     // Track download attempt
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackFormSubmission('neighborhood_guide_download', true, {
         email: email.value,
         phone: phone.value,
@@ -187,19 +187,23 @@ export default component$(() => {
 
       {!isExpanded.value ? (
         <div class="text-center">
-            <button
-              type="button"
-              onClick$={toggleExpanded}
-              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
-            >
-              View All Neighborhood Guides →
-            </button>
+          <button
+            type="button"
+            onClick$={toggleExpanded}
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
+          >
+            View All Neighborhood Guides →
+          </button>
         </div>
       ) : (
         <div>
           <div class="flex justify-between items-center mb-6">
             <h3 class="text-xl font-bold text-gray-900">Choose Your Guide</h3>
-            <button type="button" onClick$={toggleExpanded} class="text-gray-400 hover:text-gray-600 text-2xl">
+            <button
+              type="button"
+              onClick$={toggleExpanded}
+              class="text-gray-400 hover:text-gray-600 text-2xl"
+            >
               ×
             </button>
           </div>

@@ -98,7 +98,11 @@ export default component$<EnhancedAnalyticsProps>(({ measurementId }) => {
     }
 
     // Track RealScout widget interactions with enhanced data
-    const trackWidgetInteraction = (widgetType: string, action: string, details: WidgetInteractionDetails = {}) => {
+    const trackWidgetInteraction = (
+      widgetType: string,
+      action: string,
+      details: WidgetInteractionDetails = {}
+    ) => {
       trackRealEstateEvent('widget_interaction', {
         event_category: 'RealScout Widgets',
         event_label: `${widgetType} - ${action}`,
@@ -239,7 +243,9 @@ export default component$<EnhancedAnalyticsProps>(({ measurementId }) => {
     document.addEventListener('click', () => clickCount++)
 
     // Expose enhanced tracking functions globally
-    ;(window as Window & { enhancedRealEstateAnalytics: typeof window.enhancedRealEstateAnalytics }).enhancedRealEstateAnalytics = {
+    ;(
+      window as Window & { enhancedRealEstateAnalytics: typeof window.enhancedRealEstateAnalytics }
+    ).enhancedRealEstateAnalytics = {
       trackWidgetInteraction,
       trackPropertySearch,
       trackHomeValueRequest,
@@ -268,10 +274,18 @@ export default component$<EnhancedAnalyticsProps>(({ measurementId }) => {
 declare global {
   interface Window {
     enhancedRealEstateAnalytics: {
-      trackWidgetInteraction: (widgetType: string, action: string, details?: WidgetInteractionDetails) => void
+      trackWidgetInteraction: (
+        widgetType: string,
+        action: string,
+        details?: WidgetInteractionDetails
+      ) => void
       trackPropertySearch: (searchType: string, filters?: SearchFilters) => void
       trackHomeValueRequest: (address: string, propertyType?: string) => void
-      trackMortgageCalculation: (loanAmount: number, monthlyPayment: number, details?: MortgageCalculationDetails) => void
+      trackMortgageCalculation: (
+        loanAmount: number,
+        monthlyPayment: number,
+        details?: MortgageCalculationDetails
+      ) => void
       trackFormSubmission: (formType: string, success: boolean, formData?: FormData) => void
       trackPageEngagement: (pageType: string, engagementData?: EngagementData) => void
     }

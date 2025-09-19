@@ -1,4 +1,4 @@
-import { $, component$, useSignal, type QwikJSX } from '@builder.io/qwik'
+import { $, component$, type QwikJSX, useSignal } from '@builder.io/qwik'
 
 interface ErrorBoundaryProps {
   fallback?: QwikJSX.Element

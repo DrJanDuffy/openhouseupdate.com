@@ -153,7 +153,11 @@ export default component$<FreeHomeValuationCTAProps>(
           <div>
             <div class="flex justify-between items-center mb-4">
               <h3 class="text-xl font-bold text-gray-900">Free Home Valuation</h3>
-              <button type="button" onClick$={toggleExpanded} class="text-gray-400 hover:text-gray-600 text-2xl">
+              <button
+                type="button"
+                onClick$={toggleExpanded}
+                class="text-gray-400 hover:text-gray-600 text-2xl"
+              >
                 ×
               </button>
             </div>

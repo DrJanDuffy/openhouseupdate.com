@@ -1,4 +1,4 @@
-import { $, component$, type QwikMouseEvent, useSignal, useVisibleTask$ } from '@builder.io/qwik'
+import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 interface ExitIntentPopupProps {
   isVisible: boolean
@@ -12,7 +12,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
   const isSubmitted = useSignal(false)
   const selectedOffer = useSignal('')
 
-  const handleClose = $((event: QwikMouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleClose = $(() => {
     // Use setTimeout to avoid serialization issues
     setTimeout(() => onClose(), 0)
   })
@@ -54,7 +54,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
     isSubmitting.value = true
 
     // Track exit intent conversion
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackFormSubmission('exit_intent_offer', true, {
         email: email.value,
         phone: phone.value,
@@ -74,7 +74,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
     selectedOffer.value = offerId
 
     // Track offer selection
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'exit_intent_offer',
         'offer_selected',
@@ -90,7 +90,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
   useVisibleTask$(() => {
     if (isVisible) {
       // Track exit intent popup shown
-      if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+      if (window?.enhancedRealEstateAnalytics) {
         window.enhancedRealEstateAnalytics.trackWidgetInteraction(
           'exit_intent_popup',
           'popup_shown',
@@ -119,6 +119,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
             </p>
           </div>
           <button
+            type="button"
             onClick$={handleClose}
             class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 w-full"
           >
@@ -155,7 +156,11 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
                 and start your Las Vegas real estate journey today!
               </p>
             </div>
-            <button onClick$={handleClose} class="text-gray-400 hover:text-gray-600 text-3xl ml-4">
+            <button
+              type="button"
+              onClick$={handleClose}
+              class="text-gray-400 hover:text-gray-600 text-3xl ml-4"
+            >
               ×
             </button>
           </div>
@@ -247,6 +252,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
 
           <div class="mt-6 text-center">
             <button
+              type="button"
               onClick$={handleClose}
               class="text-gray-500 hover:text-gray-700 text-sm underline"
             >

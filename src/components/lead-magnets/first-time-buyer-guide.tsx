@@ -27,7 +27,7 @@ export default component$<FirstTimeBuyerGuideProps>(({ variant = 'card', classNa
     isExpanded.value = !isExpanded.value
 
     // Track guide interaction
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'first_time_buyer_guide',
         isExpanded.value ? 'guide_expanded' : 'guide_collapsed',
@@ -40,7 +40,7 @@ export default component$<FirstTimeBuyerGuideProps>(({ variant = 'card', classNa
     isSubmitting.value = true
 
     // Track download attempt
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackFormSubmission(
         'first_time_buyer_guide_download',
         true,
@@ -130,6 +130,7 @@ export default component$<FirstTimeBuyerGuideProps>(({ variant = 'card', classNa
               </ul>
             </div>
             <button
+              type="button"
               onClick$={toggleExpanded}
               class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 w-full"
             >
@@ -144,7 +145,11 @@ export default component$<FirstTimeBuyerGuideProps>(({ variant = 'card', classNa
         <div>
           <div class="flex justify-between items-center mb-4">
             <h3 class="text-xl font-bold text-gray-900">First-Time Buyer Guide</h3>
-            <button onClick$={toggleExpanded} class="text-gray-400 hover:text-gray-600 text-2xl">
+            <button
+              type="button"
+              onClick$={toggleExpanded}
+              class="text-gray-400 hover:text-gray-600 text-2xl"
+            >
               ×
             </button>
           </div>

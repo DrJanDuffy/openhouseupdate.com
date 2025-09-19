@@ -1,4 +1,4 @@
-import { $, component$, useSignal, type QwikJSX } from '@builder.io/qwik'
+import { $, component$, type QwikJSX, useSignal } from '@builder.io/qwik'
 
 interface EnhancedErrorBoundaryProps {
   fallback?: QwikJSX.Element
@@ -68,7 +68,12 @@ export default component$<EnhancedErrorBoundaryProps>(({ children }) => {
               </button>
             )}
 
-            <button type="button" class="contact-button" onClick$={contactSupport} aria-label="Contact support">
+            <button
+              type="button"
+              class="contact-button"
+              onClick$={contactSupport}
+              aria-label="Contact support"
+            >
               Contact Support
             </button>
 

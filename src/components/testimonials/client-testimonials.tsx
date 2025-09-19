@@ -84,7 +84,7 @@ export default component$(() => {
     currentTestimonial.value = (currentTestimonial.value + 1) % testimonials.length
 
     // Track testimonial navigation
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'testimonials',
         'testimonial_navigation',
@@ -102,7 +102,7 @@ export default component$(() => {
       currentTestimonial.value === 0 ? testimonials.length - 1 : currentTestimonial.value - 1
 
     // Track testimonial navigation
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'testimonials',
         'testimonial_navigation',
@@ -119,7 +119,7 @@ export default component$(() => {
     currentTestimonial.value = index
 
     // Track testimonial selection
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'testimonials',
         'testimonial_selected',
@@ -152,6 +152,12 @@ export default component$(() => {
 
   return (
     <div class="bg-gray-50 py-16">
+      <style>{`
+        .testimonial-carousel {
+          --translate-x: -${currentTestimonial.value * 100}%;
+          transform: translateX(var(--translate-x));
+        }
+      `}</style>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
@@ -163,10 +169,7 @@ export default component$(() => {
 
         <div class="relative">
           <div class="overflow-hidden">
-            <div
-              class="flex transition-transform duration-500 ease-in-out"
-              style={`--translate-x: -${currentTestimonial.value * 100}%; transform: translateX(var(--translate-x));`}
-            >
+            <div class="flex transition-transform duration-500 ease-in-out testimonial-carousel">
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} class="w-full flex-shrink-0 px-4">
                   <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
@@ -218,32 +221,41 @@ export default component$(() => {
 
           {/* Navigation Arrows */}
           <button
+            type="button"
             onClick$={prevTestimonial}
             class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 rounded-full p-3 shadow-lg transition-colors duration-200"
             aria-label="Previous testimonial"
           >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M15 19l-7-7 7-7"
               />
             </svg>
           </button>
 
           <button
+            type="button"
             onClick$={nextTestimonial}
             class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 rounded-full p-3 shadow-lg transition-colors duration-200"
             aria-label="Next testimonial"
           >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7"
-              />
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
@@ -253,6 +265,7 @@ export default component$(() => {
           {testimonials.map((_, index) => (
             <button
               key={index}
+              type="button"
               onClick$={() => goToTestimonial(index)}
               class={`w-3 h-3 rounded-full transition-colors duration-200 ${
                 index === currentTestimonial.value ? 'bg-blue-600' : 'bg-gray-300 hover:bg-gray-400'
@@ -265,6 +278,7 @@ export default component$(() => {
         {/* Auto-play Toggle */}
         <div class="text-center mt-6">
           <button
+            type="button"
             onClick$={() => {
               isAutoPlaying.value = !isAutoPlaying.value
             }}
