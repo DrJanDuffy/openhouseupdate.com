@@ -1,228 +1,233 @@
-import { component$, useVisibleTask$, useSignal, $ } from '@builder.io/qwik';
+import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 interface EnhancedRealScoutLoaderProps {
-  agentId: string;
-  widgetType: 'listings' | 'home-value' | 'simple-search' | 'advanced-search';
-  children?: any;
-  className?: string;
-  lazyLoad?: boolean;
-  viewportThreshold?: number;
-  retryAttempts?: number;
+  agentId: string
+  widgetType: 'listings' | 'home-value' | 'simple-search' | 'advanced-search'
+  children?: any
+  className?: string
+  lazyLoad?: boolean
+  viewportThreshold?: number
+  retryAttempts?: number
 }
 
-export default component$<EnhancedRealScoutLoaderProps>(({ 
-  widgetType, 
-  children, 
-  className = '',
-  lazyLoad = true,
-  viewportThreshold = 0.5,
-  retryAttempts = 3
-}) => {
-  const isLoading = useSignal(true);
-  const hasError = useSignal(false);
-  const scriptLoaded = useSignal(false);
-  const isInViewport = useSignal(false);
-  const retryCount = useSignal(0);
-  const widgetReady = useSignal(false);
+export default component$<EnhancedRealScoutLoaderProps>(
+  ({
+    widgetType,
+    children,
+    className = '',
+    lazyLoad = true,
+    viewportThreshold = 0.5,
+    retryAttempts = 3,
+  }) => {
+    const isLoading = useSignal(true)
+    const hasError = useSignal(false)
+    const scriptLoaded = useSignal(false)
+    const isInViewport = useSignal(false)
+    const retryCount = useSignal(0)
+    const widgetReady = useSignal(false)
 
-  const loadRealScoutScript = $(async () => {
-    try {
-      // Check if script is already loaded
-      const existingScript = document.querySelector('script[src*="realscout-web-components"]');
-      if (existingScript) {
-        console.log('RealScout script already loaded');
-        scriptLoaded.value = true;
-        isLoading.value = false;
-        initializeWidget();
-        return;
-      }
-
-      // Check if custom elements are already defined
-      const elementName = `realscout-${widgetType.replace('-', '-')}`;
-      if (customElements.get(elementName)) {
-        console.log('RealScout custom elements already defined');
-        scriptLoaded.value = true;
-        isLoading.value = false;
-        widgetReady.value = true;
-        return;
-      }
-
-      // Load RealScout script with enhanced error handling
-      const script = document.createElement('script');
-      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
-      script.type = 'module';
-      script.crossOrigin = 'anonymous';
-      script.async = true;
-      script.defer = true;
-      
-      // Enhanced error handling with retry logic
-      script.onerror = () => {
-        console.error(`Failed to load RealScout script (attempt ${retryCount.value + 1})`);
-        handleScriptError();
-      };
-
-      script.onload = () => {
-        console.log('RealScout script loaded successfully');
-        scriptLoaded.value = true;
-        isLoading.value = false;
-        initializeWidget();
-      };
-
-      document.head.appendChild(script);
-      
-      // Set timeout for loading with progressive backoff
-      const timeout = Math.min(10000 + (retryCount.value * 2000), 30000);
-      setTimeout(() => {
-        if (!scriptLoaded.value) {
-          handleScriptError();
+    const loadRealScoutScript = $(async () => {
+      try {
+        // Check if script is already loaded
+        const existingScript = document.querySelector('script[src*="realscout-web-components"]')
+        if (existingScript) {
+          console.log('RealScout script already loaded')
+          scriptLoaded.value = true
+          isLoading.value = false
+          initializeWidget()
+          return
         }
-      }, timeout);
-    } catch (error) {
-      console.error('Error loading RealScout script:', error);
-      handleScriptError();
-    }
-  });
 
-  useVisibleTask$(async () => {
-    // Check if script is already loaded from layout
-    const existingScript = document.querySelector('script[src*="realscout-web-components"]');
-    if (existingScript) {
-      console.log('RealScout script found in layout, initializing widget');
-      scriptLoaded.value = true;
-      isLoading.value = false;
-      initializeWidget();
-      return;
-    }
+        // Check if custom elements are already defined
+        const elementName = `realscout-${widgetType.replace('-', '-')}`
+        if (customElements.get(elementName)) {
+          console.log('RealScout custom elements already defined')
+          scriptLoaded.value = true
+          isLoading.value = false
+          widgetReady.value = true
+          return
+        }
 
-    // Set up intersection observer for lazy loading
-    if (lazyLoad) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !isInViewport.value) {
-              isInViewport.value = true;
-              loadRealScoutScript();
-            }
-          });
-        },
-        { threshold: viewportThreshold }
-      );
+        // Load RealScout script with enhanced error handling
+        const script = document.createElement('script')
+        script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js'
+        script.type = 'module'
+        script.crossOrigin = 'anonymous'
+        script.async = true
+        script.defer = true
 
-      const element = document.querySelector(`.realscout-widget-container-${widgetType}`);
-      if (element) {
-        observer.observe(element);
-      }
+        // Enhanced error handling with retry logic
+        script.onerror = () => {
+          console.error(`Failed to load RealScout script (attempt ${retryCount.value + 1})`)
+          handleScriptError()
+        }
 
-      return () => observer.disconnect();
-    } else {
-      // Load immediately if not lazy loading
-      loadRealScoutScript();
-    }
-  });
+        script.onload = () => {
+          console.log('RealScout script loaded successfully')
+          scriptLoaded.value = true
+          isLoading.value = false
+          initializeWidget()
+        }
 
+        document.head.appendChild(script)
 
-  const handleScriptError = $(() => {
-    retryCount.value++;
-    if (retryCount.value < retryAttempts) {
-      console.log(`Retrying RealScout script load (attempt ${retryCount.value + 1})`);
-      setTimeout(() => {
-        loadRealScoutScript();
-      }, Math.pow(2, retryCount.value) * 1000); // Exponential backoff
-    } else {
-      hasError.value = true;
-      isLoading.value = false;
-      console.error('RealScout script failed to load after all retry attempts');
-    }
-  });
-
-  const initializeWidget = $(() => {
-    // Wait for custom elements to be defined
-    const checkElements = () => {
-      const elementName = `realscout-${widgetType.replace('-', '-')}`;
-      console.log(`Checking for custom element: ${elementName}`);
-      
-      if (customElements.get(elementName)) {
-        console.log(`Custom element ${elementName} found, widget ready`);
-        widgetReady.value = true;
-        
-        // Add event listeners for analytics tracking
+        // Set timeout for loading with progressive backoff
+        const timeout = Math.min(10000 + retryCount.value * 2000, 30000)
         setTimeout(() => {
-          const widget = document.querySelector(elementName);
-          if (widget && window.enhancedRealEstateAnalytics) {
-            console.log('Adding analytics event listeners to widget');
-            // Track widget interactions
-            widget.addEventListener('search', () => {
-              window.enhancedRealEstateAnalytics.trackWidgetInteraction(
-                widgetType,
-                'search_performed',
-                { depth: 'high', value: 1 }
-              );
-            });
-
-            widget.addEventListener('filter', () => {
-              window.enhancedRealEstateAnalytics.trackWidgetInteraction(
-                widgetType,
-                'filter_applied',
-                { depth: 'moderate', value: 1 }
-              );
-            });
-
-            widget.addEventListener('result', () => {
-              window.enhancedRealEstateAnalytics.trackWidgetInteraction(
-                widgetType,
-                'results_viewed',
-                { depth: 'high', value: 2 }
-              );
-            });
+          if (!scriptLoaded.value) {
+            handleScriptError()
           }
-        }, 1000);
-        
-        return;
+        }, timeout)
+      } catch (error) {
+        console.error('Error loading RealScout script:', error)
+        handleScriptError()
       }
-      
-      // Check if we've been waiting too long
-      if (retryCount.value > 10) {
-        console.error(`Custom element ${elementName} not found after multiple attempts`);
-        hasError.value = true;
-        isLoading.value = false;
-        return;
+    })
+
+    useVisibleTask$(async () => {
+      // Check if script is already loaded from layout
+      const existingScript = document.querySelector('script[src*="realscout-web-components"]')
+      if (existingScript) {
+        console.log('RealScout script found in layout, initializing widget')
+        scriptLoaded.value = true
+        isLoading.value = false
+        initializeWidget()
+        return
       }
-      
-      setTimeout(checkElements, 200);
-    };
-    checkElements();
-  });
 
-  const retryWidget = $(() => {
-    hasError.value = false;
-    isLoading.value = true;
-    scriptLoaded.value = false;
-    widgetReady.value = false;
-    retryCount.value = 0;
-    loadRealScoutScript();
-  });
+      // Set up intersection observer for lazy loading
+      if (lazyLoad) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !isInViewport.value) {
+                isInViewport.value = true
+                loadRealScoutScript()
+              }
+            })
+          },
+          { threshold: viewportThreshold }
+        )
 
-  if (hasError.value) {
-    return (
-      <div class={`realscout-error-container ${className}`}>
-        <div class="realscout-error-content">
-          <div class="error-icon">⚠️</div>
-          <h3>Widget Temporarily Unavailable</h3>
-          <p>We're experiencing technical difficulties with our property search. Please try again or contact us directly for assistance.</p>
-          <div class="error-actions">
-            <button 
-              class="realscout-retry-btn"
-              onClick$={retryWidget}
-              aria-label="Retry loading property search widget"
-            >
-              Try Again
-            </button>
-            <a href="/contact" class="contact-link">
-              Contact Us
-            </a>
+        const element = document.querySelector(`.realscout-widget-container-${widgetType}`)
+        if (element) {
+          observer.observe(element)
+        }
+
+        return () => observer.disconnect()
+      }
+      // Load immediately if not lazy loading
+      loadRealScoutScript()
+    })
+
+    const handleScriptError = $(() => {
+      retryCount.value++
+      if (retryCount.value < retryAttempts) {
+        console.log(`Retrying RealScout script load (attempt ${retryCount.value + 1})`)
+        setTimeout(
+          () => {
+            loadRealScoutScript()
+          },
+          2 ** retryCount.value * 1000
+        ) // Exponential backoff
+      } else {
+        hasError.value = true
+        isLoading.value = false
+        console.error('RealScout script failed to load after all retry attempts')
+      }
+    })
+
+    const initializeWidget = $(() => {
+      // Wait for custom elements to be defined
+      const checkElements = () => {
+        const elementName = `realscout-${widgetType.replace('-', '-')}`
+        console.log(`Checking for custom element: ${elementName}`)
+
+        if (customElements.get(elementName)) {
+          console.log(`Custom element ${elementName} found, widget ready`)
+          widgetReady.value = true
+
+          // Add event listeners for analytics tracking
+          setTimeout(() => {
+            const widget = document.querySelector(elementName)
+            if (widget && window.enhancedRealEstateAnalytics) {
+              console.log('Adding analytics event listeners to widget')
+              // Track widget interactions
+              widget.addEventListener('search', () => {
+                window.enhancedRealEstateAnalytics.trackWidgetInteraction(
+                  widgetType,
+                  'search_performed',
+                  { depth: 'high', value: 1 }
+                )
+              })
+
+              widget.addEventListener('filter', () => {
+                window.enhancedRealEstateAnalytics.trackWidgetInteraction(
+                  widgetType,
+                  'filter_applied',
+                  { depth: 'moderate', value: 1 }
+                )
+              })
+
+              widget.addEventListener('result', () => {
+                window.enhancedRealEstateAnalytics.trackWidgetInteraction(
+                  widgetType,
+                  'results_viewed',
+                  { depth: 'high', value: 2 }
+                )
+              })
+            }
+          }, 1000)
+
+          return
+        }
+
+        // Check if we've been waiting too long
+        if (retryCount.value > 10) {
+          console.error(`Custom element ${elementName} not found after multiple attempts`)
+          hasError.value = true
+          isLoading.value = false
+          return
+        }
+
+        setTimeout(checkElements, 200)
+      }
+      checkElements()
+    })
+
+    const retryWidget = $(() => {
+      hasError.value = false
+      isLoading.value = true
+      scriptLoaded.value = false
+      widgetReady.value = false
+      retryCount.value = 0
+      loadRealScoutScript()
+    })
+
+    if (hasError.value) {
+      return (
+        <div class={`realscout-error-container ${className}`}>
+          <div class="realscout-error-content">
+            <div class="error-icon">⚠️</div>
+            <h3>Widget Temporarily Unavailable</h3>
+            <p>
+              We're experiencing technical difficulties with our property search. Please try again
+              or contact us directly for assistance.
+            </p>
+            <div class="error-actions">
+              <button
+                class="realscout-retry-btn"
+                onClick$={retryWidget}
+                aria-label="Retry loading property search widget"
+              >
+                Try Again
+              </button>
+              <a href="/contact" class="contact-link">
+                Contact Us
+              </a>
+            </div>
           </div>
-        </div>
-        <style>{`
+          <style>{`
           .realscout-error-container {
             width: 100%;
             margin: 2rem 0;
@@ -294,23 +299,23 @@ export default component$<EnhancedRealScoutLoaderProps>(({
             }
           }
         `}</style>
-      </div>
-    );
-  }
-
-  if (isLoading.value) {
-    return (
-      <div class={`realscout-loading-container ${className}`}>
-        <div class="realscout-loading-content">
-          <div class="realscout-spinner"></div>
-          <p>Loading {widgetType.replace('-', ' ')}...</p>
-          <div class="loading-dots">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
         </div>
-        <style>{`
+      )
+    }
+
+    if (isLoading.value) {
+      return (
+        <div class={`realscout-loading-container ${className}`}>
+          <div class="realscout-loading-content">
+            <div class="realscout-spinner" />
+            <p>Loading {widgetType.replace('-', ' ')}...</p>
+            <div class="loading-dots">
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+          <style>{`
           .realscout-loading-container {
             width: 100%;
             margin: 2rem 0;
@@ -360,13 +365,10 @@ export default component$<EnhancedRealScoutLoaderProps>(({
             40% { transform: scale(1); }
           }
         `}</style>
-      </div>
-    );
-  }
+        </div>
+      )
+    }
 
-  return (
-    <div class={`realscout-widget-container-${widgetType} ${className}`}>
-      {children}
-    </div>
-  );
-});
+    return <div class={`realscout-widget-container-${widgetType} ${className}`}>{children}</div>
+  }
+)

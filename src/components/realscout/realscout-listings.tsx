@@ -1,8 +1,8 @@
-import { component$, useSignal } from '@builder.io/qwik';
-import RealScoutLoader from './realscout-loader';
+import { component$, useSignal } from '@builder.io/qwik'
+import RealScoutLoader from './realscout-loader'
 
 export default component$(() => {
-  const currentTheme = useSignal<'light' | 'dark' | 'vegas'>('light');
+  const currentTheme = useSignal<'light' | 'dark' | 'vegas'>('light')
   return (
     <RealScoutLoader agentId="QWdlbnQtMjI1MDUw" widgetType="listings">
       <div class="realscout-container">
@@ -102,43 +102,43 @@ export default component$(() => {
             }
           }
         `}</style>
-        
+
         <div class="realscout-header">
           <h2>Featured Listings</h2>
           <p>Discover your perfect home in Las Vegas</p>
-          
+
           <div class="theme-switcher">
-            <button 
+            <button
               class={`theme-button ${currentTheme.value === 'light' ? 'active' : ''}`}
-              onClick$={() => currentTheme.value = 'light'}
+              onClick$={() => (currentTheme.value = 'light')}
             >
               Light
             </button>
-            <button 
+            <button
               class={`theme-button ${currentTheme.value === 'dark' ? 'active' : ''}`}
-              onClick$={() => currentTheme.value = 'dark'}
+              onClick$={() => (currentTheme.value = 'dark')}
             >
               Dark
             </button>
-            <button 
+            <button
               class={`theme-button ${currentTheme.value === 'vegas' ? 'active' : ''}`}
-              onClick$={() => currentTheme.value = 'vegas'}
+              onClick$={() => (currentTheme.value = 'vegas')}
             >
               Vegas
             </button>
           </div>
         </div>
-        
-        <realscout-office-listings 
-          agent-encoded-id="QWdlbnQtMjI1MDUw" 
-          sort-order="STATUS_AND_SIGNIFICANT_CHANGE" 
-          listing-status="For Sale" 
-          property-types="SFR,MF,LAL" 
-          price-min="500000" 
+
+        <realscout-office-listings
+          agent-encoded-id="QWdlbnQtMjI1MDUw"
+          sort-order="STATUS_AND_SIGNIFICANT_CHANGE"
+          listing-status="For Sale"
+          property-types="SFR,MF,LAL"
+          price-min="500000"
           price-max="600000"
           class={currentTheme.value}
-        ></realscout-office-listings>
+        />
       </div>
     </RealScoutLoader>
-  );
-});
+  )
+})

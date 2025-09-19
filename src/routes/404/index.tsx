@@ -1,5 +1,5 @@
-import { component$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { component$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
   return (
@@ -17,8 +17,8 @@ export default component$(() => {
             Oops! This Page Doesn't Exist
           </h1>
           <p class="text-xl text-gray-600 mb-8">
-            The page you're looking for might have been moved, deleted, or doesn't exist. 
-            But don't worry - we can help you find what you need!
+            The page you're looking for might have been moved, deleted, or doesn't exist. But don't
+            worry - we can help you find what you need!
           </p>
         </div>
 
@@ -68,28 +68,88 @@ export default component$(() => {
             <div>
               <h3 class="text-lg font-semibold text-gray-900 mb-3">Services</h3>
               <ul class="space-y-2 text-left">
-                <li><a href="/home-valuation" class="text-blue-600 hover:text-blue-800">Home Valuation</a></li>
-                <li><a href="/buyer-services" class="text-blue-600 hover:text-blue-800">Buyer Services</a></li>
-                <li><a href="/seller-services" class="text-blue-600 hover:text-blue-800">Seller Services</a></li>
-                <li><a href="/market-analysis" class="text-blue-600 hover:text-blue-800">Market Analysis</a></li>
+                <li>
+                  <a href="/home-valuation" class="text-blue-600 hover:text-blue-800">
+                    Home Valuation
+                  </a>
+                </li>
+                <li>
+                  <a href="/buyer-services" class="text-blue-600 hover:text-blue-800">
+                    Buyer Services
+                  </a>
+                </li>
+                <li>
+                  <a href="/seller-services" class="text-blue-600 hover:text-blue-800">
+                    Seller Services
+                  </a>
+                </li>
+                <li>
+                  <a href="/market-analysis" class="text-blue-600 hover:text-blue-800">
+                    Market Analysis
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
               <h3 class="text-lg font-semibold text-gray-900 mb-3">Browse by Price</h3>
               <ul class="space-y-2 text-left">
-                <li><a href="/open-houses-for-sale/under-400k" class="text-blue-600 hover:text-blue-800">Under $400K</a></li>
-                <li><a href="/open-houses-for-sale/400k-600k" class="text-blue-600 hover:text-blue-800">$400K - $600K</a></li>
-                <li><a href="/open-houses-for-sale/600k-800k" class="text-blue-600 hover:text-blue-800">$600K - $800K</a></li>
-                <li><a href="/open-houses-for-sale/over-1m" class="text-blue-600 hover:text-blue-800">Over $1M</a></li>
+                <li>
+                  <a
+                    href="/open-houses-for-sale/under-400k"
+                    class="text-blue-600 hover:text-blue-800"
+                  >
+                    Under $400K
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/open-houses-for-sale/400k-600k"
+                    class="text-blue-600 hover:text-blue-800"
+                  >
+                    $400K - $600K
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/open-houses-for-sale/600k-800k"
+                    class="text-blue-600 hover:text-blue-800"
+                  >
+                    $600K - $800K
+                  </a>
+                </li>
+                <li>
+                  <a href="/open-houses-for-sale/over-1m" class="text-blue-600 hover:text-blue-800">
+                    Over $1M
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
               <h3 class="text-lg font-semibold text-gray-900 mb-3">Neighborhoods</h3>
               <ul class="space-y-2 text-left">
-                <li><a href="/neighborhoods/summerlin" class="text-blue-600 hover:text-blue-800">Summerlin</a></li>
-                <li><a href="/neighborhoods/henderson" class="text-blue-600 hover:text-blue-800">Henderson</a></li>
-                <li><a href="/neighborhoods/north-las-vegas" class="text-blue-600 hover:text-blue-800">North Las Vegas</a></li>
-                <li><a href="/neighborhoods/spring-valley" class="text-blue-600 hover:text-blue-800">Spring Valley</a></li>
+                <li>
+                  <a href="/neighborhoods/summerlin" class="text-blue-600 hover:text-blue-800">
+                    Summerlin
+                  </a>
+                </li>
+                <li>
+                  <a href="/neighborhoods/henderson" class="text-blue-600 hover:text-blue-800">
+                    Henderson
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/neighborhoods/north-las-vegas"
+                    class="text-blue-600 hover:text-blue-800"
+                  >
+                    North Las Vegas
+                  </a>
+                </li>
+                <li>
+                  <a href="/neighborhoods/spring-valley" class="text-blue-600 hover:text-blue-800">
+                    Spring Valley
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -133,19 +193,20 @@ export default component$(() => {
         </div>
       </div>
     </section>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: '404 - Page Not Found | Open House Update',
   meta: [
     {
       name: 'description',
-      content: 'Page not found. Find your perfect Las Vegas home with Dr. Janet Duffy\'s real estate services.',
+      content:
+        "Page not found. Find your perfect Las Vegas home with Dr. Janet Duffy's real estate services.",
     },
     {
       name: 'robots',
       content: 'noindex, nofollow',
     },
   ],
-};
+}

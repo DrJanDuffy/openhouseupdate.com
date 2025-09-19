@@ -1,13 +1,13 @@
-import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
-  const showFilters = useSignal(true);
-  const resultsCount = useSignal(12); // Sample results count
+  const showFilters = useSignal(true)
+  const resultsCount = useSignal(12) // Sample results count
 
   const toggleFilters = $(() => {
-    showFilters.value = !showFilters.value;
-  });
+    showFilters.value = !showFilters.value
+  })
 
   // Initialize RealScout widget
   useVisibleTask$(() => {
@@ -15,30 +15,30 @@ export default component$(() => {
       // Wait for RealScout script to load and custom elements to be defined
       const initializeRealScout = () => {
         // Check if RealScout script is loaded
-        const script = document.querySelector('script[src*="realscout-web-components"]');
+        const script = document.querySelector('script[src*="realscout-web-components"]')
         if (!script) {
-          console.log('RealScout script not found, retrying...');
-          setTimeout(initializeRealScout, 500);
-          return;
+          console.log('RealScout script not found, retrying...')
+          setTimeout(initializeRealScout, 500)
+          return
         }
 
         // Wait for custom elements to be defined
         const checkElements = () => {
           if (customElements.get('realscout-advanced-search')) {
-            console.log('RealScout advanced search widget ready');
-            return;
+            console.log('RealScout advanced search widget ready')
+            return
           }
-          console.log('Waiting for RealScout advanced search widget...');
-          setTimeout(checkElements, 200);
-        };
-        
-        checkElements();
-      };
+          console.log('Waiting for RealScout advanced search widget...')
+          setTimeout(checkElements, 200)
+        }
+
+        checkElements()
+      }
 
       // Start initialization
-      initializeRealScout();
+      initializeRealScout()
     }
-  });
+  })
 
   return (
     <div class="search-page">
@@ -373,9 +373,9 @@ export default component$(() => {
       <div class="search-results-layout">
         <aside class="sidebar">
           <h3>Refine Your Search</h3>
-          
-          <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
-          
+
+          <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
+
           <div class="quick-filters">
             <h4>Quick Filters</h4>
             <label>
@@ -400,7 +400,7 @@ export default component$(() => {
             </label>
           </div>
         </aside>
-        
+
         <main class="results">
           <div class="results-header">
             <div class="results-count">Showing {resultsCount.value} properties</div>
@@ -498,22 +498,21 @@ export default component$(() => {
           </div>
 
           <div class="load-more-section">
-            <button class="load-more-btn">
-              Load More Properties
-            </button>
+            <button class="load-more-btn">Load More Properties</button>
           </div>
         </main>
       </div>
     </div>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'Property Search Results - Real Estate Search',
   meta: [
     {
       name: 'description',
-      content: 'View and filter property search results. Find your perfect home with our advanced real estate search.',
+      content:
+        'View and filter property search results. Find your perfect home with our advanced real estate search.',
     },
     {
       property: 'og:title',
@@ -521,11 +520,12 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:description',
-      content: 'View and filter property search results. Find your perfect home with our advanced real estate search.',
+      content:
+        'View and filter property search results. Find your perfect home with our advanced real estate search.',
     },
     {
       property: 'og:type',
       content: 'website',
     },
   ],
-};
+}

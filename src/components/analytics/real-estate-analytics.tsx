@@ -1,7 +1,7 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useVisibleTask$ } from '@builder.io/qwik'
 
 interface RealEstateAnalyticsProps {
-  measurementId: string;
+  measurementId: string
 }
 
 export default component$<RealEstateAnalyticsProps>(() => {
@@ -23,9 +23,9 @@ export default component$<RealEstateAnalyticsProps>(() => {
           user_type: details?.userType || 'visitor',
           interaction_depth: details?.depth || 'basic',
           conversion_value: details?.value || 0,
-        });
+        })
       }
-    };
+    }
 
     // Track contact form submissions
     const trackFormSubmission = (formType: string, success: boolean) => {
@@ -36,9 +36,9 @@ export default component$<RealEstateAnalyticsProps>(() => {
           event_category: 'Lead Generation',
           event_label: `${formType} - ${success ? 'Success' : 'Error'}`,
           value: success ? 1 : 0,
-        });
+        })
       }
-    };
+    }
 
     // Track mortgage calculator usage
     const trackMortgageCalculation = (loanAmount: number, monthlyPayment: number) => {
@@ -49,9 +49,9 @@ export default component$<RealEstateAnalyticsProps>(() => {
           event_category: 'Financial Tools',
           event_label: 'Mortgage Calculator',
           value: Math.round(loanAmount / 1000), // Value in thousands
-        });
+        })
       }
-    };
+    }
 
     // Track property searches
     const trackPropertySearch = (searchType: string, filters?: any) => {
@@ -62,9 +62,9 @@ export default component$<RealEstateAnalyticsProps>(() => {
           event_category: 'Property Search',
           event_label: `${searchType} Search`,
           value: 1,
-        });
+        })
       }
-    };
+    }
 
     // Track home value requests
     const trackHomeValueRequest = (address?: string) => {
@@ -74,18 +74,18 @@ export default component$<RealEstateAnalyticsProps>(() => {
           event_category: 'Home Valuation',
           event_label: 'Home Value Request',
           value: 1,
-        });
+        })
       }
-    };
+    }
 
     // Expose tracking functions globally for use by other components
-    (window as any).realEstateAnalytics = {
+    ;(window as any).realEstateAnalytics = {
       trackWidgetInteraction,
       trackFormSubmission,
       trackMortgageCalculation,
       trackPropertySearch,
       trackHomeValueRequest,
-    };
+    }
 
     // Track initial page load
     if (typeof window !== 'undefined' && window.gtag) {
@@ -95,22 +95,22 @@ export default component$<RealEstateAnalyticsProps>(() => {
         page_path: window.location.pathname,
         event_category: 'Page Views',
         event_label: 'Real Estate Website',
-      });
+      })
     }
-  });
+  })
 
-  return null; // This component doesn't render anything
-});
+  return null // This component doesn't render anything
+})
 
 // Declare global analytics functions
 declare global {
   interface Window {
     realEstateAnalytics: {
-      trackWidgetInteraction: (widgetType: string, action: string, details?: any) => void;
-      trackFormSubmission: (formType: string, success: boolean) => void;
-      trackMortgageCalculation: (loanAmount: number, monthlyPayment: number) => void;
-      trackPropertySearch: (searchType: string, filters?: any) => void;
-      trackHomeValueRequest: (address?: string) => void;
-    };
+      trackWidgetInteraction: (widgetType: string, action: string, details?: any) => void
+      trackFormSubmission: (formType: string, success: boolean) => void
+      trackMortgageCalculation: (loanAmount: number, monthlyPayment: number) => void
+      trackPropertySearch: (searchType: string, filters?: any) => void
+      trackHomeValueRequest: (address?: string) => void
+    }
   }
 }

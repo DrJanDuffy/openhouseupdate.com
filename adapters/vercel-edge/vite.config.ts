@@ -1,6 +1,6 @@
-import { vercelEdgeAdapter } from '@builder.io/qwik-city/adapters/vercel-edge/vite';
-import { extendConfig } from '@builder.io/qwik-city/vite';
-import baseConfig from '../../vite.config';
+import { vercelEdgeAdapter } from '@builder.io/qwik-city/adapters/vercel-edge/vite'
+import { extendConfig } from '@builder.io/qwik-city/vite'
+import baseConfig from '../../vite.config'
 
 export default extendConfig(baseConfig, () => {
   return {
@@ -12,5 +12,5 @@ export default extendConfig(baseConfig, () => {
       outDir: '.vercel/output/functions/_qwik-city.func',
     },
     plugins: [vercelEdgeAdapter()],
-  };
-});
+  }
+})

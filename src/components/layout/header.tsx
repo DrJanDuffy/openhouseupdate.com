@@ -1,34 +1,34 @@
-import { component$, useVisibleTask$, useSignal } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 export default component$(() => {
-  const isScrolled = useSignal(false);
+  const isScrolled = useSignal(false)
 
   useVisibleTask$(() => {
     // Ensure RealScout components are available
     if (typeof window !== 'undefined') {
       const checkElements = () => {
         if (customElements.get('realscout-advanced-search')) {
-          return;
+          return
         }
-        setTimeout(checkElements, 100);
-      };
-      checkElements();
+        setTimeout(checkElements, 100)
+      }
+      checkElements()
 
       // Handle scroll detection
       const handleScroll = () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        isScrolled.value = scrollTop > 100; // Show after 100px scroll
-      };
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+        isScrolled.value = scrollTop > 100 // Show after 100px scroll
+      }
 
       // Add scroll listener
-      window.addEventListener('scroll', handleScroll);
-      
+      window.addEventListener('scroll', handleScroll)
+
       // Cleanup
       return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
+        window.removeEventListener('scroll', handleScroll)
+      }
     }
-  });
+  })
 
   return (
     <header class="sticky-header">
@@ -184,7 +184,7 @@ export default component$(() => {
           }
         }
       `}</style>
-      
+
       {/* Shows on scroll */}
       <div class={`sticky-search-bar ${isScrolled.value ? 'visible' : ''}`}>
         <div class="sticky-header-brand">
@@ -192,19 +192,23 @@ export default component$(() => {
             Open House Update
           </a>
         </div>
-        
+
         <div class="sticky-search-container">
-          <realscout-advanced-search 
-            agent-encoded-id="QWdlbnQtMjI1MDUw"
-          ></realscout-advanced-search>
+          <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
         </div>
-        
+
         <div class="sticky-header-actions">
-          <a href="/search" class="sticky-header-link">Advanced</a>
-          <a href="/map" class="sticky-header-link">Map</a>
-          <a href="/this-weekend" class="sticky-header-link primary">Open Houses</a>
+          <a href="/search" class="sticky-header-link">
+            Advanced
+          </a>
+          <a href="/map" class="sticky-header-link">
+            Map
+          </a>
+          <a href="/this-weekend" class="sticky-header-link primary">
+            Open Houses
+          </a>
         </div>
       </div>
     </header>
-  );
-});
+  )
+})

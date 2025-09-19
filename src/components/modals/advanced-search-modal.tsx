@@ -1,63 +1,63 @@
-import { component$, useVisibleTask$, useSignal, $ } from '@builder.io/qwik';
+import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 export default component$(() => {
-  const isOpen = useSignal(false);
+  const isOpen = useSignal(false)
 
   useVisibleTask$(() => {
     // Load RealScout script if not already loaded
     if (!document.querySelector('script[src*="realscout-web-components"]')) {
-      const script = document.createElement('script');
-      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
-      script.type = 'module';
-      script.crossOrigin = 'anonymous';
-      document.head.appendChild(script);
+      const script = document.createElement('script')
+      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js'
+      script.type = 'module'
+      script.crossOrigin = 'anonymous'
+      document.head.appendChild(script)
     }
 
     // Add keyboard event listener
-    document.addEventListener('keydown', handleKeyDown);
-    
+    document.addEventListener('keydown', handleKeyDown)
+
     // Cleanup function
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  });
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  })
 
   const openModal = $(() => {
-    isOpen.value = true;
+    isOpen.value = true
     // Track modal open event
     if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'modal_open', {
+      ;(window as any).gtag('event', 'modal_open', {
         event_category: 'search',
-        event_label: 'advanced_search_modal'
-      });
+        event_label: 'advanced_search_modal',
+      })
     }
-  });
+  })
 
   const closeModal = $(() => {
-    isOpen.value = false;
+    isOpen.value = false
     // Track modal close event
     if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'modal_close', {
+      ;(window as any).gtag('event', 'modal_close', {
         event_category: 'search',
-        event_label: 'advanced_search_modal'
-      });
+        event_label: 'advanced_search_modal',
+      })
     }
-  });
+  })
 
   // Handle keyboard events
   const handleKeyDown = $((event: KeyboardEvent) => {
     if (event.key === 'Escape' && isOpen.value) {
-      closeModal();
+      closeModal()
     }
-  });
+  })
 
   return (
     <>
       {/* Modal */}
       {isOpen.value && (
-        <div 
-          id="advanced-search-modal" 
-          class="modal-overlay" 
+        <div
+          id="advanced-search-modal"
+          class="modal-overlay"
           onClick$={closeModal}
           role="dialog"
           aria-modal="true"
@@ -66,8 +66,8 @@ export default component$(() => {
           <div class="modal-content" onClick$={(e) => e.stopPropagation()}>
             <div class="modal-header">
               <h2 id="modal-title">Advanced Property Search</h2>
-              <button 
-                class="close-button" 
+              <button
+                class="close-button"
                 onClick$={closeModal}
                 aria-label="Close Advanced Search Modal"
                 title="Close Modal"
@@ -75,17 +75,17 @@ export default component$(() => {
                 ×
               </button>
             </div>
-            
+
             <div class="modal-body">
-              <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+              <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
             </div>
           </div>
         </div>
       )}
 
       {/* Trigger Button */}
-      <button 
-        onClick$={openModal} 
+      <button
+        onClick$={openModal}
         class="floating-button"
         aria-label="Open Advanced Property Search"
         title="Open Advanced Property Search Modal"
@@ -286,5 +286,5 @@ export default component$(() => {
         }
       `}</style>
     </>
-  );
-});
+  )
+})

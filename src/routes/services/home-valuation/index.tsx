@@ -1,39 +1,39 @@
-import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
-  const propertyAddress = useSignal('');
-  const ownerName = useSignal('');
-  const email = useSignal('');
-  const phone = useSignal('');
-  const propertyType = useSignal('single-family');
-  const bedrooms = useSignal('');
-  const bathrooms = useSignal('');
-  const squareFootage = useSignal('');
-  const yearBuilt = useSignal('');
-  const additionalInfo = useSignal('');
+  const propertyAddress = useSignal('')
+  const ownerName = useSignal('')
+  const email = useSignal('')
+  const phone = useSignal('')
+  const propertyType = useSignal('single-family')
+  const bedrooms = useSignal('')
+  const bathrooms = useSignal('')
+  const squareFootage = useSignal('')
+  const yearBuilt = useSignal('')
+  const additionalInfo = useSignal('')
 
-  const isSubmitting = useSignal(false);
-  const isSubmitted = useSignal(false);
+  const isSubmitting = useSignal(false)
+  const isSubmitted = useSignal(false)
 
   const handleSubmit = $(async () => {
-    isSubmitting.value = true;
-    
+    isSubmitting.value = true
+
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     // Track valuation request
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'valuation_request', {
         event_category: 'service',
         event_label: 'home_valuation',
-        value: 1
-      });
+        value: 1,
+      })
     }
-    
-    isSubmitting.value = false;
-    isSubmitted.value = true;
-  });
+
+    isSubmitting.value = false
+    isSubmitted.value = true
+  })
 
   // Initialize RealScout widget
   useVisibleTask$(() => {
@@ -41,30 +41,30 @@ export default component$(() => {
       // Wait for RealScout script to load and custom elements to be defined
       const initializeRealScout = () => {
         // Check if RealScout script is loaded
-        const script = document.querySelector('script[src*="realscout-web-components"]');
+        const script = document.querySelector('script[src*="realscout-web-components"]')
         if (!script) {
-          console.log('RealScout script not found, retrying...');
-          setTimeout(initializeRealScout, 500);
-          return;
+          console.log('RealScout script not found, retrying...')
+          setTimeout(initializeRealScout, 500)
+          return
         }
 
         // Wait for custom elements to be defined
         const checkElements = () => {
           if (customElements.get('realscout-home-value')) {
-            console.log('RealScout home value widget ready');
-            return;
+            console.log('RealScout home value widget ready')
+            return
           }
-          console.log('Waiting for RealScout home value widget...');
-          setTimeout(checkElements, 200);
-        };
-        
-        checkElements();
-      };
+          console.log('Waiting for RealScout home value widget...')
+          setTimeout(checkElements, 200)
+        }
+
+        checkElements()
+      }
 
       // Start initialization
-      initializeRealScout();
+      initializeRealScout()
     }
-  });
+  })
 
   return (
     <div class="valuation-page">
@@ -257,7 +257,8 @@ export default component$(() => {
       <div class="valuation-hero">
         <h1>Free Home Valuation</h1>
         <p>
-          Get an accurate assessment of your property's current market value with our comprehensive home valuation service.
+          Get an accurate assessment of your property's current market value with our comprehensive
+          home valuation service.
         </p>
       </div>
 
@@ -272,7 +273,7 @@ export default component$(() => {
             <li>Professional valuation report</li>
             <li>Recommendations for maximizing value</li>
           </ul>
-          
+
           <h2>Why Choose Our Valuation?</h2>
           <ul>
             <li>Local market expertise</li>
@@ -286,7 +287,7 @@ export default component$(() => {
         <div class="instant-valuation">
           <h2>Get Your Instant Home Value</h2>
           <p>Enter your address below for an immediate market estimate:</p>
-          
+
           <style>{`
             realscout-home-value {
               --rs-hvw-background-color: #ffffff;
@@ -300,14 +301,17 @@ export default component$(() => {
               margin: 2rem 0;
             }
           `}</style>
-          
-          <realscout-home-value agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-home-value>
+
+          <realscout-home-value agent-encoded-id="QWdlbnQtMjI1MDUw" />
         </div>
 
         <div class="valuation-form">
           <h2>Request Your Detailed Valuation</h2>
-          <p>For a comprehensive analysis with personalized recommendations, please fill out the form below:</p>
-          
+          <p>
+            For a comprehensive analysis with personalized recommendations, please fill out the form
+            below:
+          </p>
+
           {!isSubmitted.value ? (
             <form preventdefault:submit onSubmit$={handleSubmit}>
               <div class="form-group">
@@ -345,21 +349,12 @@ export default component$(() => {
 
               <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  bind:value={phone}
-                  placeholder="(702) 555-0123"
-                />
+                <input type="tel" id="phone" bind:value={phone} placeholder="(702) 555-0123" />
               </div>
 
               <div class="form-group">
                 <label for="propertyType">Property Type *</label>
-                <select
-                  id="propertyType"
-                  bind:value={propertyType}
-                  required
-                >
+                <select id="propertyType" bind:value={propertyType} required>
                   <option value="single-family">Single Family Home</option>
                   <option value="condo">Condominium</option>
                   <option value="townhouse">Townhouse</option>
@@ -370,12 +365,7 @@ export default component$(() => {
 
               <div class="form-group">
                 <label for="bedrooms">Bedrooms</label>
-                <input
-                  type="number"
-                  id="bedrooms"
-                  bind:value={bedrooms}
-                  placeholder="3"
-                />
+                <input type="number" id="bedrooms" bind:value={bedrooms} placeholder="3" />
               </div>
 
               <div class="form-group">
@@ -417,7 +407,7 @@ export default component$(() => {
                   id="additionalInfo"
                   bind:value={additionalInfo}
                   placeholder="Any special features, recent renovations, or other details..."
-                ></textarea>
+                />
               </div>
 
               <button type="submit" class="submit-button" disabled={isSubmitting.value}>
@@ -427,7 +417,10 @@ export default component$(() => {
           ) : (
             <div class="success-message">
               <h3>Thank You!</h3>
-              <p>Your valuation request has been submitted. Dr. Janet Duffy will contact you within 24 hours to discuss your property valuation.</p>
+              <p>
+                Your valuation request has been submitted. Dr. Janet Duffy will contact you within
+                24 hours to discuss your property valuation.
+              </p>
             </div>
           )}
         </div>
@@ -436,38 +429,49 @@ export default component$(() => {
       <div class="benefits-grid">
         <div class="benefit-card">
           <h3>🏠 Accurate Valuations</h3>
-          <p>Our valuations are based on current market data and local expertise to give you the most accurate assessment.</p>
+          <p>
+            Our valuations are based on current market data and local expertise to give you the most
+            accurate assessment.
+          </p>
         </div>
-        
+
         <div class="benefit-card">
           <h3>📊 Market Insights</h3>
-          <p>Get detailed insights into your neighborhood's market trends and how they affect your property's value.</p>
+          <p>
+            Get detailed insights into your neighborhood's market trends and how they affect your
+            property's value.
+          </p>
         </div>
-        
+
         <div class="benefit-card">
           <h3>⚡ Quick Turnaround</h3>
           <p>Receive your comprehensive valuation report within 24-48 hours of your request.</p>
         </div>
-        
+
         <div class="benefit-card">
           <h3>💼 Professional Service</h3>
-          <p>Work with Dr. Janet Duffy, a licensed real estate professional with extensive local market knowledge.</p>
+          <p>
+            Work with Dr. Janet Duffy, a licensed real estate professional with extensive local
+            market knowledge.
+          </p>
         </div>
       </div>
     </div>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'Free Home Valuation - Las Vegas Real Estate | Dr. Janet Duffy',
   meta: [
     {
       name: 'description',
-      content: 'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Janet Duffy.',
+      content:
+        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Janet Duffy.',
     },
     {
       name: 'keywords',
-      content: 'home valuation Las Vegas, property assessment, market analysis, CMA, home value, Dr. Janet Duffy, real estate valuation',
+      content:
+        'home valuation Las Vegas, property assessment, market analysis, CMA, home value, Dr. Janet Duffy, real estate valuation',
     },
     {
       name: 'author',
@@ -478,16 +482,26 @@ export const head: DocumentHead = {
       content: 'index, follow',
     },
     // Open Graph metadata
-    { property: 'og:title', content: 'Free Home Valuation - Las Vegas Real Estate | Dr. Janet Duffy' },
+    {
+      property: 'og:title',
+      content: 'Free Home Valuation - Las Vegas Real Estate | Dr. Janet Duffy',
+    },
     { property: 'og:type', content: 'website' },
-    { property: 'og:description', content: 'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Janet Duffy.' },
+    {
+      property: 'og:description',
+      content:
+        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Janet Duffy.',
+    },
     { property: 'og:url', content: 'https://openhouseupdate.com/services/home-valuation' },
     { property: 'og:site_name', content: 'Open House Update' },
     { property: 'og:locale', content: 'en_US' },
     { property: 'og:locale:alternate', content: 'es_US' },
     { property: 'og:determiner', content: 'auto' },
     { property: 'og:image', content: 'https://openhouseupdate.com/images/og-valuation.jpg' },
-    { property: 'og:image:secure_url', content: 'https://openhouseupdate.com/images/og-valuation.jpg' },
+    {
+      property: 'og:image:secure_url',
+      content: 'https://openhouseupdate.com/images/og-valuation.jpg',
+    },
     { property: 'og:image:type', content: 'image/jpeg' },
     { property: 'og:image:width', content: '1200' },
     { property: 'og:image:height', content: '630' },
@@ -499,8 +513,15 @@ export const head: DocumentHead = {
     { property: 'article:tag', content: 'Las Vegas' },
     // Twitter Card metadata
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'Free Home Valuation - Las Vegas Real Estate | Dr. Janet Duffy' },
-    { name: 'twitter:description', content: 'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Janet Duffy.' },
+    {
+      name: 'twitter:title',
+      content: 'Free Home Valuation - Las Vegas Real Estate | Dr. Janet Duffy',
+    },
+    {
+      name: 'twitter:description',
+      content:
+        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Janet Duffy.',
+    },
     { name: 'twitter:image', content: 'https://openhouseupdate.com/images/og-valuation.jpg' },
     { name: 'twitter:image:alt', content: 'Free Home Valuation - Las Vegas Real Estate' },
   ],
@@ -510,4 +531,4 @@ export const head: DocumentHead = {
       href: 'https://openhouseupdate.com/services/home-valuation',
     },
   ],
-};
+}

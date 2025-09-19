@@ -1,36 +1,34 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { $, component$, useSignal } from '@builder.io/qwik'
 
 interface EnhancedErrorBoundaryProps {
-  fallback?: any;
-  onError?: (error: Error, errorInfo: any) => void;
-  children: any;
+  fallback?: any
+  onError?: (error: Error, errorInfo: any) => void
+  children: any
 }
 
-export default component$<EnhancedErrorBoundaryProps>(({
-  children
-}) => {
-  const hasError = useSignal(false);
-  const error = useSignal<Error | null>(null);
-  const retryCount = useSignal(0);
-  const maxRetries = 3;
+export default component$<EnhancedErrorBoundaryProps>(({ children }) => {
+  const hasError = useSignal(false)
+  const error = useSignal<Error | null>(null)
+  const retryCount = useSignal(0)
+  const maxRetries = 3
 
   // Error handling is now done inline in the component
 
   const retry = $(() => {
     if (retryCount.value < maxRetries) {
-      retryCount.value++;
-      hasError.value = false;
-      error.value = null;
-      
+      retryCount.value++
+      hasError.value = false
+      error.value = null
+
       // Track retry attempt
       if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
         window.enhancedRealEstateAnalytics.trackPageEngagement('error_retry', {
           retry_count: retryCount.value,
           error_message: 'Retry attempt',
-        });
+        })
       }
     }
-  });
+  })
 
   const contactSupport = $(() => {
     // Track support contact
@@ -38,12 +36,12 @@ export default component$<EnhancedErrorBoundaryProps>(({
       window.enhancedRealEstateAnalytics.trackFormSubmission('error_support', true, {
         error_message: error.value?.message,
         retry_count: retryCount.value,
-      });
+      })
     }
-    
+
     // Redirect to contact page
-    window.location.href = '/contact?error=true';
-  });
+    window.location.href = '/contact?error=true'
+  })
 
   if (hasError.value) {
     return (
@@ -52,41 +50,33 @@ export default component$<EnhancedErrorBoundaryProps>(({
           <div class="error-icon">🚨</div>
           <h2>Something went wrong</h2>
           <p>
-            We're sorry, but something unexpected happened. Our team has been notified 
-            and we're working to fix this issue.
+            We're sorry, but something unexpected happened. Our team has been notified and we're
+            working to fix this issue.
           </p>
-          
+
           <div class="error-details">
             <details>
               <summary>Technical Details</summary>
               <pre>{error.value?.message || 'Unknown error'}</pre>
             </details>
           </div>
-          
+
           <div class="error-actions">
             {retryCount.value < maxRetries && (
-              <button 
-                class="retry-button"
-                onClick$={retry}
-                aria-label="Try again"
-              >
+              <button class="retry-button" onClick$={retry} aria-label="Try again">
                 Try Again ({maxRetries - retryCount.value} attempts left)
               </button>
             )}
-            
-            <button 
-              class="contact-button"
-              onClick$={contactSupport}
-              aria-label="Contact support"
-            >
+
+            <button class="contact-button" onClick$={contactSupport} aria-label="Contact support">
               Contact Support
             </button>
-            
+
             <a href="/" class="home-button">
               Go Home
             </a>
           </div>
-          
+
           <div class="error-suggestions">
             <h3>What you can do:</h3>
             <ul>
@@ -97,7 +87,7 @@ export default component$<EnhancedErrorBoundaryProps>(({
             </ul>
           </div>
         </div>
-        
+
         <style>{`
           .enhanced-error-boundary {
             min-height: 100vh;
@@ -291,8 +281,8 @@ export default component$<EnhancedErrorBoundaryProps>(({
           }
         `}</style>
       </div>
-    );
+    )
   }
 
-  return children;
-});
+  return children
+})

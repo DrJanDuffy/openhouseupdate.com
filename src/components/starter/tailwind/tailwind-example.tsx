@@ -1,4 +1,4 @@
-import { component$ } from '@builder.io/qwik';
+import { component$ } from '@builder.io/qwik'
 
 export const TailwindExample = component$(() => {
   return (
@@ -32,8 +32,8 @@ export const TailwindExample = component$(() => {
               Start using Qwik today.
             </h2>
             <p class="mt-6 text-lg leading-8 text-gray-300">
-              Ac euismod vel sit maecenas id pellentesque eu sed consectetur.
-              Malesuada adipiscing sagittis vel nulla.
+              Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing
+              sagittis vel nulla.
             </p>
             <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
               <a
@@ -59,5 +59,5 @@ export const TailwindExample = component$(() => {
         </div>
       </div>
     </>
-  );
-});
+  )
+})

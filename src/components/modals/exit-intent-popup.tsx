@@ -1,21 +1,21 @@
-import { component$, useSignal, $, useVisibleTask$, type QwikMouseEvent } from '@builder.io/qwik';
+import { $, component$, type QwikMouseEvent, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 interface ExitIntentPopupProps {
-  isVisible: boolean;
-  onClose: () => void;
+  isVisible: boolean
+  onClose: () => void
 }
 
 export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
-  const email = useSignal('');
-  const phone = useSignal('');
-  const isSubmitting = useSignal(false);
-  const isSubmitted = useSignal(false);
-  const selectedOffer = useSignal('');
+  const email = useSignal('')
+  const phone = useSignal('')
+  const isSubmitting = useSignal(false)
+  const isSubmitted = useSignal(false)
+  const selectedOffer = useSignal('')
 
   const handleClose = $((event: QwikMouseEvent<HTMLButtonElement, MouseEvent>) => {
     // Use setTimeout to avoid serialization issues
-    setTimeout(() => onClose(), 0);
-  });
+    setTimeout(() => onClose(), 0)
+  })
 
   const openHouseOffers = [
     {
@@ -23,33 +23,35 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
       title: 'Free Weekend Open House Tour',
       description: 'Get a personalized tour of 3-5 homes this weekend that match your criteria',
       icon: '🏠',
-      value: '$500 value'
+      value: '$500 value',
     },
     {
       id: 'market-report',
       title: 'Exclusive Market Report',
-      description: 'Receive our monthly Las Vegas market analysis with pricing trends and predictions',
+      description:
+        'Receive our monthly Las Vegas market analysis with pricing trends and predictions',
       icon: '📊',
-      value: '$200 value'
+      value: '$200 value',
     },
     {
       id: 'buyer-consultation',
       title: 'Free Buyer Consultation',
-      description: '30-minute consultation with Dr. Janet Duffy to discuss your home buying strategy',
+      description:
+        '30-minute consultation with Dr. Janet Duffy to discuss your home buying strategy',
       icon: '💬',
-      value: '$300 value'
+      value: '$300 value',
     },
     {
       id: 'neighborhood-guide',
       title: 'Complete Neighborhood Guide',
       description: 'Detailed guide to Las Vegas neighborhoods with school ratings and amenities',
       icon: '🗺️',
-      value: '$150 value'
-    }
-  ];
+      value: '$150 value',
+    },
+  ]
 
   const handleSubmit = $(async () => {
-    isSubmitting.value = true;
+    isSubmitting.value = true
 
     // Track exit intent conversion
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
@@ -57,33 +59,33 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
         email: email.value,
         phone: phone.value,
         offer: selectedOffer.value,
-        source: 'exit_intent_popup'
-      });
+        source: 'exit_intent_popup',
+      })
     }
 
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    isSubmitted.value = true;
-    isSubmitting.value = false;
-  });
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
+    isSubmitted.value = true
+    isSubmitting.value = false
+  })
 
   const selectOffer = $((offerId: string) => {
-    selectedOffer.value = offerId;
-    
+    selectedOffer.value = offerId
+
     // Track offer selection
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'exit_intent_offer',
         'offer_selected',
-        { 
-          depth: 'high', 
+        {
+          depth: 'high',
           value: 3,
-          offer: offerId
+          offer: offerId,
         }
-      );
+      )
     }
-  });
+  })
 
   useVisibleTask$(() => {
     if (isVisible) {
@@ -93,12 +95,12 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
           'exit_intent_popup',
           'popup_shown',
           { depth: 'moderate', value: 1 }
-        );
+        )
       }
     }
-  });
+  })
 
-  if (!isVisible) return null;
+  if (!isVisible) return null
 
   if (isSubmitted.value) {
     return (
@@ -107,13 +109,13 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
           <div class="text-green-600 text-6xl mb-4">🎉</div>
           <h3 class="text-2xl font-bold text-gray-900 mb-4">Congratulations!</h3>
           <p class="text-gray-600 mb-6">
-            You've claimed your free offer! Dr. Janet Duffy will contact you within 24 hours 
-            to schedule your personalized real estate consultation.
+            You've claimed your free offer! Dr. Janet Duffy will contact you within 24 hours to
+            schedule your personalized real estate consultation.
           </p>
           <div class="bg-blue-50 p-4 rounded-lg mb-6">
             <p class="text-sm text-blue-800">
-              <strong>What's Next:</strong> Check your email for confirmation and prepare for 
-              your exclusive real estate experience in Las Vegas.
+              <strong>What's Next:</strong> Check your email for confirmation and prepare for your
+              exclusive real estate experience in Las Vegas.
             </p>
           </div>
           <button
@@ -124,7 +126,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
           </button>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -143,22 +145,17 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
             background-color: #eff6ff;
           }
         `}</style>
-        
+
         <div class="p-6">
           <div class="flex justify-between items-start mb-6">
             <div>
-              <h2 class="text-3xl font-bold text-gray-900 mb-2">
-                Wait! Don't Miss Out! 🏠
-              </h2>
+              <h2 class="text-3xl font-bold text-gray-900 mb-2">Wait! Don't Miss Out! 🏠</h2>
               <p class="text-gray-600">
-                You're about to leave our site. Claim one of these exclusive offers 
-                before you go and start your Las Vegas real estate journey today!
+                You're about to leave our site. Claim one of these exclusive offers before you go
+                and start your Las Vegas real estate journey today!
               </p>
             </div>
-            <button
-              onClick$={handleClose}
-              class="text-gray-400 hover:text-gray-600 text-3xl ml-4"
-            >
+            <button onClick$={handleClose} class="text-gray-400 hover:text-gray-600 text-3xl ml-4">
               ×
             </button>
           </div>
@@ -169,8 +166,8 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
                 key={offer.id}
                 onClick$={() => selectOffer(offer.id)}
                 class={`offer-card cursor-pointer border-2 rounded-lg p-4 ${
-                  selectedOffer.value === offer.id 
-                    ? 'border-blue-500 bg-blue-50' 
+                  selectedOffer.value === offer.id
+                    ? 'border-blue-500 bg-blue-50'
                     : 'border-gray-200 hover:border-blue-300'
                 }`}
               >
@@ -190,10 +187,8 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
 
           {selectedOffer.value && (
             <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-              <h3 class="text-lg font-bold text-gray-900 mb-4">
-                Claim Your Free Offer
-              </h3>
-              
+              <h3 class="text-lg font-bold text-gray-900 mb-4">Claim Your Free Offer</h3>
+
               <form onSubmit$={handleSubmit} class="space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -209,7 +204,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
-                  
+
                   <div>
                     <label for="exit-phone" class="block text-sm font-medium text-gray-700 mb-1">
                       Phone Number
@@ -223,16 +218,17 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
                     />
                   </div>
                 </div>
-                
+
                 <div class="bg-blue-50 p-4 rounded-lg">
                   <p class="text-sm text-blue-800">
-                    <strong>Selected Offer:</strong> {openHouseOffers.find(o => o.id === selectedOffer.value)?.title}
+                    <strong>Selected Offer:</strong>{' '}
+                    {openHouseOffers.find((o) => o.id === selectedOffer.value)?.title}
                   </p>
                   <p class="text-xs text-blue-600 mt-1">
-                    {openHouseOffers.find(o => o.id === selectedOffer.value)?.description}
+                    {openHouseOffers.find((o) => o.id === selectedOffer.value)?.description}
                   </p>
                 </div>
-                
+
                 <button
                   type="submit"
                   disabled={isSubmitting.value}
@@ -240,9 +236,9 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
                 >
                   {isSubmitting.value ? 'Claiming Your Offer...' : 'Claim My Free Offer Now!'}
                 </button>
-                
+
                 <p class="text-xs text-gray-500 text-center">
-                  By claiming this offer, you agree to receive communications from Dr. Janet Duffy 
+                  By claiming this offer, you agree to receive communications from Dr. Janet Duffy
                   about real estate opportunities and services in Las Vegas.
                 </p>
               </form>
@@ -260,5 +256,5 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
         </div>
       </div>
     </div>
-  );
-});
+  )
+})

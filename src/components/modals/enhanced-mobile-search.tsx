@@ -1,47 +1,47 @@
-import { component$, useVisibleTask$, useSignal, $ } from '@builder.io/qwik';
+import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 export default component$(() => {
-  const isOpen = useSignal(false);
-  const searchType = useSignal<'simple' | 'advanced'>('advanced');
-  const isLoading = useSignal(false);
+  const isOpen = useSignal(false)
+  const searchType = useSignal<'simple' | 'advanced'>('advanced')
+  const isLoading = useSignal(false)
 
   useVisibleTask$(() => {
     // Enhanced RealScout script loading with retry logic
     const loadRealScoutScript = async () => {
       if (document.querySelector('script[src*="realscout-web-components"]')) {
-        return Promise.resolve();
+        return Promise.resolve()
       }
 
       return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
-        script.type = 'module';
-        script.crossOrigin = 'anonymous';
-        script.async = true;
-        
+        const script = document.createElement('script')
+        script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js'
+        script.type = 'module'
+        script.crossOrigin = 'anonymous'
+        script.async = true
+
         script.onload = () => {
-          console.log('RealScout script loaded successfully for mobile search');
-          resolve(true);
-        };
-        
+          console.log('RealScout script loaded successfully for mobile search')
+          resolve(true)
+        }
+
         script.onerror = () => {
-          console.error('RealScout script failed to load for mobile search');
-          reject(new Error('Script load failed'));
-        };
-        
-        document.head.appendChild(script);
-      });
-    };
+          console.error('RealScout script failed to load for mobile search')
+          reject(new Error('Script load failed'))
+        }
+
+        document.head.appendChild(script)
+      })
+    }
 
     // Load script when component mounts
     loadRealScoutScript().catch(() => {
-      console.warn('RealScout script loading failed, mobile search may not function properly');
-    });
-  });
+      console.warn('RealScout script loading failed, mobile search may not function properly')
+    })
+  })
 
   const openModal = $(() => {
-    console.log('Enhanced mobile search button clicked!');
-    
+    console.log('Enhanced mobile search button clicked!')
+
     // Track modal open event with enhanced analytics
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
@@ -52,17 +52,17 @@ export default component$(() => {
           depth: 'high',
           value: 2,
         }
-      );
+      )
     }
-    
-    isOpen.value = true;
-    isLoading.value = true;
-    
+
+    isOpen.value = true
+    isLoading.value = true
+
     // Simulate loading time for better UX
     setTimeout(() => {
-      isLoading.value = false;
-    }, 500);
-  });
+      isLoading.value = false
+    }, 500)
+  })
 
   const closeModal = $(() => {
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
@@ -74,14 +74,14 @@ export default component$(() => {
           depth: 'moderate',
           value: 1,
         }
-      );
+      )
     }
-    isOpen.value = false;
-  });
+    isOpen.value = false
+  })
 
   const switchSearchType = $((type: 'simple' | 'advanced') => {
-    searchType.value = type;
-    
+    searchType.value = type
+
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'mobile_search_modal',
@@ -91,55 +91,55 @@ export default component$(() => {
           depth: 'moderate',
           value: 1,
         }
-      );
+      )
     }
-  });
+  })
 
   // Handle keyboard events for accessibility
   const handleKeyDown = $((event: KeyboardEvent) => {
     if (event.key === 'Escape' && isOpen.value) {
-      closeModal();
+      closeModal()
     }
-  });
+  })
 
   // Focus management for accessibility
   useVisibleTask$(({ track }) => {
-    track(() => isOpen.value);
-    
+    track(() => isOpen.value)
+
     if (isOpen.value) {
       // Add keyboard event listener
-      document.addEventListener('keydown', handleKeyDown);
-      
+      document.addEventListener('keydown', handleKeyDown)
+
       // Focus the close button when modal opens
-      const closeButton = document.querySelector('.mobile-close-button') as HTMLElement;
+      const closeButton = document.querySelector('.mobile-close-button') as HTMLElement
       if (closeButton) {
-        closeButton.focus();
+        closeButton.focus()
       }
-      
+
       // Prevent body scroll when modal is open
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
       // Remove keyboard event listener
-      document.removeEventListener('keydown', handleKeyDown);
-      
+      document.removeEventListener('keydown', handleKeyDown)
+
       // Restore body scroll
-      document.body.style.overflow = '';
+      document.body.style.overflow = ''
     }
-    
+
     // Cleanup on component unmount
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
-    };
-  });
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+    }
+  })
 
   return (
     <>
       {/* Enhanced Mobile Modal */}
       {isOpen.value && (
-        <div 
-          id="enhanced-mobile-search-modal" 
-          class="mobile-modal-overlay" 
+        <div
+          id="enhanced-mobile-search-modal"
+          class="mobile-modal-overlay"
           onClick$={closeModal}
           role="dialog"
           aria-modal="true"
@@ -149,14 +149,14 @@ export default component$(() => {
           <div class="mobile-modal-content" onClick$={(e) => e.stopPropagation()}>
             <div class="mobile-modal-header">
               <div class="search-type-toggle">
-                <button 
+                <button
                   class={`toggle-button ${searchType.value === 'simple' ? 'active' : ''}`}
                   onClick$={() => switchSearchType('simple')}
                   aria-label="Switch to simple search"
                 >
                   Quick Search
                 </button>
-                <button 
+                <button
                   class={`toggle-button ${searchType.value === 'advanced' ? 'active' : ''}`}
                   onClick$={() => switchSearchType('advanced')}
                   aria-label="Switch to advanced search"
@@ -164,8 +164,8 @@ export default component$(() => {
                   Advanced Search
                 </button>
               </div>
-              <button 
-                class="mobile-close-button" 
+              <button
+                class="mobile-close-button"
                 onClick$={closeModal}
                 aria-label="Close search modal"
                 type="button"
@@ -173,19 +173,19 @@ export default component$(() => {
                 ×
               </button>
             </div>
-            
+
             <div class="mobile-modal-body" id="mobile-modal-description">
               {isLoading.value ? (
                 <div class="loading-container">
-                  <div class="loading-spinner"></div>
+                  <div class="loading-spinner" />
                   <p>Loading search...</p>
                 </div>
               ) : (
                 <>
                   {searchType.value === 'advanced' ? (
-                    <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+                    <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
                   ) : (
-                    <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-simple-search>
+                    <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
                   )}
                 </>
               )}
@@ -195,15 +195,17 @@ export default component$(() => {
       )}
 
       {/* Enhanced Mobile Floating Button */}
-      <button 
-        onClick$={openModal} 
+      <button
+        onClick$={openModal}
         class="mobile-search-trigger"
         aria-label="Open property search"
         type="button"
       >
-        <span class="search-icon" aria-hidden="true">🔍</span>
+        <span class="search-icon" aria-hidden="true">
+          🔍
+        </span>
         <span class="button-text">Search Properties</span>
-        <span class="pulse-indicator"></span>
+        <span class="pulse-indicator" />
       </button>
 
       <style>{`
@@ -584,5 +586,5 @@ export default component$(() => {
         }
       `}</style>
     </>
-  );
-});
+  )
+})

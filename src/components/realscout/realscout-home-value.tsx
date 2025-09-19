@@ -1,18 +1,18 @@
-import { component$, useVisibleTask$, useSignal } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 export default component$(() => {
-  const currentTheme = useSignal<'light' | 'dark' | 'vegas'>('light');
+  const currentTheme = useSignal<'light' | 'dark' | 'vegas'>('light')
 
   useVisibleTask$(() => {
     // Load RealScout script if not already loaded
     if (!document.querySelector('script[src*="realscout-web-components"]')) {
-      const script = document.createElement('script');
-      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
-      script.type = 'module';
-      script.crossOrigin = 'anonymous';
-      document.head.appendChild(script);
+      const script = document.createElement('script')
+      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js'
+      script.type = 'module'
+      script.crossOrigin = 'anonymous'
+      document.head.appendChild(script)
     }
-  });
+  })
 
   return (
     <div class="realscout-home-value-container">
@@ -104,37 +104,34 @@ export default component$(() => {
           color: white;
         }
       `}</style>
-      
+
       <div class="realscout-home-value-header">
         <h2>What's Your Home Worth?</h2>
         <p>Get an instant home valuation with market insights</p>
-        
+
         <div class="theme-switcher">
-          <button 
+          <button
             class={`theme-button ${currentTheme.value === 'light' ? 'active' : ''}`}
-            onClick$={() => currentTheme.value = 'light'}
+            onClick$={() => (currentTheme.value = 'light')}
           >
             Light
           </button>
-          <button 
+          <button
             class={`theme-button ${currentTheme.value === 'dark' ? 'active' : ''}`}
-            onClick$={() => currentTheme.value = 'dark'}
+            onClick$={() => (currentTheme.value = 'dark')}
           >
             Dark
           </button>
-          <button 
+          <button
             class={`theme-button ${currentTheme.value === 'vegas' ? 'active' : ''}`}
-            onClick$={() => currentTheme.value = 'vegas'}
+            onClick$={() => (currentTheme.value = 'vegas')}
           >
             Vegas
           </button>
         </div>
       </div>
-      
-      <realscout-home-value 
-        agent-encoded-id="QWdlbnQtMjI1MDUw"
-        class={currentTheme.value}
-      ></realscout-home-value>
+
+      <realscout-home-value agent-encoded-id="QWdlbnQtMjI1MDUw" class={currentTheme.value} />
     </div>
-  );
-});
+  )
+})

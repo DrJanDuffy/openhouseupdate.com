@@ -1,28 +1,27 @@
-import { component$, Slot, useStyles$ } from '@builder.io/qwik';
-import { routeLoader$, type DocumentHead } from '@builder.io/qwik-city';
-import { inject } from '@vercel/analytics';
-
-import Header from '~/components/starter/header/header';
-import Footer from '~/components/starter/footer/footer';
-import EnhancedStructuredData from '~/components/seo/enhanced-structured-data';
-import StickyHeader from '~/components/layout/header';
-import { MobileSearchButton } from '~/components/modals';
+import { component$, Slot, useStyles$ } from '@builder.io/qwik'
+import { type DocumentHead, routeLoader$ } from '@builder.io/qwik-city'
+import { inject } from '@vercel/analytics'
 // import EnhancedErrorBoundary from '~/components/error-boundary/enhanced-error-boundary';
-import EnhancedAnalytics from '~/components/analytics/enhanced-analytics';
-import CrawlerManagement from '~/components/seo/crawler-management';
-import Canonicalization from '~/components/seo/canonicalization';
-import JavaScriptCrawling from '~/components/seo/javascript-crawling';
+import EnhancedAnalytics from '~/components/analytics/enhanced-analytics'
+import StickyHeader from '~/components/layout/header'
+import { MobileSearchButton } from '~/components/modals'
+import Canonicalization from '~/components/seo/canonicalization'
+import CrawlerManagement from '~/components/seo/crawler-management'
+import EnhancedStructuredData from '~/components/seo/enhanced-structured-data'
+import JavaScriptCrawling from '~/components/seo/javascript-crawling'
+import Footer from '~/components/starter/footer/footer'
+import Header from '~/components/starter/header/header'
 
-import styles from './styles.css?inline';
+import styles from './styles.css?inline'
 
 export const useServerTimeLoader = routeLoader$(() => {
   return {
     date: new Date().toISOString(),
-  };
-});
+  }
+})
 
 export default component$(() => {
-  useStyles$(styles);
+  useStyles$(styles)
   return (
     <>
       {/* Enhanced Structured Data */}
@@ -31,34 +30,32 @@ export default component$(() => {
       <EnhancedStructuredData type="WebSite" data={{}} />
       <EnhancedStructuredData type="Organization" data={{}} />
       <EnhancedStructuredData type="LocalBusiness" data={{}} />
-      
+
       {/* Crawling and Indexing Optimization */}
-      <CrawlerManagement 
-        pageType="home" 
-        hasImages={true} 
-        hasVideo={false} 
+      <CrawlerManagement
+        pageType="home"
+        hasImages={true}
+        hasVideo={false}
         hasNews={true}
         priority={1.0}
         changeFrequency="daily"
       />
-      
-      <Canonicalization 
+
+      <Canonicalization
         currentUrl="https://www.openhouseupdate.com"
         preferredUrl="https://www.openhouseupdate.com"
         alternateUrls={[
-          { url: "https://www.openhouseupdate.com", hreflang: "en-US", rel: "alternate" }
+          { url: 'https://www.openhouseupdate.com', hreflang: 'en-US', rel: 'alternate' },
         ]}
       />
-      
-      <JavaScriptCrawling 
+
+      <JavaScriptCrawling
         hasJavaScript={true}
-        criticalJS={[
-          "https://em.realscout.com/widgets/realscout-web-components.umd.js"
-        ]}
+        criticalJS={['https://em.realscout.com/widgets/realscout-web-components.umd.js']}
         nonCriticalJS={[]}
         progressiveEnhancement={true}
       />
-      
+
       <Header />
       <StickyHeader />
       <main>
@@ -66,22 +63,22 @@ export default component$(() => {
       </main>
       <Footer />
       <MobileSearchButton />
-      
+
       {/* Analytics */}
       <script dangerouslySetInnerHTML={`${inject()}`} />
       <EnhancedAnalytics measurementId="G-XXXXXXXXXX" />
-      
+
       {/* RealScout Script with Enhanced Loading */}
-      <script 
-        src="https://em.realscout.com/widgets/realscout-web-components.umd.js" 
-        type="module" 
+      <script
+        src="https://em.realscout.com/widgets/realscout-web-components.umd.js"
+        type="module"
         crossOrigin="anonymous"
         async
         defer
       />
     </>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'Open House Update - Las Vegas Real Estate | Dr. Janet Duffy',
@@ -89,11 +86,13 @@ export const head: DocumentHead = {
     // Basic SEO
     {
       name: 'description',
-      content: 'Professional real estate services in Las Vegas. Find your perfect home with Dr. Janet Duffy. Browse listings, get home valuations, and expert guidance.',
+      content:
+        'Professional real estate services in Las Vegas. Find your perfect home with Dr. Janet Duffy. Browse listings, get home valuations, and expert guidance.',
     },
     {
       name: 'keywords',
-      content: 'Las Vegas real estate, Nevada homes, property search, home valuation, real estate agent, Dr. Janet Duffy, open house, property listings, Summerlin, Henderson, North Las Vegas',
+      content:
+        'Las Vegas real estate, Nevada homes, property search, home valuation, real estate agent, Dr. Janet Duffy, open house, property listings, Summerlin, Henderson, North Las Vegas',
     },
     {
       name: 'author',
@@ -146,7 +145,8 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:description',
-      content: 'Professional real estate services in Las Vegas. Find your perfect home with expert guidance.',
+      content:
+        'Professional real estate services in Las Vegas. Find your perfect home with expert guidance.',
     },
     {
       property: 'og:type',
@@ -203,7 +203,8 @@ export const head: DocumentHead = {
     },
     {
       name: 'twitter:description',
-      content: 'Professional real estate services in Las Vegas. Find your perfect home with expert guidance.',
+      content:
+        'Professional real estate services in Las Vegas. Find your perfect home with expert guidance.',
     },
     {
       name: 'twitter:image',
@@ -331,4 +332,4 @@ export const head: DocumentHead = {
       href: '/sitemap.xml',
     },
   ],
-};
+}

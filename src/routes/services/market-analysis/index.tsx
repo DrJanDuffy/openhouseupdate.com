@@ -1,5 +1,5 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { component$, useVisibleTask$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
   useVisibleTask$(() => {
@@ -8,10 +8,10 @@ export default component$(() => {
       window.gtag('event', 'market_analysis_page_view', {
         event_category: 'service',
         event_label: 'market_analysis',
-        value: 1
-      });
+        value: 1,
+      })
     }
-  });
+  })
 
   return (
     <div class="market-analysis-page">
@@ -346,7 +346,8 @@ export default component$(() => {
       <div class="market-hero">
         <h1>Market Analysis</h1>
         <p>
-          Stay informed with detailed market reports, trends analysis, and neighborhood insights for informed decision-making.
+          Stay informed with detailed market reports, trends analysis, and neighborhood insights for
+          informed decision-making.
         </p>
       </div>
 
@@ -354,7 +355,8 @@ export default component$(() => {
         <div class="analysis-card">
           <h3>📊 Monthly Market Reports</h3>
           <p>
-            Comprehensive monthly reports covering market trends, inventory levels, and pricing movements across Las Vegas.
+            Comprehensive monthly reports covering market trends, inventory levels, and pricing
+            movements across Las Vegas.
           </p>
           <ul>
             <li>Sales volume analysis</li>
@@ -368,7 +370,8 @@ export default component$(() => {
         <div class="analysis-card">
           <h3>🏘️ Neighborhood Analysis</h3>
           <p>
-            Detailed analysis of specific neighborhoods, including market performance, amenities, and investment potential.
+            Detailed analysis of specific neighborhoods, including market performance, amenities,
+            and investment potential.
           </p>
           <ul>
             <li>Neighborhood market trends</li>
@@ -382,7 +385,8 @@ export default component$(() => {
         <div class="analysis-card">
           <h3>💰 Investment Analysis</h3>
           <p>
-            Strategic investment analysis to identify opportunities and assess potential returns in the Las Vegas market.
+            Strategic investment analysis to identify opportunities and assess potential returns in
+            the Las Vegas market.
           </p>
           <ul>
             <li>ROI calculations</li>
@@ -396,7 +400,8 @@ export default component$(() => {
         <div class="analysis-card">
           <h3>📈 Trend Forecasting</h3>
           <p>
-            Forward-looking analysis to help you anticipate market changes and make proactive decisions.
+            Forward-looking analysis to help you anticipate market changes and make proactive
+            decisions.
           </p>
           <ul>
             <li>Price trend predictions</li>
@@ -416,31 +421,31 @@ export default component$(() => {
             <div class="label">Median Home Price</div>
             <div class="change positive">+3.2% vs last month</div>
           </div>
-          
+
           <div class="data-card">
             <div class="metric">28</div>
             <div class="label">Days on Market</div>
             <div class="change negative">-5 days vs last month</div>
           </div>
-          
+
           <div class="data-card">
             <div class="metric">2,847</div>
             <div class="label">Active Listings</div>
             <div class="change positive">+8.5% vs last month</div>
           </div>
-          
+
           <div class="data-card">
             <div class="metric">1,234</div>
             <div class="label">Monthly Sales</div>
             <div class="change positive">+12.3% vs last month</div>
           </div>
-          
+
           <div class="data-card">
             <div class="metric">98.5%</div>
             <div class="label">List-to-Sale Ratio</div>
             <div class="change positive">+0.8% vs last month</div>
           </div>
-          
+
           <div class="data-card">
             <div class="metric">4.2%</div>
             <div class="label">Months of Inventory</div>
@@ -454,37 +459,55 @@ export default component$(() => {
         <div class="reports-grid">
           <div class="report-card">
             <h3>Monthly Market Summary</h3>
-            <p>Comprehensive overview of Las Vegas real estate market performance including sales, pricing, and inventory trends.</p>
+            <p>
+              Comprehensive overview of Las Vegas real estate market performance including sales,
+              pricing, and inventory trends.
+            </p>
             <div class="frequency">Updated Monthly</div>
           </div>
-          
+
           <div class="report-card">
             <h3>Neighborhood Spotlight</h3>
-            <p>In-depth analysis of specific neighborhoods including market trends, amenities, and investment opportunities.</p>
+            <p>
+              In-depth analysis of specific neighborhoods including market trends, amenities, and
+              investment opportunities.
+            </p>
             <div class="frequency">Updated Quarterly</div>
           </div>
-          
+
           <div class="report-card">
             <h3>Price Range Analysis</h3>
-            <p>Detailed breakdown of market performance across different price ranges and property types.</p>
+            <p>
+              Detailed breakdown of market performance across different price ranges and property
+              types.
+            </p>
             <div class="frequency">Updated Monthly</div>
           </div>
-          
+
           <div class="report-card">
             <h3>Investment Opportunities</h3>
-            <p>Strategic analysis of investment potential including ROI projections and market timing recommendations.</p>
+            <p>
+              Strategic analysis of investment potential including ROI projections and market timing
+              recommendations.
+            </p>
             <div class="frequency">Updated Quarterly</div>
           </div>
-          
+
           <div class="report-card">
             <h3>Forecasting Report</h3>
-            <p>Forward-looking analysis with predictions for market trends, pricing, and investment opportunities.</p>
+            <p>
+              Forward-looking analysis with predictions for market trends, pricing, and investment
+              opportunities.
+            </p>
             <div class="frequency">Updated Bi-Annually</div>
           </div>
-          
+
           <div class="report-card">
             <h3>Custom Analysis</h3>
-            <p>Tailored market analysis for specific properties, neighborhoods, or investment strategies.</p>
+            <p>
+              Tailored market analysis for specific properties, neighborhoods, or investment
+              strategies.
+            </p>
             <div class="frequency">On Request</div>
           </div>
         </div>
@@ -498,31 +521,31 @@ export default component$(() => {
             <div class="avg-price">$785,000</div>
             <div class="trend up">+4.2% this quarter</div>
           </div>
-          
+
           <div class="neighborhood-card">
             <h3>Henderson</h3>
             <div class="avg-price">$625,000</div>
             <div class="trend up">+2.8% this quarter</div>
           </div>
-          
+
           <div class="neighborhood-card">
             <h3>North Las Vegas</h3>
             <div class="avg-price">$425,000</div>
             <div class="trend up">+3.5% this quarter</div>
           </div>
-          
+
           <div class="neighborhood-card">
             <h3>Spring Valley</h3>
             <div class="avg-price">$485,000</div>
             <div class="trend up">+2.1% this quarter</div>
           </div>
-          
+
           <div class="neighborhood-card">
             <h3>Enterprise</h3>
             <div class="avg-price">$695,000</div>
             <div class="trend up">+3.8% this quarter</div>
           </div>
-          
+
           <div class="neighborhood-card">
             <h3>Downtown</h3>
             <div class="avg-price">$385,000</div>
@@ -534,27 +557,34 @@ export default component$(() => {
       <div class="cta-section">
         <h2>Get Your Market Analysis</h2>
         <p>
-          Stay ahead of the market with detailed analysis and insights from Dr. Janet Duffy's expert market knowledge.
+          Stay ahead of the market with detailed analysis and insights from Dr. Janet Duffy's expert
+          market knowledge.
         </p>
         <div class="cta-buttons">
-          <a href="/contact" class="cta-button">Request Custom Analysis</a>
-          <a href="/services/home-valuation" class="cta-button secondary">Get Property Valuation</a>
+          <a href="/contact" class="cta-button">
+            Request Custom Analysis
+          </a>
+          <a href="/services/home-valuation" class="cta-button secondary">
+            Get Property Valuation
+          </a>
         </div>
       </div>
     </div>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Janet Duffy',
   meta: [
     {
       name: 'description',
-      content: 'Comprehensive market analysis and trends for Las Vegas real estate. Monthly reports, neighborhood insights, and investment analysis from Dr. Janet Duffy.',
+      content:
+        'Comprehensive market analysis and trends for Las Vegas real estate. Monthly reports, neighborhood insights, and investment analysis from Dr. Janet Duffy.',
     },
     {
       name: 'keywords',
-      content: 'Las Vegas market analysis, real estate trends, market reports, neighborhood analysis, investment analysis, Dr. Janet Duffy, market data',
+      content:
+        'Las Vegas market analysis, real estate trends, market reports, neighborhood analysis, investment analysis, Dr. Janet Duffy, market data',
     },
     {
       name: 'author',
@@ -570,7 +600,8 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:description',
-      content: 'Comprehensive market analysis and trends for Las Vegas real estate. Monthly reports and neighborhood insights.',
+      content:
+        'Comprehensive market analysis and trends for Las Vegas real estate. Monthly reports and neighborhood insights.',
     },
     {
       property: 'og:type',
@@ -594,7 +625,8 @@ export const head: DocumentHead = {
     },
     {
       name: 'twitter:description',
-      content: 'Comprehensive market analysis and trends for Las Vegas real estate. Monthly reports and neighborhood insights.',
+      content:
+        'Comprehensive market analysis and trends for Las Vegas real estate. Monthly reports and neighborhood insights.',
     },
   ],
   links: [
@@ -603,4 +635,4 @@ export const head: DocumentHead = {
       href: 'https://openhouseupdate.com/services/market-analysis',
     },
   ],
-};
+}

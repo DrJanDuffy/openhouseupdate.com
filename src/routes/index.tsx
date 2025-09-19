@@ -1,80 +1,83 @@
-import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
-import RealScoutMap from '~/components/realscout/RealScoutMap';
-import EnhancedMortgageCalculator from '~/components/widgets/enhanced-mortgage-calculator';
-import PerformanceMonitor from '~/components/performance/performance-monitor';
-import FAQSection from '~/components/seo/faq-section';
-import { createSEOHead } from '~/components/seo/seo-head';
-import FreeHomeValuationCTA from '~/components/cta/free-home-valuation-cta';
-import NeighborhoodGuides from '~/components/lead-magnets/neighborhood-guides';
-import ClientTestimonials from '~/components/testimonials/client-testimonials';
-import FirstTimeBuyerGuide from '~/components/lead-magnets/first-time-buyer-guide';
-import ExitIntentPopup from '~/components/modals/exit-intent-popup';
+import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
+import FreeHomeValuationCTA from '~/components/cta/free-home-valuation-cta'
+import FirstTimeBuyerGuide from '~/components/lead-magnets/first-time-buyer-guide'
+import NeighborhoodGuides from '~/components/lead-magnets/neighborhood-guides'
+import ExitIntentPopup from '~/components/modals/exit-intent-popup'
+import PerformanceMonitor from '~/components/performance/performance-monitor'
+import RealScoutMap from '~/components/realscout/RealScoutMap'
+import FAQSection from '~/components/seo/faq-section'
+import { createSEOHead } from '~/components/seo/seo-head'
+import ClientTestimonials from '~/components/testimonials/client-testimonials'
+import EnhancedMortgageCalculator from '~/components/widgets/enhanced-mortgage-calculator'
 
 export default component$(() => {
-  const showAdvanced = useSignal(true);
-  const showCalculator = useSignal(false);
-  const showExitIntent = useSignal(false);
+  const showAdvanced = useSignal(true)
+  const showCalculator = useSignal(false)
+  const showExitIntent = useSignal(false)
 
   const showSimpleSearch = $(() => {
-    showAdvanced.value = false;
-    
+    showAdvanced.value = false
+
     // Track in enhanced analytics
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackPropertySearch('simple_search', {
         search_mode: 'simple',
         depth: 'moderate',
         value: 1,
-      });
+      })
     }
-  });
+  })
 
   const showAdvancedSearch = $(() => {
-    showAdvanced.value = true;
-    
+    showAdvanced.value = true
+
     // Track in enhanced analytics
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackPropertySearch('advanced_search', {
         search_mode: 'advanced',
         depth: 'high',
         value: 2,
-      });
+      })
     }
-  });
+  })
 
   const toggleCalculator = $(() => {
-    showCalculator.value = !showCalculator.value;
-    
+    showCalculator.value = !showCalculator.value
+
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'mortgage_calculator',
         showCalculator.value ? 'calculator_opened' : 'calculator_closed',
         { depth: 'moderate', value: 1 }
-      );
+      )
     }
-  });
+  })
 
   // Enhanced RealScout component monitoring
   useVisibleTask$(() => {
     // Wait for RealScout script to load and custom elements to be defined
     const initializeRealScout = () => {
       // Check if RealScout script is loaded
-      const script = document.querySelector('script[src*="realscout-web-components"]');
+      const script = document.querySelector('script[src*="realscout-web-components"]')
       if (!script) {
-        console.log('RealScout script not found, retrying...');
-        setTimeout(initializeRealScout, 500);
-        return;
+        console.log('RealScout script not found, retrying...')
+        setTimeout(initializeRealScout, 500)
+        return
       }
 
       // Wait for custom elements to be defined
       const checkElements = () => {
-        if (customElements.get('realscout-advanced-search') && customElements.get('realscout-simple-search')) {
-          console.log('RealScout custom elements found, initializing...');
-          
+        if (
+          customElements.get('realscout-advanced-search') &&
+          customElements.get('realscout-simple-search')
+        ) {
+          console.log('RealScout custom elements found, initializing...')
+
           // Add enhanced event listeners for search interactions
-          const advancedSearch = document.querySelector('realscout-advanced-search');
-          const simpleSearch = document.querySelector('realscout-simple-search');
-          
+          const advancedSearch = document.querySelector('realscout-advanced-search')
+          const simpleSearch = document.querySelector('realscout-simple-search')
+
           if (advancedSearch && window.enhancedRealEstateAnalytics) {
             // Track when advanced search is used
             advancedSearch.addEventListener('search', () => {
@@ -82,18 +85,18 @@ export default component$(() => {
                 search_mode: 'advanced',
                 depth: 'high',
                 value: 3,
-              });
-            });
+              })
+            })
 
             advancedSearch.addEventListener('filter', () => {
               window.enhancedRealEstateAnalytics.trackWidgetInteraction(
                 'realscout_advanced_search',
                 'filter_applied',
                 { depth: 'moderate', value: 1 }
-              );
-            });
+              )
+            })
           }
-          
+
           if (simpleSearch && window.enhancedRealEstateAnalytics) {
             // Track when simple search is used
             simpleSearch.addEventListener('search', () => {
@@ -101,22 +104,22 @@ export default component$(() => {
                 search_mode: 'simple',
                 depth: 'moderate',
                 value: 2,
-              });
-            });
+              })
+            })
           }
-          
-          return;
+
+          return
         }
-        
-        console.log('Waiting for RealScout custom elements...');
-        setTimeout(checkElements, 200);
-      };
-      
-      checkElements();
-    };
+
+        console.log('Waiting for RealScout custom elements...')
+        setTimeout(checkElements, 200)
+      }
+
+      checkElements()
+    }
 
     // Start initialization
-    initializeRealScout();
+    initializeRealScout()
 
     // Track initial page engagement
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
@@ -125,39 +128,39 @@ export default component$(() => {
         search_mode: showAdvanced.value ? 'advanced' : 'simple',
         depth: 'high',
         value: 1,
-      });
+      })
     }
 
     // Exit intent detection
-    let hasShownExitIntent = false;
+    let hasShownExitIntent = false
     const handleMouseLeave = (event: MouseEvent) => {
       if (event.clientY <= 0 && !hasShownExitIntent) {
-        hasShownExitIntent = true;
-        showExitIntent.value = true;
-        
+        hasShownExitIntent = true
+        showExitIntent.value = true
+
         // Track exit intent
         if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
           window.enhancedRealEstateAnalytics.trackWidgetInteraction(
             'exit_intent_detected',
             'mouse_leave',
             { depth: 'high', value: 2 }
-          );
+          )
         }
       }
-    };
+    }
 
-    document.addEventListener('mouseleave', handleMouseLeave);
-    
+    document.addEventListener('mouseleave', handleMouseLeave)
+
     return () => {
-      document.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  });
+      document.removeEventListener('mouseleave', handleMouseLeave)
+    }
+  })
 
   return (
     <>
       {/* Performance Monitoring */}
       <PerformanceMonitor />
-      
+
       {/* Enhanced RealScout Search Section */}
       <section class="realscout-section">
         <style>{`
@@ -337,25 +340,19 @@ export default component$(() => {
         </div>
 
         <div class="search-toggle">
-          <button 
-            class={showAdvanced.value ? '' : 'active'}
-            onClick$={showSimpleSearch}
-          >
+          <button class={showAdvanced.value ? '' : 'active'} onClick$={showSimpleSearch}>
             Quick Search
           </button>
-          <button 
-            class={showAdvanced.value ? 'active' : ''}
-            onClick$={showAdvancedSearch}
-          >
+          <button class={showAdvanced.value ? 'active' : ''} onClick$={showAdvancedSearch}>
             Advanced Search
           </button>
         </div>
 
         <div class="widget-container">
           {showAdvanced.value ? (
-            <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+            <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
           ) : (
-            <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-simple-search>
+            <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
           )}
         </div>
 
@@ -453,17 +450,12 @@ export default component$(() => {
           <div class="map-section-title">
             <h2>Explore Properties on the Map</h2>
             <p>
-              View all available properties in Las Vegas on our interactive map. 
-              Find the perfect location for your next home.
+              View all available properties in Las Vegas on our interactive map. Find the perfect
+              location for your next home.
             </p>
           </div>
 
-          <RealScoutMap 
-            geoType="city" 
-            geoId="3240000" 
-            height="500px" 
-            width="100%"
-          />
+          <RealScoutMap geoType="city" geoId="3240000" height="500px" width="100%" />
 
           <div class="map-actions">
             <a href="/map" class="map-action-btn">
@@ -487,18 +479,19 @@ export default component$(() => {
               Free Resources for Your Real Estate Journey
             </h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-              Get expert insights and tools to help you make informed decisions about buying or selling your Las Vegas home.
+              Get expert insights and tools to help you make informed decisions about buying or
+              selling your Las Vegas home.
             </p>
           </div>
-          
+
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Free Home Valuation CTA */}
             <FreeHomeValuationCTA variant="card" />
-            
+
             {/* First-Time Buyer Guide */}
             <FirstTimeBuyerGuide variant="card" />
           </div>
-          
+
           <div class="mt-8">
             {/* Neighborhood Guides */}
             <NeighborhoodGuides />
@@ -507,44 +500,50 @@ export default component$(() => {
       </section>
 
       {/* FAQ Section */}
-      <FAQSection 
+      <FAQSection
         faqs={[
           {
-            question: "How do I start searching for a home in Las Vegas?",
-            answer: "You can start by using our advanced property search tool above, browsing by neighborhood, or contacting Dr. Janet Duffy directly for personalized assistance. We also offer map-based searches and weekend open house listings."
+            question: 'How do I start searching for a home in Las Vegas?',
+            answer:
+              'You can start by using our advanced property search tool above, browsing by neighborhood, or contacting Dr. Janet Duffy directly for personalized assistance. We also offer map-based searches and weekend open house listings.',
           },
           {
-            question: "What areas of Las Vegas do you serve?",
-            answer: "Dr. Janet Duffy serves the entire Las Vegas Valley including Summerlin, Henderson, North Las Vegas, Spring Valley, Enterprise, and surrounding areas. We have extensive local market knowledge across all neighborhoods."
+            question: 'What areas of Las Vegas do you serve?',
+            answer:
+              'Dr. Janet Duffy serves the entire Las Vegas Valley including Summerlin, Henderson, North Las Vegas, Spring Valley, Enterprise, and surrounding areas. We have extensive local market knowledge across all neighborhoods.',
           },
           {
-            question: "How accurate are home valuations?",
-            answer: "Our home valuations use current market data, comparable sales, and local market trends to provide accurate estimates. For the most precise valuation, we recommend scheduling a professional assessment with Dr. Janet Duffy."
+            question: 'How accurate are home valuations?',
+            answer:
+              'Our home valuations use current market data, comparable sales, and local market trends to provide accurate estimates. For the most precise valuation, we recommend scheduling a professional assessment with Dr. Janet Duffy.',
           },
           {
-            question: "What services do you offer for buyers?",
-            answer: "We provide comprehensive buyer services including property search assistance, market analysis, negotiation support, inspection coordination, and guidance through the entire closing process."
+            question: 'What services do you offer for buyers?',
+            answer:
+              'We provide comprehensive buyer services including property search assistance, market analysis, negotiation support, inspection coordination, and guidance through the entire closing process.',
           },
           {
-            question: "How can I prepare my home for sale?",
-            answer: "We offer staging consultations, market analysis, pricing strategies, and professional marketing services. Dr. Janet Duffy will provide personalized recommendations to maximize your home's value and appeal."
-          }
+            question: 'How can I prepare my home for sale?',
+            answer:
+              "We offer staging consultations, market analysis, pricing strategies, and professional marketing services. Dr. Janet Duffy will provide personalized recommendations to maximize your home's value and appeal.",
+          },
         ]}
         title="Frequently Asked Questions"
       />
 
       {/* Exit Intent Popup */}
-      <ExitIntentPopup 
-        isVisible={showExitIntent.value} 
-        onClose={() => showExitIntent.value = false} 
+      <ExitIntentPopup
+        isVisible={showExitIntent.value}
+        onClose={() => (showExitIntent.value = false)}
       />
     </>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = createSEOHead({
   title: 'Las Vegas Real Estate - Find Your Dream Home',
-  description: 'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance. Serving Summerlin, Henderson, North Las Vegas and all Las Vegas Valley neighborhoods.',
+  description:
+    'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance. Serving Summerlin, Henderson, North Las Vegas and all Las Vegas Valley neighborhoods.',
   keywords: [
     'Las Vegas real estate',
     'Nevada homes',
@@ -562,7 +561,7 @@ export const head: DocumentHead = createSEOHead({
     'home buying',
     'home selling',
     'market analysis',
-    'Las Vegas neighborhoods'
+    'Las Vegas neighborhoods',
   ],
   canonicalUrl: 'https://openhouseupdate.com',
   ogImage: 'https://openhouseupdate.com/images/og-homepage.jpg',
@@ -576,6 +575,6 @@ export const head: DocumentHead = createSEOHead({
     'Dr. Janet Duffy',
     'Nevada',
     'Summerlin',
-    'Henderson'
-  ]
-});
+    'Henderson',
+  ],
+})

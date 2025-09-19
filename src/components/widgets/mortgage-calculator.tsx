@@ -1,71 +1,72 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { $, component$, useSignal } from '@builder.io/qwik'
 
 export default component$(() => {
-  const loanAmount = useSignal(500000);
-  const interestRate = useSignal(6.5);
-  const loanTerm = useSignal(30);
-  const downPayment = useSignal(100000);
-  const propertyTax = useSignal(6000);
-  const insurance = useSignal(1200);
-  const pmi = useSignal(0);
+  const loanAmount = useSignal(500000)
+  const interestRate = useSignal(6.5)
+  const loanTerm = useSignal(30)
+  const downPayment = useSignal(100000)
+  const propertyTax = useSignal(6000)
+  const insurance = useSignal(1200)
+  const pmi = useSignal(0)
 
-  const monthlyPayment = useSignal(0);
-  const totalInterest = useSignal(0);
-  const totalCost = useSignal(0);
+  const monthlyPayment = useSignal(0)
+  const totalInterest = useSignal(0)
+  const totalCost = useSignal(0)
 
   const updateCalculations = $(() => {
     // Calculate payment directly here to avoid serialization issues
-    const principal = loanAmount.value - downPayment.value;
-    const monthlyRate = interestRate.value / 100 / 12;
-    const numPayments = loanTerm.value * 12;
-    
-    let payment: number;
+    const principal = loanAmount.value - downPayment.value
+    const monthlyRate = interestRate.value / 100 / 12
+    const numPayments = loanTerm.value * 12
+
+    let payment: number
     if (monthlyRate === 0) {
-      payment = principal / numPayments;
+      payment = principal / numPayments
     } else {
-      payment = principal * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
-                (Math.pow(1 + monthlyRate, numPayments) - 1);
+      payment =
+        (principal * (monthlyRate * (1 + monthlyRate) ** numPayments)) /
+        ((1 + monthlyRate) ** numPayments - 1)
     }
-    
-    const totalPayments = payment * numPayments;
-    const interest = totalPayments - principal;
-    const total = totalPayments + propertyTax.value + insurance.value + pmi.value;
-    
-    monthlyPayment.value = Math.round(payment);
-    totalInterest.value = Math.round(interest);
-    totalCost.value = Math.round(total);
-  });
+
+    const totalPayments = payment * numPayments
+    const interest = totalPayments - principal
+    const total = totalPayments + propertyTax.value + insurance.value + pmi.value
+
+    monthlyPayment.value = Math.round(payment)
+    totalInterest.value = Math.round(interest)
+    totalCost.value = Math.round(total)
+  })
 
   // Update calculations when values change
   const updateValue = $((field: string, value: number) => {
     switch (field) {
       case 'loanAmount':
-        loanAmount.value = value;
-        break;
+        loanAmount.value = value
+        break
       case 'interestRate':
-        interestRate.value = value;
-        break;
+        interestRate.value = value
+        break
       case 'loanTerm':
-        loanTerm.value = value;
-        break;
+        loanTerm.value = value
+        break
       case 'downPayment':
-        downPayment.value = value;
-        break;
+        downPayment.value = value
+        break
       case 'propertyTax':
-        propertyTax.value = value;
-        break;
+        propertyTax.value = value
+        break
       case 'insurance':
-        insurance.value = value;
-        break;
+        insurance.value = value
+        break
       case 'pmi':
-        pmi.value = value;
-        break;
+        pmi.value = value
+        break
     }
-    updateCalculations();
-  });
+    updateCalculations()
+  })
 
   // Initialize calculations
-  updateCalculations();
+  updateCalculations()
 
   return (
     <div class="mortgage-calculator-container">
@@ -232,12 +233,12 @@ export default component$(() => {
           }
         }
       `}</style>
-      
+
       <div class="calculator-header">
         <h2>Mortgage Calculator</h2>
         <p>Calculate your monthly mortgage payment and total costs</p>
       </div>
-      
+
       <div class="calculator-content">
         <div class="input-section">
           <div class="form-group">
@@ -247,11 +248,16 @@ export default component$(() => {
                 type="number"
                 id="loanAmount"
                 value={loanAmount.value}
-                onInput$={(event) => updateValue('loanAmount', parseInt((event.target as HTMLInputElement).value) || 0)}
+                onInput$={(event) =>
+                  updateValue(
+                    'loanAmount',
+                    Number.parseInt((event.target as HTMLInputElement).value) || 0
+                  )
+                }
               />
             </div>
           </div>
-          
+
           <div class="form-group">
             <label for="downPayment">Down Payment</label>
             <div class="input-with-symbol">
@@ -259,11 +265,16 @@ export default component$(() => {
                 type="number"
                 id="downPayment"
                 value={downPayment.value}
-                onInput$={(event) => updateValue('downPayment', parseInt((event.target as HTMLInputElement).value) || 0)}
+                onInput$={(event) =>
+                  updateValue(
+                    'downPayment',
+                    Number.parseInt((event.target as HTMLInputElement).value) || 0
+                  )
+                }
               />
             </div>
           </div>
-          
+
           <div class="form-group">
             <label for="interestRate">Interest Rate</label>
             <div class="input-with-symbol percentage-input">
@@ -272,21 +283,31 @@ export default component$(() => {
                 id="interestRate"
                 step="0.1"
                 value={interestRate.value}
-                onInput$={(event) => updateValue('interestRate', parseFloat((event.target as HTMLInputElement).value) || 0)}
+                onInput$={(event) =>
+                  updateValue(
+                    'interestRate',
+                    Number.parseFloat((event.target as HTMLInputElement).value) || 0
+                  )
+                }
               />
             </div>
           </div>
-          
+
           <div class="form-group">
             <label for="loanTerm">Loan Term (Years)</label>
             <input
               type="number"
               id="loanTerm"
               value={loanTerm.value}
-              onInput$={(event) => updateValue('loanTerm', parseInt((event.target as HTMLInputElement).value) || 0)}
+              onInput$={(event) =>
+                updateValue(
+                  'loanTerm',
+                  Number.parseInt((event.target as HTMLInputElement).value) || 0
+                )
+              }
             />
           </div>
-          
+
           <div class="form-group">
             <label for="propertyTax">Annual Property Tax</label>
             <div class="input-with-symbol">
@@ -294,11 +315,16 @@ export default component$(() => {
                 type="number"
                 id="propertyTax"
                 value={propertyTax.value}
-                onInput$={(event) => updateValue('propertyTax', parseInt((event.target as HTMLInputElement).value) || 0)}
+                onInput$={(event) =>
+                  updateValue(
+                    'propertyTax',
+                    Number.parseInt((event.target as HTMLInputElement).value) || 0
+                  )
+                }
               />
             </div>
           </div>
-          
+
           <div class="form-group">
             <label for="insurance">Annual Insurance</label>
             <div class="input-with-symbol">
@@ -306,38 +332,43 @@ export default component$(() => {
                 type="number"
                 id="insurance"
                 value={insurance.value}
-                onInput$={(event) => updateValue('insurance', parseInt((event.target as HTMLInputElement).value) || 0)}
+                onInput$={(event) =>
+                  updateValue(
+                    'insurance',
+                    Number.parseInt((event.target as HTMLInputElement).value) || 0
+                  )
+                }
               />
             </div>
           </div>
         </div>
-        
+
         <div class="results-section">
           <div class="monthly-payment">
             <div class="amount">${monthlyPayment.value.toLocaleString()}</div>
             <div class="label">Monthly Payment</div>
           </div>
-          
+
           <div class="result-item">
             <span class="result-label">Principal & Interest</span>
             <span class="result-value">${monthlyPayment.value.toLocaleString()}</span>
           </div>
-          
+
           <div class="result-item">
             <span class="result-label">Property Tax</span>
             <span class="result-value">${Math.round(propertyTax.value / 12).toLocaleString()}</span>
           </div>
-          
+
           <div class="result-item">
             <span class="result-label">Insurance</span>
             <span class="result-value">${Math.round(insurance.value / 12).toLocaleString()}</span>
           </div>
-          
+
           <div class="result-item">
             <span class="result-label">Total Interest Paid</span>
             <span class="result-value">${totalInterest.value.toLocaleString()}</span>
           </div>
-          
+
           <div class="result-item">
             <span class="result-label">Total Cost of Loan</span>
             <span class="result-value">${totalCost.value.toLocaleString()}</span>
@@ -345,5 +376,5 @@ export default component$(() => {
         </div>
       </div>
     </div>
-  );
-});
+  )
+})

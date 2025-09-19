@@ -1,16 +1,16 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
-import styles from './counter.module.css';
-import Gauge from '../gauge';
+import { $, component$, useSignal } from '@builder.io/qwik'
+import Gauge from '../gauge'
+import styles from './counter.module.css'
 
 export default component$(() => {
-  const count = useSignal(70);
+  const count = useSignal(70)
 
   const setCount = $((newValue: number) => {
     if (newValue < 0 || newValue > 100) {
-      return;
+      return
     }
-    count.value = newValue;
-  });
+    count.value = newValue
+  })
 
   return (
     <div class={styles['counter-wrapper']}>
@@ -22,5 +22,5 @@ export default component$(() => {
         +
       </button>
     </div>
-  );
-});
+  )
+})

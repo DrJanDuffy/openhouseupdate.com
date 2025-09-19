@@ -1,4 +1,4 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { $, component$, useSignal } from '@builder.io/qwik'
 
 export default component$(() => {
   const formData = useSignal({
@@ -8,26 +8,26 @@ export default component$(() => {
     message: '',
     propertyType: 'buyer',
     budget: '',
-    timeline: ''
-  });
+    timeline: '',
+  })
 
-  const isSubmitting = useSignal(false);
-  const submitStatus = useSignal<'idle' | 'success' | 'error'>('idle');
+  const isSubmitting = useSignal(false)
+  const submitStatus = useSignal<'idle' | 'success' | 'error'>('idle')
 
   const handleSubmit = $(async (event: any) => {
-    event.preventDefault();
-    isSubmitting.value = true;
-    submitStatus.value = 'idle';
+    event.preventDefault()
+    isSubmitting.value = true
+    submitStatus.value = 'idle'
 
     try {
       // Simulate form submission - replace with actual API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+
       // Here you would typically send the data to your backend
-      console.log('Form submitted:', formData.value);
-      
-      submitStatus.value = 'success';
-      
+      console.log('Form submitted:', formData.value)
+
+      submitStatus.value = 'success'
+
       // Reset form
       formData.value = {
         name: '',
@@ -36,15 +36,15 @@ export default component$(() => {
         message: '',
         propertyType: 'buyer',
         budget: '',
-        timeline: ''
-      };
+        timeline: '',
+      }
     } catch (error) {
-      console.error('Form submission error:', error);
-      submitStatus.value = 'error';
+      console.error('Form submission error:', error)
+      submitStatus.value = 'error'
     } finally {
-      isSubmitting.value = false;
+      isSubmitting.value = false
     }
-  });
+  })
 
   return (
     <div class="contact-form-container">
@@ -172,12 +172,12 @@ export default component$(() => {
           }
         }
       `}</style>
-      
+
       <div class="contact-form-header">
         <h2>Get In Touch</h2>
         <p>Ready to find your perfect Las Vegas home? Let's connect!</p>
       </div>
-      
+
       <form preventdefault:submit onSubmit$={handleSubmit}>
         <div class="form-row">
           <div class="form-group">
@@ -188,11 +188,14 @@ export default component$(() => {
               required
               value={formData.value.name}
               onInput$={(event) => {
-                formData.value = { ...formData.value, name: (event.target as HTMLInputElement).value };
+                formData.value = {
+                  ...formData.value,
+                  name: (event.target as HTMLInputElement).value,
+                }
               }}
             />
           </div>
-          
+
           <div class="form-group">
             <label for="email">Email Address *</label>
             <input
@@ -201,12 +204,15 @@ export default component$(() => {
               required
               value={formData.value.email}
               onInput$={(event) => {
-                formData.value = { ...formData.value, email: (event.target as HTMLInputElement).value };
+                formData.value = {
+                  ...formData.value,
+                  email: (event.target as HTMLInputElement).value,
+                }
               }}
             />
           </div>
         </div>
-        
+
         <div class="form-row">
           <div class="form-group">
             <label for="phone">Phone Number</label>
@@ -215,18 +221,24 @@ export default component$(() => {
               id="phone"
               value={formData.value.phone}
               onInput$={(event) => {
-                formData.value = { ...formData.value, phone: (event.target as HTMLInputElement).value };
+                formData.value = {
+                  ...formData.value,
+                  phone: (event.target as HTMLInputElement).value,
+                }
               }}
             />
           </div>
-          
+
           <div class="form-group">
             <label for="propertyType">I'm looking to:</label>
             <select
               id="propertyType"
               value={formData.value.propertyType}
               onChange$={(event) => {
-                formData.value = { ...formData.value, propertyType: (event.target as HTMLSelectElement).value };
+                formData.value = {
+                  ...formData.value,
+                  propertyType: (event.target as HTMLSelectElement).value,
+                }
               }}
             >
               <option value="buyer">Buy a Home</option>
@@ -236,7 +248,7 @@ export default component$(() => {
             </select>
           </div>
         </div>
-        
+
         <div class="form-row">
           <div class="form-group">
             <label for="budget">Budget Range</label>
@@ -244,7 +256,10 @@ export default component$(() => {
               id="budget"
               value={formData.value.budget}
               onChange$={(event) => {
-                formData.value = { ...formData.value, budget: (event.target as HTMLSelectElement).value };
+                formData.value = {
+                  ...formData.value,
+                  budget: (event.target as HTMLSelectElement).value,
+                }
               }}
             >
               <option value="">Select Budget</option>
@@ -255,14 +270,17 @@ export default component$(() => {
               <option value="over-1m">Over $1,000,000</option>
             </select>
           </div>
-          
+
           <div class="form-group">
             <label for="timeline">Timeline</label>
             <select
               id="timeline"
               value={formData.value.timeline}
               onChange$={(event) => {
-                formData.value = { ...formData.value, timeline: (event.target as HTMLSelectElement).value };
+                formData.value = {
+                  ...formData.value,
+                  timeline: (event.target as HTMLSelectElement).value,
+                }
               }}
             >
               <option value="">Select Timeline</option>
@@ -274,7 +292,7 @@ export default component$(() => {
             </select>
           </div>
         </div>
-        
+
         <div class="form-group">
           <label for="message">Message</label>
           <textarea
@@ -282,25 +300,24 @@ export default component$(() => {
             placeholder="Tell us about your real estate needs, preferred neighborhoods, or any questions you have..."
             value={formData.value.message}
             onInput$={(event) => {
-              formData.value = { ...formData.value, message: (event.target as HTMLTextAreaElement).value };
+              formData.value = {
+                ...formData.value,
+                message: (event.target as HTMLTextAreaElement).value,
+              }
             }}
           />
         </div>
-        
-        <button
-          type="submit"
-          class="submit-btn"
-          disabled={isSubmitting.value}
-        >
+
+        <button type="submit" class="submit-btn" disabled={isSubmitting.value}>
           {isSubmitting.value ? 'Sending...' : 'Send Message'}
         </button>
-        
+
         {submitStatus.value === 'success' && (
           <div class="status-message status-success">
             Thank you! Your message has been sent successfully. We'll get back to you soon!
           </div>
         )}
-        
+
         {submitStatus.value === 'error' && (
           <div class="status-message status-error">
             Sorry, there was an error sending your message. Please try again or call us directly.
@@ -308,5 +325,5 @@ export default component$(() => {
         )}
       </form>
     </div>
-  );
-});
+  )
+})

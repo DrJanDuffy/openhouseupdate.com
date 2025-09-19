@@ -1,34 +1,34 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { $, component$, useSignal } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
-  const name = useSignal('');
-  const email = useSignal('');
-  const phone = useSignal('');
-  const message = useSignal('');
-  const inquiryType = useSignal('general');
+  const name = useSignal('')
+  const email = useSignal('')
+  const phone = useSignal('')
+  const message = useSignal('')
+  const inquiryType = useSignal('general')
 
-  const isSubmitting = useSignal(false);
-  const isSubmitted = useSignal(false);
+  const isSubmitting = useSignal(false)
+  const isSubmitted = useSignal(false)
 
   const handleSubmit = $(async () => {
-    isSubmitting.value = true;
-    
+    isSubmitting.value = true
+
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     // Track contact form submission
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'contact_form_submit', {
         event_category: 'lead_generation',
         event_label: inquiryType.value,
-        value: 1
-      });
+        value: 1,
+      })
     }
-    
-    isSubmitting.value = false;
-    isSubmitted.value = true;
-  });
+
+    isSubmitting.value = false
+    isSubmitted.value = true
+  })
 
   return (
     <section class="contact-page">
@@ -39,7 +39,8 @@ export default component$(() => {
             Contact <span class="text-blue-600">Dr. Janet Duffy</span>
           </h1>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to buy or sell your Las Vegas home? Get expert guidance from a licensed real estate professional with years of local market experience.
+            Ready to buy or sell your Las Vegas home? Get expert guidance from a licensed real
+            estate professional with years of local market experience.
           </p>
         </div>
 
@@ -47,7 +48,7 @@ export default component$(() => {
           {/* Contact Form */}
           <div class="bg-white rounded-lg shadow-lg p-8">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">Send a Message</h2>
-            
+
             {!isSubmitted.value ? (
               <form preventdefault:submit onSubmit$={handleSubmit}>
                 <div class="space-y-6">
@@ -141,12 +142,12 @@ export default component$(() => {
                 </p>
                 <button
                   onClick$={() => {
-                    isSubmitted.value = false;
-                    name.value = '';
-                    email.value = '';
-                    phone.value = '';
-                    message.value = '';
-                    inquiryType.value = 'general';
+                    isSubmitted.value = false
+                    name.value = ''
+                    email.value = ''
+                    phone.value = ''
+                    message.value = ''
+                    inquiryType.value = 'general'
                   }}
                   class="bg-blue-600 text-white py-2 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                 >
@@ -160,7 +161,7 @@ export default component$(() => {
           <div class="space-y-8">
             <div class="bg-white rounded-lg shadow-lg p-8">
               <h3 class="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h3>
-              
+
               <div class="space-y-6">
                 <div class="flex items-start space-x-4">
                   <div class="text-blue-600 text-2xl">📧</div>
@@ -227,19 +228,21 @@ export default component$(() => {
         </div>
       </div>
     </section>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'Contact Dr. Janet Duffy - Las Vegas Real Estate Agent',
   meta: [
     {
       name: 'description',
-      content: 'Contact Dr. Janet Duffy for expert Las Vegas real estate services. Licensed agent specializing in buying, selling, and home valuations in Nevada.',
+      content:
+        'Contact Dr. Janet Duffy for expert Las Vegas real estate services. Licensed agent specializing in buying, selling, and home valuations in Nevada.',
     },
     {
       name: 'keywords',
-      content: 'contact real estate agent, Las Vegas realtor, Dr. Janet Duffy, Nevada real estate, property consultation',
+      content:
+        'contact real estate agent, Las Vegas realtor, Dr. Janet Duffy, Nevada real estate, property consultation',
     },
   ],
-};
+}

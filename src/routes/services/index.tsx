@@ -1,5 +1,5 @@
-import { component$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { component$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
   return (
@@ -178,7 +178,8 @@ export default component$(() => {
       <div class="services-hero">
         <h1>Professional Real Estate Services</h1>
         <p>
-          Expert guidance and comprehensive services to help you navigate the Las Vegas real estate market with confidence.
+          Expert guidance and comprehensive services to help you navigate the Las Vegas real estate
+          market with confidence.
         </p>
       </div>
 
@@ -186,7 +187,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>🏠 Home Valuation</h3>
           <p>
-            Get an accurate assessment of your property's current market value with our comprehensive home valuation service.
+            Get an accurate assessment of your property's current market value with our
+            comprehensive home valuation service.
           </p>
           <ul>
             <li>Comparative Market Analysis (CMA)</li>
@@ -195,13 +197,16 @@ export default component$(() => {
             <li>Neighborhood market insights</li>
             <li>Detailed valuation report</li>
           </ul>
-          <a href="/services/home-valuation" class="service-link">Get Your Valuation</a>
+          <a href="/services/home-valuation" class="service-link">
+            Get Your Valuation
+          </a>
         </div>
 
         <div class="service-card">
           <h3>🛒 Buyer Services</h3>
           <p>
-            Complete support throughout your home buying journey, from initial search to closing day.
+            Complete support throughout your home buying journey, from initial search to closing
+            day.
           </p>
           <ul>
             <li>Property search and matching</li>
@@ -210,13 +215,16 @@ export default component$(() => {
             <li>Inspection coordination</li>
             <li>Closing assistance</li>
           </ul>
-          <a href="/services/buyer-services" class="service-link">Start Your Search</a>
+          <a href="/services/buyer-services" class="service-link">
+            Start Your Search
+          </a>
         </div>
 
         <div class="service-card">
           <h3>🏡 Seller Services</h3>
           <p>
-            Maximize your property's value and ensure a smooth selling process with our expert seller services.
+            Maximize your property's value and ensure a smooth selling process with our expert
+            seller services.
           </p>
           <ul>
             <li>Market pricing strategy</li>
@@ -225,13 +233,16 @@ export default component$(() => {
             <li>Showings coordination</li>
             <li>Transaction management</li>
           </ul>
-          <a href="/services/seller-services" class="service-link">Sell Your Home</a>
+          <a href="/services/seller-services" class="service-link">
+            Sell Your Home
+          </a>
         </div>
 
         <div class="service-card">
           <h3>📊 Market Analysis</h3>
           <p>
-            Stay informed with detailed market reports and trends analysis for informed decision-making.
+            Stay informed with detailed market reports and trends analysis for informed
+            decision-making.
           </p>
           <ul>
             <li>Monthly market reports</li>
@@ -240,34 +251,43 @@ export default component$(() => {
             <li>Inventory level insights</li>
             <li>Investment opportunity analysis</li>
           </ul>
-          <a href="/services/market-analysis" class="service-link">View Market Data</a>
+          <a href="/services/market-analysis" class="service-link">
+            View Market Data
+          </a>
         </div>
       </div>
 
       <div class="cta-section">
         <h2>Ready to Get Started?</h2>
         <p>
-          Whether you're buying, selling, or just exploring the market, Dr. Janet Duffy is here to provide expert guidance and personalized service.
+          Whether you're buying, selling, or just exploring the market, Dr. Janet Duffy is here to
+          provide expert guidance and personalized service.
         </p>
         <div class="cta-buttons">
-          <a href="/contact" class="cta-button">Contact Dr. Duffy</a>
-          <a href="/search" class="cta-button secondary">Start Property Search</a>
+          <a href="/contact" class="cta-button">
+            Contact Dr. Duffy
+          </a>
+          <a href="/search" class="cta-button secondary">
+            Start Property Search
+          </a>
         </div>
       </div>
     </div>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'Real Estate Services - Professional Guidance | Dr. Janet Duffy',
   meta: [
     {
       name: 'description',
-      content: 'Professional real estate services in Las Vegas. Home valuation, buyer services, seller services, and market analysis from Dr. Janet Duffy.',
+      content:
+        'Professional real estate services in Las Vegas. Home valuation, buyer services, seller services, and market analysis from Dr. Janet Duffy.',
     },
     {
       name: 'keywords',
-      content: 'Las Vegas real estate services, home valuation, buyer services, seller services, market analysis, Dr. Janet Duffy, real estate agent',
+      content:
+        'Las Vegas real estate services, home valuation, buyer services, seller services, market analysis, Dr. Janet Duffy, real estate agent',
     },
     {
       name: 'author',
@@ -283,7 +303,8 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:description',
-      content: 'Professional real estate services in Las Vegas. Home valuation, buyer services, seller services, and market analysis.',
+      content:
+        'Professional real estate services in Las Vegas. Home valuation, buyer services, seller services, and market analysis.',
     },
     {
       property: 'og:type',
@@ -307,7 +328,8 @@ export const head: DocumentHead = {
     },
     {
       name: 'twitter:description',
-      content: 'Professional real estate services in Las Vegas. Home valuation, buyer services, seller services, and market analysis.',
+      content:
+        'Professional real estate services in Las Vegas. Home valuation, buyer services, seller services, and market analysis.',
     },
   ],
   links: [
@@ -316,4 +338,4 @@ export const head: DocumentHead = {
       href: 'https://openhouseupdate.com/services',
     },
   ],
-};
+}

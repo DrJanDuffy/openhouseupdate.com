@@ -1,79 +1,81 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik';
-import { useLocation, type DocumentHead } from '@builder.io/qwik-city';
+import { component$, useVisibleTask$ } from '@builder.io/qwik'
+import { type DocumentHead, useLocation } from '@builder.io/qwik-city'
 
 export default component$(() => {
-  const location = useLocation();
-  const neighborhood = location.params.neighborhood;
+  const location = useLocation()
+  const neighborhood = location.params.neighborhood
 
   useVisibleTask$(() => {
     if (typeof window !== 'undefined') {
       // Wait for RealScout script to load and custom elements to be defined
       const initializeRealScout = () => {
         // Check if RealScout script is loaded
-        const script = document.querySelector('script[src*="realscout-web-components"]');
+        const script = document.querySelector('script[src*="realscout-web-components"]')
         if (!script) {
-          console.log('RealScout script not found, retrying...');
-          setTimeout(initializeRealScout, 500);
-          return;
+          console.log('RealScout script not found, retrying...')
+          setTimeout(initializeRealScout, 500)
+          return
         }
 
         // Wait for custom elements to be defined
         const checkElements = () => {
           if (customElements.get('realscout-advanced-search')) {
-            console.log('RealScout advanced search widget ready');
-            
+            console.log('RealScout advanced search widget ready')
+
             // Set default values for the widget
-            const widget = document.querySelector('realscout-advanced-search');
+            const widget = document.querySelector('realscout-advanced-search')
             if (widget) {
               // Set default location based on neighborhood
-              widget.setAttribute('default-location', `${neighborhoodName}, Las Vegas, NV`);
-              
+              widget.setAttribute('default-location', `${neighborhoodName}, Las Vegas, NV`)
+
               // Set price filters based on neighborhood
               const priceRanges: Record<string, string> = {
-                'summerlin': '800000',
-                'henderson': '600000', 
+                summerlin: '800000',
+                henderson: '600000',
                 'north-las-vegas': '400000',
                 'spring-valley': '500000',
-                'enterprise': '700000'
-              };
-              
-              const maxPrice = priceRanges[neighborhood.toLowerCase()] || '600000';
-              widget.setAttribute('price-max', maxPrice);
-              
+                enterprise: '700000',
+              }
+
+              const maxPrice = priceRanges[neighborhood.toLowerCase()] || '600000'
+              widget.setAttribute('price-max', maxPrice)
+
               // Track neighborhood page view
               if (typeof window !== 'undefined' && window.gtag) {
                 window.gtag('event', 'neighborhood_page_view', {
                   event_category: 'neighborhood',
                   event_label: neighborhoodName,
-                  value: 1
-                });
+                  value: 1,
+                })
               }
-              
-              console.log(`Neighborhood page loaded: ${neighborhoodName} with max price: $${maxPrice}`);
+
+              console.log(
+                `Neighborhood page loaded: ${neighborhoodName} with max price: $${maxPrice}`
+              )
             }
-            return;
+            return
           }
-          console.log('Waiting for RealScout advanced search widget...');
-          setTimeout(checkElements, 200);
-        };
-        
-        checkElements();
-      };
+          console.log('Waiting for RealScout advanced search widget...')
+          setTimeout(checkElements, 200)
+        }
+
+        checkElements()
+      }
 
       // Start initialization
-      initializeRealScout();
+      initializeRealScout()
     }
-  });
+  })
 
   // Format neighborhood name for display
   const formatNeighborhoodName = (name: string) => {
     return name
       .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-  };
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
+  }
 
-  const neighborhoodName = formatNeighborhoodName(neighborhood);
+  const neighborhoodName = formatNeighborhoodName(neighborhood)
 
   return (
     <section class="neighborhood-page">
@@ -83,11 +85,11 @@ export default component$(() => {
           Discover the best properties in {neighborhoodName}, Las Vegas
         </p>
       </div>
-      
+
       {/* Advanced Search Pre-filtered for Neighborhood */}
       <div class="neighborhood-search">
         <h3>Search Within {neighborhoodName}</h3>
-        
+
         <style>{`
           .neighborhood-search realscout-advanced-search {
             --rs-as-widget-width: 100% !important;
@@ -186,57 +188,65 @@ export default component$(() => {
             }
           }
         `}</style>
-        
-        <realscout-advanced-search 
+
+        <realscout-advanced-search
           agent-encoded-id="QWdlbnQtMjI1MDUw"
           default-location={`${neighborhoodName}, Las Vegas, NV`}
-          price-max={neighborhood.toLowerCase() === 'summerlin' ? '800000' : 
-                     neighborhood.toLowerCase() === 'henderson' ? '600000' :
-                     neighborhood.toLowerCase() === 'north-las-vegas' ? '400000' :
-                     neighborhood.toLowerCase() === 'spring-valley' ? '500000' :
-                     neighborhood.toLowerCase() === 'enterprise' ? '700000' : '600000'}
-        ></realscout-advanced-search>
+          price-max={
+            neighborhood.toLowerCase() === 'summerlin'
+              ? '800000'
+              : neighborhood.toLowerCase() === 'henderson'
+                ? '600000'
+                : neighborhood.toLowerCase() === 'north-las-vegas'
+                  ? '400000'
+                  : neighborhood.toLowerCase() === 'spring-valley'
+                    ? '500000'
+                    : neighborhood.toLowerCase() === 'enterprise'
+                      ? '700000'
+                      : '600000'
+          }
+        />
       </div>
-      
+
       {/* Neighborhood Information Cards */}
       <div class="neighborhood-info">
         <div class="info-card">
           <h4>About {neighborhoodName}</h4>
           <p>
-            {neighborhoodName} is one of Las Vegas's premier neighborhoods, offering 
-            exceptional amenities, top-rated schools, and beautiful homes. Discover 
-            why this area is perfect for your next home purchase.
+            {neighborhoodName} is one of Las Vegas's premier neighborhoods, offering exceptional
+            amenities, top-rated schools, and beautiful homes. Discover why this area is perfect for
+            your next home purchase.
           </p>
         </div>
-        
+
         <div class="info-card">
           <h4>Local Expertise</h4>
           <p>
-            Dr. Janet Duffy has extensive experience helping buyers find their 
-            perfect home in {neighborhoodName}. Get personalized guidance and 
-            expert market insights for this sought-after community.
+            Dr. Janet Duffy has extensive experience helping buyers find their perfect home in{' '}
+            {neighborhoodName}. Get personalized guidance and expert market insights for this
+            sought-after community.
           </p>
         </div>
-        
+
         <div class="info-card">
           <h4>Market Trends</h4>
           <p>
-            Stay informed about current market conditions, pricing trends, and 
-            available inventory in {neighborhoodName}. Our advanced search tools 
-            help you find properties that match your criteria.
+            Stay informed about current market conditions, pricing trends, and available inventory
+            in {neighborhoodName}. Our advanced search tools help you find properties that match
+            your criteria.
           </p>
         </div>
       </div>
     </section>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = ({ params }) => {
-  const neighborhood = params.neighborhood;
+  const neighborhood = params.neighborhood
   const neighborhoodName = neighborhood
     .split('-')
     .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+    .join(' ')
 
   return {
     title: `${neighborhoodName} Open Houses - Las Vegas Real Estate | Dr. Janet Duffy`,
@@ -296,5 +306,5 @@ export const head: DocumentHead = ({ params }) => {
         href: `https://openhouseupdate.com/neighborhoods/${neighborhood}`,
       },
     ],
-  };
-};
+  }
+}

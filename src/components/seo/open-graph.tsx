@@ -1,62 +1,75 @@
-import { component$ } from '@builder.io/qwik';
+import { component$ } from '@builder.io/qwik'
 
 export interface OpenGraphProps {
-  title: string;
-  description: string;
-  type?: 'website' | 'article' | 'profile' | 'video.movie' | 'video.episode' | 'video.tv_show' | 'video.other' | 'music.song' | 'music.album' | 'music.playlist' | 'music.radio_station' | 'book' | 'payment.link';
-  url?: string;
-  image?: string;
-  imageAlt?: string;
-  imageWidth?: number;
-  imageHeight?: number;
-  imageType?: string;
-  siteName?: string;
-  locale?: string;
-  localeAlternate?: string[];
-  determiner?: 'a' | 'an' | 'the' | '' | 'auto';
-  audio?: string;
-  audioType?: string;
-  video?: string;
-  videoType?: string;
-  videoWidth?: number;
-  videoHeight?: number;
+  title: string
+  description: string
+  type?:
+    | 'website'
+    | 'article'
+    | 'profile'
+    | 'video.movie'
+    | 'video.episode'
+    | 'video.tv_show'
+    | 'video.other'
+    | 'music.song'
+    | 'music.album'
+    | 'music.playlist'
+    | 'music.radio_station'
+    | 'book'
+    | 'payment.link'
+  url?: string
+  image?: string
+  imageAlt?: string
+  imageWidth?: number
+  imageHeight?: number
+  imageType?: string
+  siteName?: string
+  locale?: string
+  localeAlternate?: string[]
+  determiner?: 'a' | 'an' | 'the' | '' | 'auto'
+  audio?: string
+  audioType?: string
+  video?: string
+  videoType?: string
+  videoWidth?: number
+  videoHeight?: number
   // Article specific
-  articleAuthor?: string[];
-  articlePublishedTime?: string;
-  articleModifiedTime?: string;
-  articleExpirationTime?: string;
-  articleSection?: string;
-  articleTag?: string[];
+  articleAuthor?: string[]
+  articlePublishedTime?: string
+  articleModifiedTime?: string
+  articleExpirationTime?: string
+  articleSection?: string
+  articleTag?: string[]
   // Profile specific
-  profileFirstName?: string;
-  profileLastName?: string;
-  profileUsername?: string;
-  profileGender?: 'male' | 'female';
+  profileFirstName?: string
+  profileLastName?: string
+  profileUsername?: string
+  profileGender?: 'male' | 'female'
   // Book specific
-  bookAuthor?: string[];
-  bookIsbn?: string;
-  bookReleaseDate?: string;
-  bookTag?: string[];
+  bookAuthor?: string[]
+  bookIsbn?: string
+  bookReleaseDate?: string
+  bookTag?: string[]
   // Music specific
-  musicDuration?: number;
-  musicAlbum?: string[];
-  musicMusician?: string[];
+  musicDuration?: number
+  musicAlbum?: string[]
+  musicMusician?: string[]
   // Video specific
-  videoActor?: string[];
-  videoDirector?: string[];
-  videoWriter?: string[];
-  videoDuration?: number;
-  videoReleaseDate?: string;
-  videoTag?: string[];
-  videoSeries?: string;
+  videoActor?: string[]
+  videoDirector?: string[]
+  videoWriter?: string[]
+  videoDuration?: number
+  videoReleaseDate?: string
+  videoTag?: string[]
+  videoSeries?: string
   // Payment specific
-  paymentDescription?: string;
-  paymentCurrency?: string;
-  paymentAmount?: number;
-  paymentExpiresAt?: string;
-  paymentStatus?: 'PENDING' | 'PAID' | 'FAILED' | 'EXPIRED';
-  paymentId?: string;
-  paymentSuccessUrl?: string;
+  paymentDescription?: string
+  paymentCurrency?: string
+  paymentAmount?: number
+  paymentExpiresAt?: string
+  paymentStatus?: 'PENDING' | 'PAID' | 'FAILED' | 'EXPIRED'
+  paymentId?: string
+  paymentSuccessUrl?: string
 }
 
 export default component$<OpenGraphProps>((props) => {
@@ -111,7 +124,7 @@ export default component$<OpenGraphProps>((props) => {
     paymentStatus,
     paymentId,
     paymentSuccessUrl,
-  } = props;
+  } = props
 
   return (
     <>
@@ -161,9 +174,15 @@ export default component$<OpenGraphProps>((props) => {
           {articleAuthor?.map((author) => (
             <meta key={author} property="article:author" content={author} />
           ))}
-          {articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
-          {articleModifiedTime && <meta property="article:modified_time" content={articleModifiedTime} />}
-          {articleExpirationTime && <meta property="article:expiration_time" content={articleExpirationTime} />}
+          {articlePublishedTime && (
+            <meta property="article:published_time" content={articlePublishedTime} />
+          )}
+          {articleModifiedTime && (
+            <meta property="article:modified_time" content={articleModifiedTime} />
+          )}
+          {articleExpirationTime && (
+            <meta property="article:expiration_time" content={articleExpirationTime} />
+          )}
           {articleSection && <meta property="article:section" content={articleSection} />}
           {articleTag?.map((tag) => (
             <meta key={tag} property="article:tag" content={tag} />
@@ -196,7 +215,10 @@ export default component$<OpenGraphProps>((props) => {
       )}
 
       {/* Music specific metadata */}
-      {(type === 'music.song' || type === 'music.album' || type === 'music.playlist' || type === 'music.radio_station') && (
+      {(type === 'music.song' ||
+        type === 'music.album' ||
+        type === 'music.playlist' ||
+        type === 'music.radio_station') && (
         <>
           {musicDuration && <meta property="music:duration" content={musicDuration.toString()} />}
           {musicAlbum?.map((album) => (
@@ -209,7 +231,10 @@ export default component$<OpenGraphProps>((props) => {
       )}
 
       {/* Video specific metadata */}
-      {(type === 'video.movie' || type === 'video.episode' || type === 'video.tv_show' || type === 'video.other') && (
+      {(type === 'video.movie' ||
+        type === 'video.episode' ||
+        type === 'video.tv_show' ||
+        type === 'video.other') && (
         <>
           {videoActor?.map((actor) => (
             <meta key={actor} property="video:actor" content={actor} />
@@ -232,7 +257,9 @@ export default component$<OpenGraphProps>((props) => {
       {/* Payment specific metadata */}
       {type === 'payment.link' && (
         <>
-          {paymentDescription && <meta property="payment:description" content={paymentDescription} />}
+          {paymentDescription && (
+            <meta property="payment:description" content={paymentDescription} />
+          )}
           {paymentCurrency && <meta property="payment:currency" content={paymentCurrency} />}
           {paymentAmount && <meta property="payment:amount" content={paymentAmount.toString()} />}
           {paymentExpiresAt && <meta property="payment:expires_at" content={paymentExpiresAt} />}
@@ -249,5 +276,5 @@ export default component$<OpenGraphProps>((props) => {
       <meta name="twitter:image" content={image} />
       <meta name="twitter:image:alt" content={imageAlt} />
     </>
-  );
-});
+  )
+})

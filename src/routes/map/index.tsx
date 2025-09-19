@@ -1,6 +1,6 @@
-import { component$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
-import RealScoutMap from '~/components/realscout/RealScoutMap';
+import { component$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
+import RealScoutMap from '~/components/realscout/RealScoutMap'
 
 export default component$(() => {
   return (
@@ -84,29 +84,23 @@ export default component$(() => {
         <div class="map-wrapper">
           <div class="map-title-section">
             <h2>Interactive Property Map</h2>
-            <p>
-              Explore properties in Las Vegas with our interactive map powered by RealScout
-            </p>
+            <p>Explore properties in Las Vegas with our interactive map powered by RealScout</p>
           </div>
-          
-          <RealScoutMap 
-            geoType="city" 
-            geoId="3240000" 
-            height="600px" 
-            width="100%"
-          />
+
+          <RealScoutMap geoType="city" geoId="3240000" height="600px" width="100%" />
         </div>
       </div>
     </div>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'Property Map - Real Estate Search',
   meta: [
     {
       name: 'description',
-      content: 'View properties on an interactive map. Use our advanced search to find your perfect home.',
+      content:
+        'View properties on an interactive map. Use our advanced search to find your perfect home.',
     },
   ],
-};
+}

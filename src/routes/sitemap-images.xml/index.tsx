@@ -1,13 +1,9 @@
-import { component$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { component$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
-  return (
-    <div style={{ display: 'none' }}>
-      {/* This component renders XML content */}
-    </div>
-  );
-});
+  return <div style={{ display: 'none' }}>{/* This component renders XML content */}</div>
+})
 
 export const head: DocumentHead = {
   title: 'Image Sitemap',
@@ -17,11 +13,11 @@ export const head: DocumentHead = {
       content: 'noindex, nofollow',
     },
   ],
-};
+}
 
 // Generate XML image sitemap
 export const onGet = async () => {
-  const currentDate = new Date().toISOString();
+  const currentDate = new Date().toISOString()
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -58,12 +54,12 @@ export const onGet = async () => {
       <image:title>Professional Real Estate Agent</image:title>
     </image:image>
   </url>
-</urlset>`;
+</urlset>`
 
   return new Response(sitemap, {
     headers: {
       'Content-Type': 'application/xml',
       'Cache-Control': 'public, max-age=3600, s-maxage=3600',
     },
-  });
-};
+  })
+}

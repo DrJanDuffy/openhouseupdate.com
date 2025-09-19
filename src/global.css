@@ -9,11 +9,11 @@
 @layer base {
   :root {
     /* Real Estate Design System Colors */
-    --primary-50: #F7F9FC;
-    --primary-500: #3A8DDE;
-    --primary-800: #0A2540;
-    --secondary-500: #16B286;
-    
+    --primary-50: #f7f9fc;
+    --primary-500: #3a8dde;
+    --primary-800: #0a2540;
+    --secondary-500: #16b286;
+
     /* Legacy Qwik colors for compatibility */
     --qwik-dark-blue: #006ce9;
     --qwik-light-blue: #18b6f6;
@@ -26,7 +26,7 @@
 
   /* Enhanced typography */
   html {
-    font-family: 'Poppins', system-ui, sans-serif;
+    font-family: "Poppins", system-ui, sans-serif;
     scroll-behavior: smooth;
   }
 
@@ -42,7 +42,11 @@
   }
 
   /* Smooth transitions for interactive elements */
-  button, a, input, select, textarea {
+  button,
+  a,
+  input,
+  select,
+  textarea {
     transition: all 0.2s ease-in-out;
   }
 }

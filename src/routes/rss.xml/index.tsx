@@ -1,17 +1,13 @@
-import { component$ } from '@builder.io/qwik';
+import { component$ } from '@builder.io/qwik'
 
 export default component$(() => {
-  return (
-    <div style={{ display: 'none' }}>
-      {/* This component renders XML content */}
-    </div>
-  );
-});
+  return <div style={{ display: 'none' }}>{/* This component renders XML content */}</div>
+})
 
 // Generate RSS feed
 export const onGet = async () => {
-  const currentDate = new Date().toISOString();
-  
+  const currentDate = new Date().toISOString()
+
   const feedItems = [
     {
       title: 'Las Vegas Real Estate Market Update',
@@ -21,7 +17,7 @@ export const onGet = async () => {
       guid: 'market-update-1',
     },
     {
-      title: 'This Weekend\'s Open Houses in Las Vegas',
+      title: "This Weekend's Open Houses in Las Vegas",
       description: 'Discover the best open houses happening this weekend',
       url: 'https://openhouseupdate.com/this-weekend',
       pubDate: currentDate,
@@ -41,7 +37,7 @@ export const onGet = async () => {
       pubDate: currentDate,
       guid: 'selling-guide',
     },
-  ];
+  ]
 
   const rssFeed = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -65,7 +61,9 @@ export const onGet = async () => {
       <width>144</width>
       <height>144</height>
     </image>
-${feedItems.map(item => `    <item>
+${feedItems
+  .map(
+    (item) => `    <item>
       <title><![CDATA[${item.title}]]></title>
       <description><![CDATA[${item.description}]]></description>
       <link>${item.url}</link>
@@ -73,14 +71,16 @@ ${feedItems.map(item => `    <item>
       <pubDate>${item.pubDate}</pubDate>
       <category>Real Estate</category>
       <category>Las Vegas</category>
-    </item>`).join('\n')}
+    </item>`
+  )
+  .join('\n')}
   </channel>
-</rss>`;
+</rss>`
 
   return new Response(rssFeed, {
     headers: {
       'Content-Type': 'application/rss+xml; charset=utf-8',
       'Cache-Control': 'public, max-age=3600, s-maxage=3600',
     },
-  });
-};
+  })
+}

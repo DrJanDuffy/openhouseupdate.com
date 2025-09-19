@@ -1,5 +1,5 @@
-import { component$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { component$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
   return (
@@ -9,15 +9,19 @@ export default component$(() => {
         <div class="mb-12">
           <div class="relative inline-block">
             {/* Spinning House Icon */}
-            <div class="text-6xl mb-8 animate-spin">
-              🏠
-            </div>
-            
+            <div class="text-6xl mb-8 animate-spin">🏠</div>
+
             {/* Loading Dots */}
             <div class="flex justify-center space-x-2">
-              <div class="w-3 h-3 bg-blue-600 rounded-full animate-bounce"></div>
-              <div class="w-3 h-3 bg-green-600 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
-              <div class="w-3 h-3 bg-blue-600 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+              <div class="w-3 h-3 bg-blue-600 rounded-full animate-bounce" />
+              <div
+                class="w-3 h-3 bg-green-600 rounded-full animate-bounce"
+                style="animation-delay: 0.1s"
+              />
+              <div
+                class="w-3 h-3 bg-blue-600 rounded-full animate-bounce"
+                style="animation-delay: 0.2s"
+              />
             </div>
           </div>
         </div>
@@ -38,19 +42,19 @@ export default component$(() => {
             <div class="flex items-center justify-between">
               <span class="text-gray-600">Loading property data</span>
               <div class="w-32 bg-gray-200 rounded-full h-2">
-                <div class="bg-blue-600 h-2 rounded-full animate-pulse" style="width: 75%"></div>
+                <div class="bg-blue-600 h-2 rounded-full animate-pulse" style="width: 75%" />
               </div>
             </div>
             <div class="flex items-center justify-between">
               <span class="text-gray-600">Updating market information</span>
               <div class="w-32 bg-gray-200 rounded-full h-2">
-                <div class="bg-green-600 h-2 rounded-full animate-pulse" style="width: 60%"></div>
+                <div class="bg-green-600 h-2 rounded-full animate-pulse" style="width: 60%" />
               </div>
             </div>
             <div class="flex items-center justify-between">
               <span class="text-gray-600">Preparing search results</span>
               <div class="w-32 bg-gray-200 rounded-full h-2">
-                <div class="bg-blue-600 h-2 rounded-full animate-pulse" style="width: 90%"></div>
+                <div class="bg-blue-600 h-2 rounded-full animate-pulse" style="width: 90%" />
               </div>
             </div>
           </div>
@@ -77,9 +81,7 @@ export default component$(() => {
             <div class="text-center">
               <div class="text-4xl mb-4">⏰</div>
               <h3 class="text-lg font-semibold text-gray-900 mb-2">Quick Response</h3>
-              <p class="text-gray-600 text-sm">
-                Dr. Duffy responds to inquiries within 24 hours
-              </p>
+              <p class="text-gray-600 text-sm">Dr. Duffy responds to inquiries within 24 hours</p>
             </div>
           </div>
         </div>
@@ -153,8 +155,8 @@ export default component$(() => {
         `}
       </style>
     </section>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'Loading... | Open House Update',
@@ -168,4 +170,4 @@ export const head: DocumentHead = {
       content: 'noindex, nofollow',
     },
   ],
-};
+}

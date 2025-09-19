@@ -1,5 +1,5 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { component$, useVisibleTask$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
   // Initialize RealScout widget
@@ -8,30 +8,30 @@ export default component$(() => {
       // Wait for RealScout script to load and custom elements to be defined
       const initializeRealScout = () => {
         // Check if RealScout script is loaded
-        const script = document.querySelector('script[src*="realscout-web-components"]');
+        const script = document.querySelector('script[src*="realscout-web-components"]')
         if (!script) {
-          console.log('RealScout script not found, retrying...');
-          setTimeout(initializeRealScout, 500);
-          return;
+          console.log('RealScout script not found, retrying...')
+          setTimeout(initializeRealScout, 500)
+          return
         }
 
         // Wait for custom elements to be defined
         const checkElements = () => {
           if (customElements.get('realscout-advanced-search')) {
-            console.log('RealScout advanced search widget ready');
-            return;
+            console.log('RealScout advanced search widget ready')
+            return
           }
-          console.log('Waiting for RealScout advanced search widget...');
-          setTimeout(checkElements, 200);
-        };
-        
-        checkElements();
-      };
+          console.log('Waiting for RealScout advanced search widget...')
+          setTimeout(checkElements, 200)
+        }
+
+        checkElements()
+      }
 
       // Start initialization
-      initializeRealScout();
+      initializeRealScout()
     }
-  });
+  })
   return (
     <div class="weekend-page">
       <style>{`
@@ -154,21 +154,19 @@ export default component$(() => {
 
       <div class="weekend-header">
         <h1 class="weekend-title">This Weekend's Open Houses</h1>
-        <p class="weekend-subtitle">
-          Find the perfect properties to visit this weekend
-        </p>
+        <p class="weekend-subtitle">Find the perfect properties to visit this weekend</p>
       </div>
 
       <div class="weekend-content">
         <div class="search-section">
           <h2 class="search-title">Search Properties</h2>
           <p class="search-description">
-            Use our advanced search to find properties available this weekend. 
-            Filter by location, price, bedrooms, and more to find your perfect home.
+            Use our advanced search to find properties available this weekend. Filter by location,
+            price, bedrooms, and more to find your perfect home.
           </p>
-          
+
           <div class="widget-container">
-            <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+            <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
           </div>
         </div>
 
@@ -177,8 +175,8 @@ export default component$(() => {
             <div class="feature-icon">🏠</div>
             <h3 class="feature-title">Comprehensive Search</h3>
             <p class="feature-description">
-              Search thousands of properties with advanced filters including price range, 
-              bedrooms, bathrooms, and location preferences.
+              Search thousands of properties with advanced filters including price range, bedrooms,
+              bathrooms, and location preferences.
             </p>
           </div>
 
@@ -186,8 +184,8 @@ export default component$(() => {
             <div class="feature-icon">📍</div>
             <h3 class="feature-title">Location-Based</h3>
             <p class="feature-description">
-              Find properties in your preferred neighborhoods with detailed location 
-              information and proximity to amenities.
+              Find properties in your preferred neighborhoods with detailed location information and
+              proximity to amenities.
             </p>
           </div>
 
@@ -195,23 +193,23 @@ export default component$(() => {
             <div class="feature-icon">📅</div>
             <h3 class="feature-title">Weekend Focused</h3>
             <p class="feature-description">
-              Discover properties with open houses scheduled for this weekend, 
-              making it easy to plan your property visits.
+              Discover properties with open houses scheduled for this weekend, making it easy to
+              plan your property visits.
             </p>
           </div>
         </div>
       </div>
-
     </div>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'This Weekend Open Houses - Real Estate Search',
   meta: [
     {
       name: 'description',
-      content: 'Find properties with open houses this weekend. Search thousands of homes with our advanced real estate search.',
+      content:
+        'Find properties with open houses this weekend. Search thousands of homes with our advanced real estate search.',
     },
     {
       property: 'og:title',
@@ -219,7 +217,8 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:description',
-      content: 'Find properties with open houses this weekend. Search thousands of homes with our advanced real estate search.',
+      content:
+        'Find properties with open houses this weekend. Search thousands of homes with our advanced real estate search.',
     },
   ],
-};
+}

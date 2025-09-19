@@ -1,104 +1,104 @@
-import { component$, useVisibleTask$, useSignal, $ } from '@builder.io/qwik';
+import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 export default component$(() => {
-  const isOpen = useSignal(false);
+  const isOpen = useSignal(false)
 
   useVisibleTask$(() => {
     // Load RealScout script if not already loaded
     if (!document.querySelector('script[src*="realscout-web-components"]')) {
-      const script = document.createElement('script');
-      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
-      script.type = 'module';
-      script.crossOrigin = 'anonymous';
-      script.integrity = 'sha384-'; // Add integrity hash when available
-      
+      const script = document.createElement('script')
+      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js'
+      script.type = 'module'
+      script.crossOrigin = 'anonymous'
+      script.integrity = 'sha384-' // Add integrity hash when available
+
       // Add error handling for script loading
       script.onerror = () => {
-        console.warn('RealScout script failed to load. Advanced search may not function properly.');
-      };
-      
+        console.warn('RealScout script failed to load. Advanced search may not function properly.')
+      }
+
       script.onload = () => {
-        console.log('RealScout script loaded successfully');
-      };
-      
-      document.head.appendChild(script);
+        console.log('RealScout script loaded successfully')
+      }
+
+      document.head.appendChild(script)
     }
-  });
+  })
 
   const openModal = $(() => {
-    console.log('Mobile search button clicked!');
+    console.log('Mobile search button clicked!')
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'mobile_search_button_click', {
         event_category: 'Mobile Search',
         event_label: 'Floating Button',
-        value: 1
-      });
+        value: 1,
+      })
       window.gtag('event', 'mobile_search_modal_open', {
         event_category: 'Mobile Search',
         event_label: 'Modal Interaction',
-        value: 1
-      });
+        value: 1,
+      })
     }
-    console.log('Setting isOpen to true');
-    isOpen.value = true;
-  });
+    console.log('Setting isOpen to true')
+    isOpen.value = true
+  })
 
   const closeModal = $(() => {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'mobile_search_modal_close', {
         event_category: 'Mobile Search',
         event_label: 'Modal Interaction',
-        value: 1
-      });
+        value: 1,
+      })
     }
-    isOpen.value = false;
-  });
+    isOpen.value = false
+  })
 
   // Handle keyboard events for accessibility
   const handleKeyDown = $((event: KeyboardEvent) => {
     if (event.key === 'Escape' && isOpen.value) {
-      closeModal();
+      closeModal()
     }
-  });
+  })
 
   // Focus management for accessibility
   useVisibleTask$(({ track }) => {
-    track(() => isOpen.value);
-    
+    track(() => isOpen.value)
+
     if (isOpen.value) {
       // Add keyboard event listener
-      document.addEventListener('keydown', handleKeyDown);
-      
+      document.addEventListener('keydown', handleKeyDown)
+
       // Focus the close button when modal opens
-      const closeButton = document.querySelector('.mobile-close-button') as HTMLElement;
+      const closeButton = document.querySelector('.mobile-close-button') as HTMLElement
       if (closeButton) {
-        closeButton.focus();
+        closeButton.focus()
       }
-      
+
       // Prevent body scroll when modal is open
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
       // Remove keyboard event listener
-      document.removeEventListener('keydown', handleKeyDown);
-      
+      document.removeEventListener('keydown', handleKeyDown)
+
       // Restore body scroll
-      document.body.style.overflow = '';
+      document.body.style.overflow = ''
     }
-    
+
     // Cleanup on component unmount
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
-    };
-  });
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+    }
+  })
 
   return (
     <>
       {/* Mobile Modal */}
       {isOpen.value && (
-        <div 
-          id="mobile-search-modal" 
-          class="mobile-modal-overlay" 
+        <div
+          id="mobile-search-modal"
+          class="mobile-modal-overlay"
           onClick$={closeModal}
           role="dialog"
           aria-modal="true"
@@ -108,8 +108,8 @@ export default component$(() => {
           <div class="mobile-modal-content" onClick$={(e) => e.stopPropagation()}>
             <div class="mobile-modal-header">
               <h2 id="mobile-modal-title">Advanced Search</h2>
-              <button 
-                class="mobile-close-button" 
+              <button
+                class="mobile-close-button"
                 onClick$={closeModal}
                 aria-label="Close advanced search modal"
                 type="button"
@@ -117,22 +117,24 @@ export default component$(() => {
                 ×
               </button>
             </div>
-            
+
             <div class="mobile-modal-body" id="mobile-modal-description">
-              <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+              <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
             </div>
           </div>
         </div>
       )}
 
       {/* Mobile Floating Button */}
-      <button 
-        onClick$={openModal} 
+      <button
+        onClick$={openModal}
         class="mobile-search-trigger"
         aria-label="Open advanced property search"
         type="button"
       >
-        <span class="search-icon" aria-hidden="true">🔍</span>
+        <span class="search-icon" aria-hidden="true">
+          🔍
+        </span>
         <span class="button-text">Advanced Search</span>
       </button>
 
@@ -413,5 +415,5 @@ export default component$(() => {
         }
       `}</style>
     </>
-  );
-});
+  )
+})

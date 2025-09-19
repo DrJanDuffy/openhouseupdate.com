@@ -1,31 +1,27 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useVisibleTask$ } from '@builder.io/qwik'
 
 interface RealScoutMapProps {
-  geoType?: string;
-  geoId?: string;
-  height?: string;
-  width?: string;
+  geoType?: string
+  geoId?: string
+  height?: string
+  width?: string
 }
 
-export default component$<RealScoutMapProps>(({ 
-  geoType = 'city', 
-  geoId = '3240000', 
-  height = '500px',
-  width = '100%'
-}) => {
-  useVisibleTask$(() => {
-    // Load RealScout map script if not already loaded
-    if (!document.querySelector('script[src*="realscout.com"]')) {
-      const script = document.createElement('script');
-      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
-      script.type = 'module';
-      document.head.appendChild(script);
-    }
-  });
+export default component$<RealScoutMapProps>(
+  ({ geoType = 'city', geoId = '3240000', height = '500px', width = '100%' }) => {
+    useVisibleTask$(() => {
+      // Load RealScout map script if not already loaded
+      if (!document.querySelector('script[src*="realscout.com"]')) {
+        const script = document.createElement('script')
+        script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js'
+        script.type = 'module'
+        document.head.appendChild(script)
+      }
+    })
 
-  return (
-    <div class="realscout-map-container">
-      <style>{`
+    return (
+      <div class="realscout-map-container">
+        <style>{`
         .realscout-map-container {
           width: ${width};
           height: ${height};
@@ -95,24 +91,24 @@ export default component$<RealScoutMapProps>(({
         }
       `}</style>
 
-      <div class="map-placeholder">
-        <h3>Interactive Property Map</h3>
-        <p>
-          View properties on an interactive map powered by RealScout.
-          Click the link below to access the full map experience.
-        </p>
-        <a 
-          href={`https://drjanduffy.realscout.com/homesearch/map?geo_type=${geoType}&geo_id=${geoId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="map-link"
-        >
-          Open Full Map View
-        </a>
-      </div>
+        <div class="map-placeholder">
+          <h3>Interactive Property Map</h3>
+          <p>
+            View properties on an interactive map powered by RealScout. Click the link below to
+            access the full map experience.
+          </p>
+          <a
+            href={`https://drjanduffy.realscout.com/homesearch/map?geo_type=${geoType}&geo_id=${geoId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="map-link"
+          >
+            Open Full Map View
+          </a>
+        </div>
 
-      {/* Alternative: Embedded iframe approach */}
-      {/* 
+        {/* Alternative: Embedded iframe approach */}
+        {/* 
       <iframe
         src={`https://drjanduffy.realscout.com/homesearch/map?geo_type=${geoType}&geo_id=${geoId}`}
         className="realscout-iframe"
@@ -120,6 +116,7 @@ export default component$<RealScoutMapProps>(({
         loading="lazy"
       />
       */}
-    </div>
-  );
-});
+      </div>
+    )
+  }
+)

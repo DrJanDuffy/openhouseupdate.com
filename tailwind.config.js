@@ -39,30 +39,30 @@ module.exports = {
           700: '#334155',
           800: '#1E293B',
           900: '#0F172A',
-        }
+        },
       },
       fontFamily: {
         sans: ['Poppins', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'soft': '0 2px 8px rgba(0,0,0,0.08)',
-        'medium': '0 4px 12px rgba(0,0,0,0.1)',
-        'strong': '0 8px 24px rgba(0,0,0,0.12)',
+        soft: '0 2px 8px rgba(0,0,0,0.08)',
+        medium: '0 4px 12px rgba(0,0,0,0.1)',
+        strong: '0 8px 24px rgba(0,0,0,0.12)',
       },
       borderRadius: {
-        'xl': '12px',
+        xl: '12px',
         '2xl': '16px',
       },
       spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
+        18: '4.5rem',
+        88: '22rem',
       },
       screens: {
-        'xs': '475px',
-        'sm': '640px',
-        'md': '768px',
-        'lg': '1024px',
-        'xl': '1280px',
+        xs: '475px',
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
         '2xl': '1536px',
       },
       animation: {
@@ -83,4 +83,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}

@@ -1,5 +1,5 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { component$, useVisibleTask$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
   useVisibleTask$(() => {
@@ -8,10 +8,10 @@ export default component$(() => {
       window.gtag('event', 'buyer_services_page_view', {
         event_category: 'service',
         event_label: 'buyer_services',
-        value: 1
-      });
+        value: 1,
+      })
     }
-  });
+  })
 
   return (
     <div class="buyer-services-page">
@@ -228,7 +228,8 @@ export default component$(() => {
       <div class="buyer-hero">
         <h1>Buyer Services</h1>
         <p>
-          Complete support throughout your home buying journey, from initial search to closing day and beyond.
+          Complete support throughout your home buying journey, from initial search to closing day
+          and beyond.
         </p>
       </div>
 
@@ -236,7 +237,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>🔍 Property Search & Matching</h3>
           <p>
-            Find the perfect home that matches your criteria, lifestyle, and budget with our comprehensive search services.
+            Find the perfect home that matches your criteria, lifestyle, and budget with our
+            comprehensive search services.
           </p>
           <ul>
             <li>Custom property search setup</li>
@@ -250,7 +252,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>📊 Market Analysis & Insights</h3>
           <p>
-            Make informed decisions with detailed market analysis and neighborhood insights tailored to your needs.
+            Make informed decisions with detailed market analysis and neighborhood insights tailored
+            to your needs.
           </p>
           <ul>
             <li>Comparative Market Analysis (CMA)</li>
@@ -264,7 +267,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>🤝 Negotiation & Offer Strategy</h3>
           <p>
-            Secure the best deal with expert negotiation strategies and professional offer management.
+            Secure the best deal with expert negotiation strategies and professional offer
+            management.
           </p>
           <ul>
             <li>Competitive offer strategies</li>
@@ -278,7 +282,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>🔧 Inspection & Due Diligence</h3>
           <p>
-            Ensure your investment is sound with comprehensive inspection coordination and due diligence support.
+            Ensure your investment is sound with comprehensive inspection coordination and due
+            diligence support.
           </p>
           <ul>
             <li>Inspector recommendations</li>
@@ -292,7 +297,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>📋 Closing & Transaction Management</h3>
           <p>
-            Navigate the closing process smoothly with professional transaction management and support.
+            Navigate the closing process smoothly with professional transaction management and
+            support.
           </p>
           <ul>
             <li>Closing coordination</li>
@@ -306,7 +312,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>🏠 Post-Purchase Support</h3>
           <p>
-            Continue to receive support even after closing with our comprehensive post-purchase services.
+            Continue to receive support even after closing with our comprehensive post-purchase
+            services.
           </p>
           <ul>
             <li>Home warranty coordination</li>
@@ -323,39 +330,55 @@ export default component$(() => {
         <div class="process-steps">
           <div class="process-step">
             <h3>Initial Consultation</h3>
-            <p>We start with understanding your needs, budget, and preferences to create a personalized buying strategy.</p>
+            <p>
+              We start with understanding your needs, budget, and preferences to create a
+              personalized buying strategy.
+            </p>
           </div>
-          
+
           <div class="process-step">
             <h3>Pre-Approval & Budget</h3>
-            <p>Help you get pre-approved and establish a realistic budget based on your financial situation.</p>
+            <p>
+              Help you get pre-approved and establish a realistic budget based on your financial
+              situation.
+            </p>
           </div>
-          
+
           <div class="process-step">
             <h3>Property Search</h3>
-            <p>Set up custom searches and alerts to find properties that match your criteria and lifestyle.</p>
+            <p>
+              Set up custom searches and alerts to find properties that match your criteria and
+              lifestyle.
+            </p>
           </div>
-          
+
           <div class="process-step">
             <h3>Property Tours</h3>
-            <p>Schedule and accompany you on property tours, providing expert insights and analysis.</p>
+            <p>
+              Schedule and accompany you on property tours, providing expert insights and analysis.
+            </p>
           </div>
-          
+
           <div class="process-step">
             <h3>Offer & Negotiation</h3>
-            <p>Develop competitive offer strategies and negotiate on your behalf to secure the best deal.</p>
+            <p>
+              Develop competitive offer strategies and negotiate on your behalf to secure the best
+              deal.
+            </p>
           </div>
-          
+
           <div class="process-step">
             <h3>Inspection & Due Diligence</h3>
             <p>Coordinate inspections and ensure all due diligence is completed before closing.</p>
           </div>
-          
+
           <div class="process-step">
             <h3>Closing</h3>
-            <p>Guide you through the closing process and ensure all documents are properly executed.</p>
+            <p>
+              Guide you through the closing process and ensure all documents are properly executed.
+            </p>
           </div>
-          
+
           <div class="process-step">
             <h3>Post-Closing</h3>
             <p>Provide ongoing support and referrals for services you may need in your new home.</p>
@@ -366,27 +389,34 @@ export default component$(() => {
       <div class="cta-section">
         <h2>Ready to Start Your Home Search?</h2>
         <p>
-          Let Dr. Janet Duffy guide you through the entire home buying process with personalized service and expert market knowledge.
+          Let Dr. Janet Duffy guide you through the entire home buying process with personalized
+          service and expert market knowledge.
         </p>
         <div class="cta-buttons">
-          <a href="/search" class="cta-button">Start Property Search</a>
-          <a href="/contact" class="cta-button secondary">Contact Dr. Duffy</a>
+          <a href="/search" class="cta-button">
+            Start Property Search
+          </a>
+          <a href="/contact" class="cta-button secondary">
+            Contact Dr. Duffy
+          </a>
         </div>
       </div>
     </div>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy',
   meta: [
     {
       name: 'description',
-      content: 'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.',
+      content:
+        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.',
     },
     {
       name: 'keywords',
-      content: 'Las Vegas buyer services, home buying, property search, real estate agent, Dr. Janet Duffy, buyer representation, home purchase',
+      content:
+        'Las Vegas buyer services, home buying, property search, real estate agent, Dr. Janet Duffy, buyer representation, home purchase',
     },
     {
       name: 'author',
@@ -397,16 +427,26 @@ export const head: DocumentHead = {
       content: 'index, follow',
     },
     // Open Graph metadata
-    { property: 'og:title', content: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy' },
+    {
+      property: 'og:title',
+      content: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy',
+    },
     { property: 'og:type', content: 'website' },
-    { property: 'og:description', content: 'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.' },
+    {
+      property: 'og:description',
+      content:
+        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.',
+    },
     { property: 'og:url', content: 'https://openhouseupdate.com/services/buyer-services' },
     { property: 'og:site_name', content: 'Open House Update' },
     { property: 'og:locale', content: 'en_US' },
     { property: 'og:locale:alternate', content: 'es_US' },
     { property: 'og:determiner', content: 'auto' },
     { property: 'og:image', content: 'https://openhouseupdate.com/images/og-buyer-services.jpg' },
-    { property: 'og:image:secure_url', content: 'https://openhouseupdate.com/images/og-buyer-services.jpg' },
+    {
+      property: 'og:image:secure_url',
+      content: 'https://openhouseupdate.com/images/og-buyer-services.jpg',
+    },
     { property: 'og:image:type', content: 'image/jpeg' },
     { property: 'og:image:width', content: '1200' },
     { property: 'og:image:height', content: '630' },
@@ -418,8 +458,15 @@ export const head: DocumentHead = {
     { property: 'article:tag', content: 'Las Vegas' },
     // Twitter Card metadata
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy' },
-    { name: 'twitter:description', content: 'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.' },
+    {
+      name: 'twitter:title',
+      content: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy',
+    },
+    {
+      name: 'twitter:description',
+      content:
+        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.',
+    },
     { name: 'twitter:image', content: 'https://openhouseupdate.com/images/og-buyer-services.jpg' },
     { name: 'twitter:image:alt', content: 'Buyer Services - Las Vegas Real Estate' },
   ],
@@ -429,4 +476,4 @@ export const head: DocumentHead = {
       href: 'https://openhouseupdate.com/services/buyer-services',
     },
   ],
-};
+}

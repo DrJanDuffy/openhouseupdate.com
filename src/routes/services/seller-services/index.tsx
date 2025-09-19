@@ -1,5 +1,5 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { component$, useVisibleTask$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
   useVisibleTask$(() => {
@@ -8,10 +8,10 @@ export default component$(() => {
       window.gtag('event', 'seller_services_page_view', {
         event_category: 'service',
         event_label: 'seller_services',
-        value: 1
-      });
+        value: 1,
+      })
     }
-  });
+  })
 
   return (
     <div class="seller-services-page">
@@ -310,7 +310,8 @@ export default component$(() => {
       <div class="seller-hero">
         <h1>Seller Services</h1>
         <p>
-          Maximize your property's value and ensure a smooth selling process with our comprehensive seller services.
+          Maximize your property's value and ensure a smooth selling process with our comprehensive
+          seller services.
         </p>
       </div>
 
@@ -318,7 +319,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>💰 Market Pricing Strategy</h3>
           <p>
-            Get the optimal listing price with our comprehensive market analysis and pricing strategy.
+            Get the optimal listing price with our comprehensive market analysis and pricing
+            strategy.
           </p>
           <ul>
             <li>Comparative Market Analysis (CMA)</li>
@@ -332,7 +334,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>🏠 Home Staging & Preparation</h3>
           <p>
-            Present your home in its best light with professional staging recommendations and preparation guidance.
+            Present your home in its best light with professional staging recommendations and
+            preparation guidance.
           </p>
           <ul>
             <li>Staging consultation</li>
@@ -346,7 +349,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>📸 Professional Marketing</h3>
           <p>
-            Reach the right buyers with our comprehensive marketing strategy and professional presentation.
+            Reach the right buyers with our comprehensive marketing strategy and professional
+            presentation.
           </p>
           <ul>
             <li>Professional photography</li>
@@ -374,7 +378,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>📋 Transaction Management</h3>
           <p>
-            Navigate the complex selling process with professional transaction management and support.
+            Navigate the complex selling process with professional transaction management and
+            support.
           </p>
           <ul>
             <li>Offer evaluation and negotiation</li>
@@ -388,7 +393,8 @@ export default component$(() => {
         <div class="service-card">
           <h3>📊 Market Analysis & Reporting</h3>
           <p>
-            Stay informed with regular market updates and detailed performance reports throughout the selling process.
+            Stay informed with regular market updates and detailed performance reports throughout
+            the selling process.
           </p>
           <ul>
             <li>Weekly market updates</li>
@@ -414,7 +420,7 @@ export default component$(() => {
               <li>Transaction management</li>
             </ul>
           </div>
-          
+
           <div class="pricing-card featured">
             <h3>Premium Package</h3>
             <div class="price">6.0%</div>
@@ -427,7 +433,7 @@ export default component$(() => {
               <li>Priority support</li>
             </ul>
           </div>
-          
+
           <div class="pricing-card">
             <h3>Luxury Package</h3>
             <div class="price">6.5%</div>
@@ -448,39 +454,53 @@ export default component$(() => {
         <div class="process-steps">
           <div class="process-step">
             <h3>Initial Consultation</h3>
-            <p>We assess your property and discuss your goals to create a customized selling strategy.</p>
+            <p>
+              We assess your property and discuss your goals to create a customized selling
+              strategy.
+            </p>
           </div>
-          
+
           <div class="process-step">
             <h3>Market Analysis</h3>
-            <p>Conduct a comprehensive market analysis to determine the optimal listing price and timing.</p>
+            <p>
+              Conduct a comprehensive market analysis to determine the optimal listing price and
+              timing.
+            </p>
           </div>
-          
+
           <div class="process-step">
             <h3>Property Preparation</h3>
-            <p>Guide you through staging and preparation to maximize your home's appeal to buyers.</p>
+            <p>
+              Guide you through staging and preparation to maximize your home's appeal to buyers.
+            </p>
           </div>
-          
+
           <div class="process-step">
             <h3>Marketing Launch</h3>
-            <p>Execute a comprehensive marketing campaign to reach the maximum number of qualified buyers.</p>
+            <p>
+              Execute a comprehensive marketing campaign to reach the maximum number of qualified
+              buyers.
+            </p>
           </div>
-          
+
           <div class="process-step">
             <h3>Showings & Feedback</h3>
-            <p>Coordinate showings and collect feedback to continuously optimize your selling strategy.</p>
+            <p>
+              Coordinate showings and collect feedback to continuously optimize your selling
+              strategy.
+            </p>
           </div>
-          
+
           <div class="process-step">
             <h3>Offer Negotiation</h3>
             <p>Evaluate offers and negotiate on your behalf to secure the best possible terms.</p>
           </div>
-          
+
           <div class="process-step">
             <h3>Transaction Management</h3>
             <p>Manage all aspects of the transaction from contract to closing.</p>
           </div>
-          
+
           <div class="process-step">
             <h3>Closing & Beyond</h3>
             <p>Ensure a smooth closing and provide ongoing support for any post-sale needs.</p>
@@ -491,27 +511,34 @@ export default component$(() => {
       <div class="cta-section">
         <h2>Ready to Sell Your Home?</h2>
         <p>
-          Let Dr. Janet Duffy help you maximize your property's value and achieve a successful sale with professional service and expert market knowledge.
+          Let Dr. Janet Duffy help you maximize your property's value and achieve a successful sale
+          with professional service and expert market knowledge.
         </p>
         <div class="cta-buttons">
-          <a href="/services/home-valuation" class="cta-button">Get Free Valuation</a>
-          <a href="/contact" class="cta-button secondary">Contact Dr. Duffy</a>
+          <a href="/services/home-valuation" class="cta-button">
+            Get Free Valuation
+          </a>
+          <a href="/contact" class="cta-button secondary">
+            Contact Dr. Duffy
+          </a>
         </div>
       </div>
     </div>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'Seller Services - Expert Home Selling Support | Dr. Janet Duffy',
   meta: [
     {
       name: 'description',
-      content: 'Professional seller services in Las Vegas. Maximize your home value with expert marketing, staging, and transaction management from Dr. Janet Duffy.',
+      content:
+        'Professional seller services in Las Vegas. Maximize your home value with expert marketing, staging, and transaction management from Dr. Janet Duffy.',
     },
     {
       name: 'keywords',
-      content: 'Las Vegas seller services, home selling, property marketing, real estate agent, Dr. Janet Duffy, seller representation, home sale',
+      content:
+        'Las Vegas seller services, home selling, property marketing, real estate agent, Dr. Janet Duffy, seller representation, home sale',
     },
     {
       name: 'author',
@@ -527,7 +554,8 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:description',
-      content: 'Professional seller services in Las Vegas. Maximize your home value with expert marketing and transaction management.',
+      content:
+        'Professional seller services in Las Vegas. Maximize your home value with expert marketing and transaction management.',
     },
     {
       property: 'og:type',
@@ -551,7 +579,8 @@ export const head: DocumentHead = {
     },
     {
       name: 'twitter:description',
-      content: 'Professional seller services in Las Vegas. Maximize your home value with expert marketing and transaction management.',
+      content:
+        'Professional seller services in Las Vegas. Maximize your home value with expert marketing and transaction management.',
     },
   ],
   links: [
@@ -560,4 +589,4 @@ export const head: DocumentHead = {
       href: 'https://openhouseupdate.com/services/seller-services',
     },
   ],
-};
+}

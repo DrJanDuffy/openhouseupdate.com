@@ -1,76 +1,78 @@
-import { component$, useVisibleTask$, useSignal } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 interface RealScoutLoaderProps {
-  agentId: string;
-  widgetType: 'listings' | 'home-value' | 'simple-search' | 'advanced-search';
-  children?: any;
-  className?: string;
+  agentId: string
+  widgetType: 'listings' | 'home-value' | 'simple-search' | 'advanced-search'
+  children?: any
+  className?: string
 }
 
 export default component$<RealScoutLoaderProps>(({ widgetType, children, className = '' }) => {
-  const isLoading = useSignal(true);
-  const hasError = useSignal(false);
-  const scriptLoaded = useSignal(false);
+  const isLoading = useSignal(true)
+  const hasError = useSignal(false)
+  const scriptLoaded = useSignal(false)
 
   useVisibleTask$(async () => {
     try {
       // Check if script is already loaded
       if (document.querySelector('script[src*="realscout-web-components"]')) {
-        scriptLoaded.value = true;
-        isLoading.value = false;
-        return;
+        scriptLoaded.value = true
+        isLoading.value = false
+        return
       }
 
       // Load RealScout script with integrity and crossorigin
-      const script = document.createElement('script');
-      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
-      script.type = 'module';
-      script.crossOrigin = 'anonymous';
-      script.async = true;
-      
+      const script = document.createElement('script')
+      script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js'
+      script.type = 'module'
+      script.crossOrigin = 'anonymous'
+      script.async = true
+
       // Add error handling
       script.onerror = () => {
-        hasError.value = true;
-        isLoading.value = false;
-        console.error('Failed to load RealScout script');
-      };
+        hasError.value = true
+        isLoading.value = false
+        console.error('Failed to load RealScout script')
+      }
 
       script.onload = () => {
-        scriptLoaded.value = true;
-        isLoading.value = false;
-      };
+        scriptLoaded.value = true
+        isLoading.value = false
+      }
 
-      document.head.appendChild(script);
+      document.head.appendChild(script)
 
       // Set timeout for loading
       setTimeout(() => {
         if (!scriptLoaded.value) {
-          hasError.value = true;
-          isLoading.value = false;
+          hasError.value = true
+          isLoading.value = false
         }
-      }, 10000); // 10 second timeout
-
+      }, 10000) // 10 second timeout
     } catch (error) {
-      console.error('Error loading RealScout script:', error);
-      hasError.value = true;
-      isLoading.value = false;
+      console.error('Error loading RealScout script:', error)
+      hasError.value = true
+      isLoading.value = false
     }
-  });
+  })
 
   if (hasError.value) {
     return (
       <div class={`realscout-error-container ${className}`}>
         <div class="realscout-error-content">
           <h3>Widget Temporarily Unavailable</h3>
-          <p>We're experiencing technical difficulties. Please try again later or contact us directly.</p>
-          <button 
+          <p>
+            We're experiencing technical difficulties. Please try again later or contact us
+            directly.
+          </p>
+          <button
             class="realscout-retry-btn"
             onClick$={() => {
-              hasError.value = false;
-              isLoading.value = true;
-              scriptLoaded.value = false;
+              hasError.value = false
+              isLoading.value = true
+              scriptLoaded.value = false
               // Trigger reload
-              window.location.reload();
+              window.location.reload()
             }}
           >
             Retry
@@ -110,14 +112,14 @@ export default component$<RealScoutLoaderProps>(({ widgetType, children, classNa
           }
         `}</style>
       </div>
-    );
+    )
   }
 
   if (isLoading.value) {
     return (
       <div class={`realscout-loading-container ${className}`}>
         <div class="realscout-loading-content">
-          <div class="realscout-spinner"></div>
+          <div class="realscout-spinner" />
           <p>Loading {widgetType.replace('-', ' ')}...</p>
         </div>
         <style>{`
@@ -150,8 +152,8 @@ export default component$<RealScoutLoaderProps>(({ widgetType, children, classNa
           }
         `}</style>
       </div>
-    );
+    )
   }
 
-  return <div class={className}>{children}</div>;
-});
+  return <div class={className}>{children}</div>
+})

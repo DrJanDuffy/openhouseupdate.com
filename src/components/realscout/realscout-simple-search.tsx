@@ -1,8 +1,8 @@
-import { component$, useSignal } from '@builder.io/qwik';
-import RealScoutLoader from './realscout-loader';
+import { component$, useSignal } from '@builder.io/qwik'
+import RealScoutLoader from './realscout-loader'
 
 export default component$(() => {
-  const currentTheme = useSignal<'light' | 'dark' | 'vegas'>('light');
+  const currentTheme = useSignal<'light' | 'dark' | 'vegas'>('light')
   return (
     <RealScoutLoader agentId="QWdlbnQtMjI1MDUw" widgetType="simple-search">
       <div class="realscout-simple-search-container">
@@ -104,38 +104,35 @@ export default component$(() => {
             }
           }
         `}</style>
-        
+
         <div class="realscout-simple-search-header">
           <h2>Quick Property Search</h2>
           <p>Search for homes by address, neighborhood, or city</p>
-          
+
           <div class="theme-switcher">
-            <button 
+            <button
               class={`theme-button ${currentTheme.value === 'light' ? 'active' : ''}`}
-              onClick$={() => currentTheme.value = 'light'}
+              onClick$={() => (currentTheme.value = 'light')}
             >
               Light
             </button>
-            <button 
+            <button
               class={`theme-button ${currentTheme.value === 'dark' ? 'active' : ''}`}
-              onClick$={() => currentTheme.value = 'dark'}
+              onClick$={() => (currentTheme.value = 'dark')}
             >
               Dark
             </button>
-            <button 
+            <button
               class={`theme-button ${currentTheme.value === 'vegas' ? 'active' : ''}`}
-              onClick$={() => currentTheme.value = 'vegas'}
+              onClick$={() => (currentTheme.value = 'vegas')}
             >
               Vegas
             </button>
           </div>
         </div>
-        
-        <realscout-simple-search 
-          agent-encoded-id="QWdlbnQtMjI1MDUw"
-          class={currentTheme.value}
-        ></realscout-simple-search>
+
+        <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw" class={currentTheme.value} />
       </div>
     </RealScoutLoader>
-  );
-});
+  )
+})

@@ -8,17 +8,22 @@
   "files": {
     "ignoreUnknown": false,
     "includes": [
-      "**",
+      "src/**/*.{ts,tsx,js,jsx}",
+      "*.{ts,tsx,js,jsx,json,css}",
+      "adapters/**/*.{ts,tsx,js,jsx}",
+      "adaptors/**/*.{ts,tsx,js,jsx}",
       "!**/node_modules/**",
       "!**/dist/**",
       "!**/build/**",
       "!**/.vercel/**",
       "!**/tmp/**",
-      "!**/*.min.js",
-      "!**/*.min.css",
+      "!**/*.min.{js,css}",
       "!**/pnpm-lock.yaml",
       "!**/package-lock.json",
-      "!**/yarn.lock"
+      "!**/yarn.lock",
+      "!**/coverage/**",
+      "!**/.next/**",
+      "!**/out/**"
     ]
   },
   "formatter": {
@@ -30,14 +35,22 @@
     "lineWidth": 100,
     "attributePosition": "auto"
   },
-  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
       "correctness": {
         "noUnusedVariables": "error",
-        "useExhaustiveDependencies": "warn"
+        "useExhaustiveDependencies": "warn",
+        "noUnusedImports": "error",
+        "noUndeclaredVariables": "error"
       },
       "style": {
         "noNonNullAssertion": "warn",
@@ -52,18 +65,53 @@
         "noUnusedTemplateLiteral": "error",
         "useNumberNamespace": "error",
         "noInferrableTypes": "error",
-        "noUselessElse": "error"
+        "noUselessElse": "error",
+        "useShorthandAssign": "error"
       },
       "suspicious": {
         "noExplicitAny": "warn",
-        "noArrayIndexKey": "warn"
+        "noArrayIndexKey": "warn",
+        "noConsole": "warn",
+        "noDebugger": "error",
+        "noEmptyBlockStatements": "warn",
+        "noImplicitAnyLet": "warn",
+        "noMisleadingCharacterClass": "error",
+        "noPrototypeBuiltins": "error",
+        "noRedeclare": "error",
+        "noShadowRestrictedNames": "error",
+        "noUnsafeNegation": "error",
+        "useGetterReturn": "error"
       },
       "complexity": {
         "noBannedTypes": "warn",
-        "noUselessFragments": "error"
+        "noUselessFragments": "error",
+        "noUselessTypeConstraint": "error",
+        "useSimplifiedLogicExpression": "warn"
       },
       "performance": {
-        "noAccumulatingSpread": "warn"
+        "noAccumulatingSpread": "warn",
+        "noDelete": "error"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "warn",
+        "noGlobalEval": "error"
+      },
+      "a11y": {
+        "useButtonType": "error",
+        "useAltText": "warn",
+        "useAnchorContent": "warn",
+        "useAriaActivedescendantWithTabindex": "warn",
+        "useAriaPropsForRole": "warn",
+        "useHeadingContent": "warn",
+        "useHtmlLang": "warn",
+        "useIframeTitle": "warn",
+        "useKeyWithClickEvents": "warn",
+        "useKeyWithMouseEvents": "warn",
+        "useMediaCaption": "warn",
+        "useValidAnchor": "warn",
+        "useValidAriaProps": "warn",
+        "useValidAriaValues": "warn",
+        "useValidLang": "warn"
       }
     }
   },
@@ -88,6 +136,10 @@
       "lineEnding": "lf",
       "lineWidth": 100,
       "trailingCommas": "none"
+    },
+    "parser": {
+      "allowComments": true,
+      "allowTrailingCommas": true
     }
   },
   "css": {
@@ -99,5 +151,45 @@
       "lineWidth": 100,
       "quoteStyle": "double"
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.config.{js,ts}", "**/vite.config.{js,ts}", "**/tailwind.config.{js,ts}"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.test.{js,ts,tsx}", "**/*.spec.{js,ts,tsx}", "**/__tests__/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.d.ts"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["package.json"],
+      "json": {
+        "formatter": {
+          "expand": "auto"
+        }
+      }
+    }
+  ]
 }

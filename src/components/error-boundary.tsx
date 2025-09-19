@@ -1,34 +1,34 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { $, component$, useSignal } from '@builder.io/qwik'
 
 interface ErrorBoundaryProps {
-  fallback?: any;
-  children: any;
+  fallback?: any
+  children: any
 }
 
 export default component$<ErrorBoundaryProps>(({ fallback, children }) => {
-  const hasError = useSignal(false);
-  const error = useSignal<Error | null>(null);
-  const retryCount = useSignal(0);
+  const hasError = useSignal(false)
+  const error = useSignal<Error | null>(null)
+  const retryCount = useSignal(0)
 
   const resetError = $(() => {
-    hasError.value = false;
-    error.value = null;
-    retryCount.value = 0;
-  });
+    hasError.value = false
+    error.value = null
+    retryCount.value = 0
+  })
 
   const retry = $(() => {
-    retryCount.value++;
+    retryCount.value++
     if (retryCount.value < 3) {
-      resetError();
+      resetError()
     }
-  });
+  })
 
   // In a real implementation, you would catch errors here
   // For now, this is a placeholder for the error boundary pattern
 
   if (hasError.value) {
     if (fallback) {
-      return fallback;
+      return fallback
     }
 
     return (
@@ -96,13 +96,15 @@ export default component$<ErrorBoundaryProps>(({ fallback, children }) => {
             background: #4b5563;
           }
         `}</style>
-        
+
         <h3>Something went wrong</h3>
         <p>
-          We're sorry, but something unexpected happened. 
-          {retryCount.value < 3 ? ' You can try again or contact us for assistance.' : ' Please contact us for assistance.'}
+          We're sorry, but something unexpected happened.
+          {retryCount.value < 3
+            ? ' You can try again or contact us for assistance.'
+            : ' Please contact us for assistance.'}
         </p>
-        
+
         {error.value && (
           <details style="margin: 1rem 0; text-align: left;">
             <summary style="cursor: pointer; color: #dc2626; font-weight: 600;">
@@ -113,7 +115,7 @@ export default component$<ErrorBoundaryProps>(({ fallback, children }) => {
             </pre>
           </details>
         )}
-        
+
         <div class="error-actions">
           {retryCount.value < 3 && (
             <button class="btn-retry" onClick$={retry}>
@@ -125,8 +127,8 @@ export default component$<ErrorBoundaryProps>(({ fallback, children }) => {
           </button>
         </div>
       </div>
-    );
+    )
   }
 
-  return children;
-});
+  return children
+})

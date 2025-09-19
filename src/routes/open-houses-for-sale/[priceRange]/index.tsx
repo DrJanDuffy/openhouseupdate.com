@@ -1,98 +1,102 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik';
-import { useLocation, type DocumentHead } from '@builder.io/qwik-city';
+import { component$, useVisibleTask$ } from '@builder.io/qwik'
+import { type DocumentHead, useLocation } from '@builder.io/qwik-city'
 
 export default component$(() => {
-  const location = useLocation();
-  const priceRange = location.params.priceRange;
+  const location = useLocation()
+  const priceRange = location.params.priceRange
 
   useVisibleTask$(() => {
     if (typeof window !== 'undefined') {
       // Wait for RealScout script to load and custom elements to be defined
       const initializeRealScout = () => {
         // Check if RealScout script is loaded
-        const script = document.querySelector('script[src*="realscout-web-components"]');
+        const script = document.querySelector('script[src*="realscout-web-components"]')
         if (!script) {
-          console.log('RealScout script not found, retrying...');
-          setTimeout(initializeRealScout, 500);
-          return;
+          console.log('RealScout script not found, retrying...')
+          setTimeout(initializeRealScout, 500)
+          return
         }
 
         // Wait for custom elements to be defined
         const checkElements = () => {
           if (customElements.get('realscout-advanced-search')) {
-            console.log('RealScout advanced search widget ready');
-            
+            console.log('RealScout advanced search widget ready')
+
             // Set default values for the widget
-            const widget = document.querySelector('realscout-advanced-search');
+            const widget = document.querySelector('realscout-advanced-search')
             if (widget) {
               // Set price filters based on URL parameter
               if (priceInfo.min) {
-                widget.setAttribute('price-min', priceInfo.min.toString());
+                widget.setAttribute('price-min', priceInfo.min.toString())
               }
               if (priceInfo.max) {
-                widget.setAttribute('price-max', priceInfo.max.toString());
+                widget.setAttribute('price-max', priceInfo.max.toString())
               }
-              
+
               // Set default location to Las Vegas
-              widget.setAttribute('default-location', 'Las Vegas, NV');
-              
+              widget.setAttribute('default-location', 'Las Vegas, NV')
+
               // Track price range page view
               if (typeof window !== 'undefined' && window.gtag) {
                 window.gtag('event', 'price_range_page_view', {
                   event_category: 'price_range',
                   event_label: priceInfo.display,
-                  value: 1
-                });
+                  value: 1,
+                })
               }
-              
-              console.log(`Price range page loaded: ${priceInfo.display} (min: ${priceInfo.min || 'none'}, max: ${priceInfo.max || 'none'})`);
+
+              console.log(
+                `Price range page loaded: ${priceInfo.display} (min: ${priceInfo.min || 'none'}, max: ${priceInfo.max || 'none'})`
+              )
             }
-            return;
+            return
           }
-          console.log('Waiting for RealScout advanced search widget...');
-          setTimeout(checkElements, 200);
-        };
-        
-        checkElements();
-      };
+          console.log('Waiting for RealScout advanced search widget...')
+          setTimeout(checkElements, 200)
+        }
+
+        checkElements()
+      }
 
       // Start initialization
-      initializeRealScout();
+      initializeRealScout()
     }
-  });
+  })
 
   // Parse price range and format for display
   const parsePriceRange = (range: string) => {
     if (range === 'under-400k') {
-      return { max: 400000, display: 'Under $400K', title: 'Homes Under $400K' };
-    } else if (range === '400k-600k') {
-      return { min: 400000, max: 600000, display: '$400K - $600K', title: 'Homes $400K - $600K' };
-    } else if (range === '600k-800k') {
-      return { min: 600000, max: 800000, display: '$600K - $800K', title: 'Homes $600K - $800K' };
-    } else if (range === '800k-1m') {
-      return { min: 800000, max: 1000000, display: '$800K - $1M', title: 'Homes $800K - $1M' };
-    } else if (range === 'over-1m') {
-      return { min: 1000000, display: 'Over $1M', title: 'Homes Over $1M' };
+      return { max: 400000, display: 'Under $400K', title: 'Homes Under $400K' }
+    }
+    if (range === '400k-600k') {
+      return { min: 400000, max: 600000, display: '$400K - $600K', title: 'Homes $400K - $600K' }
+    }
+    if (range === '600k-800k') {
+      return { min: 600000, max: 800000, display: '$600K - $800K', title: 'Homes $600K - $800K' }
+    }
+    if (range === '800k-1m') {
+      return { min: 800000, max: 1000000, display: '$800K - $1M', title: 'Homes $800K - $1M' }
+    }
+    if (range === 'over-1m') {
+      return { min: 1000000, display: 'Over $1M', title: 'Homes Over $1M' }
     }
     // Default fallback
-    return { max: 400000, display: 'Under $400K', title: 'Homes Under $400K' };
-  };
+    return { max: 400000, display: 'Under $400K', title: 'Homes Under $400K' }
+  }
 
-  const priceInfo = parsePriceRange(priceRange);
+  const priceInfo = parsePriceRange(priceRange)
 
   return (
     <section class="price-range-page">
       <div class="price-hero">
         <h1>{priceInfo.title}</h1>
-        <p class="price-subtitle">
-          Discover quality homes in your price range in Las Vegas
-        </p>
+        <p class="price-subtitle">Discover quality homes in your price range in Las Vegas</p>
       </div>
-      
+
       {/* Advanced Search with Price Pre-set */}
       <div class="price-search">
         <h3>Search Homes {priceInfo.display}</h3>
-        
+
         <style>{`
           .price-search realscout-advanced-search {
             --rs-as-widget-width: 700px !important;
@@ -232,85 +236,104 @@ export default component$(() => {
             }
           }
         `}</style>
-        
-        <realscout-advanced-search 
+
+        <realscout-advanced-search
           agent-encoded-id="QWdlbnQtMjI1MDUw"
           price-max={priceInfo.max?.toString()}
           price-min={priceInfo.min?.toString()}
-        ></realscout-advanced-search>
+        />
       </div>
-      
+
       {/* Price Range Navigation */}
       <div class="price-range-links">
-        <a href="/open-houses-for-sale/under-400k" class={`price-link ${priceRange === 'under-400k' ? 'current' : ''}`}>
+        <a
+          href="/open-houses-for-sale/under-400k"
+          class={`price-link ${priceRange === 'under-400k' ? 'current' : ''}`}
+        >
           Under $400K
         </a>
-        <a href="/open-houses-for-sale/400k-600k" class={`price-link ${priceRange === '400k-600k' ? 'current' : ''}`}>
+        <a
+          href="/open-houses-for-sale/400k-600k"
+          class={`price-link ${priceRange === '400k-600k' ? 'current' : ''}`}
+        >
           $400K - $600K
         </a>
-        <a href="/open-houses-for-sale/600k-800k" class={`price-link ${priceRange === '600k-800k' ? 'current' : ''}`}>
+        <a
+          href="/open-houses-for-sale/600k-800k"
+          class={`price-link ${priceRange === '600k-800k' ? 'current' : ''}`}
+        >
           $600K - $800K
         </a>
-        <a href="/open-houses-for-sale/800k-1m" class={`price-link ${priceRange === '800k-1m' ? 'current' : ''}`}>
+        <a
+          href="/open-houses-for-sale/800k-1m"
+          class={`price-link ${priceRange === '800k-1m' ? 'current' : ''}`}
+        >
           $800K - $1M
         </a>
-        <a href="/open-houses-for-sale/over-1m" class={`price-link ${priceRange === 'over-1m' ? 'current' : ''}`}>
+        <a
+          href="/open-houses-for-sale/over-1m"
+          class={`price-link ${priceRange === 'over-1m' ? 'current' : ''}`}
+        >
           Over $1M
         </a>
       </div>
-      
+
       {/* Information Cards */}
       <div class="price-info-cards">
         <div class="info-card">
           <h4>Why Choose This Price Range?</h4>
           <p>
-            {priceInfo.display} homes in Las Vegas offer excellent value with modern amenities, 
-            great locations, and strong investment potential. Perfect for first-time buyers 
-            or investors looking for quality properties.
+            {priceInfo.display} homes in Las Vegas offer excellent value with modern amenities,
+            great locations, and strong investment potential. Perfect for first-time buyers or
+            investors looking for quality properties.
           </p>
         </div>
-        
+
         <div class="info-card">
           <h4>Market Insights</h4>
           <p>
-            The Las Vegas market in this price range shows strong demand with competitive 
-            pricing. Properties often feature updated kitchens, spacious layouts, and 
-            access to top-rated schools and amenities.
+            The Las Vegas market in this price range shows strong demand with competitive pricing.
+            Properties often feature updated kitchens, spacious layouts, and access to top-rated
+            schools and amenities.
           </p>
         </div>
-        
+
         <div class="info-card">
           <h4>Expert Guidance</h4>
           <p>
-            Dr. Janet Duffy specializes in helping buyers find the perfect home in this 
-            price range. Get personalized guidance, market insights, and expert negotiation 
-            to secure your dream home.
+            Dr. Janet Duffy specializes in helping buyers find the perfect home in this price range.
+            Get personalized guidance, market insights, and expert negotiation to secure your dream
+            home.
           </p>
         </div>
       </div>
     </section>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = ({ params }) => {
-  const priceRange = params.priceRange;
-  
+  const priceRange = params.priceRange
+
   const parsePriceRange = (range: string) => {
     if (range === 'under-400k') {
-      return { display: 'Under $400K', title: 'Homes Under $400K' };
-    } else if (range === '400k-600k') {
-      return { display: '$400K - $600K', title: 'Homes $400K - $600K' };
-    } else if (range === '600k-800k') {
-      return { display: '$600K - $800K', title: 'Homes $600K - $800K' };
-    } else if (range === '800k-1m') {
-      return { display: '$800K - $1M', title: 'Homes $800K - $1M' };
-    } else if (range === 'over-1m') {
-      return { display: 'Over $1M', title: 'Homes Over $1M' };
+      return { display: 'Under $400K', title: 'Homes Under $400K' }
     }
-    return { display: 'Under $400K', title: 'Homes Under $400K' };
-  };
+    if (range === '400k-600k') {
+      return { display: '$400K - $600K', title: 'Homes $400K - $600K' }
+    }
+    if (range === '600k-800k') {
+      return { display: '$600K - $800K', title: 'Homes $600K - $800K' }
+    }
+    if (range === '800k-1m') {
+      return { display: '$800K - $1M', title: 'Homes $800K - $1M' }
+    }
+    if (range === 'over-1m') {
+      return { display: 'Over $1M', title: 'Homes Over $1M' }
+    }
+    return { display: 'Under $400K', title: 'Homes Under $400K' }
+  }
 
-  const priceInfo = parsePriceRange(priceRange);
+  const priceInfo = parsePriceRange(priceRange)
 
   return {
     title: `${priceInfo.title} - Las Vegas Real Estate | Dr. Janet Duffy`,
@@ -370,5 +393,5 @@ export const head: DocumentHead = ({ params }) => {
         href: `https://openhouseupdate.com/open-houses-for-sale/${priceRange}`,
       },
     ],
-  };
-};
+  }
+}

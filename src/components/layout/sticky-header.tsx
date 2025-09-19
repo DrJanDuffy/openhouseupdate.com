@@ -1,40 +1,40 @@
-import { component$, useVisibleTask$, useSignal } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 export default component$(() => {
-  const isScrolled = useSignal(false);
-  const debugMode = useSignal(true); // Set to true for testing
+  const isScrolled = useSignal(false)
+  const debugMode = useSignal(true) // Set to true for testing
 
   useVisibleTask$(() => {
     // Debug: Log that component is mounting
-    console.log('Sticky header component mounted');
-    
+    console.log('Sticky header component mounted')
+
     // Ensure RealScout components are available
     if (typeof window !== 'undefined') {
       const checkElements = () => {
         if (customElements.get('realscout-advanced-search')) {
-          console.log('RealScout component found');
-          return;
+          console.log('RealScout component found')
+          return
         }
-        setTimeout(checkElements, 100);
-      };
-      checkElements();
+        setTimeout(checkElements, 100)
+      }
+      checkElements()
 
       // Handle scroll detection
       const handleScroll = () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        isScrolled.value = scrollTop > 100; // Show after 100px scroll
-        console.log('Scroll detected:', scrollTop, 'isScrolled:', isScrolled.value);
-      };
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+        isScrolled.value = scrollTop > 100 // Show after 100px scroll
+        console.log('Scroll detected:', scrollTop, 'isScrolled:', isScrolled.value)
+      }
 
       // Add scroll listener
-      window.addEventListener('scroll', handleScroll);
-      
+      window.addEventListener('scroll', handleScroll)
+
       // Cleanup
       return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
+        window.removeEventListener('scroll', handleScroll)
+      }
     }
-  });
+  })
 
   return (
     <header class="sticky-header">
@@ -197,29 +197,39 @@ export default component$(() => {
           }
         }
       `}</style>
-      
+
       {/* Shows on scroll */}
-      <div class={`sticky-search-bar ${isScrolled.value || debugMode.value ? 'visible' : ''} ${debugMode.value ? 'debug' : ''}`}>
+      <div
+        class={`sticky-search-bar ${isScrolled.value || debugMode.value ? 'visible' : ''} ${debugMode.value ? 'debug' : ''}`}
+      >
         {/* Debug indicator */}
-        {debugMode.value && <div style="position: absolute; top: -20px; left: 0; background: red; color: white; padding: 2px 5px; font-size: 10px;">STICKY HEADER DEBUG</div>}
+        {debugMode.value && (
+          <div style="position: absolute; top: -20px; left: 0; background: red; color: white; padding: 2px 5px; font-size: 10px;">
+            STICKY HEADER DEBUG
+          </div>
+        )}
         <div class="sticky-header-brand">
           <a href="/" class="sticky-header-logo">
             Open House Update
           </a>
         </div>
-        
+
         <div class="sticky-search-container">
-          <realscout-advanced-search 
-            agent-encoded-id="QWdlbnQtMjI1MDUw"
-          ></realscout-advanced-search>
+          <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
         </div>
-        
+
         <div class="sticky-header-actions">
-          <a href="/search" class="sticky-header-link">Advanced</a>
-          <a href="/map" class="sticky-header-link">Map</a>
-          <a href="/this-weekend" class="sticky-header-link primary">Open Houses</a>
+          <a href="/search" class="sticky-header-link">
+            Advanced
+          </a>
+          <a href="/map" class="sticky-header-link">
+            Map
+          </a>
+          <a href="/this-weekend" class="sticky-header-link primary">
+            Open Houses
+          </a>
         </div>
       </div>
     </header>
-  );
-});
+  )
+})

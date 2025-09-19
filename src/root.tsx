@@ -1,8 +1,8 @@
-import { component$ } from '@builder.io/qwik';
-import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
-import { RouterHead } from './components/router-head/router-head';
+import { component$ } from '@builder.io/qwik'
+import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city'
+import { RouterHead } from './components/router-head/router-head'
 
-import './global.css';
+import './global.css'
 
 export default component$(() => {
   /**
@@ -19,37 +19,38 @@ export default component$(() => {
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <meta name="theme-color" content="#3A8DDE" />
-          
+
           {/* Preconnect to external domains for performance */}
           <link rel="preconnect" href="https://em.realscout.com" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-          
+
           {/* DNS prefetch for additional performance */}
           <link rel="dns-prefetch" href="https://em.realscout.com" />
           <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-          
+
           {/* Manifest and icons */}
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
           <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
-          
+
           {/* Enhanced RealScout script loading with error handling */}
-          <script 
-            src="https://em.realscout.com/widgets/realscout-web-components.umd.js" 
+          <script
+            src="https://em.realscout.com/widgets/realscout-web-components.umd.js"
             type="module"
             crossOrigin="anonymous"
             async
           />
-          
+
           <RouterHead />
         </head>
         <body>
           <RouterOutlet />
           <ServiceWorkerRegister />
-          
+
           {/* Performance and error monitoring */}
-          <script dangerouslySetInnerHTML={`
+          <script
+            dangerouslySetInnerHTML={`
             // Enhanced error handling for RealScout
             window.addEventListener('error', function(event) {
               if (event.filename && event.filename.includes('realscout')) {
@@ -81,9 +82,10 @@ export default component$(() => {
               checkRealScoutElements();
               setTimeout(checkRealScoutElements, 2000);
             });
-          `} />
+          `}
+          />
         </body>
       </html>
     </QwikCityProvider>
-  );
-});
+  )
+})

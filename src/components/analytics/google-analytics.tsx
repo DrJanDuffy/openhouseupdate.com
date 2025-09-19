@@ -1,36 +1,36 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useVisibleTask$ } from '@builder.io/qwik'
 
 interface GoogleAnalyticsProps {
-  measurementId: string;
+  measurementId: string
 }
 
 export default component$<GoogleAnalyticsProps>(({ measurementId }) => {
   useVisibleTask$(() => {
     // Load Google Analytics script
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-    document.head.appendChild(script);
+    const script = document.createElement('script')
+    script.async = true
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
+    document.head.appendChild(script)
 
     // Initialize gtag
-    window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || []
     function gtag(...args: any[]) {
-      window.dataLayer.push(args);
+      window.dataLayer.push(args)
     }
-    
-    gtag('js', new Date());
+
+    gtag('js', new Date())
     gtag('config', measurementId, {
       page_title: document.title,
       page_location: window.location.href,
-    });
+    })
 
     // Track page views
     gtag('event', 'page_view', {
       page_title: document.title,
       page_location: window.location.href,
       page_path: window.location.pathname,
-    });
-  });
+    })
+  })
 
   return (
     <>
@@ -47,13 +47,13 @@ export default component$<GoogleAnalyticsProps>(({ measurementId }) => {
         `}
       />
     </>
-  );
-});
+  )
+})
 
 // Declare global gtag function
 declare global {
   interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer: any[]
+    gtag: (...args: any[]) => void
   }
 }

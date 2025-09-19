@@ -9,12 +9,12 @@ realscout-office-listings {
   --rs-as-button-text-color: #ffffff;
   --rs-as-background-color: #ffffff;
   --rs-as-button-color: rgb(35, 93, 137);
-  
+
   /* Simple Search Variables */
   --rs-ss-font-primary-color: #6a6d72;
   --rs-ss-searchbar-border-color: hsl(0, 0%, 80%);
   --rs-ss-box-shadow: 0 10px 15px -3px #0000001a;
-  
+
   /* Home Value Variables */
   --rs-hvw-background-color: #ffffff;
   --rs-hvw-title-color: #000000;
@@ -23,7 +23,7 @@ realscout-office-listings {
   --rs-hvw-primary-button-color: rgb(35, 93, 137);
   --rs-hvw-secondary-button-text-color: rgb(35, 93, 137);
   --rs-hvw-secondary-button-color: #ffffff;
-  
+
   /* Listings Variables */
   --rs-listing-divider-color: rgb(101, 141, 172);
   --rs-listing-background-color: #ffffff;
@@ -40,13 +40,13 @@ realscout-office-listings.dark {
   --rs-as-background-color: #1f2937;
   --rs-as-button-color: #3b82f6;
   --rs-as-text-color: #ffffff;
-  
+
   /* Simple Search Dark */
   --rs-ss-font-primary-color: #ffffff;
   --rs-ss-searchbar-border-color: #4b5563;
   --rs-ss-background-color: #1f2937;
   --rs-ss-button-color: #3b82f6;
-  
+
   /* Home Value Dark */
   --rs-hvw-background-color: #1f2937;
   --rs-hvw-title-color: #ffffff;
@@ -54,7 +54,7 @@ realscout-office-listings.dark {
   --rs-hvw-primary-button-color: #3b82f6;
   --rs-hvw-secondary-button-color: #374151;
   --rs-hvw-secondary-button-text-color: #ffffff;
-  
+
   /* Listings Dark */
   --rs-listing-divider-color: #4b5563;
   --rs-listing-background-color: #1f2937;
@@ -70,17 +70,17 @@ realscout-office-listings.vegas {
   /* Advanced Search Vegas */
   --rs-as-button-color: #dc2626; /* Red */
   --rs-as-accent-color: #eab308; /* Gold */
-  
+
   /* Simple Search Vegas */
   --rs-ss-button-color: #dc2626;
   --rs-ss-accent-color: #eab308;
   --rs-ss-searchbar-border-color: #dc2626;
-  
+
   /* Home Value Vegas */
   --rs-hvw-primary-button-color: #dc2626;
   --rs-hvw-secondary-button-color: #eab308;
   --rs-hvw-secondary-button-text-color: #000000;
-  
+
   /* Listings Vegas */
   --rs-listing-divider-color: #dc2626;
   --rs-listing-button-color: #dc2626;
@@ -130,16 +130,16 @@ realscout-home-value {
     --rs-ss-widget-width: 100% !important;
     min-height: 150px;
   }
-  
+
   realscout-office-listings {
     min-height: 400px;
   }
-  
+
   /* Mobile responsive adjustments for widget configurations */
   .compact realscout-advanced-search {
     --rs-as-widget-width: 100% !important;
   }
-  
+
   .hero realscout-advanced-search {
     --rs-as-widget-width: 100% !important;
     --rs-as-padding: 16px;

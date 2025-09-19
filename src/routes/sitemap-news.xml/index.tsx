@@ -1,13 +1,9 @@
-import { component$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { component$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
-  return (
-    <div style={{ display: 'none' }}>
-      {/* This component renders XML content */}
-    </div>
-  );
-});
+  return <div style={{ display: 'none' }}>{/* This component renders XML content */}</div>
+})
 
 export const head: DocumentHead = {
   title: 'News Sitemap',
@@ -17,13 +13,13 @@ export const head: DocumentHead = {
       content: 'noindex, nofollow',
     },
   ],
-};
+}
 
 // Generate XML news sitemap
 export const onGet = async () => {
-  const currentDate = new Date().toISOString();
-  const publicationDate = new Date().toISOString();
-  
+  const currentDate = new Date().toISOString()
+  const publicationDate = new Date().toISOString()
+
   const newsItems = [
     {
       url: 'https://www.openhouseupdate.com/market-analysis',
@@ -33,7 +29,7 @@ export const onGet = async () => {
     },
     {
       url: 'https://www.openhouseupdate.com/this-weekend',
-      title: 'This Weekend\'s Open Houses in Las Vegas',
+      title: "This Weekend's Open Houses in Las Vegas",
       publicationDate,
       keywords: 'open houses, Las Vegas, weekend, property viewing',
     },
@@ -49,12 +45,14 @@ export const onGet = async () => {
       publicationDate,
       keywords: 'home selling, Las Vegas, seller services, real estate',
     },
-  ];
+  ]
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
-${newsItems.map(item => `  <url>
+${newsItems
+  .map(
+    (item) => `  <url>
     <loc>${item.url}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
@@ -68,13 +66,15 @@ ${newsItems.map(item => `  <url>
       <news:title>${item.title}</news:title>
       <news:keywords>${item.keywords}</news:keywords>
     </news:news>
-  </url>`).join('\n')}
-</urlset>`;
+  </url>`
+  )
+  .join('\n')}
+</urlset>`
 
   return new Response(sitemap, {
     headers: {
       'Content-Type': 'application/xml',
       'Cache-Control': 'public, max-age=3600, s-maxage=3600',
     },
-  });
-};
+  })
+}

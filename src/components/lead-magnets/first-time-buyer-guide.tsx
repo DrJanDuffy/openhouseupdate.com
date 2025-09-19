@@ -1,19 +1,16 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { $, component$, useSignal } from '@builder.io/qwik'
 
 interface FirstTimeBuyerGuideProps {
-  variant?: 'card' | 'banner' | 'inline';
-  className?: string;
+  variant?: 'card' | 'banner' | 'inline'
+  className?: string
 }
 
-export default component$<FirstTimeBuyerGuideProps>(({ 
-  variant = 'card',
-  className = ''
-}) => {
-  const isExpanded = useSignal(false);
-  const email = useSignal('');
-  const phone = useSignal('');
-  const isSubmitting = useSignal(false);
-  const isDownloaded = useSignal(false);
+export default component$<FirstTimeBuyerGuideProps>(({ variant = 'card', className = '' }) => {
+  const isExpanded = useSignal(false)
+  const email = useSignal('')
+  const phone = useSignal('')
+  const isSubmitting = useSignal(false)
+  const isDownloaded = useSignal(false)
 
   const guideFeatures = [
     'Complete step-by-step home buying process',
@@ -23,59 +20,63 @@ export default component$<FirstTimeBuyerGuideProps>(({
     'Neighborhood comparison guide',
     'Negotiation strategies and tips',
     'Closing cost breakdown',
-    'Moving checklist and timeline'
-  ];
+    'Moving checklist and timeline',
+  ]
 
   const toggleExpanded = $(() => {
-    isExpanded.value = !isExpanded.value;
-    
+    isExpanded.value = !isExpanded.value
+
     // Track guide interaction
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'first_time_buyer_guide',
         isExpanded.value ? 'guide_expanded' : 'guide_collapsed',
         { depth: 'moderate', value: 2 }
-      );
+      )
     }
-  });
+  })
 
   const handleDownload = $(async () => {
-    isSubmitting.value = true;
+    isSubmitting.value = true
 
     // Track download attempt
     if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
-      window.enhancedRealEstateAnalytics.trackFormSubmission('first_time_buyer_guide_download', true, {
-        email: email.value,
-        phone: phone.value,
-        source: 'first_time_buyer_guide_widget'
-      });
+      window.enhancedRealEstateAnalytics.trackFormSubmission(
+        'first_time_buyer_guide_download',
+        true,
+        {
+          email: email.value,
+          phone: phone.value,
+          source: 'first_time_buyer_guide_widget',
+        }
+      )
     }
 
     // Simulate download process
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     // Create download link
-    const link = document.createElement('a');
-    link.href = '/downloads/first-time-buyer-guide-las-vegas.pdf';
-    link.download = 'first-time-buyer-guide-las-vegas.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    isDownloaded.value = true;
-    isSubmitting.value = false;
-  });
+    const link = document.createElement('a')
+    link.href = '/downloads/first-time-buyer-guide-las-vegas.pdf'
+    link.download = 'first-time-buyer-guide-las-vegas.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+
+    isDownloaded.value = true
+    isSubmitting.value = false
+  })
 
   const getVariantStyles = () => {
     switch (variant) {
       case 'banner':
-        return 'bg-gradient-to-r from-green-600 to-green-800 text-white p-6 rounded-lg shadow-lg';
+        return 'bg-gradient-to-r from-green-600 to-green-800 text-white p-6 rounded-lg shadow-lg'
       case 'inline':
-        return 'bg-gray-50 border border-gray-200 p-4 rounded-lg';
+        return 'bg-gray-50 border border-gray-200 p-4 rounded-lg'
       default: // card
-        return 'bg-white border-2 border-green-500 p-6 rounded-lg shadow-lg';
+        return 'bg-white border-2 border-green-500 p-6 rounded-lg shadow-lg'
     }
-  };
+  }
 
   if (isDownloaded.value) {
     return (
@@ -88,12 +89,13 @@ export default component$<FirstTimeBuyerGuideProps>(({
           </p>
           <div class="bg-green-50 p-4 rounded-lg">
             <p class="text-sm text-green-800">
-              <strong>What's Next:</strong> Dr. Janet Duffy will contact you within 24 hours to discuss your home buying goals and answer any questions about the process.
+              <strong>What's Next:</strong> Dr. Janet Duffy will contact you within 24 hours to
+              discuss your home buying goals and answer any questions about the process.
             </p>
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -107,17 +109,15 @@ export default component$<FirstTimeBuyerGuideProps>(({
           50% { opacity: 0.8; }
         }
       `}</style>
-      
+
       {!isExpanded.value ? (
         <div class="text-center">
           <div class="guide-pulse mb-4">
             <div class="text-4xl mb-2">🏡</div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">
-              Free First-Time Buyer Guide
-            </h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Free First-Time Buyer Guide</h3>
             <p class="text-gray-600 mb-4">
-              Everything you need to know about buying your first home in Las Vegas. 
-              Get expert insights, checklists, and insider tips from Dr. Janet Duffy.
+              Everything you need to know about buying your first home in Las Vegas. Get expert
+              insights, checklists, and insider tips from Dr. Janet Duffy.
             </p>
             <div class="bg-gray-50 p-4 rounded-lg mb-4 text-left">
               <h4 class="font-semibold text-gray-900 mb-2">What's Included:</h4>
@@ -144,14 +144,11 @@ export default component$<FirstTimeBuyerGuideProps>(({
         <div>
           <div class="flex justify-between items-center mb-4">
             <h3 class="text-xl font-bold text-gray-900">First-Time Buyer Guide</h3>
-            <button
-              onClick$={toggleExpanded}
-              class="text-gray-400 hover:text-gray-600 text-2xl"
-            >
+            <button onClick$={toggleExpanded} class="text-gray-400 hover:text-gray-600 text-2xl">
               ×
             </button>
           </div>
-          
+
           <div class="mb-6">
             <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
               <h4 class="font-semibold text-green-800 mb-2">Complete Guide Includes:</h4>
@@ -164,11 +161,13 @@ export default component$<FirstTimeBuyerGuideProps>(({
                 ))}
               </div>
             </div>
-            
+
             <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
               <h4 class="font-semibold text-blue-800 mb-2">Why This Guide?</h4>
               <ul class="text-sm text-blue-700 space-y-1">
-                <li>• Written by Dr. Janet Duffy with 15+ years of Las Vegas real estate experience</li>
+                <li>
+                  • Written by Dr. Janet Duffy with 15+ years of Las Vegas real estate experience
+                </li>
                 <li>• Updated with current market conditions and programs</li>
                 <li>• Includes exclusive first-time buyer incentives and programs</li>
                 <li>• Real examples and case studies from successful buyers</li>
@@ -191,7 +190,7 @@ export default component$<FirstTimeBuyerGuideProps>(({
                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>
-              
+
               <div>
                 <label for="buyer-phone" class="block text-sm font-medium text-gray-700 mb-1">
                   Phone Number
@@ -205,7 +204,7 @@ export default component$<FirstTimeBuyerGuideProps>(({
                 />
               </div>
             </div>
-            
+
             <button
               type="submit"
               disabled={isSubmitting.value}
@@ -213,14 +212,14 @@ export default component$<FirstTimeBuyerGuideProps>(({
             >
               {isSubmitting.value ? 'Preparing Your Guide...' : 'Download My Free Guide Now!'}
             </button>
-            
+
             <p class="text-xs text-gray-500 text-center">
-              By downloading this guide, you agree to receive communications from Dr. Janet Duffy 
+              By downloading this guide, you agree to receive communications from Dr. Janet Duffy
               about first-time buyer opportunities and real estate services in Las Vegas.
             </p>
           </form>
         </div>
       )}
     </div>
-  );
-});
+  )
+})
