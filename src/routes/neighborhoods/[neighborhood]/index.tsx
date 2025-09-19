@@ -177,7 +177,7 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = ({ params }: { params: { neighborhood: string } }) => {
+export const head: DocumentHead = ({ params }) => {
   const neighborhood = params.neighborhood;
   const neighborhoodName = neighborhood
     .split('-')
