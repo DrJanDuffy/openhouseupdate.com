@@ -1,6 +1,5 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import { MobileSearchButton } from '~/components/modals';
 
 export default component$(() => {
   return (
@@ -171,8 +170,7 @@ export default component$(() => {
         </div>
       </div>
 
-      {/* Mobile Search Button Component */}
-      <MobileSearchButton />
+      {/* Mobile Search Button Component - Already included in layout */}
     </>
   );
 });

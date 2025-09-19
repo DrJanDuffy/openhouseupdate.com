@@ -26,6 +26,7 @@ export default component$(() => {
   });
 
   const openModal = $(() => {
+    console.log('Mobile search button clicked!');
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'mobile_search_button_click', {
         event_category: 'Mobile Search',
@@ -38,6 +39,7 @@ export default component$(() => {
         value: 1
       });
     }
+    console.log('Setting isOpen to true');
     isOpen.value = true;
   });
 
