@@ -14,11 +14,11 @@ export default component$(() => {
 
       // Add error handling for script loading
       script.onerror = () => {
-        console.warn('RealScout script failed to load. Advanced search may not function properly.')
+        // Script loading failed - handled gracefully
       }
 
       script.onload = () => {
-        console.log('RealScout script loaded successfully')
+        // Script loaded successfully
       }
 
       document.head.appendChild(script)
@@ -26,8 +26,7 @@ export default component$(() => {
   })
 
   const openModal = $(() => {
-    console.log('Mobile search button clicked!')
-    if (typeof window !== 'undefined' && window.gtag) {
+    if (window?.gtag) {
       window.gtag('event', 'mobile_search_button_click', {
         event_category: 'Mobile Search',
         event_label: 'Floating Button',
@@ -39,12 +38,11 @@ export default component$(() => {
         value: 1,
       })
     }
-    console.log('Setting isOpen to true')
     isOpen.value = true
   })
 
   const closeModal = $(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
+    if (window?.gtag) {
       window.gtag('event', 'mobile_search_modal_close', {
         event_category: 'Mobile Search',
         event_label: 'Modal Interaction',

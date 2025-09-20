@@ -12,7 +12,6 @@ export default component$(() => {
         // Check if RealScout script is loaded
         const script = document.querySelector('script[src*="realscout-web-components"]')
         if (!script) {
-          console.log('RealScout script not found, retrying...')
           setTimeout(initializeRealScout, 500)
           return
         }
@@ -20,8 +19,6 @@ export default component$(() => {
         // Wait for custom elements to be defined
         const checkElements = () => {
           if (customElements.get('realscout-advanced-search')) {
-            console.log('RealScout advanced search widget ready')
-
             // Set default values for the widget
             const widget = document.querySelector('realscout-advanced-search')
             if (widget) {
@@ -48,14 +45,9 @@ export default component$(() => {
                   value: 1,
                 })
               }
-
-              console.log(
-                `Neighborhood page loaded: ${neighborhoodName} with max price: $${maxPrice}`
-              )
             }
             return
           }
-          console.log('Waiting for RealScout advanced search widget...')
           setTimeout(checkElements, 200)
         }
 

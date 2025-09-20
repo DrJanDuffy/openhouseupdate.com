@@ -1,9 +1,9 @@
-import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
+import { component$, type JSXNode, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 interface RealScoutLoaderProps {
   agentId: string
   widgetType: 'listings' | 'home-value' | 'simple-search' | 'advanced-search'
-  children?: any
+  children?: JSXNode
   className?: string
 }
 
@@ -32,7 +32,6 @@ export default component$<RealScoutLoaderProps>(({ widgetType, children, classNa
       script.onerror = () => {
         hasError.value = true
         isLoading.value = false
-        console.error('Failed to load RealScout script')
       }
 
       script.onload = () => {
@@ -49,8 +48,7 @@ export default component$<RealScoutLoaderProps>(({ widgetType, children, classNa
           isLoading.value = false
         }
       }, 10000) // 10 second timeout
-    } catch (error) {
-      console.error('Error loading RealScout script:', error)
+    } catch (_error) {
       hasError.value = true
       isLoading.value = false
     }
@@ -66,6 +64,7 @@ export default component$<RealScoutLoaderProps>(({ widgetType, children, classNa
             directly.
           </p>
           <button
+            type="button"
             class="realscout-retry-btn"
             onClick$={() => {
               hasError.value = false

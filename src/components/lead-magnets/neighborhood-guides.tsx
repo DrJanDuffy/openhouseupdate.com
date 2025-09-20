@@ -242,8 +242,8 @@ export default component$(() => {
                 <div>
                   <h5 class="font-semibold text-gray-900 mb-2">Key Features:</h5>
                   <ul class="space-y-1">
-                    {selectedGuide.value.features.map((feature, index) => (
-                      <li key={index} class="text-sm text-gray-600 flex items-center">
+                    {selectedGuide.value.features.map((feature) => (
+                      <li key={feature} class="text-sm text-gray-600 flex items-center">
                         <span class="text-green-500 mr-2">✓</span>
                         {feature}
                       </li>
@@ -254,8 +254,8 @@ export default component$(() => {
                 <div>
                   <h5 class="font-semibold text-gray-900 mb-2">Top Amenities:</h5>
                   <ul class="space-y-1">
-                    {selectedGuide.value.amenities.map((amenity, index) => (
-                      <li key={index} class="text-sm text-gray-600 flex items-center">
+                    {selectedGuide.value.amenities.map((amenity) => (
+                      <li key={amenity} class="text-sm text-gray-600 flex items-center">
                         <span class="text-blue-500 mr-2">📍</span>
                         {amenity}
                       </li>

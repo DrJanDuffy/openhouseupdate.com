@@ -109,7 +109,7 @@ export default component$(() => {
     { url: 'https://www.openhouseupdate.com/faq', priority: '0.5', changefreq: 'monthly' },
   ]
 
-  return <div style={{ display: 'none' }}>{/* This component renders XML content */}</div>
+  return <div class="hidden">{/* This component renders XML content */}</div>
 })
 
 export const head: DocumentHead = {
@@ -246,7 +246,7 @@ ${pages
 
   return new Response(sitemap, {
     headers: {
-      'Content-Type': 'application/xml',
+      'Content-Type': 'text/xml; charset=utf-8',
       'Cache-Control': 'public, max-age=3600, s-maxage=3600',
     },
   })

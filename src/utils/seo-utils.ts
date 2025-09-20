@@ -46,13 +46,13 @@ export const generateMetaDescription = (description: string, maxLength = 160): s
 
   for (const sentence of sentences) {
     if ((result + sentence).length <= maxLength - 3) {
-      result += sentence + '. '
+      result += `${sentence}. `
     } else {
       break
     }
   }
 
-  return result.trim() || description.substring(0, maxLength - 3) + '...'
+  return result.trim() || `${description.substring(0, maxLength - 3)}...`
 }
 
 // Generate keywords from content
@@ -151,7 +151,14 @@ export const extractKeywords = (content: string, maxKeywords = 10): string[] => 
 interface PropertyData {
   name?: string
   description?: string
-  address?: string
+  address?:
+    | {
+        street?: string
+        city?: string
+        state?: string
+        zip?: string
+      }
+    | string
   price?: number
   bedrooms?: number
   bathrooms?: number
@@ -179,17 +186,17 @@ export const generateRealEstateStructuredData = (propertyData: PropertyData) => 
     image: propertyData.images || [seoConfig.defaultImage],
     address: {
       '@type': 'PostalAddress',
-      streetAddress: propertyData.address?.street,
-      addressLocality: propertyData.address?.city || 'Las Vegas',
-      addressRegion: propertyData.address?.state || 'NV',
-      postalCode: propertyData.address?.zip,
+      streetAddress: typeof propertyData.address === 'object' ? propertyData.address?.street : propertyData.address,
+      addressLocality: typeof propertyData.address === 'object' ? propertyData.address?.city || 'Las Vegas' : 'Las Vegas',
+      addressRegion: typeof propertyData.address === 'object' ? propertyData.address?.state || 'NV' : 'NV',
+      postalCode: typeof propertyData.address === 'object' ? propertyData.address?.zip : undefined,
       addressCountry: 'US',
     },
     geo: propertyData.coordinates
       ? {
           '@type': 'GeoCoordinates',
-          latitude: propertyData.coordinates.lat,
-          longitude: propertyData.coordinates.lng,
+          latitude: propertyData.coordinates.latitude,
+          longitude: propertyData.coordinates.longitude,
         }
       : undefined,
     offers: {
@@ -206,7 +213,7 @@ export const generateRealEstateStructuredData = (propertyData: PropertyData) => 
           unitCode: 'SQF',
         }
       : undefined,
-    numberOfRooms: propertyData.bedrooms + propertyData.bathrooms,
+    numberOfRooms: (propertyData.bedrooms || 0) + (propertyData.bathrooms || 0),
     numberOfBedrooms: propertyData.bedrooms,
     numberOfBathroomsTotal: propertyData.bathrooms,
   }

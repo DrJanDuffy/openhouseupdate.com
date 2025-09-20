@@ -75,28 +75,6 @@
       "permanent": true
     }
   ],
-  "rewrites": [
-    {
-      "source": "/sitemap.xml",
-      "destination": "/sitemap.xml"
-    },
-    {
-      "source": "/sitemap-images.xml",
-      "destination": "/sitemap-images.xml"
-    },
-    {
-      "source": "/sitemap-news.xml",
-      "destination": "/sitemap-news.xml"
-    },
-    {
-      "source": "/robots.txt",
-      "destination": "/robots.txt"
-    },
-    {
-      "source": "/rss.xml",
-      "destination": "/rss.xml"
-    }
-  ],
   "crons": [
     {
       "path": "/api/sitemap-update",

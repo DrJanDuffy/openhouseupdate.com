@@ -17,7 +17,6 @@ export default component$(() => {
         // Check if RealScout script is loaded
         const script = document.querySelector('script[src*="realscout-web-components"]')
         if (!script) {
-          console.log('RealScout script not found, retrying...')
           setTimeout(initializeRealScout, 500)
           return
         }
@@ -25,10 +24,8 @@ export default component$(() => {
         // Wait for custom elements to be defined
         const checkElements = () => {
           if (customElements.get('realscout-advanced-search')) {
-            console.log('RealScout advanced search widget ready')
             return
           }
-          console.log('Waiting for RealScout advanced search widget...')
           setTimeout(checkElements, 200)
         }
 

@@ -52,7 +52,7 @@ export const detectDuplicateContent = (
   urls.forEach((url) => {
     // Check for trailing slash variations
     const withoutSlash = url.replace(/\/$/, '')
-    const withSlash = url.endsWith('/') ? url : url + '/'
+    const withSlash = url.endsWith('/') ? url : `${url}/`
 
     if (urls.includes(withoutSlash) && urls.includes(withSlash)) {
       duplicates.push({

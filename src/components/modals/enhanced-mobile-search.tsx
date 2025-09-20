@@ -20,12 +20,10 @@ export default component$(() => {
         script.async = true
 
         script.onload = () => {
-          console.log('RealScout script loaded successfully for mobile search')
           resolve(true)
         }
 
         script.onerror = () => {
-          console.error('RealScout script failed to load for mobile search')
           reject(new Error('Script load failed'))
         }
 
@@ -35,15 +33,13 @@ export default component$(() => {
 
     // Load script when component mounts
     loadRealScoutScript().catch(() => {
-      console.warn('RealScout script loading failed, mobile search may not function properly')
+      // Script loading failed - handled gracefully
     })
   })
 
   const openModal = $(() => {
-    console.log('Enhanced mobile search button clicked!')
-
     // Track modal open event with enhanced analytics
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'mobile_search_modal',
         'modal_opened',
@@ -65,7 +61,7 @@ export default component$(() => {
   })
 
   const closeModal = $(() => {
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'mobile_search_modal',
         'modal_closed',
@@ -82,7 +78,7 @@ export default component$(() => {
   const switchSearchType = $((type: 'simple' | 'advanced') => {
     searchType.value = type
 
-    if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+    if (window?.enhancedRealEstateAnalytics) {
       window.enhancedRealEstateAnalytics.trackWidgetInteraction(
         'mobile_search_modal',
         'search_type_switched',
@@ -150,6 +146,7 @@ export default component$(() => {
             <div class="mobile-modal-header">
               <div class="search-type-toggle">
                 <button
+                  type="button"
                   class={`toggle-button ${searchType.value === 'simple' ? 'active' : ''}`}
                   onClick$={() => switchSearchType('simple')}
                   aria-label="Switch to simple search"
@@ -157,6 +154,7 @@ export default component$(() => {
                   Quick Search
                 </button>
                 <button
+                  type="button"
                   class={`toggle-button ${searchType.value === 'advanced' ? 'active' : ''}`}
                   onClick$={() => switchSearchType('advanced')}
                   aria-label="Switch to advanced search"
@@ -180,14 +178,10 @@ export default component$(() => {
                   <div class="loading-spinner" />
                   <p>Loading search...</p>
                 </div>
+              ) : searchType.value === 'advanced' ? (
+                <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
               ) : (
-                <>
-                  {searchType.value === 'advanced' ? (
-                    <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
-                  ) : (
-                    <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
-                  )}
-                </>
+                <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
               )}
             </div>
           </div>

@@ -2,7 +2,7 @@ import { component$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
-  return <div style={{ display: 'none' }}>{/* This component renders XML content */}</div>
+  return <div class="hidden">{/* This component renders XML content */}</div>
 })
 
 export const head: DocumentHead = {
@@ -73,7 +73,7 @@ ${newsItems
 
   return new Response(sitemap, {
     headers: {
-      'Content-Type': 'application/xml',
+      'Content-Type': 'text/xml; charset=utf-8',
       'Cache-Control': 'public, max-age=3600, s-maxage=3600',
     },
   })

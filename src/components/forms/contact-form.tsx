@@ -1,4 +1,4 @@
-import { $, component$, useSignal } from '@builder.io/qwik'
+import { $, component$, type QwikSubmitEvent, useSignal } from '@builder.io/qwik'
 
 export default component$(() => {
   const formData = useSignal({
@@ -14,8 +14,7 @@ export default component$(() => {
   const isSubmitting = useSignal(false)
   const submitStatus = useSignal<'idle' | 'success' | 'error'>('idle')
 
-  const handleSubmit = $(async (event: Event) => {
-    event.preventDefault()
+  const handleSubmit = $(async (_event: QwikSubmitEvent<HTMLFormElement>) => {
     isSubmitting.value = true
     submitStatus.value = 'idle'
 
@@ -38,7 +37,7 @@ export default component$(() => {
         budget: '',
         timeline: '',
       }
-    } catch (error) {
+    } catch (_error) {
       // Handle form submission error
       submitStatus.value = 'error'
     } finally {

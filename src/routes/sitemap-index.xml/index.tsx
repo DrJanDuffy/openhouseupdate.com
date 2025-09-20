@@ -1,3 +1,20 @@
+import { component$ } from '@builder.io/qwik'
+import type { DocumentHead } from '@builder.io/qwik-city'
+
+export default component$(() => {
+  return <div class="hidden">{/* This component renders XML content via onGet function */}</div>
+})
+
+export const head: DocumentHead = {
+  title: 'Sitemap Index',
+  meta: [
+    {
+      name: 'robots',
+      content: 'noindex, nofollow',
+    },
+  ],
+}
+
 export const onGet = async () => {
   const currentDate = new Date().toISOString().split('T')[0]
 
@@ -19,7 +36,7 @@ export const onGet = async () => {
 
   return new Response(sitemapIndex, {
     headers: {
-      'Content-Type': 'application/xml',
+      'Content-Type': 'text/xml; charset=utf-8',
       'Cache-Control': 'public, max-age=3600, s-maxage=3600',
     },
   })

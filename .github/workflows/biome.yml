@@ -1,0 +1,43 @@
+name: Biome CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  biome:
+    name: Biome
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Biome
+        uses: biomejs/setup-biome@v1
+        with:
+          version: 2.0.6
+
+      - name: Check formatting
+        run: biome format --check .
+
+      - name: Check linting
+        run: biome lint .
+
+      - name: Check everything
+        run: biome check .

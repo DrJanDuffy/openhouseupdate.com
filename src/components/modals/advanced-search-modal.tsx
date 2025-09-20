@@ -32,7 +32,7 @@ export default component$(() => {
   const openModal = $(() => {
     isOpen.value = true
     // Track modal open event
-    if (typeof window !== 'undefined' && window.gtag) {
+    if (window?.gtag) {
       window.gtag('event', 'modal_open', {
         event_category: 'search',
         event_label: 'advanced_search_modal',
@@ -43,7 +43,7 @@ export default component$(() => {
   const closeModal = $(() => {
     isOpen.value = false
     // Track modal close event
-    if (typeof window !== 'undefined' && window.gtag) {
+    if (window?.gtag) {
       window.gtag('event', 'modal_close', {
         event_category: 'search',
         event_label: 'advanced_search_modal',
@@ -74,6 +74,7 @@ export default component$(() => {
             <div class="modal-header">
               <h2 id="modal-title">Advanced Property Search</h2>
               <button
+                type="button"
                 class="close-button"
                 onClick$={closeModal}
                 aria-label="Close Advanced Search Modal"
@@ -92,6 +93,7 @@ export default component$(() => {
 
       {/* Trigger Button */}
       <button
+        type="button"
         onClick$={openModal}
         class="floating-button"
         aria-label="Open Advanced Property Search"

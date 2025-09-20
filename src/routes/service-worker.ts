@@ -13,12 +13,10 @@ setupServiceWorker()
 
 // Enhanced service worker for real estate website
 addEventListener('install', () => {
-  console.log('Service Worker installing...')
   self.skipWaiting()
 })
 
 addEventListener('activate', () => {
-  console.log('Service Worker activating...')
   self.clients.claim()
 })
 

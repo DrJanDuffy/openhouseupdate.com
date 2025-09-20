@@ -104,20 +104,29 @@ export default component$(() => {
 
         <div class="theme-switcher">
           <button
+            type="button"
             class={`theme-button ${currentTheme.value === 'light' ? 'active' : ''}`}
-            onClick$={() => (currentTheme.value = 'light')}
+            onClick$={() => {
+              currentTheme.value = 'light'
+            }}
           >
             Light
           </button>
           <button
+            type="button"
             class={`theme-button ${currentTheme.value === 'dark' ? 'active' : ''}`}
-            onClick$={() => (currentTheme.value = 'dark')}
+            onClick$={() => {
+              currentTheme.value = 'dark'
+            }}
           >
             Dark
           </button>
           <button
+            type="button"
             class={`theme-button ${currentTheme.value === 'vegas' ? 'active' : ''}`}
-            onClick$={() => (currentTheme.value = 'vegas')}
+            onClick$={() => {
+              currentTheme.value = 'vegas'
+            }}
           >
             Vegas
           </button>

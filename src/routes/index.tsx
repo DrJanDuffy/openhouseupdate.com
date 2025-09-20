@@ -57,21 +57,20 @@ export default component$(() => {
   // Enhanced RealScout component monitoring
   useVisibleTask$(() => {
     // Wait for RealScout script to load and custom elements to be defined
-    const initializeRealScout = () => {
+    const _initializeRealScout = () => {
       // Check if RealScout script is loaded
       const script = document.querySelector('script[src*="realscout-web-components"]')
       if (!script) {
-        setTimeout(initializeRealScout, 500)
+        setTimeout(_initializeRealScout, 500)
         return
       }
 
       // Wait for custom elements to be defined
-      const checkElements = () => {
+      const _checkElements = () => {
         if (
           customElements.get('realscout-advanced-search') &&
           customElements.get('realscout-simple-search')
         ) {
-          c
           // Add enhanced event listeners for search interactions
           const advancedSearch = document.querySelector('realscout-advanced-search')
           const simpleSearch = document.querySelector('realscout-simple-search')
@@ -109,13 +108,14 @@ export default component$(() => {
           return
         }
 
-        c
+        setTimeout(_checkElements, 100)
+      }
 
-      checkElements()
+      _checkElements()
     }
 
     // Start initialization
-    initializeRealScout()
+    _initializeRealScout()
 
     // Track initial page engagement
     if (window?.enhancedRealEstateAnalytics) {
@@ -538,7 +538,7 @@ export default component$(() => {
       {/* Exit Intent Popup */}
       <ExitIntentPopup
         isVisible={showExitIntent.value}
-        onClose$={() => {
+        onClose={() => {
           showExitIntent.value = false
         }}
       />
@@ -546,7 +546,7 @@ export default component$(() => {
   )
 })
 
-export const head: DocumentHead = createSEOHead({
+export const _head: DocumentHead = createSEOHead({
   title: 'Las Vegas Real Estate - Find Your Dream Home',
   description:
     'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance. Serving Summerlin, Henderson, North Las Vegas and all Las Vegas Valley neighborhoods.',

@@ -158,8 +158,8 @@ export default component$<FirstTimeBuyerGuideProps>(({ variant = 'card', classNa
             <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
               <h4 class="font-semibold text-green-800 mb-2">Complete Guide Includes:</h4>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {guideFeatures.map((feature, index) => (
-                  <div key={index} class="flex items-center text-sm text-green-700">
+                {guideFeatures.map((feature) => (
+                  <div key={feature} class="flex items-center text-sm text-green-700">
                     <span class="text-green-500 mr-2">✓</span>
                     {feature}
                   </div>

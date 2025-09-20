@@ -1,0 +1,45 @@
+---
+description: Core project guidelines for Open House Update - Las Vegas open house website
+alwaysApply: true
+---
+
+# Open House Update - Main Project Rules
+
+## Project Overview
+- **Business**: Las Vegas open house listings and weekend property viewing
+- **Tech Stack**: Qwik + TypeScript + Tailwind CSS + Vercel
+- **Domain**: openhouseupdate.com
+- **Agent**: Dr. Janet Duffy
+- **Focus**: Weekend open houses and property viewing
+
+## Core Requirements
+
+### 1. Build & Deployment
+- **ALWAYS build on Vercel**: `pnpm build` → `pnpm deploy`
+- Use `component$()` for all Qwik components
+- Use `useSignal()` for reactive state
+- Use `createSEOHead()` for all pages
+
+### 2. Open House Focus
+- Primary functionality: Weekend open house listings
+- Key pages: `/this-weekend`, `/open-houses-for-sale/[priceRange]`
+- RealScout agent ID: `QWdlbnQtMjI1MDUw`
+- Mobile-first design for on-the-go property viewing
+
+### 3. SEO & Performance
+- Include Las Vegas geo-coordinates: 36.1699;-115.1398
+- Use Google Site Verification: 3MLLpJH2Mfg7igpQ-qC_wpBTzvBGvsOUe7V_pJdYAcM
+- Default OG image: `https://openhouseupdate.com/images/og-default.jpg`
+- Target Core Web Vitals < 2.5s load time
+
+### 4. Code Quality
+- Use Biome for linting: `pnpm check` and `pnpm check.fix`
+- Maintain 100% TypeScript coverage
+- Follow accessibility guidelines (WCAG 2.1 AA)
+- Use semantic HTML elements
+
+## Key Keywords
+- "open houses Las Vegas"
+- "weekend open houses" 
+- "Las Vegas property viewing"
+- "open house listings"

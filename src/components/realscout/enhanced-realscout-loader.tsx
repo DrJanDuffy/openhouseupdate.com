@@ -1,9 +1,9 @@
-import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
+import { $, component$, type JSXNode, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 
 interface EnhancedRealScoutLoaderProps {
   agentId: string
   widgetType: 'listings' | 'home-value' | 'simple-search' | 'advanced-search'
-  children?: any
+  children?: JSXNode
   className?: string
   lazyLoad?: boolean
   viewportThreshold?: number
@@ -31,7 +31,6 @@ export default component$<EnhancedRealScoutLoaderProps>(
         // Check if script is already loaded
         const existingScript = document.querySelector('script[src*="realscout-web-components"]')
         if (existingScript) {
-          console.log('RealScout script already loaded')
           scriptLoaded.value = true
           isLoading.value = false
           initializeWidget()
@@ -41,7 +40,6 @@ export default component$<EnhancedRealScoutLoaderProps>(
         // Check if custom elements are already defined
         const elementName = `realscout-${widgetType.replace('-', '-')}`
         if (customElements.get(elementName)) {
-          console.log('RealScout custom elements already defined')
           scriptLoaded.value = true
           isLoading.value = false
           widgetReady.value = true
@@ -58,12 +56,10 @@ export default component$<EnhancedRealScoutLoaderProps>(
 
         // Enhanced error handling with retry logic
         script.onerror = () => {
-          console.error(`Failed to load RealScout script (attempt ${retryCount.value + 1})`)
           handleScriptError()
         }
 
         script.onload = () => {
-          console.log('RealScout script loaded successfully')
           scriptLoaded.value = true
           isLoading.value = false
           initializeWidget()
@@ -78,8 +74,7 @@ export default component$<EnhancedRealScoutLoaderProps>(
             handleScriptError()
           }
         }, timeout)
-      } catch (error) {
-        console.error('Error loading RealScout script:', error)
+      } catch (_error) {
         handleScriptError()
       }
     })
@@ -88,7 +83,6 @@ export default component$<EnhancedRealScoutLoaderProps>(
       // Check if script is already loaded from layout
       const existingScript = document.querySelector('script[src*="realscout-web-components"]')
       if (existingScript) {
-        console.log('RealScout script found in layout, initializing widget')
         scriptLoaded.value = true
         isLoading.value = false
         initializeWidget()
@@ -123,7 +117,6 @@ export default component$<EnhancedRealScoutLoaderProps>(
     const handleScriptError = $(() => {
       retryCount.value++
       if (retryCount.value < retryAttempts) {
-        console.log(`Retrying RealScout script load (attempt ${retryCount.value + 1})`)
         setTimeout(
           () => {
             loadRealScoutScript()
@@ -133,7 +126,6 @@ export default component$<EnhancedRealScoutLoaderProps>(
       } else {
         hasError.value = true
         isLoading.value = false
-        console.error('RealScout script failed to load after all retry attempts')
       }
     })
 
@@ -141,17 +133,14 @@ export default component$<EnhancedRealScoutLoaderProps>(
       // Wait for custom elements to be defined
       const checkElements = () => {
         const elementName = `realscout-${widgetType.replace('-', '-')}`
-        console.log(`Checking for custom element: ${elementName}`)
 
         if (customElements.get(elementName)) {
-          console.log(`Custom element ${elementName} found, widget ready`)
           widgetReady.value = true
 
           // Add event listeners for analytics tracking
           setTimeout(() => {
             const widget = document.querySelector(elementName)
             if (widget && window.enhancedRealEstateAnalytics) {
-              console.log('Adding analytics event listeners to widget')
               // Track widget interactions
               widget.addEventListener('search', () => {
                 window.enhancedRealEstateAnalytics.trackWidgetInteraction(
@@ -184,7 +173,6 @@ export default component$<EnhancedRealScoutLoaderProps>(
 
         // Check if we've been waiting too long
         if (retryCount.value > 10) {
-          console.error(`Custom element ${elementName} not found after multiple attempts`)
           hasError.value = true
           isLoading.value = false
           return
@@ -216,6 +204,7 @@ export default component$<EnhancedRealScoutLoaderProps>(
             </p>
             <div class="error-actions">
               <button
+                type="button"
                 class="realscout-retry-btn"
                 onClick$={retryWidget}
                 aria-label="Retry loading property search widget"
