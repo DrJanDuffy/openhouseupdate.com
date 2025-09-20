@@ -34,7 +34,7 @@ export default component$<EnhancedStructuredDataProps>(
             description:
               'Professional real estate agent specializing in Las Vegas properties with over 20 years of experience',
             url: 'https://openhouseupdate.com',
-            telephone: '+1-702-XXX-XXXX',
+            telephone: '+1-702-200-3422',
             email: 'drduffy@bhhsnv.com',
             image: 'https://openhouseupdate.com/images/dr-janet-duffy.jpg',
             logo: 'https://openhouseupdate.com/images/logo.png',
@@ -236,7 +236,7 @@ export default component$<EnhancedStructuredDataProps>(
             },
             contactPoint: {
               '@type': 'ContactPoint',
-              telephone: '+1-702-XXX-XXXX',
+              telephone: '+1-702-200-3422',
               contactType: 'customer service',
               email: 'drduffy@bhhsnv.com',
               availableLanguage: ['English', 'Spanish'],
@@ -254,7 +254,7 @@ export default component$<EnhancedStructuredDataProps>(
             '@type': 'RealEstateAgent',
             name: 'Dr. Janet Duffy Real Estate',
             image: 'https://openhouseupdate.com/images/dr-janet-duffy.jpg',
-            telephone: '+1-702-XXX-XXXX',
+            telephone: '+1-702-200-3422',
             email: 'drduffy@bhhsnv.com',
             address: {
               '@type': 'PostalAddress',

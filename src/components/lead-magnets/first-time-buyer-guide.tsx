@@ -204,7 +204,7 @@ export default component$<FirstTimeBuyerGuideProps>(({ variant = 'card', classNa
                   type="tel"
                   id="buyer-phone"
                   bind:value={phone}
-                  placeholder="(702) 555-0123"
+                  placeholder="(702) 200-3422"
                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>

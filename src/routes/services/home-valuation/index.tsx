@@ -346,7 +346,7 @@ export default component$(() => {
 
               <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" bind:value={phone} placeholder="(702) 555-0123" />
+                <input type="tel" id="phone" bind:value={phone} placeholder="(702) 200-3422" />
               </div>
 
               <div class="form-group">

@@ -89,7 +89,7 @@ export default component$(() => {
                       id="phone"
                       bind:value={phone}
                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="(702) 555-0123"
+                      placeholder="(702) 200-3422"
                     />
                   </div>
 
@@ -176,7 +176,7 @@ export default component$(() => {
                   <div class="text-blue-600 text-2xl">📱</div>
                   <div>
                     <h4 class="font-semibold text-gray-900">Phone</h4>
-                    <p class="text-gray-600">(702) XXX-XXXX</p>
+                    <p class="text-gray-600">(702) 200-3422</p>
                   </div>
                 </div>
 

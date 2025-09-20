@@ -5,17 +5,31 @@ interface RealScoutMapProps {
   geoId?: string
   height?: string
   width?: string
+  onError$?: () => void
 }
 
 export default component$<RealScoutMapProps>(
-  ({ geoType = 'city', geoId = '3240000', height = '500px', width = '100%' }) => {
+  ({ geoType = 'city', geoId = '3240000', height = '500px', width = '100%', onError$ }) => {
     useVisibleTask$(() => {
-      // Load RealScout map script if not already loaded
-      if (!document.querySelector('script[src*="realscout.com"]')) {
-        const script = document.createElement('script')
-        script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js'
-        script.type = 'module'
-        document.head.appendChild(script)
+      try {
+        // Load RealScout map script if not already loaded
+        if (!document.querySelector('script[src*="realscout.com"]')) {
+          const script = document.createElement('script')
+          script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js'
+          script.type = 'module'
+          script.onerror = () => {
+            console.warn('RealScout script failed to load')
+            if (onError$) {
+              onError$()
+            }
+          }
+          document.head.appendChild(script)
+        }
+      } catch (error) {
+        console.warn('RealScout map initialization failed:', error)
+        if (onError$) {
+          onError$()
+        }
       }
     })
 

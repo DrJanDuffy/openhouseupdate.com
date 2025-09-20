@@ -94,7 +94,7 @@ export default component$(() => {
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:+1702XXX-XXXX"
+              href="tel:+17022003422"
               class="bg-white text-blue-600 py-3 px-8 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               📞 Call Now

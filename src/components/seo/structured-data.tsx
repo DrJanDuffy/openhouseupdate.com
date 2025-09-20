@@ -15,7 +15,7 @@ export default component$<StructuredDataProps>(({ type, data }) => {
           name: 'Dr. Janet Duffy',
           description: 'Professional real estate agent specializing in Las Vegas properties',
           url: 'https://openhouseupdate.com',
-          telephone: '+1-702-XXX-XXXX',
+          telephone: '+1-702-200-3422',
           email: 'drduffy@bhhsnv.com',
           address: {
             '@type': 'PostalAddress',

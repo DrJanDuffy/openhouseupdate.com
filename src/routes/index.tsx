@@ -56,99 +56,131 @@ export default component$(() => {
 
   // Enhanced RealScout component monitoring
   useVisibleTask$(() => {
-    // Wait for RealScout script to load and custom elements to be defined
-    const _initializeRealScout = () => {
-      // Check if RealScout script is loaded
-      const script = document.querySelector('script[src*="realscout-web-components"]')
-      if (!script) {
-        setTimeout(_initializeRealScout, 500)
-        return
-      }
-
-      // Wait for custom elements to be defined
-      const _checkElements = () => {
-        if (
-          customElements.get('realscout-advanced-search') &&
-          customElements.get('realscout-simple-search')
-        ) {
-          // Add enhanced event listeners for search interactions
-          const advancedSearch = document.querySelector('realscout-advanced-search')
-          const simpleSearch = document.querySelector('realscout-simple-search')
-
-          if (advancedSearch && window.enhancedRealEstateAnalytics) {
-            // Track when advanced search is used
-            advancedSearch.addEventListener('search', () => {
-              window.enhancedRealEstateAnalytics.trackPropertySearch('advanced_search_performed', {
-                search_mode: 'advanced',
-                depth: 'high',
-                value: 3,
-              })
-            })
-
-            advancedSearch.addEventListener('filter', () => {
-              window.enhancedRealEstateAnalytics.trackWidgetInteraction(
-                'realscout_advanced_search',
-                'filter_applied',
-                { depth: 'moderate', value: 1 }
-              )
-            })
+    // Add error handling for client-side initialization
+    try {
+      let realScoutLoaded = false
+      
+      // Set a timeout to show fallback if RealScout doesn't load within 10 seconds
+      const fallbackTimeout = setTimeout(() => {
+        if (!realScoutLoaded) {
+          console.warn('RealScout widgets failed to load within timeout, showing fallback')
+          const fallback = document.querySelector('.fallback-search')
+          if (fallback) {
+            fallback.classList.add('show')
           }
+        }
+      }, 10000)
 
-          if (simpleSearch && window.enhancedRealEstateAnalytics) {
-            // Track when simple search is used
-            simpleSearch.addEventListener('search', () => {
-              window.enhancedRealEstateAnalytics.trackPropertySearch('simple_search_performed', {
-                search_mode: 'simple',
-                depth: 'moderate',
-                value: 2,
-              })
-            })
-          }
-
+      // Wait for RealScout script to load and custom elements to be defined
+      const _initializeRealScout = () => {
+        // Check if RealScout script is loaded
+        const script = document.querySelector('script[src*="realscout-web-components"]')
+        if (!script) {
+          setTimeout(_initializeRealScout, 500)
           return
         }
 
-        setTimeout(_checkElements, 100)
+        // Wait for custom elements to be defined
+        const _checkElements = () => {
+          try {
+            if (
+              customElements.get('realscout-advanced-search') &&
+              customElements.get('realscout-simple-search')
+            ) {
+              realScoutLoaded = true
+              clearTimeout(fallbackTimeout)
+              
+              // Add enhanced event listeners for search interactions
+              const advancedSearch = document.querySelector('realscout-advanced-search')
+              const simpleSearch = document.querySelector('realscout-simple-search')
+
+              if (advancedSearch && typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+                // Track when advanced search is used
+                advancedSearch.addEventListener('search', () => {
+                  if (window.enhancedRealEstateAnalytics) {
+                    window.enhancedRealEstateAnalytics.trackPropertySearch('advanced_search_performed', {
+                      search_mode: 'advanced',
+                      depth: 'high',
+                      value: 3,
+                    })
+                  }
+                })
+
+                advancedSearch.addEventListener('filter', () => {
+                  if (window.enhancedRealEstateAnalytics) {
+                    window.enhancedRealEstateAnalytics.trackWidgetInteraction(
+                      'realscout_advanced_search',
+                      'filter_applied',
+                      { depth: 'moderate', value: 1 }
+                    )
+                  }
+                })
+              }
+
+              if (simpleSearch && typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+                // Track when simple search is used
+                simpleSearch.addEventListener('search', () => {
+                  if (window.enhancedRealEstateAnalytics) {
+                    window.enhancedRealEstateAnalytics.trackPropertySearch('simple_search_performed', {
+                      search_mode: 'simple',
+                      depth: 'moderate',
+                      value: 2,
+                    })
+                  }
+                })
+              }
+
+              return
+            }
+
+            setTimeout(_checkElements, 100)
+          } catch (error) {
+            console.warn('RealScout element check failed:', error)
+          }
+        }
+
+        _checkElements()
       }
 
-      _checkElements()
-    }
+      // Start initialization
+      _initializeRealScout()
 
-    // Start initialization
-    _initializeRealScout()
+      // Track initial page engagement
+      if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+        window.enhancedRealEstateAnalytics.trackPageEngagement('homepage_view', {
+          page_type: 'homepage',
+          search_mode: showAdvanced.value ? 'advanced' : 'simple',
+          depth: 'high',
+          value: 1,
+        })
+      }
 
-    // Track initial page engagement
-    if (window?.enhancedRealEstateAnalytics) {
-      window.enhancedRealEstateAnalytics.trackPageEngagement('homepage_view', {
-        page_type: 'homepage',
-        search_mode: showAdvanced.value ? 'advanced' : 'simple',
-        depth: 'high',
-        value: 1,
-      })
-    }
+      // Exit intent detection
+      let hasShownExitIntent = false
+      const handleMouseLeave = (event: MouseEvent) => {
+        if (event.clientY <= 0 && !hasShownExitIntent) {
+          hasShownExitIntent = true
+          showExitIntent.value = true
 
-    // Exit intent detection
-    let hasShownExitIntent = false
-    const handleMouseLeave = (event: MouseEvent) => {
-      if (event.clientY <= 0 && !hasShownExitIntent) {
-        hasShownExitIntent = true
-        showExitIntent.value = true
-
-        // Track exit intent
-        if (window?.enhancedRealEstateAnalytics) {
-          window.enhancedRealEstateAnalytics.trackWidgetInteraction(
-            'exit_intent_detected',
-            'mouse_leave',
-            { depth: 'high', value: 2 }
-          )
+          // Track exit intent
+          if (typeof window !== 'undefined' && window.enhancedRealEstateAnalytics) {
+            window.enhancedRealEstateAnalytics.trackWidgetInteraction(
+              'exit_intent_detected',
+              'mouse_leave',
+              { depth: 'high', value: 2 }
+            )
+          }
         }
       }
-    }
 
-    document.addEventListener('mouseleave', handleMouseLeave)
+      document.addEventListener('mouseleave', handleMouseLeave)
 
-    return () => {
-      document.removeEventListener('mouseleave', handleMouseLeave)
+      return () => {
+        document.removeEventListener('mouseleave', handleMouseLeave)
+        clearTimeout(fallbackTimeout)
+      }
+    } catch (error) {
+      console.warn('Client-side initialization failed:', error)
     }
   })
 
@@ -305,6 +337,14 @@ export default component$(() => {
             z-index: 1000;
           }
 
+          .fallback-search {
+            display: none;
+          }
+
+          .fallback-search.show {
+            display: block;
+          }
+
           @media (max-width: 768px) {
             .hero-title {
               font-size: 2.5rem;
@@ -354,10 +394,130 @@ export default component$(() => {
 
         <div class="widget-container">
           {showAdvanced.value ? (
-            <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
+            <realscout-advanced-search 
+              agent-encoded-id="QWdlbnQtMjI1MDUw"
+              onError$={() => {
+                console.warn('RealScout advanced search widget failed to load')
+                // Show fallback form
+                const fallback = document.querySelector('.fallback-search')
+                if (fallback) {
+                  fallback.classList.add('show')
+                }
+              }}
+            />
           ) : (
-            <realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw" />
+            <realscout-simple-search 
+              agent-encoded-id="QWdlbnQtMjI1MDUw"
+              onError$={() => {
+                console.warn('RealScout simple search widget failed to load')
+                // Show fallback form
+                const fallback = document.querySelector('.fallback-search')
+                if (fallback) {
+                  fallback.classList.add('show')
+                }
+              }}
+            />
           )}
+          
+          {/* Fallback search form */}
+          <div class="fallback-search">
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
+              <h3 class="text-xl font-bold text-gray-900 mb-4">Search Properties</h3>
+              <form action="/search" method="GET" class="space-y-4">
+                <div>
+                  <label for="fallback-address" class="block text-sm font-medium text-gray-700 mb-1">
+                    Address, City, or ZIP
+                  </label>
+                  <input
+                    type="text"
+                    id="fallback-address"
+                    name="q"
+                    placeholder="Enter location..."
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label for="fallback-beds" class="block text-sm font-medium text-gray-700 mb-1">
+                      Beds
+                    </label>
+                    <select
+                      id="fallback-beds"
+                      name="beds"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">Any</option>
+                      <option value="1">1+</option>
+                      <option value="2">2+</option>
+                      <option value="3">3+</option>
+                      <option value="4">4+</option>
+                      <option value="5">5+</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="fallback-baths" class="block text-sm font-medium text-gray-700 mb-1">
+                      Baths
+                    </label>
+                    <select
+                      id="fallback-baths"
+                      name="baths"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">Any</option>
+                      <option value="1">1+</option>
+                      <option value="2">2+</option>
+                      <option value="3">3+</option>
+                      <option value="4">4+</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label for="fallback-min-price" class="block text-sm font-medium text-gray-700 mb-1">
+                      Min Price
+                    </label>
+                    <select
+                      id="fallback-min-price"
+                      name="min_price"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">Any</option>
+                      <option value="200000">$200K</option>
+                      <option value="300000">$300K</option>
+                      <option value="400000">$400K</option>
+                      <option value="500000">$500K</option>
+                      <option value="750000">$750K</option>
+                      <option value="1000000">$1M</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="fallback-max-price" class="block text-sm font-medium text-gray-700 mb-1">
+                      Max Price
+                    </label>
+                    <select
+                      id="fallback-max-price"
+                      name="max_price"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">Any</option>
+                      <option value="400000">$400K</option>
+                      <option value="500000">$500K</option>
+                      <option value="750000">$750K</option>
+                      <option value="1000000">$1M</option>
+                      <option value="1500000">$1.5M</option>
+                      <option value="2000000">$2M+</option>
+                    </select>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
+                >
+                  Search Properties
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
 
         <div class="calculator-toggle">
@@ -459,7 +619,15 @@ export default component$(() => {
             </p>
           </div>
 
-          <RealScoutMap geoType="city" geoId="3240000" height="500px" width="100%" />
+          <RealScoutMap 
+            geoType="city" 
+            geoId="3240000" 
+            height="500px" 
+            width="100%"
+            onError$={() => {
+              console.warn('RealScout map widget failed to load')
+            }}
+          />
 
           <div class="map-actions">
             <a href="/map" class="map-action-btn">

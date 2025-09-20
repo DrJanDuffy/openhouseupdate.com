@@ -91,9 +91,33 @@ export default component$(() => {
           font-size: 1.1rem;
           text-decoration: none;
           white-space: nowrap;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
         }
         
         .sticky-header-logo:hover {
+          color: #3A8DDE;
+        }
+        
+        .logo-text {
+          line-height: 1.2;
+        }
+        
+        .logo-phone {
+          font-size: 0.85rem;
+          font-weight: 500;
+          margin-top: 0.1rem;
+          opacity: 0.9;
+        }
+        
+        .phone-link {
+          color: inherit;
+          text-decoration: none;
+          transition: color 0.2s ease;
+        }
+        
+        .phone-link:hover {
           color: #3A8DDE;
         }
         
@@ -147,6 +171,10 @@ export default component$(() => {
             margin-bottom: 0.5rem;
           }
           
+          .logo-phone {
+            font-size: 0.75rem;
+          }
+          
           .sticky-header-actions {
             margin-left: 0;
             margin-top: 0.5rem;
@@ -174,6 +202,10 @@ export default component$(() => {
             font-size: 0.9rem;
           }
           
+          .logo-phone {
+            font-size: 0.7rem;
+          }
+          
           .sticky-header-actions {
             gap: 0.5rem;
           }
@@ -188,8 +220,13 @@ export default component$(() => {
       {/* Shows on scroll */}
       <div class={`sticky-search-bar ${isScrolled.value ? 'visible' : ''}`}>
         <div class="sticky-header-brand">
-          <a href="/" class="sticky-header-logo">
-            Open House Update
+          <a href="/" class="sticky-header-logo" title="Open House Update - Las Vegas Real Estate">
+            <div class="logo-text">Open House Update</div>
+            <div class="logo-phone">
+              <a href="tel:+17022003422" class="phone-link" title="Call Dr. Janet Duffy">
+                (702) 200-3422
+              </a>
+            </div>
           </a>
         </div>
 
