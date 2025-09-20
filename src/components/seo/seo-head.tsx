@@ -1,5 +1,6 @@
 import { component$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
+import type { StructuredData } from '../../types/realscout'
 
 export interface SEOHeadProps {
   title: string
@@ -18,7 +19,7 @@ export interface SEOHeadProps {
   nofollow?: boolean
   breadcrumbs?: Array<{ name: string; url: string }>
   faqs?: Array<{ question: string; answer: string }>
-  structuredData?: any
+  structuredData?: StructuredData | StructuredData[]
 }
 
 export const createSEOHead = (props: SEOHeadProps): DocumentHead => {

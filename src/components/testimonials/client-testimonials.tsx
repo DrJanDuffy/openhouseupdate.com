@@ -144,7 +144,7 @@ export default component$(() => {
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
-      <span key={i} class={`text-xl ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}>
+      <span key={`star-${i}`} class={`text-xl ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}>
         ★
       </span>
     ))
@@ -264,7 +264,7 @@ export default component$(() => {
         <div class="flex justify-center space-x-2 mt-8">
           {testimonials.map((_, index) => (
             <button
-              key={index}
+              key={`testimonial-dot-${index}`}
               type="button"
               onClick$={() => goToTestimonial(index)}
               class={`w-3 h-3 rounded-full transition-colors duration-200 ${

@@ -23,7 +23,7 @@ export default component$<BreadcrumbsProps>(({ items, className = '' }) => {
       <nav class={`breadcrumbs ${className}`} aria-label="Breadcrumb navigation">
         <ol class="flex items-center space-x-2 text-sm text-gray-600">
           {items.map((item, index) => (
-            <li key={index} class="flex items-center">
+            <li key={`breadcrumb-${item.url}-${index}`} class="flex items-center">
               {index > 0 && (
                 <svg
                   class="w-4 h-4 mx-2 text-gray-400"

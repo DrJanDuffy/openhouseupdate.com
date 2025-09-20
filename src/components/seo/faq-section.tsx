@@ -28,8 +28,12 @@ export default component$<FAQSectionProps>(
 
             <div class="space-y-6">
               {faqs.map((faq, index) => (
-                <div key={index} class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                <div
+                  key={`faq-${faq.question.slice(0, 20)}-${index}`}
+                  class="bg-white rounded-lg shadow-md p-6 border border-gray-200"
+                >
                   <h3 class="text-lg font-semibold text-gray-900 mb-3">{faq.question}</h3>
+                  {/* biome-ignore lint/security/noDangerouslySetInnerHtml: FAQ content is controlled and safe */}
                   <div class="text-gray-700 leading-relaxed" dangerouslySetInnerHTML={faq.answer} />
                 </div>
               ))}

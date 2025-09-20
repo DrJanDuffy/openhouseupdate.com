@@ -50,19 +50,27 @@ export default component$(() => {
       <div class={styles.gettingstarted}>
         <div
           class={styles.intro}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Static tutorial content is safe
           dangerouslySetInnerHTML={GETTING_STARTED_STEPS[gettingStartedStep.value].message}
         />
         <span
           class={styles.hint}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Static tutorial content is safe
           dangerouslySetInnerHTML={GETTING_STARTED_STEPS[gettingStartedStep.value].hint}
         />
       </div>
       {gettingStartedStep.value + 1 < GETTING_STARTED_STEPS.length ? (
-        <button class="button-dark" onClick$={() => gettingStartedStep.value++}>
+        <button type="button" class="button-dark" onClick$={() => gettingStartedStep.value++}>
           Continue with Step {gettingStartedStep.value + 2} of {GETTING_STARTED_STEPS.length}
         </button>
       ) : (
-        <button class="button-dark" onClick$={() => (gettingStartedStep.value = 0)}>
+        <button
+          type="button"
+          class="button-dark"
+          onClick$={() => {
+            gettingStartedStep.value = 0
+          }}
+        >
           Re-Start
         </button>
       )}

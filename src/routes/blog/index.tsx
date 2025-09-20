@@ -95,7 +95,10 @@ export default component$(() => {
                   <p class="text-gray-600 mb-6">{featuredPost.excerpt}</p>
                   <div class="flex items-center justify-between">
                     <span class="text-gray-500 text-sm">{featuredPost.date}</span>
-                    <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                    <button
+                      type="button"
+                      class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                    >
                       Read More
                     </button>
                   </div>
@@ -141,7 +144,10 @@ export default component$(() => {
                   <p class="text-gray-600 mb-4">{post.excerpt}</p>
                   <div class="flex items-center justify-between">
                     <span class="text-gray-500 text-sm">{post.date}</span>
-                    <button class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">
+                    <button
+                      type="button"
+                      class="text-blue-600 font-semibold hover:text-blue-800 transition-colors"
+                    >
                       Read More →
                     </button>
                   </div>
@@ -163,7 +169,10 @@ export default component$(() => {
               placeholder="Enter your email"
               class="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500"
             />
-            <button class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <button
+              type="button"
+              class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            >
               Subscribe
             </button>
           </div>

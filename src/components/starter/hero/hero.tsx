@@ -12,6 +12,7 @@ export default component$(() => {
       <p>Have fun building your App with Qwik.</p>
       <div class={styles['button-group']}>
         <button
+          type="button"
           onClick$={async () => {
             const defaults = {
               spread: 360,
@@ -26,15 +27,34 @@ export default component$(() => {
               },
             }
 
+            interface ConfettiOptions {
+              particleCount?: number
+              spread?: number
+              origin?: { x: number; y: number }
+              scalar?: number
+              ticks?: number
+              gravity?: number
+              decay?: number
+              startVelocity?: number
+              colors?: string[]
+            }
+
             function loadConfetti() {
-              return new Promise<(opts: any) => void>((resolve, reject) => {
-                if ((globalThis as any).confetti) {
-                  return resolve((globalThis as any).confetti as any)
+              return new Promise<(opts: ConfettiOptions) => void>((resolve, reject) => {
+                if ('confetti' in globalThis) {
+                  return resolve(
+                    (globalThis as unknown as { confetti: (opts: ConfettiOptions) => void })
+                      .confetti
+                  )
                 }
                 const script = document.createElement('script')
                 script.src =
                   'https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js'
-                script.onload = () => resolve((globalThis as any).confetti as any)
+                script.onload = () =>
+                  resolve(
+                    (globalThis as unknown as { confetti: (opts: ConfettiOptions) => void })
+                      .confetti
+                  )
                 script.onerror = reject
                 document.head.appendChild(script)
                 script.remove()

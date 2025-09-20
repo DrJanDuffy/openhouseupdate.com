@@ -423,8 +423,12 @@ export default component$(() => {
       </div>
 
       <div class="calculator-tabs">
-        <button class="tab-button active">Basic Calculator</button>
-        <button class="tab-button">Advanced Analysis</button>
+        <button type="button" class="tab-button active">
+          Basic Calculator
+        </button>
+        <button type="button" class="tab-button">
+          Advanced Analysis
+        </button>
       </div>
 
       <div class="calculator-content">
@@ -635,10 +639,10 @@ export default component$(() => {
       </div>
 
       <div class="calculator-actions">
-        <button class="action-button calculate-button" onClick$={trackCalculation}>
+        <button type="button" class="action-button calculate-button" onClick$={trackCalculation}>
           Calculate & Track
         </button>
-        <button class="action-button reset-button" onClick$={resetCalculator}>
+        <button type="button" class="action-button reset-button" onClick$={resetCalculator}>
           Reset Calculator
         </button>
       </div>

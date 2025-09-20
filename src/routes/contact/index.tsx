@@ -141,6 +141,7 @@ export default component$(() => {
                   Thank you for reaching out. Dr. Janet Duffy will get back to you within 24 hours.
                 </p>
                 <button
+                  type="button"
                   onClick$={() => {
                     isSubmitted.value = false
                     name.value = ''

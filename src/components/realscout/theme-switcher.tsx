@@ -1,7 +1,7 @@
-import { component$ } from '@builder.io/qwik'
+import { component$, type Signal } from '@builder.io/qwik'
 
 export interface ThemeSwitcherProps {
-  currentTheme: any // Signal reference
+  currentTheme: Signal<string>
   class?: string
 }
 
@@ -51,20 +51,29 @@ export default component$<ThemeSwitcherProps>(({ currentTheme, class: className 
       `}</style>
 
       <button
+        type="button"
         class={`theme-button ${currentTheme.value === 'light' ? 'active' : ''}`}
-        onClick$={() => (currentTheme.value = 'light')}
+        onClick$={() => {
+          currentTheme.value = 'light'
+        }}
       >
         Light
       </button>
       <button
+        type="button"
         class={`theme-button ${currentTheme.value === 'dark' ? 'active' : ''}`}
-        onClick$={() => (currentTheme.value = 'dark')}
+        onClick$={() => {
+          currentTheme.value = 'dark'
+        }}
       >
         Dark
       </button>
       <button
+        type="button"
         class={`theme-button ${currentTheme.value === 'vegas' ? 'active' : ''}`}
-        onClick$={() => (currentTheme.value = 'vegas')}
+        onClick$={() => {
+          currentTheme.value = 'vegas'
+        }}
       >
         Vegas
       </button>

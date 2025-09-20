@@ -79,8 +79,12 @@ export default component$(() => {
         <div class="max-w-4xl mx-auto mb-16">
           <div class="space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} class="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div
+                key={`faq-${faq.question.slice(0, 20)}-${index}`}
+                class="bg-white rounded-lg shadow-lg overflow-hidden"
+              >
                 <button
+                  type="button"
                   onClick$={() => toggleFAQ(index)}
                   class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
                 >

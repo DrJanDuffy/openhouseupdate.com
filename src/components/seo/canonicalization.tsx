@@ -20,7 +20,7 @@ export default component$<CanonicalizationProps>(
         {/* Alternate URLs with hreflang */}
         {alternateUrls.map((alt, index) => (
           <link
-            key={index}
+            key={`canonical-${alt.url}-${index}`}
             rel={alt.rel || 'alternate'}
             href={alt.url}
             {...(alt.hreflang && { hreflang: alt.hreflang })}

@@ -1,5 +1,22 @@
 import { component$, useVisibleTask$ } from '@builder.io/qwik'
 
+// Type definitions for performance APIs
+interface PerformanceEventTiming extends PerformanceEntry {
+  processingStart: number
+}
+
+interface LayoutShift extends PerformanceEntry {
+  value: number
+  hadRecentInput: boolean
+}
+
+interface NetworkInformation {
+  effectiveType: string
+  downlink: number
+  rtt: number
+  saveData: boolean
+}
+
 export default component$(() => {
   useVisibleTask$(() => {
     // Performance monitoring and optimization
@@ -28,9 +45,10 @@ export default component$(() => {
           const entries = list.getEntries()
           entries.forEach((entry) => {
             if (window.enhancedRealEstateAnalytics && 'processingStart' in entry) {
+              const fidEntry = entry as PerformanceEventTiming
               window.enhancedRealEstateAnalytics.trackPageEngagement('web_vitals', {
                 metric: 'FID',
-                value: Math.round((entry as any).processingStart - entry.startTime),
+                value: Math.round(fidEntry.processingStart - entry.startTime),
                 url: window.location.href,
               })
             }
@@ -43,8 +61,9 @@ export default component$(() => {
         const clsObserver = new PerformanceObserver((list) => {
           const entries = list.getEntries()
           entries.forEach((entry) => {
-            if (!(entry as any).hadRecentInput) {
-              clsValue += (entry as any).value
+            const clsEntry = entry as LayoutShift
+            if (!clsEntry.hadRecentInput) {
+              clsValue += clsEntry.value
             }
           })
 
@@ -68,13 +87,14 @@ export default component$(() => {
 
         realScoutResources.forEach((resource) => {
           if (window.enhancedRealEstateAnalytics) {
+            const resourceEntry = resource as PerformanceResourceTiming
             window.enhancedRealEstateAnalytics.trackWidgetInteraction(
               'realscout_resource',
               'resource_loaded',
               {
                 resource_name: resource.name,
                 load_time: Math.round(resource.duration),
-                transfer_size: (resource as any).transferSize || 0,
+                transfer_size: resourceEntry.transferSize || 0,
                 depth: 'moderate',
                 value: 1,
               }
@@ -98,12 +118,8 @@ export default component$(() => {
                 ),
                 load_complete: Math.round(navigation.loadEventEnd - navigation.loadEventStart),
                 first_byte: Math.round(navigation.responseStart - navigation.requestStart),
-                dom_ready: Math.round(
-                  navigation.domContentLoadedEventEnd - (navigation as any).navigationStart
-                ),
-                full_load: Math.round(
-                  navigation.loadEventEnd - (navigation as any).navigationStart
-                ),
+                dom_ready: Math.round(navigation.domContentLoadedEventEnd - navigation.fetchStart),
+                full_load: Math.round(navigation.loadEventEnd - navigation.fetchStart),
                 url: window.location.href,
               })
             }
@@ -191,7 +207,7 @@ export default component$(() => {
 
     // Track connection quality
     if ('connection' in navigator) {
-      const connection = (navigator as any).connection
+      const connection = (navigator as Navigator & { connection: NetworkInformation }).connection
       if (window.enhancedRealEstateAnalytics) {
         window.enhancedRealEstateAnalytics.trackPageEngagement('connection_info', {
           effective_type: connection.effectiveType,

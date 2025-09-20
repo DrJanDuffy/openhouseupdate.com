@@ -9,9 +9,9 @@ interface EnhancedStructuredDataProps {
     | 'LocalBusiness'
     | 'BreadcrumbList'
     | 'FAQPage'
-  data?: any
+  data?: Record<string, unknown>
   pageType?: string
-  propertyData?: any
+  propertyData?: Record<string, unknown>
   breadcrumbs?: Array<{ name: string; url: string }>
   faqs?: Array<{ question: string; answer: string }>
 }
@@ -317,6 +317,7 @@ export default component$<EnhancedStructuredDataProps>(
     if (!structuredData) return null
 
     return (
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: Structured data JSON is safe and controlled
       <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(structuredData)} />
     )
   }

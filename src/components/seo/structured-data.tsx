@@ -2,7 +2,7 @@ import { component$ } from '@builder.io/qwik'
 
 interface StructuredDataProps {
   type: 'RealEstateAgent' | 'RealEstateService' | 'WebSite'
-  data: any
+  data: Record<string, unknown>
 }
 
 export default component$<StructuredDataProps>(({ type, data }) => {
@@ -113,6 +113,7 @@ export default component$<StructuredDataProps>(({ type, data }) => {
   return (
     <script
       type="application/ld+json"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: Structured data JSON is safe and controlled
       dangerouslySetInnerHTML={JSON.stringify(getStructuredData())}
     />
   )

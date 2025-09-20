@@ -360,7 +360,7 @@ export default component$(() => {
       <div class="search-header">
         <div class="search-header-content">
           <h1 class="search-title">Property Search Results</h1>
-          <button class="filter-toggle" onClick$={toggleFilters}>
+          <button type="button" class="filter-toggle" onClick$={toggleFilters}>
             <span>🔍</span>
             {showFilters.value ? 'Hide Filters' : 'Show Filters'}
           </button>
@@ -402,8 +402,8 @@ export default component$(() => {
           <div class="results-header">
             <div class="results-count">Showing {resultsCount.value} properties</div>
             <div class="sort-controls">
-              <label>Sort by:</label>
-              <select title="Sort properties by">
+              <label for="sort-select">Sort by:</label>
+              <select id="sort-select" title="Sort properties by">
                 <option value="price-desc">Price: High to Low</option>
                 <option value="price-asc">Price: Low to High</option>
                 <option value="newest">Newest First</option>
@@ -495,7 +495,9 @@ export default component$(() => {
           </div>
 
           <div class="load-more-section">
-            <button class="load-more-btn">Load More Properties</button>
+            <button type="button" class="load-more-btn">
+              Load More Properties
+            </button>
           </div>
         </main>
       </div>

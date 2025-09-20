@@ -186,9 +186,16 @@ export const generateRealEstateStructuredData = (propertyData: PropertyData) => 
     image: propertyData.images || [seoConfig.defaultImage],
     address: {
       '@type': 'PostalAddress',
-      streetAddress: typeof propertyData.address === 'object' ? propertyData.address?.street : propertyData.address,
-      addressLocality: typeof propertyData.address === 'object' ? propertyData.address?.city || 'Las Vegas' : 'Las Vegas',
-      addressRegion: typeof propertyData.address === 'object' ? propertyData.address?.state || 'NV' : 'NV',
+      streetAddress:
+        typeof propertyData.address === 'object'
+          ? propertyData.address?.street
+          : propertyData.address,
+      addressLocality:
+        typeof propertyData.address === 'object'
+          ? propertyData.address?.city || 'Las Vegas'
+          : 'Las Vegas',
+      addressRegion:
+        typeof propertyData.address === 'object' ? propertyData.address?.state || 'NV' : 'NV',
       postalCode: typeof propertyData.address === 'object' ? propertyData.address?.zip : undefined,
       addressCountry: 'US',
     },

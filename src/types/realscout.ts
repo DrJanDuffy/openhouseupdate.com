@@ -61,6 +61,12 @@ export interface MortgageCalculationResult {
 }
 
 // SEO Types
+export interface StructuredData {
+  '@context': string
+  '@type': string
+  [key: string]: unknown
+}
+
 export interface SEOData {
   title: string
   description: string
@@ -69,7 +75,7 @@ export interface SEOData {
   ogDescription?: string
   ogImage?: string
   canonicalUrl?: string
-  structuredData?: any
+  structuredData?: StructuredData | StructuredData[]
 }
 
 // Real Estate Types

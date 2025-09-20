@@ -25,6 +25,7 @@ export const RouterHead = component$(() => {
       ))}
 
       {head.styles.map((s) => (
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: Qwik's internal style management is safe
         <style key={s.key} {...s.props} dangerouslySetInnerHTML={s.style} />
       ))}
     </>
