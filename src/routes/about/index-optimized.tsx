@@ -220,9 +220,9 @@ export default component$(() => {
         <div class="about-info">
           <h2>Professional Background</h2>
           <p>
-            Dr. Jan Duffy brings over two decades of real estate expertise to the Las Vegas
-            market. As a licensed real estate agent in Nevada, she has helped hundreds of families
-            find their dream homes and achieve their real estate goals.
+            Dr. Jan Duffy brings over two decades of real estate expertise to the Las Vegas market.
+            As a licensed real estate agent in Nevada, she has helped hundreds of families find
+            their dream homes and achieve their real estate goals.
           </p>
           <p>
             Her deep understanding of the Las Vegas Valley market, combined with her personalized

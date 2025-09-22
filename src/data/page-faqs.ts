@@ -7,14 +7,19 @@ export const pageFAQs: Record<string, PageFAQ[]> = {
   // Homepage FAQs
   homepage: [
     {
-      question: 'How do I search for homes in Las Vegas?',
+      question: 'What is an Open House Specialist?',
       answer:
-        'Use our advanced search tool on the homepage to filter by price, location, bedrooms, and more. You can also browse by neighborhood or price range using our quick links.',
+        'An Open House Specialist is a real estate professional specifically trained in staging, hosting, and converting open house events. Dr. Jan Duffy is a recognized Open House Specialist with over 20 years of experience maximizing buyer engagement and lead generation through strategic open house management.',
     },
     {
-      question: 'What areas does Dr. Jan Duffy serve?',
+      question: 'How do I search for open houses in Las Vegas?',
       answer:
-        'Dr. Jan Duffy serves all of Las Vegas Valley including Summerlin, Henderson, North Las Vegas, Spring Valley, Enterprise, and surrounding areas.',
+        'Use our advanced search tool on the homepage to filter by price, location, bedrooms, and more. You can also browse by neighborhood or price range using our quick links to find this weekend\'s open houses.',
+    },
+    {
+      question: 'What areas does Dr. Jan Duffy serve as an Open House Specialist?',
+      answer:
+        'Dr. Jan Duffy serves all of Las Vegas Valley including Summerlin, Henderson, North Las Vegas, Spring Valley, Enterprise, and surrounding areas. She has deep expertise in 15+ Las Vegas neighborhoods.',
     },
     {
       question: 'How can I get a free home valuation?',
@@ -22,9 +27,14 @@ export const pageFAQs: Record<string, PageFAQ[]> = {
         "Contact Dr. Jan Duffy directly at (702) 200-3422 or use our home valuation service to get an accurate estimate of your property's current market value.",
     },
     {
-      question: 'What makes Dr. Jan Duffy different from other real estate agents?',
+      question: 'What makes Dr. Jan Duffy different as an Open House Specialist?',
       answer:
-        "Dr. Jan Duffy brings over 20 years of experience, deep local market knowledge, and a personalized approach to every transaction. She's licensed in Nevada and specializes in Las Vegas real estate.",
+        "Dr. Jan Duffy consistently achieves 15-20% higher conversion rates at open houses compared to industry averages, with over 300 successful transactions. She specializes in strategic marketing, lead capture, and buyer conversion techniques.",
+    },
+    {
+      question: 'What services does an Open House Specialist provide?',
+      answer:
+        'Dr. Jan Duffy provides property staging consultation, strategic marketing, lead capture systems, market analysis, neighborhood expertise, and personalized follow-up strategies to maximize open house success.',
     },
   ],
 

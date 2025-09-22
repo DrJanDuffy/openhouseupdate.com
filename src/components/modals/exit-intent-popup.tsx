@@ -36,8 +36,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
     {
       id: 'buyer-consultation',
       title: 'Free Buyer Consultation',
-      description:
-        '30-minute consultation with Dr. Jan Duffy to discuss your home buying strategy',
+      description: '30-minute consultation with Dr. Jan Duffy to discuss your home buying strategy',
       icon: '💬',
       value: '$300 value',
     },

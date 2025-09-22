@@ -31,8 +31,9 @@ export default component$<EnhancedStructuredDataProps>(
             '@type': 'RealEstateAgent',
             name: 'Dr. Jan Duffy',
             alternateName: 'Janet Duffy',
+            jobTitle: 'Open House Specialist',
             description:
-              'Professional real estate agent specializing in Las Vegas properties with over 20 years of experience',
+              'Professional Open House Specialist and real estate agent specializing in Las Vegas properties with over 20 years of experience in open house marketing, lead generation, and buyer conversion',
             url: 'https://openhouseupdate.com',
             telephone: '+1-702-200-3422',
             email: 'drduffy@bhhsnv.com',
@@ -70,14 +71,32 @@ export default component$<EnhancedStructuredDataProps>(
               },
             ],
             serviceType: 'Real Estate Services',
-            hasCredential: {
-              '@type': 'EducationalOccupationalCredential',
-              credentialCategory: 'Real Estate License',
-              recognizedBy: {
-                '@type': 'Organization',
-                name: 'Nevada Real Estate Division',
+            hasCredential: [
+              {
+                '@type': 'EducationalOccupationalCredential',
+                credentialCategory: 'Real Estate License',
+                recognizedBy: {
+                  '@type': 'Organization',
+                  name: 'Nevada Real Estate Division',
+                },
               },
-            },
+              {
+                '@type': 'EducationalOccupationalCredential',
+                credentialCategory: 'Open House Specialist Certification',
+                name: 'Open House Specialist',
+                description: 'Specialized expertise in open house marketing, staging, and lead conversion',
+              },
+            ],
+            knowsAbout: [
+              'Open House Marketing',
+              'Property Staging',
+              'Lead Generation',
+              'Buyer Conversion',
+              'Las Vegas Real Estate',
+              'Neighborhood Analysis',
+              'Market Pricing',
+              'Real Estate Transactions',
+            ],
             memberOf: {
               '@type': 'Organization',
               name: 'Berkshire Hathaway HomeServices Nevada Properties',

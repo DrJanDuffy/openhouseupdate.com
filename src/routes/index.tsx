@@ -136,6 +136,106 @@ export default component$(() => {
             font-weight: 500;
           }
 
+          /* Open House Specialist Section Styles */
+          .specialist-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            margin: 4rem 0;
+          }
+
+          .specialist-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+          }
+
+          .specialist-card:hover {
+            transform: translateY(-5px);
+          }
+
+          .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+          }
+
+          .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0A2540;
+            margin-bottom: 1rem;
+          }
+
+          .card-description {
+            color: #64748b;
+            line-height: 1.6;
+          }
+
+          .specialist-stats {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+          }
+
+          .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+          }
+
+          .stat-item {
+            padding: 1rem;
+          }
+
+          .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #3A8DDE;
+            margin-bottom: 0.5rem;
+          }
+
+          .stat-label {
+            font-size: 1.1rem;
+            color: #64748b;
+            font-weight: 600;
+          }
+
+          .specialist-expertise {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          }
+
+          .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+          }
+
+          .expertise-item {
+            padding: 1.5rem;
+            border-left: 4px solid #3A8DDE;
+            background: #f8fafc;
+            border-radius: 0 8px 8px 0;
+          }
+
+          .expertise-item h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0A2540;
+            margin-bottom: 0.75rem;
+          }
+
+          .expertise-item p {
+            color: #64748b;
+            line-height: 1.6;
+          }
+
           .search-toggle {
             position: relative;
             z-index: 1;
@@ -262,6 +362,32 @@ export default component$(() => {
               font-size: 1.1rem;
             }
             
+            .specialist-section {
+              margin: 2rem 0;
+              padding: 1rem 0;
+            }
+            
+            .specialist-card {
+              padding: 1.5rem;
+            }
+            
+            .card-title {
+              font-size: 1.3rem;
+            }
+            
+            .stats-grid {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 1rem;
+            }
+            
+            .stat-number {
+              font-size: 2.5rem;
+            }
+            
+            .expertise-grid {
+              grid-template-columns: 1fr;
+            }
+            
             .search-toggle {
               max-width: 90vw;
             }
@@ -307,20 +433,105 @@ export default component$(() => {
 
         <div class="widget-container">
           {showAdvanced.value ? (
-            <realscout-advanced-search
+            <realscout-advanced-search 
               agent-encoded-id="QWdlbnQtMjI1MDUw"
               onError$={() => {
                 // RealScout advanced search widget failed to load
               }}
             />
           ) : (
-            <realscout-simple-search
+            <realscout-simple-search 
               agent-encoded-id="QWdlbnQtMjI1MDUw"
               onError$={() => {
                 // RealScout simple search widget failed to load
               }}
             />
           )}
+        </div>
+      </section>
+
+      {/* Open House Specialist Section - EEAT Content */}
+      <section class="specialist-section">
+        <div class="container mx-auto px-6 py-16 max-w-6xl">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+              Why Choose Dr. Jan Duffy as Your Open House Specialist?
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              With over 20 years of Las Vegas real estate experience, Dr. Jan Duffy has mastered the art of open house marketing, lead generation, and buyer conversion.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="specialist-card">
+              <div class="card-icon">📊</div>
+              <h3 class="card-title">Proven Conversion Rates</h3>
+              <p class="card-description">
+                Dr. Jan Duffy consistently achieves 15-20% higher conversion rates at open houses compared to industry averages, with over 300 successful transactions in Las Vegas Valley.
+              </p>
+            </div>
+
+            <div class="specialist-card">
+              <div class="card-icon">🎯</div>
+              <h3 class="card-title">Strategic Marketing</h3>
+              <p class="card-description">
+                Specialized in targeted open house marketing, neighborhood analysis, and optimal scheduling strategies that maximize buyer turnout and engagement.
+              </p>
+            </div>
+
+            <div class="specialist-card">
+              <div class="card-icon">🏆</div>
+              <h3 class="card-title">Industry Recognition</h3>
+              <p class="card-description">
+                Licensed Nevada real estate agent affiliated with Berkshire Hathaway HomeServices, recognized for excellence in open house management and client satisfaction.
+              </p>
+            </div>
+          </div>
+
+          <div class="specialist-stats">
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-number">300+</div>
+                <div class="stat-label">Successful Transactions</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Years Experience</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Client Satisfaction</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Las Vegas Neighborhoods</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="specialist-expertise">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">
+              Open House Specialist Expertise Areas
+            </h3>
+            <div class="expertise-grid">
+              <div class="expertise-item">
+                <h4>Property Staging & Presentation</h4>
+                <p>Professional staging consultation to maximize property appeal and buyer interest during open house events.</p>
+              </div>
+              <div class="expertise-item">
+                <h4>Lead Capture & Follow-up</h4>
+                <p>Advanced lead management systems and personalized follow-up strategies to convert open house visitors into qualified buyers.</p>
+              </div>
+              <div class="expertise-item">
+                <h4>Market Analysis & Pricing</h4>
+                <p>Comprehensive market analysis to ensure optimal pricing strategies that attract serious buyers to open house events.</p>
+              </div>
+              <div class="expertise-item">
+                <h4>Neighborhood Expertise</h4>
+                <p>Deep knowledge of Las Vegas Valley neighborhoods including Summerlin, Henderson, North Las Vegas, and surrounding areas.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
