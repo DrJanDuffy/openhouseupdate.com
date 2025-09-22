@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
-// import { openGraphConfigs } from '~/utils/open-graph-utils';
+import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
 
 export default component$(() => {
   return (
@@ -257,68 +257,17 @@ export default component$(() => {
           </a>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <EnhancedPageSEO 
+        pageKey="about"
+        showFAQs={true}
+        faqTitle="About Dr. Janet Duffy - Frequently Asked Questions"
+        className="mt-12"
+      />
     </div>
   )
 })
 
-export const head: DocumentHead = {
-  title: 'About Dr. Janet Duffy - Las Vegas Real Estate Agent',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Learn about Dr. Janet Duffy, your trusted Las Vegas real estate agent. Professional service, local expertise, and personalized guidance.',
-    },
-    {
-      name: 'keywords',
-      content:
-        'Dr. Janet Duffy, Las Vegas real estate agent, about, credentials, professional background, real estate expertise',
-    },
-    {
-      name: 'author',
-      content: 'Dr. Janet Duffy',
-    },
-    {
-      name: 'robots',
-      content: 'index, follow',
-    },
-    // Open Graph metadata
-    { property: 'og:title', content: 'About Dr. Janet Duffy - Las Vegas Real Estate Agent' },
-    { property: 'og:type', content: 'profile' },
-    {
-      property: 'og:description',
-      content:
-        'Learn about Dr. Janet Duffy, your trusted Las Vegas real estate agent. Professional service, local expertise, and personalized guidance.',
-    },
-    { property: 'og:url', content: 'https://openhouseupdate.com/about' },
-    { property: 'og:site_name', content: 'Open House Update' },
-    { property: 'og:locale', content: 'en_US' },
-    { property: 'og:locale:alternate', content: 'es_US' },
-    { property: 'og:determiner', content: 'auto' },
-    { property: 'og:image', content: 'https://openhouseupdate.com/images/og-about.jpg' },
-    { property: 'og:image:secure_url', content: 'https://openhouseupdate.com/images/og-about.jpg' },
-    { property: 'og:image:type', content: 'image/jpeg' },
-    { property: 'og:image:width', content: '1200' },
-    { property: 'og:image:height', content: '630' },
-    { property: 'og:image:alt', content: 'Dr. Janet Duffy - Las Vegas Real Estate Agent' },
-    { property: 'profile:first_name', content: 'Janet' },
-    { property: 'profile:last_name', content: 'Duffy' },
-    { property: 'profile:username', content: 'drjanetduffy' },
-    // Twitter Card metadata
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'About Dr. Janet Duffy - Las Vegas Real Estate Agent' },
-    {
-      name: 'twitter:description',
-      content:
-        'Learn about Dr. Janet Duffy, your trusted Las Vegas real estate agent. Professional service, local expertise, and personalized guidance.',
-    },
-    { name: 'twitter:image', content: 'https://openhouseupdate.com/images/og-about.jpg' },
-    { name: 'twitter:image:alt', content: 'Dr. Janet Duffy - Las Vegas Real Estate Agent' },
-  ],
-  links: [
-    {
-      rel: 'canonical',
-      href: 'https://openhouseupdate.com/about',
-    },
-  ],
-}
+// Optimized DocumentHead with snippets and structured data
+export const head: DocumentHead = createOptimizedHead('about')

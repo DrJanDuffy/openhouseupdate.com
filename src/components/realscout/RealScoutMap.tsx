@@ -18,16 +18,14 @@ export default component$<RealScoutMapProps>(
           script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js'
           script.type = 'module'
           script.onerror = () => {
-            console.warn('RealScout script failed to load')
             if (onError$) {
               onError$()
             }
           }
           document.head.appendChild(script)
         }
-      } catch (error) {
-        console.warn('RealScout map initialization failed:', error)
-        if (onError$) {
+      } catch (_error) {
+        if _errorror$) {
           onError$()
         }
       }

@@ -240,16 +240,14 @@ export default component$(() => {
         class={`sticky-search-bar ${isScrolled.value || debugMode.value ? 'visible' : ''} ${debugMode.value ? 'debug' : ''}`}
       >
         {/* Debug indicator */}
-        {debugMode.value && (
-          <div class="debug-indicator">
-            STICKY HEADER DEBUG
-          </div>
-        )}
+        {debugMode.value && <div class="debug-indicator">STICKY HEADER DEBUG</div>}
         <div class="sticky-header-brand">
           <a href="/" class="sticky-header-logo" title="Open House Update - Las Vegas Real Estate">
             <div class="logo-text">Open House Update</div>
             <div class="logo-phone">
-              <a href="tel:+17022003422" class="phone-link" title="Call Dr. Janet Duffy">(702) 200-3422</a>
+              <a href="tel:+17022003422" class="phone-link" title="Call Dr. Janet Duffy">
+                (702) 200-3422
+              </a>
             </div>
           </a>
         </div>

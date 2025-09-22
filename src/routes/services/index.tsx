@@ -1,5 +1,6 @@
 import { component$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
+import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
 
 export default component$(() => {
   return (
@@ -272,70 +273,17 @@ export default component$(() => {
           </a>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <EnhancedPageSEO 
+        pageKey="services"
+        showFAQs={true}
+        faqTitle="Real Estate Services - Frequently Asked Questions"
+        className="mt-12"
+      />
     </div>
   )
 })
 
-export const head: DocumentHead = {
-  title: 'Real Estate Services - Professional Guidance | Dr. Janet Duffy',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Professional real estate services in Las Vegas. Home valuation, buyer services, seller services, and market analysis from Dr. Janet Duffy.',
-    },
-    {
-      name: 'keywords',
-      content:
-        'Las Vegas real estate services, home valuation, buyer services, seller services, market analysis, Dr. Janet Duffy, real estate agent',
-    },
-    {
-      name: 'author',
-      content: 'Dr. Janet Duffy',
-    },
-    {
-      name: 'robots',
-      content: 'index, follow',
-    },
-    {
-      property: 'og:title',
-      content: 'Real Estate Services - Professional Guidance | Dr. Janet Duffy',
-    },
-    {
-      property: 'og:description',
-      content:
-        'Professional real estate services in Las Vegas. Home valuation, buyer services, seller services, and market analysis.',
-    },
-    {
-      property: 'og:type',
-      content: 'website',
-    },
-    {
-      property: 'og:url',
-      content: 'https://openhouseupdate.com/services',
-    },
-    {
-      property: 'og:site_name',
-      content: 'Open House Update',
-    },
-    {
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    },
-    {
-      name: 'twitter:title',
-      content: 'Real Estate Services - Professional Guidance | Dr. Janet Duffy',
-    },
-    {
-      name: 'twitter:description',
-      content:
-        'Professional real estate services in Las Vegas. Home valuation, buyer services, seller services, and market analysis.',
-    },
-  ],
-  links: [
-    {
-      rel: 'canonical',
-      href: 'https://openhouseupdate.com/services',
-    },
-  ],
-}
+// Optimized DocumentHead with snippets and structured data
+export const head: DocumentHead = createOptimizedHead('services')

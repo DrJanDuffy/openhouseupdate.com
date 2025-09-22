@@ -8,17 +8,17 @@ export default defineConfig(({ mode, command }) => {
 
   return {
     plugins: [
-      qwikCity(), 
+      qwikCity(),
       qwikVite({
         // Enable faster builds with esbuild
         esbuild: {
           target: 'es2020',
           minify: isProduction,
         },
-      }), 
+      }),
       tsconfigPaths(),
     ],
-    
+
     // Build optimizations
     build: {
       target: 'es2020',
@@ -43,11 +43,7 @@ export default defineConfig(({ mode, command }) => {
 
     // Optimize dependencies
     optimizeDeps: {
-      include: [
-        '@builder.io/qwik',
-        '@builder.io/qwik-city',
-        '@vercel/analytics',
-      ],
+      include: ['@builder.io/qwik', '@builder.io/qwik-city', '@vercel/analytics'],
     },
 
     preview: {

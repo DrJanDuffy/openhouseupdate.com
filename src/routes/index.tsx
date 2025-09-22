@@ -2,6 +2,7 @@ import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
 import PerformanceMonitor from '~/components/performance/performance-monitor'
 import { createSEOHead } from '~/components/seo/seo-head'
+import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
 
 export default component$(() => {
   const showAdvanced = useSignal(true)
@@ -31,7 +32,6 @@ export default component$(() => {
       })
     }
   })
-
 
   // Simple RealScout component monitoring
   useVisibleTask$(() => {
@@ -260,14 +260,14 @@ export default component$(() => {
 
         <div class="widget-container">
           {showAdvanced.value ? (
-            <realscout-advanced-search 
+            <realscout-advanced-search
               agent-encoded-id="QWdlbnQtMjI1MDUw"
               onError$={() => {
                 // RealScout advanced search widget failed to load
               }}
             />
           ) : (
-            <realscout-simple-search 
+            <realscout-simple-search
               agent-encoded-id="QWdlbnQtMjI1MDUw"
               onError$={() => {
                 // RealScout simple search widget failed to load
@@ -275,52 +275,18 @@ export default component$(() => {
             />
           )}
         </div>
-
       </section>
 
-
-
-
-
+      {/* FAQ Section */}
+      <EnhancedPageSEO 
+        pageKey="homepage"
+        showFAQs={true}
+        faqTitle="Las Vegas Real Estate - Frequently Asked Questions"
+        className="mt-12"
+      />
     </>
   )
 })
 
-export const _head: DocumentHead = createSEOHead({
-  title: 'Las Vegas Real Estate - Find Your Dream Home',
-  description:
-    'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance. Serving Summerlin, Henderson, North Las Vegas and all Las Vegas Valley neighborhoods.',
-  keywords: [
-    'Las Vegas real estate',
-    'Nevada homes',
-    'property search',
-    'home valuation',
-    'real estate agent',
-    'Dr. Janet Duffy',
-    'open house',
-    'property listings',
-    'Summerlin homes',
-    'Henderson real estate',
-    'North Las Vegas',
-    'Spring Valley',
-    'Enterprise',
-    'home buying',
-    'home selling',
-    'market analysis',
-    'Las Vegas neighborhoods',
-  ],
-  canonicalUrl: 'https://www.openhouseupdate.com',
-  ogImage: 'https://openhouseupdate.com/images/og-homepage.jpg',
-  ogImageAlt: 'Las Vegas Real Estate - Open House Update Homepage',
-  ogType: 'website',
-  articleTags: [
-    'real estate',
-    'Las Vegas',
-    'home search',
-    'property',
-    'Dr. Janet Duffy',
-    'Nevada',
-    'Summerlin',
-    'Henderson',
-  ],
-})
+// Optimized DocumentHead with snippets and structured data
+export const _head: DocumentHead = createOptimizedHead('homepage')
