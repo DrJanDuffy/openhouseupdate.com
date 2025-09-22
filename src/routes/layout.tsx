@@ -154,7 +154,7 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:url',
-      content: 'https://openhouseupdate.com',
+      content: 'https://www.openhouseupdate.com',
     },
     {
       property: 'og:site_name',
@@ -272,7 +272,7 @@ export const head: DocumentHead = {
   links: [
     {
       rel: 'canonical',
-      href: 'https://openhouseupdate.com',
+      href: 'https://www.openhouseupdate.com',
     },
     {
       rel: 'icon',

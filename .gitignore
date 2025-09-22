@@ -3,6 +3,9 @@
 /lib
 /lib-types
 /server
+tmp
+*.tsbuildinfo
+.tsbuildinfo
 
 # Development
 node_modules
@@ -12,7 +15,15 @@ node_modules
 .cache
 .mf
 .rollup.cache
-tsconfig.tsbuildinfo
+node_modules/.cache
+node_modules/.pnpm-store
+bundle-stats.json
+bundle-analysis.html
+
+# Build artifacts
+*.map
+*.min.js
+*.min.css
 
 # Logs
 logs
@@ -39,4 +50,6 @@ lerna-debug.log*
 !.yarn/releases
 
 # Vercel
+.vercel
+
 .vercel
