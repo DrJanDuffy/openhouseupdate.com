@@ -99,9 +99,41 @@ export default component$(() => {
 
           .hero-subtitle {
             font-size: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             opacity: 0.9;
             font-weight: 300;
+          }
+
+          .featured-agent-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #0A2540 0%, #3A8DDE 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(10, 37, 64, 0.3);
+            margin-bottom: 2rem;
+            max-width: fit-content;
+          }
+
+          .badge-text {
+            opacity: 0.9;
+          }
+
+          .agent-name {
+            font-weight: 700;
+            font-size: 1rem;
+          }
+
+          .badge-month {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
           }
 
           .search-toggle {
@@ -219,6 +251,17 @@ export default component$(() => {
               font-size: 1.2rem;
             }
             
+            .featured-agent-badge {
+              flex-direction: column;
+              text-align: center;
+              padding: 1rem;
+              gap: 0.75rem;
+            }
+            
+            .agent-name {
+              font-size: 1.1rem;
+            }
+            
             .search-toggle {
               max-width: 90vw;
             }
@@ -238,6 +281,11 @@ export default component$(() => {
           <p class="hero-subtitle">
             Discover Las Vegas open houses happening this weekend with our advanced property search
           </p>
+          <div class="featured-agent-badge">
+            <span class="badge-text">Featured Open House Expert</span>
+            <span class="agent-name">Dr. Janet Duffy</span>
+            <span class="badge-month">This Month</span>
+          </div>
         </div>
 
         <div class="search-toggle">
