@@ -277,7 +277,7 @@ export default component$(() => {
       </section>
 
       {/* FAQ Section */}
-      <EnhancedPageSEO 
+      <EnhancedPageSEO
         pageKey="homepage"
         showFAQs={true}
         faqTitle="Las Vegas Real Estate - Frequently Asked Questions"

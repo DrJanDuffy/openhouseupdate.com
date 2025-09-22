@@ -11,7 +11,7 @@ export interface PageSnippetConfig {
   description: string
   keywords: string[]
   faqKey?: string
-  structuredDataType?: 'RealEstateAgent' | 'RealEstateService' | 'LocalBusiness' | 'WebPage'
+  structuredDataType?: 'RealEstateAgent' | 'RealEstateService' | 'LocalBusiness' | 'WebSite'
   breadcrumbs?: Array<{ name: string; url: string }>
 }
 
