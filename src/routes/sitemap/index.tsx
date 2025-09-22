@@ -174,7 +174,9 @@ export default component$(() => {
       <div class="xml-sitemap">
         <h3>XML Sitemap for Search Engines</h3>
         <p>For search engines and developers:</p>
-        <a href="/sitemap-index.xml" target="_blank" rel="noopener">View XML Sitemap Index</a>
+        <a href="/sitemap-index.xml" target="_blank" rel="noopener">
+          View XML Sitemap Index
+        </a>
       </div>
     </div>
   )
@@ -185,7 +187,8 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'Complete site map of Open House Update. Find all pages, services, neighborhoods, and resources for Las Vegas real estate.',
+      content:
+        'Complete site map of Open House Update. Find all pages, services, neighborhoods, and resources for Las Vegas real estate.',
     },
     {
       name: 'robots',
