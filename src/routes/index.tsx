@@ -283,7 +283,7 @@ export default component$(() => {
           </p>
           <div class="featured-agent-badge">
             <span class="badge-text">Featured Open House Specialist</span>
-            <span class="agent-name">Dr. Janet Duffy</span>
+            <span class="agent-name">Dr. Jan Duffy</span>
             <span class="badge-month">This Month</span>
           </div>
         </div>

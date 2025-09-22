@@ -293,7 +293,7 @@ export default component$(() => {
         <div class="info-card">
           <h4>Expert Guidance</h4>
           <p>
-            Dr. Janet Duffy specializes in helping buyers find the perfect home in this price range.
+            Dr. Jan Duffy specializes in helping buyers find the perfect home in this price range.
             Get personalized guidance, market insights, and expert negotiation to secure your dream
             home.
           </p>
@@ -328,19 +328,19 @@ export const head: DocumentHead = ({ params }) => {
   const priceInfo = parsePriceRange(priceRange)
 
   return {
-    title: `${priceInfo.title} - Las Vegas Real Estate | Dr. Janet Duffy`,
+    title: `${priceInfo.title} - Las Vegas Real Estate | Dr. Jan Duffy`,
     meta: [
       {
         name: 'description',
-        content: `Find homes ${priceInfo.display} in Las Vegas. Expert real estate guidance from Dr. Janet Duffy. Browse available properties and get market insights.`,
+        content: `Find homes ${priceInfo.display} in Las Vegas. Expert real estate guidance from Dr. Jan Duffy. Browse available properties and get market insights.`,
       },
       {
         name: 'keywords',
-        content: `Las Vegas homes ${priceInfo.display}, real estate ${priceRange}, property search, home buying, Dr. Janet Duffy, Las Vegas real estate agent`,
+        content: `Las Vegas homes ${priceInfo.display}, real estate ${priceRange}, property search, home buying, Dr. Jan Duffy, Las Vegas real estate agent`,
       },
       {
         name: 'author',
-        content: 'Dr. Janet Duffy',
+        content: 'Dr. Jan Duffy',
       },
       {
         name: 'robots',
@@ -352,7 +352,7 @@ export const head: DocumentHead = ({ params }) => {
       },
       {
         property: 'og:description',
-        content: `Find homes ${priceInfo.display} in Las Vegas. Expert real estate guidance from Dr. Janet Duffy.`,
+        content: `Find homes ${priceInfo.display} in Las Vegas. Expert real estate guidance from Dr. Jan Duffy.`,
       },
       {
         property: 'og:type',
@@ -376,7 +376,7 @@ export const head: DocumentHead = ({ params }) => {
       },
       {
         name: 'twitter:description',
-        content: `Find homes ${priceInfo.display} in Las Vegas. Expert real estate guidance from Dr. Janet Duffy.`,
+        content: `Find homes ${priceInfo.display} in Las Vegas. Expert real estate guidance from Dr. Jan Duffy.`,
       },
     ],
     links: [

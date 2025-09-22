@@ -12,43 +12,43 @@ export const pageFAQs: Record<string, PageFAQ[]> = {
         'Use our advanced search tool on the homepage to filter by price, location, bedrooms, and more. You can also browse by neighborhood or price range using our quick links.',
     },
     {
-      question: 'What areas does Dr. Janet Duffy serve?',
+      question: 'What areas does Dr. Jan Duffy serve?',
       answer:
-        'Dr. Janet Duffy serves all of Las Vegas Valley including Summerlin, Henderson, North Las Vegas, Spring Valley, Enterprise, and surrounding areas.',
+        'Dr. Jan Duffy serves all of Las Vegas Valley including Summerlin, Henderson, North Las Vegas, Spring Valley, Enterprise, and surrounding areas.',
     },
     {
       question: 'How can I get a free home valuation?',
       answer:
-        "Contact Dr. Janet Duffy directly at (702) 200-3422 or use our home valuation service to get an accurate estimate of your property's current market value.",
+        "Contact Dr. Jan Duffy directly at (702) 200-3422 or use our home valuation service to get an accurate estimate of your property's current market value.",
     },
     {
-      question: 'What makes Dr. Janet Duffy different from other real estate agents?',
+      question: 'What makes Dr. Jan Duffy different from other real estate agents?',
       answer:
-        "Dr. Janet Duffy brings over 20 years of experience, deep local market knowledge, and a personalized approach to every transaction. She's licensed in Nevada and specializes in Las Vegas real estate.",
+        "Dr. Jan Duffy brings over 20 years of experience, deep local market knowledge, and a personalized approach to every transaction. She's licensed in Nevada and specializes in Las Vegas real estate.",
     },
   ],
 
   // About page FAQs
   about: [
     {
-      question: "What is Dr. Janet Duffy's background in real estate?",
+      question: "What is Dr. Jan Duffy's background in real estate?",
       answer:
-        "Dr. Janet Duffy has over 20 years of experience in Las Vegas real estate. She's a licensed real estate agent in Nevada and specializes in residential properties throughout the Las Vegas Valley.",
+        "Dr. Jan Duffy has over 20 years of experience in Las Vegas real estate. She's a licensed real estate agent in Nevada and specializes in residential properties throughout the Las Vegas Valley.",
     },
     {
-      question: 'What services does Dr. Janet Duffy provide?',
+      question: 'What services does Dr. Jan Duffy provide?',
       answer:
-        'Dr. Janet Duffy provides comprehensive real estate services including buyer representation, seller representation, home valuations, market analysis, and property search assistance.',
+        'Dr. Jan Duffy provides comprehensive real estate services including buyer representation, seller representation, home valuations, market analysis, and property search assistance.',
     },
     {
-      question: 'Is Dr. Janet Duffy affiliated with a brokerage?',
+      question: 'Is Dr. Jan Duffy affiliated with a brokerage?',
       answer:
-        'Yes, Dr. Janet Duffy is affiliated with Berkshire Hathaway HomeServices Nevada Properties, one of the most respected real estate brokerages in Las Vegas.',
+        'Yes, Dr. Jan Duffy is affiliated with Berkshire Hathaway HomeServices Nevada Properties, one of the most respected real estate brokerages in Las Vegas.',
     },
     {
-      question: 'What areas does Dr. Janet Duffy specialize in?',
+      question: 'What areas does Dr. Jan Duffy specialize in?',
       answer:
-        'Dr. Janet Duffy specializes in all Las Vegas Valley neighborhoods including Summerlin, Henderson, North Las Vegas, Spring Valley, Enterprise, and surrounding areas.',
+        'Dr. Jan Duffy specializes in all Las Vegas Valley neighborhoods including Summerlin, Henderson, North Las Vegas, Spring Valley, Enterprise, and surrounding areas.',
     },
   ],
 
@@ -67,7 +67,7 @@ export const pageFAQs: Record<string, PageFAQ[]> = {
     {
       question: 'Do you work with first-time homebuyers?',
       answer:
-        'Absolutely! Dr. Janet Duffy specializes in working with first-time homebuyers and provides guidance through every step of the home buying process, including financing options and market education.',
+        'Absolutely! Dr. Jan Duffy specializes in working with first-time homebuyers and provides guidance through every step of the home buying process, including financing options and market education.',
     },
     {
       question: 'How long does the home buying process take?',
@@ -151,7 +151,7 @@ export const pageFAQs: Record<string, PageFAQ[]> = {
   // Contact page FAQs
   contact: [
     {
-      question: "What's the best way to contact Dr. Janet Duffy?",
+      question: "What's the best way to contact Dr. Jan Duffy?",
       answer:
         'Call (702) 200-3422 for immediate assistance, or use our contact form for non-urgent inquiries. We typically respond within 2 hours during business hours.',
     },

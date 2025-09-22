@@ -129,19 +129,19 @@ export const openGraphConfigs = {
     createOpenGraphMeta({
       title: 'Las Vegas Real Estate - Find Your Dream Home | Open House Update',
       description:
-        'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance.',
+        'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Jan Duffy for expert guidance.',
       type: 'website',
       url: 'https://openhouseupdate.com',
       image: 'https://openhouseupdate.com/images/og-homepage.jpg',
       imageAlt: 'Las Vegas Real Estate - Open House Update',
-      articleTag: ['real estate', 'Las Vegas', 'home search', 'property', 'Dr. Janet Duffy'],
+      articleTag: ['real estate', 'Las Vegas', 'home search', 'property', 'Dr. Jan Duffy'],
     }),
 
   homeValuation: (): DocumentMeta[] =>
     createOpenGraphMeta({
-      title: 'Free Home Valuation - Las Vegas Real Estate | Dr. Janet Duffy',
+      title: 'Free Home Valuation - Las Vegas Real Estate | Dr. Jan Duffy',
       description:
-        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Janet Duffy.',
+        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Jan Duffy.',
       type: 'website',
       url: 'https://openhouseupdate.com/services/home-valuation',
       image: 'https://openhouseupdate.com/images/og-valuation.jpg',
@@ -151,9 +151,9 @@ export const openGraphConfigs = {
 
   buyerServices: (): DocumentMeta[] =>
     createOpenGraphMeta({
-      title: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy',
+      title: 'Buyer Services - Expert Home Buying Support | Dr. Jan Duffy',
       description:
-        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.',
+        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Jan Duffy, your trusted real estate agent.',
       type: 'website',
       url: 'https://openhouseupdate.com/services/buyer-services',
       image: 'https://openhouseupdate.com/images/og-buyer-services.jpg',
@@ -169,9 +169,9 @@ export const openGraphConfigs = {
 
   sellerServices: (): DocumentMeta[] =>
     createOpenGraphMeta({
-      title: 'Seller Services - Expert Home Selling Support | Dr. Janet Duffy',
+      title: 'Seller Services - Expert Home Selling Support | Dr. Jan Duffy',
       description:
-        'Professional seller services in Las Vegas. Complete support from listing to closing with Dr. Janet Duffy, your trusted real estate agent.',
+        'Professional seller services in Las Vegas. Complete support from listing to closing with Dr. Jan Duffy, your trusted real estate agent.',
       type: 'website',
       url: 'https://openhouseupdate.com/services/seller-services',
       image: 'https://openhouseupdate.com/images/og-seller-services.jpg',
@@ -187,7 +187,7 @@ export const openGraphConfigs = {
 
   marketAnalysis: (): DocumentMeta[] =>
     createOpenGraphMeta({
-      title: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Janet Duffy',
+      title: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Jan Duffy',
       description:
         'Comprehensive market analysis for Las Vegas real estate. Get insights on trends, pricing, and investment opportunities.',
       type: 'website',
@@ -205,13 +205,13 @@ export const openGraphConfigs = {
 
   about: (): DocumentMeta[] =>
     createOpenGraphMeta({
-      title: 'About Dr. Janet Duffy - Las Vegas Real Estate Agent',
+      title: 'About Dr. Jan Duffy - Las Vegas Real Estate Agent',
       description:
-        'Learn about Dr. Janet Duffy, your trusted Las Vegas real estate agent. Professional service, local expertise, and personalized guidance.',
+        'Learn about Dr. Jan Duffy, your trusted Las Vegas real estate agent. Professional service, local expertise, and personalized guidance.',
       type: 'profile',
       url: 'https://openhouseupdate.com/about',
       image: 'https://openhouseupdate.com/images/og-about.jpg',
-      imageAlt: 'Dr. Janet Duffy - Las Vegas Real Estate Agent',
+      imageAlt: 'Dr. Jan Duffy - Las Vegas Real Estate Agent',
       profileFirstName: 'Janet',
       profileLastName: 'Duffy',
       profileUsername: 'drjanetduffy',
@@ -219,21 +219,21 @@ export const openGraphConfigs = {
 
   contact: (): DocumentMeta[] =>
     createOpenGraphMeta({
-      title: 'Contact Dr. Janet Duffy - Las Vegas Real Estate Agent',
+      title: 'Contact Dr. Jan Duffy - Las Vegas Real Estate Agent',
       description:
-        'Contact Dr. Janet Duffy for professional real estate services in Las Vegas. Get expert guidance for buying or selling your home.',
+        'Contact Dr. Jan Duffy for professional real estate services in Las Vegas. Get expert guidance for buying or selling your home.',
       type: 'website',
       url: 'https://openhouseupdate.com/contact',
       image: 'https://openhouseupdate.com/images/og-contact.jpg',
-      imageAlt: 'Contact Dr. Janet Duffy - Las Vegas Real Estate',
-      articleTag: ['contact', 'real estate agent', 'Las Vegas', 'Dr. Janet Duffy'],
+      imageAlt: 'Contact Dr. Jan Duffy - Las Vegas Real Estate',
+      articleTag: ['contact', 'real estate agent', 'Las Vegas', 'Dr. Jan Duffy'],
     }),
 
   search: (): DocumentMeta[] =>
     createOpenGraphMeta({
       title: 'Property Search - Find Las Vegas Real Estate | Open House Update',
       description:
-        'Search thousands of Las Vegas properties with our advanced real estate search. Find your perfect home with Dr. Janet Duffy.',
+        'Search thousands of Las Vegas properties with our advanced real estate search. Find your perfect home with Dr. Jan Duffy.',
       type: 'website',
       url: 'https://openhouseupdate.com/search',
       image: 'https://openhouseupdate.com/images/og-search.jpg',
@@ -275,7 +275,7 @@ export const openGraphConfigs = {
         ? `Open Houses ${priceRange} - Las Vegas Real Estate`
         : 'Open Houses - Las Vegas Real Estate This Weekend',
       description: priceRange
-        ? `Find open houses in Las Vegas priced ${priceRange}. Tour properties this weekend with Dr. Janet Duffy.`
+        ? `Find open houses in Las Vegas priced ${priceRange}. Tour properties this weekend with Dr. Jan Duffy.`
         : 'Discover open houses in Las Vegas this weekend. Tour properties and find your next home.',
       type: 'website',
       url: priceRange
@@ -290,7 +290,7 @@ export const openGraphConfigs = {
     createOpenGraphMeta({
       title: 'Las Vegas Real Estate Blog - Market Insights & Tips',
       description:
-        'Stay informed with the latest Las Vegas real estate market insights, tips, and trends from Dr. Janet Duffy.',
+        'Stay informed with the latest Las Vegas real estate market insights, tips, and trends from Dr. Jan Duffy.',
       type: 'website',
       url: 'https://openhouseupdate.com/blog',
       image: 'https://openhouseupdate.com/images/og-blog.jpg',
@@ -302,7 +302,7 @@ export const openGraphConfigs = {
     createOpenGraphMeta({
       title: 'Frequently Asked Questions - Las Vegas Real Estate',
       description:
-        'Get answers to common real estate questions about buying and selling homes in Las Vegas with Dr. Janet Duffy.',
+        'Get answers to common real estate questions about buying and selling homes in Las Vegas with Dr. Jan Duffy.',
       type: 'website',
       url: 'https://openhouseupdate.com/faq',
       image: 'https://openhouseupdate.com/images/og-faq.jpg',

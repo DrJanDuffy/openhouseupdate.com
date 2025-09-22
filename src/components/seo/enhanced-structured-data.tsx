@@ -29,7 +29,7 @@ export default component$<EnhancedStructuredDataProps>(
           return {
             '@context': 'https://schema.org',
             '@type': 'RealEstateAgent',
-            name: 'Dr. Janet Duffy',
+            name: 'Dr. Jan Duffy',
             alternateName: 'Janet Duffy',
             description:
               'Professional real estate agent specializing in Las Vegas properties with over 20 years of experience',
@@ -132,7 +132,7 @@ export default component$<EnhancedStructuredDataProps>(
             '@context': 'https://schema.org',
             '@type': 'RealEstateService',
             name: 'Open House Update - Las Vegas Real Estate',
-            alternateName: 'Dr. Janet Duffy Real Estate',
+            alternateName: 'Dr. Jan Duffy Real Estate',
             description:
               'Professional real estate services in Las Vegas, Nevada. Expert guidance for buying and selling homes.',
             url: 'https://openhouseupdate.com',
@@ -140,7 +140,7 @@ export default component$<EnhancedStructuredDataProps>(
             image: 'https://openhouseupdate.com/images/og-default.jpg',
             provider: {
               '@type': 'RealEstateAgent',
-              name: 'Dr. Janet Duffy',
+              name: 'Dr. Jan Duffy',
               url: 'https://openhouseupdate.com/about',
             },
             areaServed: {
@@ -195,7 +195,7 @@ export default component$<EnhancedStructuredDataProps>(
             '@context': 'https://schema.org',
             '@type': 'WebSite',
             name: 'Open House Update',
-            alternateName: 'Dr. Janet Duffy Real Estate',
+            alternateName: 'Dr. Jan Duffy Real Estate',
             url: 'https://openhouseupdate.com',
             description:
               'Las Vegas real estate services - Find your perfect home with expert guidance',
@@ -210,7 +210,7 @@ export default component$<EnhancedStructuredDataProps>(
             },
             publisher: {
               '@type': 'RealEstateAgent',
-              name: 'Dr. Janet Duffy',
+              name: 'Dr. Jan Duffy',
               url: 'https://openhouseupdate.com/about',
             },
             mainEntity: {
@@ -223,7 +223,7 @@ export default component$<EnhancedStructuredDataProps>(
           return {
             '@context': 'https://schema.org',
             '@type': 'Organization',
-            name: 'Dr. Janet Duffy Real Estate',
+            name: 'Dr. Jan Duffy Real Estate',
             alternateName: 'Open House Update',
             url: 'https://openhouseupdate.com',
             logo: 'https://openhouseupdate.com/images/logo.png',
@@ -252,7 +252,7 @@ export default component$<EnhancedStructuredDataProps>(
           return {
             '@context': 'https://schema.org',
             '@type': 'RealEstateAgent',
-            name: 'Dr. Janet Duffy Real Estate',
+            name: 'Dr. Jan Duffy Real Estate',
             image: 'https://openhouseupdate.com/images/dr-janet-duffy.jpg',
             telephone: '+1-702-200-3422',
             email: 'drduffy@bhhsnv.com',

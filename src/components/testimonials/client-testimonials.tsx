@@ -24,7 +24,7 @@ export default component$(() => {
       location: 'Summerlin, Las Vegas',
       image: '/images/testimonials/sarah-michael.jpg',
       rating: 5,
-      text: "Dr. Janet Duffy made our first home buying experience absolutely seamless. Her knowledge of the Las Vegas market is unmatched, and she found us the perfect home in Summerlin within our budget. We couldn't be happier!",
+      text: "Dr. Jan Duffy made our first home buying experience absolutely seamless. Her knowledge of the Las Vegas market is unmatched, and she found us the perfect home in Summerlin within our budget. We couldn't be happier!",
       transaction: 'First-time buyers',
       price: '$650,000',
       date: 'December 2024',

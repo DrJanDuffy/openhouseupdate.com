@@ -12,7 +12,7 @@ export default component$<StructuredDataProps>(({ type, data }) => {
         return {
           '@context': 'https://schema.org',
           '@type': 'RealEstateAgent',
-          name: 'Dr. Janet Duffy',
+          name: 'Dr. Jan Duffy',
           description: 'Professional real estate agent specializing in Las Vegas properties',
           url: 'https://openhouseupdate.com',
           telephone: '+1-702-200-3422',
@@ -69,7 +69,7 @@ export default component$<StructuredDataProps>(({ type, data }) => {
           url: 'https://openhouseupdate.com',
           provider: {
             '@type': 'RealEstateAgent',
-            name: 'Dr. Janet Duffy',
+            name: 'Dr. Jan Duffy',
           },
           areaServed: {
             '@type': 'City',
@@ -101,7 +101,7 @@ export default component$<StructuredDataProps>(({ type, data }) => {
           },
           publisher: {
             '@type': 'RealEstateAgent',
-            name: 'Dr. Janet Duffy',
+            name: 'Dr. Jan Duffy',
           },
         }
 

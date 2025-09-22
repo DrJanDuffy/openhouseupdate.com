@@ -135,7 +135,7 @@ export default component$<FreeHomeValuationCTAProps>(
               <h3 class="text-xl font-bold text-gray-900 mb-2">Get Your Free Home Valuation</h3>
               <p class="text-gray-600 mb-4">
                 Discover what your Las Vegas home is worth in today's market. Get an instant
-                estimate plus a detailed report from Dr. Janet Duffy.
+                estimate plus a detailed report from Dr. Jan Duffy.
               </p>
               <button
                 type="button"

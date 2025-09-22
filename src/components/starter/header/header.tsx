@@ -10,7 +10,7 @@ export default component$(() => {
             <div class={styles.logoContainer}>
               <div class={styles.logoText}>Open House Update</div>
               <div class={styles.logoPhone}>
-                <a href="tel:+17022003422" class={styles.phoneLink} title="Call Dr. Janet Duffy">
+                <a href="tel:+17022003422" class={styles.phoneLink} title="Call Dr. Jan Duffy">
                   (702) 200-3422
                 </a>
               </div>

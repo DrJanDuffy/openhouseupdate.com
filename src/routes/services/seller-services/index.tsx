@@ -511,7 +511,7 @@ export default component$(() => {
       <div class="cta-section">
         <h2>Ready to Sell Your Home?</h2>
         <p>
-          Let Dr. Janet Duffy help you maximize your property's value and achieve a successful sale
+          Let Dr. Jan Duffy help you maximize your property's value and achieve a successful sale
           with professional service and expert market knowledge.
         </p>
         <div class="cta-buttons">
@@ -528,21 +528,21 @@ export default component$(() => {
 })
 
 export const head: DocumentHead = {
-  title: 'Seller Services - Expert Home Selling Support | Dr. Janet Duffy',
+  title: 'Seller Services - Expert Home Selling Support | Dr. Jan Duffy',
   meta: [
     {
       name: 'description',
       content:
-        'Professional seller services in Las Vegas. Maximize your home value with expert marketing, staging, and transaction management from Dr. Janet Duffy.',
+        'Professional seller services in Las Vegas. Maximize your home value with expert marketing, staging, and transaction management from Dr. Jan Duffy.',
     },
     {
       name: 'keywords',
       content:
-        'Las Vegas seller services, home selling, property marketing, real estate agent, Dr. Janet Duffy, seller representation, home sale',
+        'Las Vegas seller services, home selling, property marketing, real estate agent, Dr. Jan Duffy, seller representation, home sale',
     },
     {
       name: 'author',
-      content: 'Dr. Janet Duffy',
+      content: 'Dr. Jan Duffy',
     },
     {
       name: 'robots',
@@ -550,7 +550,7 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:title',
-      content: 'Seller Services - Expert Home Selling Support | Dr. Janet Duffy',
+      content: 'Seller Services - Expert Home Selling Support | Dr. Jan Duffy',
     },
     {
       property: 'og:description',
@@ -575,7 +575,7 @@ export const head: DocumentHead = {
     },
     {
       name: 'twitter:title',
-      content: 'Seller Services - Expert Home Selling Support | Dr. Janet Duffy',
+      content: 'Seller Services - Expert Home Selling Support | Dr. Jan Duffy',
     },
     {
       name: 'twitter:description',

@@ -58,8 +58,8 @@ export default component$<EnhancedSitemapProps>(
                 },
                 {
                   loc: 'https://openhouseupdate.com/images/dr-janet-duffy.jpg',
-                  caption: 'Dr. Janet Duffy - Real Estate Agent',
-                  title: 'Dr. Janet Duffy Professional Headshot',
+                  caption: 'Dr. Jan Duffy - Real Estate Agent',
+                  title: 'Dr. Jan Duffy Professional Headshot',
                 },
               ]
             : undefined,

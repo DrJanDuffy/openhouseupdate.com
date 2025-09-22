@@ -18,14 +18,14 @@ export interface PageSnippetConfig {
 // Page-specific snippet configurations
 export const pageSnippets: Record<string, PageSnippetConfig> = {
   homepage: {
-    title: 'Las Vegas Open Houses - This Weekend | Dr. Janet Duffy',
+    title: 'Las Vegas Open Houses - This Weekend | Dr. Jan Duffy',
     description:
-      "Find this weekend's open houses in Las Vegas with featured Open House Specialist Dr. Janet Duffy. Discover properties in Summerlin, Henderson, North Las Vegas and all Las Vegas Valley neighborhoods.",
+      "Find this weekend's open houses in Las Vegas with featured Open House Specialist Dr. Jan Duffy. Discover properties in Summerlin, Henderson, North Las Vegas and all Las Vegas Valley neighborhoods.",
     keywords: [
       'Las Vegas open houses',
       'weekend open houses',
       'Open House Specialist',
-      'Dr. Janet Duffy',
+      'Dr. Jan Duffy',
       'open house expert',
       'featured real estate agent',
       'open house listings',
@@ -48,11 +48,11 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
   },
 
   about: {
-    title: 'About Dr. Janet Duffy - Las Vegas Real Estate Agent | Open House Update',
+    title: 'About Dr. Jan Duffy - Las Vegas Real Estate Agent | Open House Update',
     description:
-      'Meet Dr. Janet Duffy, your trusted Las Vegas real estate agent with over 20 years of experience. Licensed in Nevada, specializing in residential properties throughout the Las Vegas Valley.',
+      'Meet Dr. Jan Duffy, your trusted Las Vegas real estate agent with over 20 years of experience. Licensed in Nevada, specializing in residential properties throughout the Las Vegas Valley.',
     keywords: [
-      'Dr. Janet Duffy',
+      'Dr. Jan Duffy',
       'Las Vegas real estate agent',
       'Nevada real estate',
       'real estate experience',
@@ -70,7 +70,7 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
   },
 
   services: {
-    title: 'Real Estate Services in Las Vegas | Dr. Janet Duffy',
+    title: 'Real Estate Services in Las Vegas | Dr. Jan Duffy',
     description:
       'Comprehensive real estate services in Las Vegas including buyer representation, seller services, home valuations, and market analysis. Expert guidance for all your real estate needs.',
     keywords: [
@@ -92,7 +92,7 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
   },
 
   'home-valuation': {
-    title: 'Free Home Valuation in Las Vegas | Dr. Janet Duffy',
+    title: 'Free Home Valuation in Las Vegas | Dr. Jan Duffy',
     description:
       'Get an accurate home valuation for your Las Vegas property. Free market analysis and property value estimates from experienced real estate professionals.',
     keywords: [
@@ -115,7 +115,7 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
   },
 
   'buyer-services': {
-    title: 'Buyer Representation Services in Las Vegas | Dr. Janet Duffy',
+    title: 'Buyer Representation Services in Las Vegas | Dr. Jan Duffy',
     description:
       'Expert buyer representation in Las Vegas. Free services include property search, negotiation, financing guidance, and transaction management for home buyers.',
     keywords: [
@@ -138,7 +138,7 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
   },
 
   'seller-services': {
-    title: 'Seller Representation Services in Las Vegas | Dr. Janet Duffy',
+    title: 'Seller Representation Services in Las Vegas | Dr. Jan Duffy',
     description:
       "Professional seller services in Las Vegas. Expert marketing, pricing strategy, negotiation, and transaction management to maximize your home's value and sale price.",
     keywords: [
@@ -161,11 +161,11 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
   },
 
   contact: {
-    title: 'Contact Dr. Janet Duffy - Las Vegas Real Estate Agent',
+    title: 'Contact Dr. Jan Duffy - Las Vegas Real Estate Agent',
     description:
-      'Contact Dr. Janet Duffy for all your Las Vegas real estate needs. Call (702) 200-3422 or use our contact form for expert real estate guidance and consultation.',
+      'Contact Dr. Jan Duffy for all your Las Vegas real estate needs. Call (702) 200-3422 or use our contact form for expert real estate guidance and consultation.',
     keywords: [
-      'contact Dr. Janet Duffy',
+      'contact Dr. Jan Duffy',
       'Las Vegas real estate contact',
       'real estate consultation',
       'property expert contact',
@@ -181,9 +181,9 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
   },
 
   summerlin: {
-    title: 'Summerlin Real Estate - Homes for Sale | Dr. Janet Duffy',
+    title: 'Summerlin Real Estate - Homes for Sale | Dr. Jan Duffy',
     description:
-      'Find your dream home in Summerlin, Las Vegas. Browse Summerlin homes for sale, learn about neighborhoods, and work with Dr. Janet Duffy for expert guidance.',
+      'Find your dream home in Summerlin, Las Vegas. Browse Summerlin homes for sale, learn about neighborhoods, and work with Dr. Jan Duffy for expert guidance.',
     keywords: [
       'Summerlin real estate',
       'Summerlin homes for sale',
@@ -203,9 +203,9 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
   },
 
   henderson: {
-    title: 'Henderson Real Estate - Homes for Sale | Dr. Janet Duffy',
+    title: 'Henderson Real Estate - Homes for Sale | Dr. Jan Duffy',
     description:
-      'Discover Henderson real estate opportunities. Browse Henderson homes for sale, explore neighborhoods, and get expert guidance from Dr. Janet Duffy.',
+      'Discover Henderson real estate opportunities. Browse Henderson homes for sale, explore neighborhoods, and get expert guidance from Dr. Jan Duffy.',
     keywords: [
       'Henderson real estate',
       'Henderson homes for sale',

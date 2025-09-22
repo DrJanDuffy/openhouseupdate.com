@@ -415,7 +415,7 @@ export default component$(() => {
             <div class="success-message">
               <h3>Thank You!</h3>
               <p>
-                Your valuation request has been submitted. Dr. Janet Duffy will contact you within
+                Your valuation request has been submitted. Dr. Jan Duffy will contact you within
                 24 hours to discuss your property valuation.
               </p>
             </div>
@@ -448,7 +448,7 @@ export default component$(() => {
         <div class="benefit-card">
           <h3>💼 Professional Service</h3>
           <p>
-            Work with Dr. Janet Duffy, a licensed real estate professional with extensive local
+            Work with Dr. Jan Duffy, a licensed real estate professional with extensive local
             market knowledge.
           </p>
         </div>
@@ -458,21 +458,21 @@ export default component$(() => {
 })
 
 export const head: DocumentHead = {
-  title: 'Free Home Valuation - Las Vegas Real Estate | Dr. Janet Duffy',
+  title: 'Free Home Valuation - Las Vegas Real Estate | Dr. Jan Duffy',
   meta: [
     {
       name: 'description',
       content:
-        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Janet Duffy.',
+        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Jan Duffy.',
     },
     {
       name: 'keywords',
       content:
-        'home valuation Las Vegas, property assessment, market analysis, CMA, home value, Dr. Janet Duffy, real estate valuation',
+        'home valuation Las Vegas, property assessment, market analysis, CMA, home value, Dr. Jan Duffy, real estate valuation',
     },
     {
       name: 'author',
-      content: 'Dr. Janet Duffy',
+      content: 'Dr. Jan Duffy',
     },
     {
       name: 'robots',
@@ -481,13 +481,13 @@ export const head: DocumentHead = {
     // Open Graph metadata
     {
       property: 'og:title',
-      content: 'Free Home Valuation - Las Vegas Real Estate | Dr. Janet Duffy',
+      content: 'Free Home Valuation - Las Vegas Real Estate | Dr. Jan Duffy',
     },
     { property: 'og:type', content: 'website' },
     {
       property: 'og:description',
       content:
-        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Janet Duffy.',
+        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Jan Duffy.',
     },
     { property: 'og:url', content: 'https://openhouseupdate.com/services/home-valuation' },
     { property: 'og:site_name', content: 'Open House Update' },
@@ -512,12 +512,12 @@ export const head: DocumentHead = {
     { name: 'twitter:card', content: 'summary_large_image' },
     {
       name: 'twitter:title',
-      content: 'Free Home Valuation - Las Vegas Real Estate | Dr. Janet Duffy',
+      content: 'Free Home Valuation - Las Vegas Real Estate | Dr. Jan Duffy',
     },
     {
       name: 'twitter:description',
       content:
-        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Janet Duffy.',
+        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Jan Duffy.',
     },
     { name: 'twitter:image', content: 'https://openhouseupdate.com/images/og-valuation.jpg' },
     { name: 'twitter:image:alt', content: 'Free Home Valuation - Las Vegas Real Estate' },

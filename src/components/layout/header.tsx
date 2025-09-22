@@ -223,7 +223,7 @@ export default component$(() => {
           <a href="/" class="sticky-header-logo" title="Open House Update - Las Vegas Real Estate">
             <div class="logo-text">Open House Update</div>
             <div class="logo-phone">
-              <a href="tel:+17022003422" class="phone-link" title="Call Dr. Janet Duffy">
+              <a href="tel:+17022003422" class="phone-link" title="Call Dr. Jan Duffy">
                 (702) 200-3422
               </a>
             </div>

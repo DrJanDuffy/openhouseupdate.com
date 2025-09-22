@@ -389,7 +389,7 @@ export default component$(() => {
       <div class="cta-section">
         <h2>Ready to Start Your Home Search?</h2>
         <p>
-          Let Dr. Janet Duffy guide you through the entire home buying process with personalized
+          Let Dr. Jan Duffy guide you through the entire home buying process with personalized
           service and expert market knowledge.
         </p>
         <div class="cta-buttons">
@@ -406,21 +406,21 @@ export default component$(() => {
 })
 
 export const head: DocumentHead = {
-  title: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy',
+  title: 'Buyer Services - Expert Home Buying Support | Dr. Jan Duffy',
   meta: [
     {
       name: 'description',
       content:
-        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.',
+        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Jan Duffy, your trusted real estate agent.',
     },
     {
       name: 'keywords',
       content:
-        'Las Vegas buyer services, home buying, property search, real estate agent, Dr. Janet Duffy, buyer representation, home purchase',
+        'Las Vegas buyer services, home buying, property search, real estate agent, Dr. Jan Duffy, buyer representation, home purchase',
     },
     {
       name: 'author',
-      content: 'Dr. Janet Duffy',
+      content: 'Dr. Jan Duffy',
     },
     {
       name: 'robots',
@@ -429,13 +429,13 @@ export const head: DocumentHead = {
     // Open Graph metadata
     {
       property: 'og:title',
-      content: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy',
+      content: 'Buyer Services - Expert Home Buying Support | Dr. Jan Duffy',
     },
     { property: 'og:type', content: 'website' },
     {
       property: 'og:description',
       content:
-        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.',
+        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Jan Duffy, your trusted real estate agent.',
     },
     { property: 'og:url', content: 'https://openhouseupdate.com/services/buyer-services' },
     { property: 'og:site_name', content: 'Open House Update' },
@@ -460,12 +460,12 @@ export const head: DocumentHead = {
     { name: 'twitter:card', content: 'summary_large_image' },
     {
       name: 'twitter:title',
-      content: 'Buyer Services - Expert Home Buying Support | Dr. Janet Duffy',
+      content: 'Buyer Services - Expert Home Buying Support | Dr. Jan Duffy',
     },
     {
       name: 'twitter:description',
       content:
-        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Janet Duffy, your trusted real estate agent.',
+        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Jan Duffy, your trusted real estate agent.',
     },
     { name: 'twitter:image', content: 'https://openhouseupdate.com/images/og-buyer-services.jpg' },
     { name: 'twitter:image:alt', content: 'Buyer Services - Las Vegas Real Estate' },

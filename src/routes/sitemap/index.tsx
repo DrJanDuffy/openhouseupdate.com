@@ -120,7 +120,7 @@ export default component$(() => {
         <h2>Main Pages</h2>
         <div class="sitemap-links">
           <a href="/">Home</a>
-          <a href="/about/">About Dr. Janet Duffy</a>
+          <a href="/about/">About Dr. Jan Duffy</a>
           <a href="/services/">Real Estate Services</a>
           <a href="/contact/">Contact Us</a>
           <a href="/search/">Property Search</a>

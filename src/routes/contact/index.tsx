@@ -36,7 +36,7 @@ export default component$(() => {
         {/* Hero Section */}
         <div class="text-center mb-16">
           <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Contact <span class="text-blue-600">Dr. Janet Duffy</span>
+            Contact <span class="text-blue-600">Dr. Jan Duffy</span>
           </h1>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
             Ready to buy or sell your Las Vegas home? Get expert guidance from a licensed real
@@ -138,7 +138,7 @@ export default component$(() => {
                 <div class="text-green-600 text-6xl mb-4">✓</div>
                 <h3 class="text-2xl font-bold text-gray-900 mb-4">Message Sent!</h3>
                 <p class="text-gray-600 mb-6">
-                  Thank you for reaching out. Dr. Janet Duffy will get back to you within 24 hours.
+                  Thank you for reaching out. Dr. Jan Duffy will get back to you within 24 hours.
                 </p>
                 <button
                   type="button"
@@ -233,17 +233,17 @@ export default component$(() => {
 })
 
 export const head: DocumentHead = {
-  title: 'Contact Dr. Janet Duffy - Las Vegas Real Estate Agent',
+  title: 'Contact Dr. Jan Duffy - Las Vegas Real Estate Agent',
   meta: [
     {
       name: 'description',
       content:
-        'Contact Dr. Janet Duffy for expert Las Vegas real estate services. Licensed agent specializing in buying, selling, and home valuations in Nevada.',
+        'Contact Dr. Jan Duffy for expert Las Vegas real estate services. Licensed agent specializing in buying, selling, and home valuations in Nevada.',
     },
     {
       name: 'keywords',
       content:
-        'contact real estate agent, Las Vegas realtor, Dr. Janet Duffy, Nevada real estate, property consultation',
+        'contact real estate agent, Las Vegas realtor, Dr. Jan Duffy, Nevada real estate, property consultation',
     },
   ],
 }

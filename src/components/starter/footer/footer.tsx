@@ -15,11 +15,11 @@ export default component$(() => {
             <h3 class={styles.footerTitle}>Open House Update</h3>
             <p class={styles.footerDescription}>
               Professional real estate services in Las Vegas. Find your perfect home with expert
-              guidance from Dr. Janet Duffy.
+              guidance from Dr. Jan Duffy.
             </p>
             <div class={styles.contactInfo}>
               <p>
-                <strong>Dr. Janet Duffy</strong>
+                <strong>Dr. Jan Duffy</strong>
               </p>
               <p>Licensed Real Estate Agent</p>
               <p>Las Vegas, Nevada</p>
@@ -180,7 +180,7 @@ export default component$(() => {
           <div class={styles.footerBottomContent}>
             <div class={styles.copyright}>
               <p>&copy; {new Date().getFullYear()} Open House Update. All rights reserved.</p>
-              <p>Dr. Janet Duffy - Licensed Real Estate Agent in Nevada</p>
+              <p>Dr. Jan Duffy - Licensed Real Estate Agent in Nevada</p>
             </div>
             <div class={styles.footerBottomLinks}>
               <a href="/privacy-policy" class={styles.footerBottomLink}>

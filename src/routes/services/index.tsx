@@ -261,7 +261,7 @@ export default component$(() => {
       <div class="cta-section">
         <h2>Ready to Get Started?</h2>
         <p>
-          Whether you're buying, selling, or just exploring the market, Dr. Janet Duffy is here to
+          Whether you're buying, selling, or just exploring the market, Dr. Jan Duffy is here to
           provide expert guidance and personalized service.
         </p>
         <div class="cta-buttons">

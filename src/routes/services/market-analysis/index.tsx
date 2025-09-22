@@ -557,7 +557,7 @@ export default component$(() => {
       <div class="cta-section">
         <h2>Get Your Market Analysis</h2>
         <p>
-          Stay ahead of the market with detailed analysis and insights from Dr. Janet Duffy's expert
+          Stay ahead of the market with detailed analysis and insights from Dr. Jan Duffy's expert
           market knowledge.
         </p>
         <div class="cta-buttons">
@@ -574,21 +574,21 @@ export default component$(() => {
 })
 
 export const head: DocumentHead = {
-  title: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Janet Duffy',
+  title: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Jan Duffy',
   meta: [
     {
       name: 'description',
       content:
-        'Comprehensive market analysis and trends for Las Vegas real estate. Monthly reports, neighborhood insights, and investment analysis from Dr. Janet Duffy.',
+        'Comprehensive market analysis and trends for Las Vegas real estate. Monthly reports, neighborhood insights, and investment analysis from Dr. Jan Duffy.',
     },
     {
       name: 'keywords',
       content:
-        'Las Vegas market analysis, real estate trends, market reports, neighborhood analysis, investment analysis, Dr. Janet Duffy, market data',
+        'Las Vegas market analysis, real estate trends, market reports, neighborhood analysis, investment analysis, Dr. Jan Duffy, market data',
     },
     {
       name: 'author',
-      content: 'Dr. Janet Duffy',
+      content: 'Dr. Jan Duffy',
     },
     {
       name: 'robots',
@@ -596,7 +596,7 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:title',
-      content: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Janet Duffy',
+      content: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Jan Duffy',
     },
     {
       property: 'og:description',
@@ -621,7 +621,7 @@ export const head: DocumentHead = {
     },
     {
       name: 'twitter:title',
-      content: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Janet Duffy',
+      content: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Jan Duffy',
     },
     {
       name: 'twitter:description',

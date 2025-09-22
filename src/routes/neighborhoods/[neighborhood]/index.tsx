@@ -214,7 +214,7 @@ export default component$(() => {
         <div class="info-card">
           <h4>Local Expertise</h4>
           <p>
-            Dr. Janet Duffy has extensive experience helping buyers find their perfect home in{' '}
+            Dr. Jan Duffy has extensive experience helping buyers find their perfect home in{' '}
             {neighborhoodName}. Get personalized guidance and expert market insights for this
             sought-after community.
           </p>
@@ -241,19 +241,19 @@ export const head: DocumentHead = ({ params }) => {
     .join(' ')
 
   return {
-    title: `${neighborhoodName} Open Houses - Las Vegas Real Estate | Dr. Janet Duffy`,
+    title: `${neighborhoodName} Open Houses - Las Vegas Real Estate | Dr. Jan Duffy`,
     meta: [
       {
         name: 'description',
-        content: `Find open houses and properties in ${neighborhoodName}, Las Vegas. Expert real estate guidance from Dr. Janet Duffy. Browse available homes and get market insights.`,
+        content: `Find open houses and properties in ${neighborhoodName}, Las Vegas. Expert real estate guidance from Dr. Jan Duffy. Browse available homes and get market insights.`,
       },
       {
         name: 'keywords',
-        content: `${neighborhoodName} real estate, ${neighborhoodName} open houses, Las Vegas homes, Nevada properties, real estate agent, Dr. Janet Duffy, property search`,
+        content: `${neighborhoodName} real estate, ${neighborhoodName} open houses, Las Vegas homes, Nevada properties, real estate agent, Dr. Jan Duffy, property search`,
       },
       {
         name: 'author',
-        content: 'Dr. Janet Duffy',
+        content: 'Dr. Jan Duffy',
       },
       {
         name: 'robots',
@@ -265,7 +265,7 @@ export const head: DocumentHead = ({ params }) => {
       },
       {
         property: 'og:description',
-        content: `Find open houses and properties in ${neighborhoodName}, Las Vegas. Expert real estate guidance from Dr. Janet Duffy.`,
+        content: `Find open houses and properties in ${neighborhoodName}, Las Vegas. Expert real estate guidance from Dr. Jan Duffy.`,
       },
       {
         property: 'og:type',
@@ -289,7 +289,7 @@ export const head: DocumentHead = ({ params }) => {
       },
       {
         name: 'twitter:description',
-        content: `Find open houses and properties in ${neighborhoodName}, Las Vegas. Expert real estate guidance from Dr. Janet Duffy.`,
+        content: `Find open houses and properties in ${neighborhoodName}, Las Vegas. Expert real estate guidance from Dr. Jan Duffy.`,
       },
     ],
     links: [

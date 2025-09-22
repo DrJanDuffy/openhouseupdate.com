@@ -81,22 +81,22 @@ export default component$(() => {
 })
 
 export const head: DocumentHead = {
-  title: 'Open House Update - Las Vegas Real Estate | Dr. Janet Duffy',
+  title: 'Open House Update - Las Vegas Real Estate | Dr. Jan Duffy',
   meta: [
     // Basic SEO
     {
       name: 'description',
       content:
-        'Professional real estate services in Las Vegas. Find your perfect home with Dr. Janet Duffy. Browse listings, get home valuations, and expert guidance.',
+        'Professional real estate services in Las Vegas. Find your perfect home with Dr. Jan Duffy. Browse listings, get home valuations, and expert guidance.',
     },
     {
       name: 'keywords',
       content:
-        'Las Vegas real estate, Nevada homes, property search, home valuation, real estate agent, Dr. Janet Duffy, open house, property listings, Summerlin, Henderson, North Las Vegas',
+        'Las Vegas real estate, Nevada homes, property search, home valuation, real estate agent, Dr. Jan Duffy, open house, property listings, Summerlin, Henderson, North Las Vegas',
     },
     {
       name: 'author',
-      content: 'Dr. Janet Duffy',
+      content: 'Dr. Jan Duffy',
     },
     {
       name: 'robots',
@@ -141,7 +141,7 @@ export const head: DocumentHead = {
     // Open Graph metadata
     {
       property: 'og:title',
-      content: 'Open House Update - Las Vegas Real Estate | Dr. Janet Duffy',
+      content: 'Open House Update - Las Vegas Real Estate | Dr. Jan Duffy',
     },
     {
       property: 'og:description',

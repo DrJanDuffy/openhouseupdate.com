@@ -178,7 +178,7 @@ export default component$(() => {
       `}</style>
 
       <div class="about-hero">
-        <h1>About Dr. Janet Duffy</h1>
+        <h1>About Dr. Jan Duffy</h1>
         <p>
           Your trusted Las Vegas real estate professional with over 15 years of experience helping
           clients achieve their real estate goals.
@@ -189,7 +189,7 @@ export default component$(() => {
         <div class="about-info">
           <h2>Professional Background</h2>
           <p>
-            Dr. Janet Duffy brings a unique combination of academic excellence and real-world
+            Dr. Jan Duffy brings a unique combination of academic excellence and real-world
             experience to the Las Vegas real estate market. With a doctorate in business
             administration and extensive experience in property management, she understands both the
             financial and emotional aspects of real estate transactions.
@@ -242,7 +242,7 @@ export default component$(() => {
       <div class="cta-section">
         <h2>Ready to Work Together?</h2>
         <p>
-          Let Dr. Janet Duffy guide you through your real estate journey with professional expertise
+          Let Dr. Jan Duffy guide you through your real estate journey with professional expertise
           and personalized service.
         </p>
         <div class="cta-buttons">
@@ -262,7 +262,7 @@ export default component$(() => {
       <EnhancedPageSEO
         pageKey="about"
         showFAQs={true}
-        faqTitle="About Dr. Janet Duffy - Frequently Asked Questions"
+        faqTitle="About Dr. Jan Duffy - Frequently Asked Questions"
         className="mt-12"
       />
     </div>
