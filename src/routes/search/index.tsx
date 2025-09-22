@@ -3,15 +3,22 @@ import type { DocumentHead } from '@builder.io/qwik-city'
 
 export default component$(() => {
   const showFilters = useSignal(true)
-  const resultsCount = useSignal(12) // Sample results count
 
   const toggleFilters = $(() => {
     showFilters.value = !showFilters.value
   })
 
-  // Initialize RealScout widget
+  // Initialize RealScout widgets
   useVisibleTask$(() => {
     if (typeof window !== 'undefined') {
+      // Load RealScout script if not already loaded
+      if (!document.querySelector('script[src*="realscout-web-components"]')) {
+        const script = document.createElement('script')
+        script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js'
+        script.type = 'module'
+        document.head.appendChild(script)
+      }
+
       // Wait for RealScout script to load and custom elements to be defined
       const initializeRealScout = () => {
         // Check if RealScout script is loaded
@@ -23,7 +30,10 @@ export default component$(() => {
 
         // Wait for custom elements to be defined
         const checkElements = () => {
-          if (customElements.get('realscout-advanced-search')) {
+          if (
+            customElements.get('realscout-advanced-search') &&
+            customElements.get('realscout-office-listings')
+          ) {
             return
           }
           setTimeout(checkElements, 200)
@@ -159,148 +169,11 @@ export default component$(() => {
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .results-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 2rem;
-          padding-bottom: 1rem;
-          border-bottom: 1px solid #e2e8f0;
-        }
-
-        .results-count {
-          color: #0A2540;
-          font-size: 1.1rem;
-          font-weight: 600;
-        }
-
-        .sort-controls {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-        }
-
-        .sort-controls label {
-          color: #4a5568;
-          font-size: 0.9rem;
-        }
-
-        .sort-controls select {
-          padding: 0.5rem;
-          border: 1px solid #e2e8f0;
-          border-radius: 6px;
-          background: white;
-          color: #0A2540;
-        }
-
-        .results-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 1.5rem;
-          margin-bottom: 2rem;
-        }
-
-        .result-card {
-          border: 1px solid #e2e8f0;
-          border-radius: 8px;
-          overflow: hidden;
-          transition: box-shadow 0.2s;
-        }
-
-        .result-card:hover {
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .result-image {
+        .results realscout-office-listings {
+          --rs-listing-divider-color: #0e64c8;
           width: 100%;
-          height: 200px;
-          background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #64748b;
-          font-size: 0.9rem;
         }
 
-        .result-content {
-          padding: 1rem;
-        }
-
-        .result-price {
-          font-size: 1.3rem;
-          font-weight: 700;
-          color: #0A2540;
-          margin-bottom: 0.5rem;
-        }
-
-        .result-address {
-          color: #4a5568;
-          font-size: 0.9rem;
-          margin-bottom: 0.75rem;
-        }
-
-        .result-details {
-          display: flex;
-          gap: 1rem;
-          font-size: 0.8rem;
-          color: #64748b;
-        }
-
-        .result-detail {
-          display: flex;
-          align-items: center;
-          gap: 0.25rem;
-        }
-
-        .no-results {
-          text-align: center;
-          padding: 3rem;
-          color: #64748b;
-        }
-
-        .no-results h3 {
-          color: #0A2540;
-          margin-bottom: 1rem;
-        }
-
-        .no-results p {
-          margin-bottom: 2rem;
-        }
-
-        .search-again-btn {
-          background: #3A8DDE;
-          color: white;
-          border: none;
-          padding: 0.75rem 1.5rem;
-          border-radius: 6px;
-          cursor: pointer;
-          font-weight: 600;
-        }
-
-        .search-again-btn:hover {
-          background: #2a7bc7;
-        }
-
-        .load-more-section {
-          text-align: center;
-          padding: 2rem 0;
-        }
-
-        .load-more-btn {
-          background: #3A8DDE;
-          color: white;
-          border: none;
-          padding: 0.75rem 2rem;
-          border-radius: 8px;
-          cursor: pointer;
-          font-weight: 600;
-          font-size: 1rem;
-          transition: background-color 0.2s;
-        }
-
-        .load-more-btn:hover {
-          background: #2a7bc7;
-        }
 
         @media (max-width: 768px) {
           .search-results-layout {
@@ -323,16 +196,6 @@ export default component$(() => {
             --rs-as-widget-width: 100% !important;
           }
 
-          .results-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
-          }
-
-          .sort-controls {
-            width: 100%;
-            justify-content: space-between;
-          }
         }
 
         @media (max-width: 480px) {
@@ -348,11 +211,6 @@ export default component$(() => {
 
           .results {
             padding: 1rem;
-          }
-
-          .result-details {
-            flex-wrap: wrap;
-            gap: 0.5rem;
           }
         }
       `}</style>
@@ -399,106 +257,14 @@ export default component$(() => {
         </aside>
 
         <main class="results">
-          <div class="results-header">
-            <div class="results-count">Showing {resultsCount.value} properties</div>
-            <div class="sort-controls">
-              <label for="sort-select">Sort by:</label>
-              <select id="sort-select" title="Sort properties by">
-                <option value="price-desc">Price: High to Low</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="newest">Newest First</option>
-                <option value="sqft-desc">Largest First</option>
-                <option value="sqft-asc">Smallest First</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="results-grid">
-            {/* Sample Property Results */}
-            <div class="result-card">
-              <div class="result-image">🏠 Property Image</div>
-              <div class="result-content">
-                <div class="result-price">$485,000</div>
-                <div class="result-address">1234 Summerlin Pkwy, Las Vegas, NV 89135</div>
-                <div class="result-details">
-                  <span class="result-detail">🛏️ 3 bed</span>
-                  <span class="result-detail">🛁 2 bath</span>
-                  <span class="result-detail">📐 1,850 sqft</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="result-card">
-              <div class="result-image">🏠 Property Image</div>
-              <div class="result-content">
-                <div class="result-price">$625,000</div>
-                <div class="result-address">5678 Red Rock Canyon Dr, Las Vegas, NV 89135</div>
-                <div class="result-details">
-                  <span class="result-detail">🛏️ 4 bed</span>
-                  <span class="result-detail">🛁 3 bath</span>
-                  <span class="result-detail">📐 2,200 sqft</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="result-card">
-              <div class="result-image">🏠 Property Image</div>
-              <div class="result-content">
-                <div class="result-price">$395,000</div>
-                <div class="result-address">9012 Charleston Blvd, Las Vegas, NV 89117</div>
-                <div class="result-details">
-                  <span class="result-detail">🛏️ 2 bed</span>
-                  <span class="result-detail">🛁 2 bath</span>
-                  <span class="result-detail">📐 1,400 sqft</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="result-card">
-              <div class="result-image">🏠 Property Image</div>
-              <div class="result-content">
-                <div class="result-price">$750,000</div>
-                <div class="result-address">3456 Spanish Trail Dr, Las Vegas, NV 89135</div>
-                <div class="result-details">
-                  <span class="result-detail">🛏️ 5 bed</span>
-                  <span class="result-detail">🛁 4 bath</span>
-                  <span class="result-detail">📐 3,100 sqft</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="result-card">
-              <div class="result-image">🏠 Property Image</div>
-              <div class="result-content">
-                <div class="result-price">$425,000</div>
-                <div class="result-address">7890 Desert Inn Rd, Las Vegas, NV 89117</div>
-                <div class="result-details">
-                  <span class="result-detail">🛏️ 3 bed</span>
-                  <span class="result-detail">🛁 2 bath</span>
-                  <span class="result-detail">📐 1,650 sqft</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="result-card">
-              <div class="result-image">🏠 Property Image</div>
-              <div class="result-content">
-                <div class="result-price">$550,000</div>
-                <div class="result-address">2468 Sahara Ave, Las Vegas, NV 89102</div>
-                <div class="result-details">
-                  <span class="result-detail">🛏️ 4 bed</span>
-                  <span class="result-detail">🛁 3 bath</span>
-                  <span class="result-detail">📐 2,000 sqft</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="load-more-section">
-            <button type="button" class="load-more-btn">
-              Load More Properties
-            </button>
-          </div>
+          <realscout-office-listings
+            agent-encoded-id="QWdlbnQtMjI1MDUw"
+            sort-order="NEWEST"
+            listing-status="For Sale"
+            property-types=",SFR"
+            price-min="500000"
+            price-max="600000"
+          />
         </main>
       </div>
     </div>

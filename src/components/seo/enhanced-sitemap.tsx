@@ -375,11 +375,7 @@ ${urlEntries}
 </urlset>`
     }
 
-    return (
-      <div style={{ display: 'none' }}>
-        {/* This component provides sitemap generation utilities */}
-      </div>
-    )
+    return <div class="hidden">{/* This component provides sitemap generation utilities */}</div>
   }
 )
 

@@ -3,7 +3,7 @@ import { qwikCity } from '@builder.io/qwik-city/vite'
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-export default defineConfig(({ mode, command }) => {
+export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production'
 
   return {

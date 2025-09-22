@@ -237,7 +237,7 @@ export const generateMetaDescription = (baseDescription: string, maxLength = 160
   let result = ''
 
   for (const sentence of sentences) {
-    if ((`${result}${sentence}. `).length <= maxLength) {
+    if (`${result}${sentence}. `.length <= maxLength) {
       result += `${sentence}. `
     } else {
       break
