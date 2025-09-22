@@ -20,7 +20,8 @@ Disallow: /node_modules/
 Disallow: /*?*
 Disallow: /*#*
 Disallow: /*.json$
-Disallow: /*.xml$except=sitemap
+Disallow: /*.xml$
+Allow: /sitemap*.xml
 
 # Allow specific file types
 Allow: /*.css$
