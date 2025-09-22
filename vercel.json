@@ -66,6 +66,17 @@
       ]
     },
     {
+      "source": "/robots.txt",
+      "destination": "https://www.openhouseupdate.com/robots.txt",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "openhouseupdate.com"
+        }
+      ]
+    },
+    {
       "source": "/home-valuation",
       "destination": "/services/home-valuation",
       "permanent": true

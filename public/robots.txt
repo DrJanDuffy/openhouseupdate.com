@@ -1,13 +1,13 @@
 User-agent: *
 Allow: /
 
-# Sitemap index (manages all sitemaps)
+# Sitemap
 Sitemap: https://www.openhouseupdate.com/sitemap-index.xml
 
-# Crawl-delay for respectful crawling
+# Crawl delay
 Crawl-delay: 1
 
-# Block access to admin areas and sensitive content
+# Block admin and sensitive areas
 Disallow: /admin/
 Disallow: /private/
 Disallow: /tmp/
@@ -16,14 +16,18 @@ Disallow: /_vercel/
 Disallow: /build/
 Disallow: /node_modules/
 
-# Block duplicate content patterns
+# Block query parameters and fragments
 Disallow: /*?*
 Disallow: /*#*
+
+# Block JSON files
 Disallow: /*.json$
+
+# Block XML files except sitemaps
 Disallow: /*.xml$
 Allow: /sitemap*.xml
 
-# Allow specific file types
+# Allow static assets
 Allow: /*.css$
 Allow: /*.js$
 Allow: /*.png$
@@ -33,31 +37,17 @@ Allow: /*.gif$
 Allow: /*.svg$
 Allow: /*.webp$
 
-# Search engine specific directives
+# Google-specific rules
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
-# Allow Google to access JavaScript and CSS
-Allow: /*.js$
-Allow: /*.css$
 
+# Bing-specific rules
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
-User-agent: Slurp
-Allow: /
-Crawl-delay: 2
-
-User-agent: DuckDuckBot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Baiduspider
-Allow: /
-Crawl-delay: 2
-
-# Block AI training crawlers (optional)
+# Block AI crawlers
 User-agent: GPTBot
 Disallow: /
 
@@ -96,7 +86,7 @@ Allow: /
 User-agent: LinkedInBot
 Allow: /
 
-# Real estate specific crawlers
+# Allow real estate crawlers
 User-agent: ZillowBot
 Allow: /
 
