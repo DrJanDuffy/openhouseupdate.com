@@ -282,7 +282,7 @@ export default component$(() => {
             Discover Las Vegas open houses happening this weekend with our advanced property search
           </p>
           <div class="featured-agent-badge">
-            <span class="badge-text">Featured Open House Expert</span>
+            <span class="badge-text">Featured Open House Specialist</span>
             <span class="agent-name">Dr. Janet Duffy</span>
             <span class="badge-month">This Month</span>
           </div>
