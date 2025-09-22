@@ -39,7 +39,7 @@ export default component$(() => {
             <section>
               <h2 class="text-2xl font-bold text-gray-900 mb-4">3. Real Estate License</h2>
               <p class="text-gray-600 mb-4">
-                Dr. Janet Duffy is a licensed real estate agent in the state of Nevada. All real
+                Dr. Jan Duffy is a licensed real estate agent in the state of Nevada. All real
                 estate services are provided in accordance with Nevada real estate laws and
                 regulations.
               </p>
@@ -79,7 +79,7 @@ export default component$(() => {
             <section>
               <h2 class="text-2xl font-bold text-gray-900 mb-4">6. Limitation of Liability</h2>
               <p class="text-gray-600">
-                Open House Update and Dr. Janet Duffy shall not be liable for any direct, indirect,
+                Open House Update and Dr. Jan Duffy shall not be liable for any direct, indirect,
                 incidental, special, or consequential damages resulting from the use or inability to
                 use the website or services, including but not limited to damages for loss of
                 profits, use, data, or other intangible losses.
@@ -154,7 +154,7 @@ export default component$(() => {
               </p>
               <div class="bg-gray-50 rounded-lg p-6">
                 <p class="text-gray-600 mb-2">
-                  <strong>Dr. Janet Duffy</strong>
+                  <strong>Dr. Jan Duffy</strong>
                 </p>
                 <p class="text-gray-600 mb-2">Licensed Real Estate Agent</p>
                 <p class="text-gray-600 mb-2">Email: drduffy@bhhsnv.com</p>

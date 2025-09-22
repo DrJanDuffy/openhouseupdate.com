@@ -37,7 +37,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
       id: 'buyer-consultation',
       title: 'Free Buyer Consultation',
       description:
-        '30-minute consultation with Dr. Janet Duffy to discuss your home buying strategy',
+        '30-minute consultation with Dr. Jan Duffy to discuss your home buying strategy',
       icon: '💬',
       value: '$300 value',
     },
@@ -109,7 +109,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
           <div class="text-green-600 text-6xl mb-4">🎉</div>
           <h3 class="text-2xl font-bold text-gray-900 mb-4">Congratulations!</h3>
           <p class="text-gray-600 mb-6">
-            You've claimed your free offer! Dr. Janet Duffy will contact you within 24 hours to
+            You've claimed your free offer! Dr. Jan Duffy will contact you within 24 hours to
             schedule your personalized real estate consultation.
           </p>
           <div class="bg-blue-50 p-4 rounded-lg mb-6">
@@ -243,7 +243,7 @@ export default component$<ExitIntentPopupProps>(({ isVisible, onClose }) => {
                 </button>
 
                 <p class="text-xs text-gray-500 text-center">
-                  By claiming this offer, you agree to receive communications from Dr. Janet Duffy
+                  By claiming this offer, you agree to receive communications from Dr. Jan Duffy
                   about real estate opportunities and services in Las Vegas.
                 </p>
               </form>

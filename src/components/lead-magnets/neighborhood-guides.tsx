@@ -153,7 +153,7 @@ export default component$(() => {
           </p>
           <div class="bg-white p-4 rounded-lg border border-green-200">
             <p class="text-sm text-green-800">
-              <strong>What's Next:</strong> Dr. Janet Duffy will contact you within 24 hours to
+              <strong>What's Next:</strong> Dr. Jan Duffy will contact you within 24 hours to
               discuss your real estate needs and answer any questions about the neighborhood.
             </p>
           </div>

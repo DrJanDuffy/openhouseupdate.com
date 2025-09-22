@@ -15,7 +15,7 @@ export const seoConfig: SEOConfig = {
   siteUrl: 'https://openhouseupdate.com',
   defaultImage: 'https://openhouseupdate.com/images/og-default.jpg',
   defaultImageAlt: 'Open House Update - Las Vegas Real Estate',
-  author: 'Dr. Janet Duffy',
+  author: 'Dr. Jan Duffy',
   locale: 'en_US',
   twitterHandle: '@drjanetduffy',
 }

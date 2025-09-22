@@ -177,7 +177,7 @@ export default component$(() => {
         <div class="bg-gradient-to-r from-blue-600 to-green-600 rounded-lg shadow-lg p-8 text-white">
           <h2 class="text-2xl font-bold mb-4">Need Help Finding Something?</h2>
           <p class="text-xl mb-6 opacity-90">
-            Dr. Janet Duffy is here to help you find exactly what you're looking for.
+            Dr. Jan Duffy is here to help you find exactly what you're looking for.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -205,7 +205,7 @@ export const head: DocumentHead = {
     {
       name: 'description',
       content:
-        "Page not found. Find your perfect Las Vegas home with Dr. Janet Duffy's real estate services.",
+        "Page not found. Find your perfect Las Vegas home with Dr. Jan Duffy's real estate services.",
     },
     {
       name: 'robots',

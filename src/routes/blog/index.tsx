@@ -68,7 +68,7 @@ export default component$(() => {
           </h1>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
             Stay informed with the latest market insights, neighborhood updates, and expert advice
-            from Dr. Janet Duffy.
+            from Dr. Jan Duffy.
           </p>
         </div>
 
@@ -230,7 +230,7 @@ export const head: DocumentHead = {
     {
       name: 'description',
       content:
-        'Stay informed with the latest Las Vegas real estate market updates, neighborhood insights, and expert advice from Dr. Janet Duffy.',
+        'Stay informed with the latest Las Vegas real estate market updates, neighborhood insights, and expert advice from Dr. Jan Duffy.',
     },
     {
       name: 'keywords',

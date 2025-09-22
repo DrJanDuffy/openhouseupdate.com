@@ -9,7 +9,7 @@ export default component$(() => {
       <EnhancedPageSEO
         pageKey="about"
         showFAQs={true}
-        faqTitle="About Dr. Janet Duffy - Frequently Asked Questions"
+        faqTitle="About Dr. Jan Duffy - Frequently Asked Questions"
         className="mt-12"
       />
 
@@ -208,7 +208,7 @@ export default component$(() => {
 
       {/* Hero Section */}
       <div class="about-hero">
-        <h1>Meet Dr. Janet Duffy</h1>
+        <h1>Meet Dr. Jan Duffy</h1>
         <p>
           Your trusted Las Vegas real estate professional with over 20 years of experience helping
           clients find their perfect home.
@@ -220,7 +220,7 @@ export default component$(() => {
         <div class="about-info">
           <h2>Professional Background</h2>
           <p>
-            Dr. Janet Duffy brings over two decades of real estate expertise to the Las Vegas
+            Dr. Jan Duffy brings over two decades of real estate expertise to the Las Vegas
             market. As a licensed real estate agent in Nevada, she has helped hundreds of families
             find their dream homes and achieve their real estate goals.
           </p>
@@ -244,7 +244,7 @@ export default component$(() => {
         <div class="about-image">
           <img
             src="/images/dr-janet-duffy.jpg"
-            alt="Dr. Janet Duffy - Las Vegas Real Estate Agent"
+            alt="Dr. Jan Duffy - Las Vegas Real Estate Agent"
             width="400"
             height="500"
           />
@@ -278,7 +278,7 @@ export default component$(() => {
       <div class="cta-section">
         <h2>Ready to Work Together?</h2>
         <p>
-          Let Dr. Janet Duffy help you navigate the Las Vegas real estate market with confidence and
+          Let Dr. Jan Duffy help you navigate the Las Vegas real estate market with confidence and
           expertise.
         </p>
         <div class="cta-buttons">

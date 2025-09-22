@@ -50,7 +50,7 @@ export const createSEOHead = (props: SEOHeadProps): DocumentHead => {
     // Basic SEO
     { name: 'description', content: description },
     { name: 'keywords', content: keywords.join(', ') },
-    { name: 'author', content: 'Dr. Janet Duffy' },
+    { name: 'author', content: 'Dr. Jan Duffy' },
     { name: 'robots', content: robotsContent },
     { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
     { name: 'theme-color', content: '#3A8DDE' },

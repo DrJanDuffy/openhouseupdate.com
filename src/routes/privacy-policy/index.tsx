@@ -137,7 +137,7 @@ export default component$(() => {
               </p>
               <div class="bg-gray-50 rounded-lg p-6">
                 <p class="text-gray-600 mb-2">
-                  <strong>Dr. Janet Duffy</strong>
+                  <strong>Dr. Jan Duffy</strong>
                 </p>
                 <p class="text-gray-600 mb-2">Licensed Real Estate Agent</p>
                 <p class="text-gray-600 mb-2">Email: drduffy@bhhsnv.com</p>

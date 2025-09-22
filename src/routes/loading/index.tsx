@@ -90,7 +90,7 @@ export default component$(() => {
         <div class="bg-gradient-to-r from-blue-600 to-green-600 rounded-lg shadow-lg p-8 text-white">
           <h2 class="text-2xl font-bold mb-4">Need Immediate Assistance?</h2>
           <p class="text-xl mb-6 opacity-90">
-            While the page loads, feel free to contact Dr. Janet Duffy directly.
+            While the page loads, feel free to contact Dr. Jan Duffy directly.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a

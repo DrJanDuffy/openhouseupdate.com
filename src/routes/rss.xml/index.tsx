@@ -25,7 +25,7 @@ export const onGet = async () => {
     },
     {
       title: 'Home Buying Guide for Las Vegas',
-      description: 'Complete guide to buying a home in Las Vegas with Dr. Janet Duffy',
+      description: 'Complete guide to buying a home in Las Vegas with Dr. Jan Duffy',
       url: 'https://openhouseupdate.com/buyer-services',
       pubDate: currentDate,
       guid: 'buying-guide',
@@ -43,12 +43,12 @@ export const onGet = async () => {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Open House Update - Las Vegas Real Estate</title>
-    <description>Professional real estate services in Las Vegas with Dr. Janet Duffy</description>
+    <description>Professional real estate services in Las Vegas with Dr. Jan Duffy</description>
     <link>https://openhouseupdate.com</link>
     <language>en-US</language>
-    <copyright>Copyright ${new Date().getFullYear()} Dr. Janet Duffy</copyright>
-    <managingEditor>drduffy@bhhsnv.com (Dr. Janet Duffy)</managingEditor>
-    <webMaster>drduffy@bhhsnv.com (Dr. Janet Duffy)</webMaster>
+    <copyright>Copyright ${new Date().getFullYear()} Dr. Jan Duffy</copyright>
+    <managingEditor>drduffy@bhhsnv.com (Dr. Jan Duffy)</managingEditor>
+    <webMaster>drduffy@bhhsnv.com (Dr. Jan Duffy)</webMaster>
     <lastBuildDate>${currentDate}</lastBuildDate>
     <category>Real Estate</category>
     <category>Las Vegas</category>

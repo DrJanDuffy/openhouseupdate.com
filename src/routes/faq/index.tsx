@@ -12,7 +12,7 @@ export default component$(() => {
     {
       question: 'How do I get started with buying a home in Las Vegas?',
       answer:
-        'The first step is to get pre-approved for a mortgage. This will help you understand your budget and make you a more competitive buyer. Dr. Janet Duffy can connect you with trusted lenders and guide you through the entire process from pre-approval to closing.',
+        'The first step is to get pre-approved for a mortgage. This will help you understand your budget and make you a more competitive buyer. Dr. Jan Duffy can connect you with trusted lenders and guide you through the entire process from pre-approval to closing.',
     },
     {
       question: "What's the current Las Vegas real estate market like?",
@@ -71,7 +71,7 @@ export default component$(() => {
           </h1>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
             Get answers to common questions about buying and selling real estate in Las Vegas. Can't
-            find what you're looking for? Contact Dr. Janet Duffy for personalized assistance.
+            find what you're looking for? Contact Dr. Jan Duffy for personalized assistance.
           </p>
         </div>
 
@@ -149,7 +149,7 @@ export default component$(() => {
         <div class="bg-gradient-to-r from-blue-600 to-green-600 rounded-lg shadow-lg p-8 text-white text-center">
           <h2 class="text-3xl font-bold mb-4">Still Have Questions?</h2>
           <p class="text-xl mb-8 opacity-90">
-            Dr. Janet Duffy is here to provide personalized answers and expert guidance for your
+            Dr. Jan Duffy is here to provide personalized answers and expert guidance for your
             real estate needs.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -208,12 +208,12 @@ export default component$(() => {
 })
 
 export const head: DocumentHead = {
-  title: 'FAQ - Las Vegas Real Estate Questions | Dr. Janet Duffy',
+  title: 'FAQ - Las Vegas Real Estate Questions | Dr. Jan Duffy',
   meta: [
     {
       name: 'description',
       content:
-        'Get answers to frequently asked questions about buying and selling real estate in Las Vegas. Expert guidance from Dr. Janet Duffy.',
+        'Get answers to frequently asked questions about buying and selling real estate in Las Vegas. Expert guidance from Dr. Jan Duffy.',
     },
     {
       name: 'keywords',

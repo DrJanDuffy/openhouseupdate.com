@@ -89,7 +89,7 @@ export default component$<FirstTimeBuyerGuideProps>(({ variant = 'card', classNa
           </p>
           <div class="bg-green-50 p-4 rounded-lg">
             <p class="text-sm text-green-800">
-              <strong>What's Next:</strong> Dr. Janet Duffy will contact you within 24 hours to
+              <strong>What's Next:</strong> Dr. Jan Duffy will contact you within 24 hours to
               discuss your home buying goals and answer any questions about the process.
             </p>
           </div>
@@ -117,7 +117,7 @@ export default component$<FirstTimeBuyerGuideProps>(({ variant = 'card', classNa
             <h3 class="text-xl font-bold text-gray-900 mb-2">Free First-Time Buyer Guide</h3>
             <p class="text-gray-600 mb-4">
               Everything you need to know about buying your first home in Las Vegas. Get expert
-              insights, checklists, and insider tips from Dr. Janet Duffy.
+              insights, checklists, and insider tips from Dr. Jan Duffy.
             </p>
             <div class="bg-gray-50 p-4 rounded-lg mb-4 text-left">
               <h4 class="font-semibold text-gray-900 mb-2">What's Included:</h4>
@@ -171,7 +171,7 @@ export default component$<FirstTimeBuyerGuideProps>(({ variant = 'card', classNa
               <h4 class="font-semibold text-blue-800 mb-2">Why This Guide?</h4>
               <ul class="text-sm text-blue-700 space-y-1">
                 <li>
-                  • Written by Dr. Janet Duffy with 15+ years of Las Vegas real estate experience
+                  • Written by Dr. Jan Duffy with 15+ years of Las Vegas real estate experience
                 </li>
                 <li>• Updated with current market conditions and programs</li>
                 <li>• Includes exclusive first-time buyer incentives and programs</li>
@@ -219,7 +219,7 @@ export default component$<FirstTimeBuyerGuideProps>(({ variant = 'card', classNa
             </button>
 
             <p class="text-xs text-gray-500 text-center">
-              By downloading this guide, you agree to receive communications from Dr. Janet Duffy
+              By downloading this guide, you agree to receive communications from Dr. Jan Duffy
               about first-time buyer opportunities and real estate services in Las Vegas.
             </p>
           </form>
