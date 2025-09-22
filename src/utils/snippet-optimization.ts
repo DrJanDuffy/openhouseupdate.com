@@ -18,21 +18,21 @@ export interface PageSnippetConfig {
 // Page-specific snippet configurations
 export const pageSnippets: Record<string, PageSnippetConfig> = {
   homepage: {
-    title: 'Las Vegas Real Estate - Find Your Dream Home | Dr. Janet Duffy',
+    title: 'Las Vegas Open Houses - This Weekend | Dr. Janet Duffy',
     description:
-      'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Janet Duffy for expert guidance. Serving Summerlin, Henderson, North Las Vegas and all Las Vegas Valley neighborhoods.',
+      'Find this weekend\'s open houses in Las Vegas. Discover properties in Summerlin, Henderson, North Las Vegas and all Las Vegas Valley neighborhoods. Professional real estate guidance with Dr. Janet Duffy.',
     keywords: [
+      'Las Vegas open houses',
+      'weekend open houses',
+      'open house listings',
       'Las Vegas real estate',
-      'Nevada homes',
-      'property search',
-      'home valuation',
-      'real estate agent',
+      'property viewing',
       'Dr. Janet Duffy',
-      'open house',
-      'property listings',
-      'Summerlin homes',
-      'Henderson real estate',
-      'North Las Vegas',
+      'Summerlin open houses',
+      'Henderson open houses',
+      'North Las Vegas open houses',
+      'real estate agent',
+      'property search',
       'Spring Valley',
       'Enterprise',
       'home buying',

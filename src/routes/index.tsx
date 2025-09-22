@@ -234,9 +234,9 @@ export default component$(() => {
         `}</style>
 
         <div class="hero-content">
-          <h1 class="hero-title">Find Your Dream Vegas Home</h1>
+          <h1 class="hero-title">Find This Weekend's Open Houses</h1>
           <p class="hero-subtitle">
-            Search thousands of properties with our advanced real estate search
+            Discover Las Vegas open houses happening this weekend with our advanced property search
           </p>
         </div>
 
@@ -246,14 +246,14 @@ export default component$(() => {
             class={showAdvanced.value ? '' : 'active'}
             onClick$={showSimpleSearch}
           >
-            Quick Search
+            Quick Open House Search
           </button>
           <button
             type="button"
             class={showAdvanced.value ? 'active' : ''}
             onClick$={showAdvancedSearch}
           >
-            Advanced Search
+            Advanced Open House Search
           </button>
         </div>
 
