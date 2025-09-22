@@ -25,7 +25,7 @@ export default component$<RealScoutMapProps>(
           document.head.appendChild(script)
         }
       } catch (_error) {
-        if _errorror$) {
+        if (onError$) {
           onError$()
         }
       }

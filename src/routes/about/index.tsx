@@ -259,7 +259,7 @@ export default component$(() => {
       </div>
 
       {/* FAQ Section */}
-      <EnhancedPageSEO 
+      <EnhancedPageSEO
         pageKey="about"
         showFAQs={true}
         faqTitle="About Dr. Janet Duffy - Frequently Asked Questions"

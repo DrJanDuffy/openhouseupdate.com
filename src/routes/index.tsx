@@ -1,7 +1,6 @@
 import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
 import PerformanceMonitor from '~/components/performance/performance-monitor'
-import { createSEOHead } from '~/components/seo/seo-head'
 import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
 
 export default component$(() => {

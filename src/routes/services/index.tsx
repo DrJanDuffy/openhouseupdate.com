@@ -275,7 +275,7 @@ export default component$(() => {
       </div>
 
       {/* FAQ Section */}
-      <EnhancedPageSEO 
+      <EnhancedPageSEO
         pageKey="services"
         showFAQs={true}
         faqTitle="Real Estate Services - Frequently Asked Questions"
