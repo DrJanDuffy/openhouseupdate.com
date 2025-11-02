@@ -28,7 +28,7 @@ export const createSEOHead = (props: SEOHeadProps): DocumentHead => {
     description,
     keywords = [],
     canonicalUrl,
-    ogImage = 'https://grokipedia.com/images/og-default.jpg',
+    ogImage = 'https://www.openhouseupdate.com/images/og-default.jpg',
     ogImageAlt = 'Open House Update - Las Vegas Real Estate',
     ogType = 'website',
     articleAuthor,
@@ -59,7 +59,7 @@ export const createSEOHead = (props: SEOHeadProps): DocumentHead => {
     { property: 'og:title', content: fullTitle },
     { property: 'og:description', content: description },
     { property: 'og:type', content: ogType },
-    { property: 'og:url', content: canonicalUrl || 'https://grokipedia.com' },
+    { property: 'og:url', content: canonicalUrl || 'https://www.openhouseupdate.com' },
     { property: 'og:site_name', content: 'Open House Update' },
     { property: 'og:locale', content: 'en_US' },
     { property: 'og:image', content: ogImage },
@@ -101,7 +101,7 @@ export const createSEOHead = (props: SEOHeadProps): DocumentHead => {
   const links = [
     {
       rel: 'canonical',
-      href: canonicalUrl || 'https://grokipedia.com',
+      href: canonicalUrl || 'https://www.openhouseupdate.com',
     },
     {
       rel: 'icon',

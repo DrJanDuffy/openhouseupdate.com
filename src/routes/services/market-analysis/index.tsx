@@ -609,7 +609,7 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:url',
-      content: 'https://grokipedia.com/services/market-analysis',
+      content: 'https://www.openhouseupdate.com/services/market-analysis',
     },
     {
       property: 'og:site_name',
@@ -632,7 +632,7 @@ export const head: DocumentHead = {
   links: [
     {
       rel: 'canonical',
-      href: 'https://grokipedia.com/services/market-analysis',
+      href: 'https://www.openhouseupdate.com/services/market-analysis',
     },
   ],
 }

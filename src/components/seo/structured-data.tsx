@@ -14,7 +14,7 @@ export default component$<StructuredDataProps>(({ type, data }) => {
           '@type': 'RealEstateAgent',
           name: 'Dr. Jan Duffy',
           description: 'Professional real estate agent specializing in Las Vegas properties',
-          url: 'https://grokipedia.com',
+          url: 'https://www.openhouseupdate.com',
           telephone: '+1-702-200-3422',
           email: 'drduffy@bhhsnv.com',
           address: {
@@ -66,7 +66,7 @@ export default component$<StructuredDataProps>(({ type, data }) => {
           '@type': 'RealEstateService',
           name: 'Open House Update - Las Vegas Real Estate',
           description: 'Professional real estate services in Las Vegas, Nevada',
-          url: 'https://grokipedia.com',
+          url: 'https://www.openhouseupdate.com',
           provider: {
             '@type': 'RealEstateAgent',
             name: 'Dr. Jan Duffy',
@@ -92,11 +92,11 @@ export default component$<StructuredDataProps>(({ type, data }) => {
           '@context': 'https://schema.org',
           '@type': 'WebSite',
           name: 'Open House Update',
-          url: 'https://grokipedia.com',
+          url: 'https://www.openhouseupdate.com',
           description: 'Las Vegas real estate services - Find your perfect home',
           potentialAction: {
             '@type': 'SearchAction',
-            target: 'https://grokipedia.com/search?q={search_term_string}',
+            target: 'https://www.openhouseupdate.com/search?q={search_term_string}',
             'query-input': 'required name=search_term_string',
           },
           publisher: {

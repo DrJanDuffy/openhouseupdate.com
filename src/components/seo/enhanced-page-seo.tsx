@@ -98,7 +98,7 @@ export const createOptimizedHead = (
       },
       {
         property: 'og:url',
-        content: `https://www.grokipedia.com/${pageKey === 'homepage' ? '' : `${pageKey}/`}`,
+        content: `https://www.openhouseupdate.com/${pageKey === 'homepage' ? '' : `${pageKey}/`}`,
       },
       {
         name: 'twitter:card',
@@ -116,7 +116,7 @@ export const createOptimizedHead = (
     links: [
       {
         rel: 'canonical',
-        href: `https://www.grokipedia.com/${pageKey === 'homepage' ? '' : `${pageKey}/`}`,
+        href: `https://www.openhouseupdate.com/${pageKey === 'homepage' ? '' : `${pageKey}/`}`,
       },
     ],
   }

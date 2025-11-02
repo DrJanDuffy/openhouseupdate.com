@@ -42,10 +42,10 @@ export default component$(() => {
       />
 
       <Canonicalization
-        currentUrl="https://www.grokipedia.com"
-        preferredUrl="https://www.grokipedia.com"
+        currentUrl="https://www.openhouseupdate.com"
+        preferredUrl="https://www.openhouseupdate.com"
         alternateUrls={[
-          { url: 'https://www.grokipedia.com', hreflang: 'en-US', rel: 'alternate' },
+          { url: 'https://www.openhouseupdate.com', hreflang: 'en-US', rel: 'alternate' },
         ]}
       />
 
@@ -154,7 +154,7 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:url',
-      content: 'https://www.grokipedia.com',
+      content: 'https://www.openhouseupdate.com',
     },
     {
       property: 'og:site_name',
@@ -170,11 +170,11 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:image',
-      content: 'https://grokipedia.com/images/og-default.jpg',
+      content: 'https://www.openhouseupdate.com/images/og-default.jpg',
     },
     {
       property: 'og:image:secure_url',
-      content: 'https://grokipedia.com/images/og-default.jpg',
+      content: 'https://www.openhouseupdate.com/images/og-default.jpg',
     },
     {
       property: 'og:image:width',
@@ -208,7 +208,7 @@ export const head: DocumentHead = {
     },
     {
       name: 'twitter:image',
-      content: 'https://grokipedia.com/images/og-default.jpg',
+      content: 'https://www.openhouseupdate.com/images/og-default.jpg',
     },
     {
       name: 'twitter:image:alt',
@@ -272,7 +272,7 @@ export const head: DocumentHead = {
   links: [
     {
       rel: 'canonical',
-      href: 'https://www.grokipedia.com',
+      href: 'https://www.openhouseupdate.com',
     },
     {
       rel: 'icon',
