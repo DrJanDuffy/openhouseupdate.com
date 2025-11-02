@@ -6,6 +6,10 @@ import {
   generateTitle,
   getPageSnippet,
 } from '~/utils/snippet-optimization'
+import {
+  createSEOOptimizedOG,
+  getPageOGMetadata,
+} from '~/utils/og-seo-optimizer'
 import EnhancedStructuredData from './enhanced-structured-data'
 import FAQSection from './faq-section'
 
@@ -56,7 +60,7 @@ export default component$<EnhancedPageSEOProps>(
   }
 )
 
-// Utility function to create DocumentHead with optimized snippets
+// Utility function to create DocumentHead with optimized snippets and enhanced OG
 export const createOptimizedHead = (
   pageKey: string,
   customTitle?: string,
@@ -64,14 +68,26 @@ export const createOptimizedHead = (
   customKeywords?: string[]
 ): DocumentHead => {
   const snippet = getPageSnippet(pageKey)
+  const pageOGConfig = getPageOGMetadata(pageKey)
 
   const title = generateTitle(customTitle || snippet.title)
   const description = generateMetaDescription(customDescription || snippet.description)
   const keywords = customKeywords || snippet.keywords
 
+  // Create SEO-optimized OG metadata
+  const ogMeta = createSEOOptimizedOG({
+    pageKey,
+    title,
+    description,
+    keywords: [...keywords, ...(pageOGConfig.keywords || [])],
+    type: 'website',
+    articleTags: pageOGConfig.articleTags,
+  })
+
   return {
     title,
     meta: [
+      // Basic SEO
       {
         name: 'description',
         content: description,
@@ -84,74 +100,8 @@ export const createOptimizedHead = (
         name: 'robots',
         content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
       },
-      {
-        property: 'og:title',
-        content: title,
-      },
-      {
-        property: 'og:description',
-        content: description,
-      },
-      {
-        property: 'og:type',
-        content: 'website',
-      },
-      {
-        property: 'og:url',
-        content: `https://www.openhouseupdate.com/${pageKey === 'homepage' ? '/' : `${pageKey}/`}`,
-      },
-      {
-        property: 'og:site_name',
-        content: 'Open House Update',
-      },
-      {
-        property: 'og:locale',
-        content: 'en_US',
-      },
-      {
-        property: 'og:image',
-        content: 'https://www.openhouseupdate.com/images/og-default.jpg',
-      },
-      {
-        property: 'og:image:secure_url',
-        content: 'https://www.openhouseupdate.com/images/og-default.jpg',
-      },
-      {
-        property: 'og:image:width',
-        content: '1200',
-      },
-      {
-        property: 'og:image:height',
-        content: '630',
-      },
-      {
-        property: 'og:image:type',
-        content: 'image/jpeg',
-      },
-      {
-        property: 'og:image:alt',
-        content: 'Open House Update - Las Vegas Real Estate',
-      },
-      {
-        name: 'twitter:card',
-        content: 'summary_large_image',
-      },
-      {
-        name: 'twitter:title',
-        content: title,
-      },
-      {
-        name: 'twitter:description',
-        content: description,
-      },
-      {
-        name: 'twitter:image',
-        content: 'https://www.openhouseupdate.com/images/og-default.jpg',
-      },
-      {
-        name: 'twitter:image:alt',
-        content: 'Open House Update - Las Vegas Real Estate',
-      },
+      // Enhanced OG metadata (SEO-optimized)
+      ...ogMeta,
     ],
     links: [
       {

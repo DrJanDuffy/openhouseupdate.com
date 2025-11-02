@@ -55,14 +55,17 @@ export const createSEOHead = (props: SEOHeadProps): DocumentHead => {
     { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
     { name: 'theme-color', content: '#3A8DDE' },
 
-    // Open Graph
+    // Open Graph - Enhanced for SEO
     { property: 'og:title', content: fullTitle },
     { property: 'og:description', content: description },
     { property: 'og:type', content: ogType },
     { property: 'og:url', content: canonicalUrl || 'https://www.openhouseupdate.com' },
     { property: 'og:site_name', content: 'Open House Update' },
     { property: 'og:locale', content: 'en_US' },
+    { property: 'og:locale:alternate', content: 'es_US' }, // Spanish locale for Las Vegas market
     { property: 'og:image', content: ogImage },
+    { property: 'og:image:secure_url', content: ogImage.replace('http://', 'https://') },
+    { property: 'og:image:type', content: 'image/jpeg' },
     { property: 'og:image:width', content: '1200' },
     { property: 'og:image:height', content: '630' },
     { property: 'og:image:alt', content: ogImageAlt },

@@ -161,6 +161,10 @@ export const head: DocumentHead = {
       content: 'es_US',
     },
     {
+      property: 'og:determiner',
+      content: 'auto',
+    },
+    {
       property: 'og:image',
       content: 'https://www.openhouseupdate.com/images/og-default.jpg',
     },
