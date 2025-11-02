@@ -201,7 +201,7 @@ export default component$(() => {
 })
 
 export const head: DocumentHead = {
-  title: 'This Weekend Open Houses - Real Estate Search',
+  title: 'This Weekend Open Houses - Real Estate Search | Open House Update',
   meta: [
     {
       name: 'description',
@@ -210,12 +210,79 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:title',
-      content: 'This Weekend Open Houses - Real Estate Search',
+      content: 'This Weekend Open Houses - Real Estate Search | Open House Update',
     },
     {
       property: 'og:description',
       content:
         'Find properties with open houses this weekend. Search thousands of homes with our advanced real estate search.',
+    },
+    {
+      property: 'og:type',
+      content: 'website',
+    },
+    {
+      property: 'og:url',
+      content: 'https://www.openhouseupdate.com/this-weekend/',
+    },
+    {
+      property: 'og:site_name',
+      content: 'Open House Update',
+    },
+    {
+      property: 'og:locale',
+      content: 'en_US',
+    },
+    {
+      property: 'og:image',
+      content: 'https://www.openhouseupdate.com/images/og-default.jpg',
+    },
+    {
+      property: 'og:image:secure_url',
+      content: 'https://www.openhouseupdate.com/images/og-default.jpg',
+    },
+    {
+      property: 'og:image:width',
+      content: '1200',
+    },
+    {
+      property: 'og:image:height',
+      content: '630',
+    },
+    {
+      property: 'og:image:type',
+      content: 'image/jpeg',
+    },
+    {
+      property: 'og:image:alt',
+      content: 'This Weekend Open Houses - Las Vegas Real Estate',
+    },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    },
+    {
+      name: 'twitter:title',
+      content: 'This Weekend Open Houses - Real Estate Search',
+    },
+    {
+      name: 'twitter:description',
+      content:
+        'Find properties with open houses this weekend. Search thousands of homes with our advanced real estate search.',
+    },
+    {
+      name: 'twitter:image',
+      content: 'https://www.openhouseupdate.com/images/og-default.jpg',
+    },
+    {
+      name: 'twitter:image:alt',
+      content: 'This Weekend Open Houses - Las Vegas Real Estate',
+    },
+  ],
+  links: [
+    {
+      rel: 'canonical',
+      href: 'https://www.openhouseupdate.com/this-weekend/',
     },
   ],
 }

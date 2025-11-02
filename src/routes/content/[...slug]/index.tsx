@@ -120,6 +120,34 @@ export const head: DocumentHead = ({ resolveValue }) => {
         content: 'Open House Update',
       },
       {
+        property: 'og:locale',
+        content: 'en_US',
+      },
+      {
+        property: 'og:image',
+        content: 'https://www.openhouseupdate.com/images/og-default.jpg',
+      },
+      {
+        property: 'og:image:secure_url',
+        content: 'https://www.openhouseupdate.com/images/og-default.jpg',
+      },
+      {
+        property: 'og:image:width',
+        content: '1200',
+      },
+      {
+        property: 'og:image:height',
+        content: '630',
+      },
+      {
+        property: 'og:image:type',
+        content: 'image/jpeg',
+      },
+      {
+        property: 'og:image:alt',
+        content: `${title} - Open House Update`,
+      },
+      {
         name: 'twitter:card',
         content: 'summary_large_image',
       },
@@ -130,6 +158,14 @@ export const head: DocumentHead = ({ resolveValue }) => {
       {
         name: 'twitter:description',
         content: description,
+      },
+      {
+        name: 'twitter:image',
+        content: 'https://www.openhouseupdate.com/images/og-default.jpg',
+      },
+      {
+        name: 'twitter:image:alt',
+        content: `${title} - Open House Update`,
       },
     ],
     links: [

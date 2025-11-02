@@ -272,7 +272,7 @@ export default component$(() => {
 })
 
 export const head: DocumentHead = {
-  title: 'Property Search Results - Real Estate Search',
+  title: 'Property Search Results - Real Estate Search | Open House Update',
   meta: [
     {
       name: 'description',
@@ -281,7 +281,7 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:title',
-      content: 'Property Search Results - Real Estate Search',
+      content: 'Property Search Results - Real Estate Search | Open House Update',
     },
     {
       property: 'og:description',
@@ -291,6 +291,69 @@ export const head: DocumentHead = {
     {
       property: 'og:type',
       content: 'website',
+    },
+    {
+      property: 'og:url',
+      content: 'https://www.openhouseupdate.com/search/',
+    },
+    {
+      property: 'og:site_name',
+      content: 'Open House Update',
+    },
+    {
+      property: 'og:locale',
+      content: 'en_US',
+    },
+    {
+      property: 'og:image',
+      content: 'https://www.openhouseupdate.com/images/og-default.jpg',
+    },
+    {
+      property: 'og:image:secure_url',
+      content: 'https://www.openhouseupdate.com/images/og-default.jpg',
+    },
+    {
+      property: 'og:image:width',
+      content: '1200',
+    },
+    {
+      property: 'og:image:height',
+      content: '630',
+    },
+    {
+      property: 'og:image:type',
+      content: 'image/jpeg',
+    },
+    {
+      property: 'og:image:alt',
+      content: 'Property Search - Las Vegas Real Estate',
+    },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    },
+    {
+      name: 'twitter:title',
+      content: 'Property Search Results - Real Estate Search',
+    },
+    {
+      name: 'twitter:description',
+      content:
+        'View and filter property search results. Find your perfect home with our advanced real estate search.',
+    },
+    {
+      name: 'twitter:image',
+      content: 'https://www.openhouseupdate.com/images/og-default.jpg',
+    },
+    {
+      name: 'twitter:image:alt',
+      content: 'Property Search - Las Vegas Real Estate',
+    },
+  ],
+  links: [
+    {
+      rel: 'canonical',
+      href: 'https://www.openhouseupdate.com/search/',
     },
   ],
 }
