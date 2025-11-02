@@ -21,7 +21,7 @@ export const useServerTimeLoader = routeLoader$(() => {
 
 export default component$(() => {
   useStyles$(styles)
-  
+
   return (
     <>
       {/* Enhanced Structured Data */}
@@ -40,7 +40,6 @@ export default component$(() => {
         priority={1.0}
         changeFrequency="daily"
       />
-
 
       <JavaScriptCrawling
         hasJavaScript={true}

@@ -415,8 +415,8 @@ export default component$(() => {
             <div class="success-message">
               <h3>Thank You!</h3>
               <p>
-                Your valuation request has been submitted. Dr. Jan Duffy will contact you within
-                24 hours to discuss your property valuation.
+                Your valuation request has been submitted. Dr. Jan Duffy will contact you within 24
+                hours to discuss your property valuation.
               </p>
             </div>
           )}
@@ -448,8 +448,8 @@ export default component$(() => {
         <div class="benefit-card">
           <h3>💼 Professional Service</h3>
           <p>
-            Work with Dr. Jan Duffy, a licensed real estate professional with extensive local
-            market knowledge.
+            Work with Dr. Jan Duffy, a licensed real estate professional with extensive local market
+            knowledge.
           </p>
         </div>
       </div>
@@ -525,7 +525,7 @@ export const head: DocumentHead = {
   links: [
     {
       rel: 'canonical',
-        href: 'https://www.openhouseupdate.com/services/home-valuation/',
+      href: 'https://www.openhouseupdate.com/services/home-valuation/',
     },
   ],
 }

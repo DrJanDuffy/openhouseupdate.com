@@ -14,7 +14,7 @@ export const pageFAQs: Record<string, PageFAQ[]> = {
     {
       question: 'How do I search for open houses in Las Vegas?',
       answer:
-        'Use our advanced search tool on the homepage to filter by price, location, bedrooms, and more. You can also browse by neighborhood or price range using our quick links to find this weekend\'s open houses.',
+        "Use our advanced search tool on the homepage to filter by price, location, bedrooms, and more. You can also browse by neighborhood or price range using our quick links to find this weekend's open houses.",
     },
     {
       question: 'What areas does Dr. Jan Duffy serve as an Open House Expert?',
@@ -29,7 +29,7 @@ export const pageFAQs: Record<string, PageFAQ[]> = {
     {
       question: 'What makes Dr. Jan Duffy different as an Open House Expert?',
       answer:
-        "Dr. Jan Duffy consistently achieves 15-20% higher conversion rates at open houses compared to industry averages, with over 300 successful transactions. She specializes in strategic marketing, lead capture, and buyer conversion techniques.",
+        'Dr. Jan Duffy consistently achieves 15-20% higher conversion rates at open houses compared to industry averages, with over 300 successful transactions. She specializes in strategic marketing, lead capture, and buyer conversion techniques.',
     },
     {
       question: 'What services does an Open House Expert provide?',
@@ -43,7 +43,7 @@ export const pageFAQs: Record<string, PageFAQ[]> = {
     {
       question: "What is Dr. Jan Duffy's background in real estate?",
       answer:
-        "Dr. Jan Duffy is an Open House Expert with over 20 years of experience in Las Vegas real estate. She holds Nevada License #S.0197614 and specializes in residential properties throughout the Las Vegas Valley.",
+        'Dr. Jan Duffy is an Open House Expert with over 20 years of experience in Las Vegas real estate. She holds Nevada License #S.0197614 and specializes in residential properties throughout the Las Vegas Valley.',
     },
     {
       question: 'What services does Dr. Jan Duffy provide?',

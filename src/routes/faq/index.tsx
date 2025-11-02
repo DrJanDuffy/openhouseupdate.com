@@ -149,8 +149,8 @@ export default component$(() => {
         <div class="bg-gradient-to-r from-blue-600 to-green-600 rounded-lg shadow-lg p-8 text-white text-center">
           <h2 class="text-3xl font-bold mb-4">Still Have Questions?</h2>
           <p class="text-xl mb-8 opacity-90">
-            Dr. Jan Duffy is here to provide personalized answers and expert guidance for your
-            real estate needs.
+            Dr. Jan Duffy is here to provide personalized answers and expert guidance for your real
+            estate needs.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a

@@ -276,9 +276,9 @@ export default component$(() => {
           <h4>Why Choose This Price Range?</h4>
           <p>
             {priceInfo.display} homes in Las Vegas offer excellent value with modern amenities,
-            great locations, and strong investment potential. This price range represents some of the
-            most popular options in the Las Vegas real estate market, appealing to a wide range of
-            buyers from first-time homebuyers to seasoned investors.
+            great locations, and strong investment potential. This price range represents some of
+            the most popular options in the Las Vegas real estate market, appealing to a wide range
+            of buyers from first-time homebuyers to seasoned investors.
           </p>
           <p>
             Properties in this range typically feature updated kitchens and bathrooms, spacious

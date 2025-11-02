@@ -433,14 +433,14 @@ export default component$(() => {
 
         <div class="widget-container">
           {showAdvanced.value ? (
-            <realscout-advanced-search 
+            <realscout-advanced-search
               agent-encoded-id="QWdlbnQtMjI1MDUw"
               onError$={() => {
                 // RealScout advanced search widget failed to load
               }}
             />
           ) : (
-            <realscout-simple-search 
+            <realscout-simple-search
               agent-encoded-id="QWdlbnQtMjI1MDUw"
               onError$={() => {
                 // RealScout simple search widget failed to load
@@ -458,7 +458,8 @@ export default component$(() => {
               Why Choose Dr. Jan Duffy as Your Open House Expert?
             </h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-              With over 20 years of Las Vegas real estate experience, Dr. Jan Duffy has mastered the art of open house marketing, lead generation, and buyer conversion.
+              With over 20 years of Las Vegas real estate experience, Dr. Jan Duffy has mastered the
+              art of open house marketing, lead generation, and buyer conversion.
             </p>
           </div>
 
@@ -467,7 +468,9 @@ export default component$(() => {
               <div class="card-icon">📊</div>
               <h3 class="card-title">Proven Conversion Rates</h3>
               <p class="card-description">
-                Dr. Jan Duffy consistently achieves 15-20% higher conversion rates at open houses compared to industry averages, with over 300 successful transactions in Las Vegas Valley.
+                Dr. Jan Duffy consistently achieves 15-20% higher conversion rates at open houses
+                compared to industry averages, with over 300 successful transactions in Las Vegas
+                Valley.
               </p>
             </div>
 
@@ -475,7 +478,8 @@ export default component$(() => {
               <div class="card-icon">🎯</div>
               <h3 class="card-title">Strategic Marketing</h3>
               <p class="card-description">
-                Specialized in targeted open house marketing, neighborhood analysis, and optimal scheduling strategies that maximize buyer turnout and engagement.
+                Specialized in targeted open house marketing, neighborhood analysis, and optimal
+                scheduling strategies that maximize buyer turnout and engagement.
               </p>
             </div>
 
@@ -483,7 +487,8 @@ export default component$(() => {
               <div class="card-icon">🏆</div>
               <h3 class="card-title">Industry Recognition</h3>
               <p class="card-description">
-                Licensed Nevada real estate agent affiliated with Berkshire Hathaway HomeServices, recognized for excellence in open house management and client satisfaction.
+                Licensed Nevada real estate agent affiliated with Berkshire Hathaway HomeServices,
+                recognized for excellence in open house management and client satisfaction.
               </p>
             </div>
           </div>
@@ -516,19 +521,31 @@ export default component$(() => {
             <div class="expertise-grid">
               <div class="expertise-item">
                 <h4>Property Staging & Presentation</h4>
-                <p>Professional staging consultation to maximize property appeal and buyer interest during open house events.</p>
+                <p>
+                  Professional staging consultation to maximize property appeal and buyer interest
+                  during open house events.
+                </p>
               </div>
               <div class="expertise-item">
                 <h4>Lead Capture & Follow-up</h4>
-                <p>Advanced lead management systems and personalized follow-up strategies to convert open house visitors into qualified buyers.</p>
+                <p>
+                  Advanced lead management systems and personalized follow-up strategies to convert
+                  open house visitors into qualified buyers.
+                </p>
               </div>
               <div class="expertise-item">
                 <h4>Market Analysis & Pricing</h4>
-                <p>Comprehensive market analysis to ensure optimal pricing strategies that attract serious buyers to open house events.</p>
+                <p>
+                  Comprehensive market analysis to ensure optimal pricing strategies that attract
+                  serious buyers to open house events.
+                </p>
               </div>
               <div class="expertise-item">
                 <h4>Neighborhood Expertise</h4>
-                <p>Deep knowledge of Las Vegas Valley neighborhoods including Summerlin, Henderson, North Las Vegas, and surrounding areas.</p>
+                <p>
+                  Deep knowledge of Las Vegas Valley neighborhoods including Summerlin, Henderson,
+                  North Las Vegas, and surrounding areas.
+                </p>
               </div>
             </div>
           </div>
