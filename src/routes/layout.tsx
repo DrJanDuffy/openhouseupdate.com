@@ -58,7 +58,8 @@ export default component$(() => {
 
       {/* Analytics */}
       <script dangerouslySetInnerHTML={`${inject()}`} />
-      <EnhancedAnalytics measurementId="G-XXXXXXXXXX" />
+      <GoogleAnalytics measurementId="G-Q9X8KED9X0" />
+      <EnhancedAnalytics measurementId="G-Q9X8KED9X0" />
 
       {/* RealScout Script with Enhanced Loading */}
       <script
