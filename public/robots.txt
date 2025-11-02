@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.www.openhouseupdate.com/sitemap-index.xml
+Sitemap: https://www.openhouseupdate.com/sitemap-index.xml
 
 # Crawl delay
 Crawl-delay: 1

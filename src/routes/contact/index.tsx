@@ -245,5 +245,36 @@ export const head: DocumentHead = {
       content:
         'contact real estate agent, Las Vegas realtor, Dr. Jan Duffy, Nevada real estate, property consultation',
     },
+    {
+      name: 'robots',
+      content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+    },
+    {
+      property: 'og:title',
+      content: 'Contact Dr. Jan Duffy - Las Vegas Real Estate Agent',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Contact Dr. Jan Duffy for expert Las Vegas real estate services. Licensed agent specializing in buying, selling, and home valuations in Nevada.',
+    },
+    {
+      property: 'og:type',
+      content: 'website',
+    },
+    {
+      property: 'og:url',
+      content: 'https://www.openhouseupdate.com/contact/',
+    },
+    {
+      property: 'og:site_name',
+      content: 'Open House Update',
+    },
+  ],
+  links: [
+    {
+      rel: 'canonical',
+      href: 'https://www.openhouseupdate.com/contact/',
+    },
   ],
 }

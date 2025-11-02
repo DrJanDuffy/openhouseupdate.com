@@ -273,7 +273,7 @@ export const head: DocumentHead = ({ params }) => {
       },
       {
         property: 'og:url',
-        content: `https://www.openhouseupdate.com/neighborhoods/${neighborhood}`,
+        content: `https://www.openhouseupdate.com/neighborhoods/${neighborhood}/`,
       },
       {
         property: 'og:site_name',
