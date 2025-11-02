@@ -201,7 +201,6 @@ export default component$(() => {
               rel="noopener noreferrer"
               class={styles.builderLink}
             >
-              <span>Made with ♡ by Builder.io</span>
               <span class={styles.spacer}>|</span>
               <span>{serverTime.value.date}</span>
             </a>
