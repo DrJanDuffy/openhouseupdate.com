@@ -408,11 +408,33 @@ export default component$(() => {
           <p class="hero-subtitle">
             Discover Las Vegas open houses happening this weekend with our advanced property search
           </p>
-          <div class="featured-agent-badge">
+          <a
+            href="http://drjanduffy.realscout.com/onboarding"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="featured-agent-badge"
+            style="text-decoration: none; display: inline-block; cursor: pointer; transition: transform 0.2s ease;"
+            onMouseEnter$={() => {
+              if (typeof document !== 'undefined') {
+                const badge = document.querySelector('.featured-agent-badge')
+                if (badge) {
+                  badge.style.transform = 'scale(1.05)'
+                }
+              }
+            }}
+            onMouseLeave$={() => {
+              if (typeof document !== 'undefined') {
+                const badge = document.querySelector('.featured-agent-badge')
+                if (badge) {
+                  badge.style.transform = 'scale(1)'
+                }
+              }
+            }}
+          >
             <span class="badge-text">Featured Open House Expert</span>
             <span class="agent-name">Dr. Jan Duffy</span>
             <span class="badge-month">This Month</span>
-          </div>
+          </a>
         </div>
 
         <div class="search-toggle">
