@@ -11,13 +11,13 @@ export interface SEOConfig {
 }
 
 export const seoConfig: SEOConfig = {
-  siteName: 'Open House Update',
-  siteUrl: 'https://openhouseupdate.com',
-  defaultImage: 'https://openhouseupdate.com/images/og-default.jpg',
-  defaultImageAlt: 'Open House Update - Las Vegas Real Estate',
-  author: 'Dr. Jan Duffy',
+  siteName: 'Grokipedia',
+  siteUrl: 'https://grokipedia.com',
+  defaultImage: 'https://grokipedia.com/images/og-default.jpg',
+  defaultImageAlt: 'Grokipedia',
+  author: 'Grokipedia',
   locale: 'en_US',
-  twitterHandle: '@drjanetduffy',
+  twitterHandle: undefined,
 }
 
 // Generate canonical URL

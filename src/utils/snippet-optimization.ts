@@ -64,8 +64,8 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
     faqKey: 'about',
     structuredDataType: 'RealEstateAgent',
     breadcrumbs: [
-      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
-      { name: 'About', url: 'https://www.openhouseupdate.com/about/' },
+      { name: 'Home', url: 'https://www.grokipedia.com/' },
+      { name: 'About', url: 'https://www.grokipedia.com/about/' },
     ],
   },
 
@@ -86,8 +86,8 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
     faqKey: 'services',
     structuredDataType: 'RealEstateService',
     breadcrumbs: [
-      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
-      { name: 'Services', url: 'https://www.openhouseupdate.com/services/' },
+      { name: 'Home', url: 'https://www.grokipedia.com/' },
+      { name: 'Services', url: 'https://www.grokipedia.com/services/' },
     ],
   },
 
@@ -108,9 +108,9 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
     faqKey: 'home-valuation',
     structuredDataType: 'RealEstateService',
     breadcrumbs: [
-      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
-      { name: 'Services', url: 'https://www.openhouseupdate.com/services/' },
-      { name: 'Home Valuation', url: 'https://www.openhouseupdate.com/services/home-valuation/' },
+      { name: 'Home', url: 'https://www.grokipedia.com/' },
+      { name: 'Services', url: 'https://www.grokipedia.com/services/' },
+      { name: 'Home Valuation', url: 'https://www.grokipedia.com/services/home-valuation/' },
     ],
   },
 
@@ -131,9 +131,9 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
     faqKey: 'buyer-services',
     structuredDataType: 'RealEstateService',
     breadcrumbs: [
-      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
-      { name: 'Services', url: 'https://www.openhouseupdate.com/services/' },
-      { name: 'Buyer Services', url: 'https://www.openhouseupdate.com/services/buyer-services/' },
+      { name: 'Home', url: 'https://www.grokipedia.com/' },
+      { name: 'Services', url: 'https://www.grokipedia.com/services/' },
+      { name: 'Buyer Services', url: 'https://www.grokipedia.com/services/buyer-services/' },
     ],
   },
 
@@ -154,9 +154,9 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
     faqKey: 'seller-services',
     structuredDataType: 'RealEstateService',
     breadcrumbs: [
-      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
-      { name: 'Services', url: 'https://www.openhouseupdate.com/services/' },
-      { name: 'Seller Services', url: 'https://www.openhouseupdate.com/services/seller-services/' },
+      { name: 'Home', url: 'https://www.grokipedia.com/' },
+      { name: 'Services', url: 'https://www.grokipedia.com/services/' },
+      { name: 'Seller Services', url: 'https://www.grokipedia.com/services/seller-services/' },
     ],
   },
 
@@ -175,8 +175,8 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
     faqKey: 'contact',
     structuredDataType: 'RealEstateAgent',
     breadcrumbs: [
-      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
-      { name: 'Contact', url: 'https://www.openhouseupdate.com/contact/' },
+      { name: 'Home', url: 'https://www.grokipedia.com/' },
+      { name: 'Contact', url: 'https://www.grokipedia.com/contact/' },
     ],
   },
 
@@ -196,9 +196,9 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
     faqKey: 'summerlin',
     structuredDataType: 'LocalBusiness',
     breadcrumbs: [
-      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
-      { name: 'Neighborhoods', url: 'https://www.openhouseupdate.com/neighborhoods/' },
-      { name: 'Summerlin', url: 'https://www.openhouseupdate.com/neighborhoods/summerlin/' },
+      { name: 'Home', url: 'https://www.grokipedia.com/' },
+      { name: 'Neighborhoods', url: 'https://www.grokipedia.com/neighborhoods/' },
+      { name: 'Summerlin', url: 'https://www.grokipedia.com/neighborhoods/summerlin/' },
     ],
   },
 
@@ -218,9 +218,9 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
     faqKey: 'henderson',
     structuredDataType: 'LocalBusiness',
     breadcrumbs: [
-      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
-      { name: 'Neighborhoods', url: 'https://www.openhouseupdate.com/neighborhoods/' },
-      { name: 'Henderson', url: 'https://www.openhouseupdate.com/neighborhoods/henderson/' },
+      { name: 'Home', url: 'https://www.grokipedia.com/' },
+      { name: 'Neighborhoods', url: 'https://www.grokipedia.com/neighborhoods/' },
+      { name: 'Henderson', url: 'https://www.grokipedia.com/neighborhoods/henderson/' },
     ],
   },
 }

@@ -30,12 +30,12 @@ export function createOpenGraphMeta(meta: OpenGraphMeta): DocumentMeta[] {
     description,
     type = 'website',
     url,
-    image = 'https://openhouseupdate.com/images/og-default.jpg',
-    imageAlt = 'Open House Update - Las Vegas Real Estate',
+    image = 'https://grokipedia.com/images/og-default.jpg',
+    imageAlt = 'Grokipedia',
     imageWidth = 1200,
     imageHeight = 630,
     imageType = 'image/jpeg',
-    siteName = 'Open House Update',
+    siteName = 'Grokipedia',
     locale = 'en_US',
     localeAlternate = ['es_US'],
     determiner = 'auto',
@@ -131,8 +131,8 @@ export const openGraphConfigs = {
       description:
         'Professional real estate services in Las Vegas. Search thousands of properties, get home valuations, and work with Dr. Jan Duffy for expert guidance.',
       type: 'website',
-      url: 'https://openhouseupdate.com',
-      image: 'https://openhouseupdate.com/images/og-homepage.jpg',
+      url: 'https://grokipedia.com',
+      image: 'https://grokipedia.com/images/og-homepage.jpg',
       imageAlt: 'Las Vegas Real Estate - Open House Update',
       articleTag: ['real estate', 'Las Vegas', 'home search', 'property', 'Dr. Jan Duffy'],
     }),
@@ -143,8 +143,8 @@ export const openGraphConfigs = {
       description:
         'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Jan Duffy.',
       type: 'website',
-      url: 'https://openhouseupdate.com/services/home-valuation',
-      image: 'https://openhouseupdate.com/images/og-valuation.jpg',
+      url: 'https://grokipedia.com/services/home-valuation',
+      image: 'https://grokipedia.com/images/og-valuation.jpg',
       imageAlt: 'Free Home Valuation - Las Vegas Real Estate',
       articleTag: ['home valuation', 'property assessment', 'market analysis', 'CMA', 'Las Vegas'],
     }),
@@ -155,8 +155,8 @@ export const openGraphConfigs = {
       description:
         'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Jan Duffy, your trusted real estate agent.',
       type: 'website',
-      url: 'https://openhouseupdate.com/services/buyer-services',
-      image: 'https://openhouseupdate.com/images/og-buyer-services.jpg',
+      url: 'https://grokipedia.com/services/buyer-services',
+      image: 'https://grokipedia.com/images/og-buyer-services.jpg',
       imageAlt: 'Buyer Services - Las Vegas Real Estate',
       articleTag: [
         'buyer services',
@@ -173,8 +173,8 @@ export const openGraphConfigs = {
       description:
         'Professional seller services in Las Vegas. Complete support from listing to closing with Dr. Jan Duffy, your trusted real estate agent.',
       type: 'website',
-      url: 'https://openhouseupdate.com/services/seller-services',
-      image: 'https://openhouseupdate.com/images/og-seller-services.jpg',
+      url: 'https://grokipedia.com/services/seller-services',
+      image: 'https://grokipedia.com/images/og-seller-services.jpg',
       imageAlt: 'Seller Services - Las Vegas Real Estate',
       articleTag: [
         'seller services',
@@ -191,8 +191,8 @@ export const openGraphConfigs = {
       description:
         'Comprehensive market analysis for Las Vegas real estate. Get insights on trends, pricing, and investment opportunities.',
       type: 'website',
-      url: 'https://openhouseupdate.com/services/market-analysis',
-      image: 'https://openhouseupdate.com/images/og-market-analysis.jpg',
+      url: 'https://grokipedia.com/services/market-analysis',
+      image: 'https://grokipedia.com/images/og-market-analysis.jpg',
       imageAlt: 'Market Analysis - Las Vegas Real Estate',
       articleTag: [
         'market analysis',
@@ -209,8 +209,8 @@ export const openGraphConfigs = {
       description:
         'Learn about Dr. Jan Duffy, your trusted Las Vegas real estate agent. Professional service, local expertise, and personalized guidance.',
       type: 'profile',
-      url: 'https://openhouseupdate.com/about',
-      image: 'https://openhouseupdate.com/images/og-about.jpg',
+      url: 'https://grokipedia.com/about',
+      image: 'https://grokipedia.com/images/og-about.jpg',
       imageAlt: 'Dr. Jan Duffy - Las Vegas Real Estate Agent',
       profileFirstName: 'Janet',
       profileLastName: 'Duffy',
@@ -223,8 +223,8 @@ export const openGraphConfigs = {
       description:
         'Contact Dr. Jan Duffy for professional real estate services in Las Vegas. Get expert guidance for buying or selling your home.',
       type: 'website',
-      url: 'https://openhouseupdate.com/contact',
-      image: 'https://openhouseupdate.com/images/og-contact.jpg',
+      url: 'https://grokipedia.com/contact',
+      image: 'https://grokipedia.com/images/og-contact.jpg',
       imageAlt: 'Contact Dr. Jan Duffy - Las Vegas Real Estate',
       articleTag: ['contact', 'real estate agent', 'Las Vegas', 'Dr. Jan Duffy'],
     }),
@@ -235,8 +235,8 @@ export const openGraphConfigs = {
       description:
         'Search thousands of Las Vegas properties with our advanced real estate search. Find your perfect home with Dr. Jan Duffy.',
       type: 'website',
-      url: 'https://openhouseupdate.com/search',
-      image: 'https://openhouseupdate.com/images/og-search.jpg',
+      url: 'https://grokipedia.com/search',
+      image: 'https://grokipedia.com/images/og-search.jpg',
       imageAlt: 'Property Search - Las Vegas Real Estate',
       articleTag: ['property search', 'Las Vegas homes', 'real estate search', 'home search'],
     }),
@@ -247,8 +247,8 @@ export const openGraphConfigs = {
       description:
         'Explore Las Vegas properties on our interactive map. Find homes by location with detailed neighborhood information.',
       type: 'website',
-      url: 'https://openhouseupdate.com/map',
-      image: 'https://openhouseupdate.com/images/og-map.jpg',
+      url: 'https://grokipedia.com/map',
+      image: 'https://grokipedia.com/images/og-map.jpg',
       imageAlt: 'Las Vegas Real Estate Map',
       articleTag: [
         'real estate map',
@@ -263,8 +263,8 @@ export const openGraphConfigs = {
       title: `${neighborhood} Real Estate - Las Vegas Neighborhood Guide`,
       description: `Discover ${neighborhood} real estate opportunities. Get neighborhood insights, market trends, and property listings.`,
       type: 'website',
-      url: `https://openhouseupdate.com/neighborhoods/${neighborhood}`,
-      image: `https://openhouseupdate.com/images/og-neighborhood-${neighborhood.toLowerCase().replace(/\s+/g, '-')}.jpg`,
+      url: `https://grokipedia.com/neighborhoods/${neighborhood}`,
+      image: `https://grokipedia.com/images/og-neighborhood-${neighborhood.toLowerCase().replace(/\s+/g, '-')}.jpg`,
       imageAlt: `${neighborhood} Real Estate - Las Vegas`,
       articleTag: [neighborhood, 'Las Vegas', 'real estate', 'neighborhood guide', 'property'],
     }),
@@ -279,9 +279,9 @@ export const openGraphConfigs = {
         : 'Discover open houses in Las Vegas this weekend. Tour properties and find your next home.',
       type: 'website',
       url: priceRange
-        ? `https://openhouseupdate.com/open-houses-for-sale/${priceRange}`
-        : 'https://openhouseupdate.com/this-weekend',
-      image: 'https://openhouseupdate.com/images/og-open-houses.jpg',
+        ? `https://grokipedia.com/open-houses-for-sale/${priceRange}`
+        : 'https://grokipedia.com/this-weekend',
+      image: 'https://grokipedia.com/images/og-open-houses.jpg',
       imageAlt: 'Open Houses - Las Vegas Real Estate',
       articleTag: ['open houses', 'Las Vegas', 'weekend tours', 'property viewing', 'real estate'],
     }),
@@ -292,8 +292,8 @@ export const openGraphConfigs = {
       description:
         'Stay informed with the latest Las Vegas real estate market insights, tips, and trends from Dr. Jan Duffy.',
       type: 'website',
-      url: 'https://openhouseupdate.com/blog',
-      image: 'https://openhouseupdate.com/images/og-blog.jpg',
+      url: 'https://grokipedia.com/blog',
+      image: 'https://grokipedia.com/images/og-blog.jpg',
       imageAlt: 'Las Vegas Real Estate Blog',
       articleTag: ['real estate blog', 'Las Vegas market', 'real estate tips', 'market insights'],
     }),
@@ -304,8 +304,8 @@ export const openGraphConfigs = {
       description:
         'Get answers to common real estate questions about buying and selling homes in Las Vegas with Dr. Jan Duffy.',
       type: 'website',
-      url: 'https://openhouseupdate.com/faq',
-      image: 'https://openhouseupdate.com/images/og-faq.jpg',
+      url: 'https://grokipedia.com/faq',
+      image: 'https://grokipedia.com/images/og-faq.jpg',
       imageAlt: 'Real Estate FAQ - Las Vegas',
       articleTag: [
         'real estate FAQ',

@@ -12,28 +12,28 @@ export const onGet = async () => {
     {
       title: 'Las Vegas Real Estate Market Update',
       description: 'Latest market trends and insights for Las Vegas real estate',
-      url: 'https://openhouseupdate.com/market-analysis',
+      url: 'https://grokipedia.com/market-analysis',
       pubDate: currentDate,
       guid: 'market-update-1',
     },
     {
       title: "This Weekend's Open Houses in Las Vegas",
       description: 'Discover the best open houses happening this weekend',
-      url: 'https://openhouseupdate.com/this-weekend',
+      url: 'https://grokipedia.com/this-weekend',
       pubDate: currentDate,
       guid: 'open-houses-weekend',
     },
     {
       title: 'Home Buying Guide for Las Vegas',
       description: 'Complete guide to buying a home in Las Vegas with Dr. Jan Duffy',
-      url: 'https://openhouseupdate.com/buyer-services',
+      url: 'https://grokipedia.com/buyer-services',
       pubDate: currentDate,
       guid: 'buying-guide',
     },
     {
       title: 'Selling Your Home in Las Vegas',
       description: 'Expert tips for selling your home in the Las Vegas market',
-      url: 'https://openhouseupdate.com/seller-services',
+      url: 'https://grokipedia.com/seller-services',
       pubDate: currentDate,
       guid: 'selling-guide',
     },
@@ -44,7 +44,7 @@ export const onGet = async () => {
   <channel>
     <title>Open House Update - Las Vegas Real Estate</title>
     <description>Professional real estate services in Las Vegas with Dr. Jan Duffy</description>
-    <link>https://openhouseupdate.com</link>
+    <link>https://grokipedia.com</link>
     <language>en-US</language>
     <copyright>Copyright ${new Date().getFullYear()} Dr. Jan Duffy</copyright>
     <managingEditor>drduffy@bhhsnv.com (Dr. Jan Duffy)</managingEditor>
@@ -53,11 +53,11 @@ export const onGet = async () => {
     <category>Real Estate</category>
     <category>Las Vegas</category>
     <category>Nevada</category>
-    <atom:link href="https://openhouseupdate.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://grokipedia.com/rss.xml" rel="self" type="application/rss+xml"/>
     <image>
-      <url>https://openhouseupdate.com/images/og-default.jpg</url>
+      <url>https://grokipedia.com/images/og-default.jpg</url>
       <title>Open House Update</title>
-      <link>https://openhouseupdate.com</link>
+      <link>https://grokipedia.com</link>
       <width>144</width>
       <height>144</height>
     </image>

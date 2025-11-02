@@ -489,15 +489,15 @@ export const head: DocumentHead = {
       content:
         'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Jan Duffy.',
     },
-    { property: 'og:url', content: 'https://openhouseupdate.com/services/home-valuation' },
+    { property: 'og:url', content: 'https://grokipedia.com/services/home-valuation' },
     { property: 'og:site_name', content: 'Open House Update' },
     { property: 'og:locale', content: 'en_US' },
     { property: 'og:locale:alternate', content: 'es_US' },
     { property: 'og:determiner', content: 'auto' },
-    { property: 'og:image', content: 'https://openhouseupdate.com/images/og-valuation.jpg' },
+    { property: 'og:image', content: 'https://grokipedia.com/images/og-valuation.jpg' },
     {
       property: 'og:image:secure_url',
-      content: 'https://openhouseupdate.com/images/og-valuation.jpg',
+      content: 'https://grokipedia.com/images/og-valuation.jpg',
     },
     { property: 'og:image:type', content: 'image/jpeg' },
     { property: 'og:image:width', content: '1200' },
@@ -519,13 +519,13 @@ export const head: DocumentHead = {
       content:
         'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Jan Duffy.',
     },
-    { name: 'twitter:image', content: 'https://openhouseupdate.com/images/og-valuation.jpg' },
+    { name: 'twitter:image', content: 'https://grokipedia.com/images/og-valuation.jpg' },
     { name: 'twitter:image:alt', content: 'Free Home Valuation - Las Vegas Real Estate' },
   ],
   links: [
     {
       rel: 'canonical',
-      href: 'https://openhouseupdate.com/services/home-valuation',
+      href: 'https://grokipedia.com/services/home-valuation',
     },
   ],
 }

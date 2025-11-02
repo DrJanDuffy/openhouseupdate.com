@@ -30,7 +30,7 @@ This guide implements Google's official crawling and indexing best practices for
 
 ### ✅ **Implemented URL Patterns:**
 ```
-https://openhouseupdate.com/
+https://grokipedia.com/
 ├── services/
 │   ├── home-valuation/
 │   ├── buyer-services/
@@ -95,9 +95,9 @@ https://openhouseupdate.com/
 ```
 User-agent: *
 Allow: /
-Sitemap: https://openhouseupdate.com/sitemap.xml
-Sitemap: https://openhouseupdate.com/sitemap-images.xml
-Sitemap: https://openhouseupdate.com/sitemap-news.xml
+Sitemap: https://grokipedia.com/sitemap.xml
+Sitemap: https://grokipedia.com/sitemap-images.xml
+Sitemap: https://grokipedia.com/sitemap-news.xml
 Crawl-delay: 1
 
 # Block sensitive areas
@@ -143,8 +143,8 @@ Allow: /
 
 ### 🔍 **Canonical Features:**
 ```html
-<link rel="canonical" href="https://openhouseupdate.com/services/home-valuation" />
-<link rel="alternate" hreflang="en-US" href="https://openhouseupdate.com/services/home-valuation" />
+<link rel="canonical" href="https://grokipedia.com/services/home-valuation" />
+<link rel="alternate" hreflang="en-US" href="https://grokipedia.com/services/home-valuation" />
 <meta name="canonical-preference" content="preferred" />
 ```
 

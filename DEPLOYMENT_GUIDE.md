@@ -19,9 +19,9 @@ git push origin main
 ```
 
 ### **2. Verify Deployment**
-- Visit your Vercel dashboard: https://vercel.com/janet-duffys-projects/openhouseupdate.com
+- Visit your Vercel dashboard: https://vercel.com/janet-duffys-projects/grokipedia.com
 - Check the latest deployment status
-- Test the live site: https://openhouseupdate.com
+- Test the live site: https://grokipedia.com
 
 ---
 

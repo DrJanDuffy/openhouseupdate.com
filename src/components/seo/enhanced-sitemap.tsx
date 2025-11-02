@@ -44,20 +44,20 @@ export default component$<EnhancedSitemapProps>(
       const basePages: SitemapPage[] = [
         // Main pages
         {
-          url: 'https://openhouseupdate.com/',
+          url: 'https://grokipedia.com/',
           priority: 1.0,
           changefreq: 'daily',
           lastmod: currentDate,
           images: includeImages
             ? [
                 {
-                  loc: 'https://openhouseupdate.com/images/hero-las-vegas.jpg',
+                  loc: 'https://grokipedia.com/images/hero-las-vegas.jpg',
                   caption: 'Las Vegas Real Estate - Open House Update',
                   title: 'Las Vegas Real Estate Services',
-                  license: 'https://openhouseupdate.com/license',
+                  license: 'https://grokipedia.com/license',
                 },
                 {
-                  loc: 'https://openhouseupdate.com/images/dr-janet-duffy.jpg',
+                  loc: 'https://grokipedia.com/images/dr-janet-duffy.jpg',
                   caption: 'Dr. Jan Duffy - Real Estate Agent',
                   title: 'Dr. Jan Duffy Professional Headshot',
                 },
@@ -65,13 +65,13 @@ export default component$<EnhancedSitemapProps>(
             : undefined,
         },
         {
-          url: 'https://openhouseupdate.com/about',
+          url: 'https://grokipedia.com/about',
           priority: 0.8,
           changefreq: 'monthly',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/contact',
+          url: 'https://grokipedia.com/contact',
           priority: 0.9,
           changefreq: 'monthly',
           lastmod: currentDate,
@@ -79,14 +79,14 @@ export default component$<EnhancedSitemapProps>(
 
         // Services with enhanced metadata
         {
-          url: 'https://openhouseupdate.com/services',
+          url: 'https://grokipedia.com/services',
           priority: 0.9,
           changefreq: 'weekly',
           lastmod: currentDate,
           images: includeImages
             ? [
                 {
-                  loc: 'https://openhouseupdate.com/images/services-hero.jpg',
+                  loc: 'https://grokipedia.com/images/services-hero.jpg',
                   caption: 'Real Estate Services in Las Vegas',
                   title: 'Professional Real Estate Services',
                 },
@@ -94,14 +94,14 @@ export default component$<EnhancedSitemapProps>(
             : undefined,
         },
         {
-          url: 'https://openhouseupdate.com/services/home-valuation',
+          url: 'https://grokipedia.com/services/home-valuation',
           priority: 0.8,
           changefreq: 'weekly',
           lastmod: currentDate,
           images: includeImages
             ? [
                 {
-                  loc: 'https://openhouseupdate.com/images/home-valuation-tool.jpg',
+                  loc: 'https://grokipedia.com/images/home-valuation-tool.jpg',
                   caption: 'Home Valuation Calculator',
                   title: 'Free Home Value Estimate',
                 },
@@ -109,19 +109,19 @@ export default component$<EnhancedSitemapProps>(
             : undefined,
         },
         {
-          url: 'https://openhouseupdate.com/services/buyer-services',
+          url: 'https://grokipedia.com/services/buyer-services',
           priority: 0.8,
           changefreq: 'weekly',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/services/seller-services',
+          url: 'https://grokipedia.com/services/seller-services',
           priority: 0.8,
           changefreq: 'weekly',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/services/market-analysis',
+          url: 'https://grokipedia.com/services/market-analysis',
           priority: 0.8,
           changefreq: 'weekly',
           lastmod: currentDate,
@@ -137,19 +137,19 @@ export default component$<EnhancedSitemapProps>(
 
         // Property search pages
         {
-          url: 'https://openhouseupdate.com/search',
+          url: 'https://grokipedia.com/search',
           priority: 0.9,
           changefreq: 'daily',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/map',
+          url: 'https://grokipedia.com/map',
           priority: 0.8,
           changefreq: 'daily',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/this-weekend',
+          url: 'https://grokipedia.com/this-weekend',
           priority: 0.9,
           changefreq: 'daily',
           lastmod: currentDate,
@@ -165,31 +165,31 @@ export default component$<EnhancedSitemapProps>(
 
         // Price range pages
         {
-          url: 'https://openhouseupdate.com/open-houses-for-sale/under-400k',
+          url: 'https://grokipedia.com/open-houses-for-sale/under-400k',
           priority: 0.7,
           changefreq: 'daily',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/open-houses-for-sale/400k-600k',
+          url: 'https://grokipedia.com/open-houses-for-sale/400k-600k',
           priority: 0.7,
           changefreq: 'daily',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/open-houses-for-sale/600k-800k',
+          url: 'https://grokipedia.com/open-houses-for-sale/600k-800k',
           priority: 0.7,
           changefreq: 'daily',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/open-houses-for-sale/800k-1m',
+          url: 'https://grokipedia.com/open-houses-for-sale/800k-1m',
           priority: 0.7,
           changefreq: 'daily',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/open-houses-for-sale/over-1m',
+          url: 'https://grokipedia.com/open-houses-for-sale/over-1m',
           priority: 0.7,
           changefreq: 'daily',
           lastmod: currentDate,
@@ -197,14 +197,14 @@ export default component$<EnhancedSitemapProps>(
 
         // Neighborhood pages
         {
-          url: 'https://openhouseupdate.com/neighborhoods/summerlin',
+          url: 'https://grokipedia.com/neighborhoods/summerlin',
           priority: 0.6,
           changefreq: 'weekly',
           lastmod: currentDate,
           images: includeImages
             ? [
                 {
-                  loc: 'https://openhouseupdate.com/images/summerlin-neighborhood.jpg',
+                  loc: 'https://grokipedia.com/images/summerlin-neighborhood.jpg',
                   caption: 'Summerlin Real Estate',
                   title: 'Summerlin Neighborhood Properties',
                 },
@@ -212,14 +212,14 @@ export default component$<EnhancedSitemapProps>(
             : undefined,
         },
         {
-          url: 'https://openhouseupdate.com/neighborhoods/henderson',
+          url: 'https://grokipedia.com/neighborhoods/henderson',
           priority: 0.6,
           changefreq: 'weekly',
           lastmod: currentDate,
           images: includeImages
             ? [
                 {
-                  loc: 'https://openhouseupdate.com/images/henderson-neighborhood.jpg',
+                  loc: 'https://grokipedia.com/images/henderson-neighborhood.jpg',
                   caption: 'Henderson Real Estate',
                   title: 'Henderson Neighborhood Properties',
                 },
@@ -227,19 +227,19 @@ export default component$<EnhancedSitemapProps>(
             : undefined,
         },
         {
-          url: 'https://openhouseupdate.com/neighborhoods/north-las-vegas',
+          url: 'https://grokipedia.com/neighborhoods/north-las-vegas',
           priority: 0.6,
           changefreq: 'weekly',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/neighborhoods/spring-valley',
+          url: 'https://grokipedia.com/neighborhoods/spring-valley',
           priority: 0.6,
           changefreq: 'weekly',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/neighborhoods/enterprise',
+          url: 'https://grokipedia.com/neighborhoods/enterprise',
           priority: 0.6,
           changefreq: 'weekly',
           lastmod: currentDate,
@@ -247,19 +247,19 @@ export default component$<EnhancedSitemapProps>(
 
         // Legal and support pages
         {
-          url: 'https://openhouseupdate.com/privacy-policy',
+          url: 'https://grokipedia.com/privacy-policy',
           priority: 0.3,
           changefreq: 'yearly',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/terms-of-service',
+          url: 'https://grokipedia.com/terms-of-service',
           priority: 0.3,
           changefreq: 'yearly',
           lastmod: currentDate,
         },
         {
-          url: 'https://openhouseupdate.com/faq',
+          url: 'https://grokipedia.com/faq',
           priority: 0.5,
           changefreq: 'monthly',
           lastmod: currentDate,
@@ -271,14 +271,14 @@ export default component$<EnhancedSitemapProps>(
         // Add recent listings (simulated)
         for (let i = 1; i <= 10; i++) {
           basePages.push({
-            url: `https://openhouseupdate.com/listings/property-${i}`,
+            url: `https://grokipedia.com/listings/property-${i}`,
             priority: 0.6,
             changefreq: 'weekly',
             lastmod: currentDate,
             images: includeImages
               ? [
                   {
-                    loc: `https://openhouseupdate.com/images/property-${i}-main.jpg`,
+                    loc: `https://grokipedia.com/images/property-${i}-main.jpg`,
                     caption: `Property ${i} - Las Vegas Real Estate`,
                     title: `Property ${i} Listing`,
                   },
@@ -390,17 +390,17 @@ export const generateEnhancedSitemap = (
   const pages = [
     // Main pages
     {
-      url: 'https://openhouseupdate.com/',
+      url: 'https://grokipedia.com/',
       priority: 1.0,
       changefreq: 'daily' as const,
       lastmod: new Date().toISOString(),
       images: includeImages
         ? [
             {
-              loc: 'https://openhouseupdate.com/images/hero-las-vegas.jpg',
+              loc: 'https://grokipedia.com/images/hero-las-vegas.jpg',
               caption: 'Las Vegas Real Estate - Open House Update',
               title: 'Las Vegas Real Estate Services',
-              license: 'https://openhouseupdate.com/license',
+              license: 'https://grokipedia.com/license',
             },
           ]
         : undefined,

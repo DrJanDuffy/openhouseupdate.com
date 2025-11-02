@@ -34,11 +34,11 @@ export default component$<EnhancedStructuredDataProps>(
             jobTitle: 'Open House Specialist',
             description:
               'Professional Open House Specialist and real estate agent specializing in Las Vegas properties with over 20 years of experience in open house marketing, lead generation, and buyer conversion',
-            url: 'https://openhouseupdate.com',
+            url: 'https://grokipedia.com',
             telephone: '+1-702-200-3422',
             email: 'drduffy@bhhsnv.com',
-            image: 'https://openhouseupdate.com/images/dr-janet-duffy.jpg',
-            logo: 'https://openhouseupdate.com/images/logo.png',
+            image: 'https://grokipedia.com/images/dr-janet-duffy.jpg',
+            logo: 'https://grokipedia.com/images/logo.png',
             address: {
               '@type': 'PostalAddress',
               streetAddress: '123 Main Street',
@@ -154,13 +154,13 @@ export default component$<EnhancedStructuredDataProps>(
             alternateName: 'Dr. Jan Duffy Real Estate',
             description:
               'Professional real estate services in Las Vegas, Nevada. Expert guidance for buying and selling homes.',
-            url: 'https://openhouseupdate.com',
-            logo: 'https://openhouseupdate.com/images/logo.png',
-            image: 'https://openhouseupdate.com/images/og-default.jpg',
+            url: 'https://grokipedia.com',
+            logo: 'https://grokipedia.com/images/logo.png',
+            image: 'https://grokipedia.com/images/og-default.jpg',
             provider: {
               '@type': 'RealEstateAgent',
               name: 'Dr. Jan Duffy',
-              url: 'https://openhouseupdate.com/about',
+              url: 'https://grokipedia.com/about',
             },
             areaServed: {
               '@type': 'City',
@@ -215,7 +215,7 @@ export default component$<EnhancedStructuredDataProps>(
             '@type': 'WebSite',
             name: 'Open House Update',
             alternateName: 'Dr. Jan Duffy Real Estate',
-            url: 'https://openhouseupdate.com',
+            url: 'https://grokipedia.com',
             description:
               'Las Vegas real estate services - Find your perfect home with expert guidance',
             inLanguage: 'en-US',
@@ -223,14 +223,14 @@ export default component$<EnhancedStructuredDataProps>(
               '@type': 'SearchAction',
               target: {
                 '@type': 'EntryPoint',
-                urlTemplate: 'https://openhouseupdate.com/search?q={search_term_string}',
+                urlTemplate: 'https://grokipedia.com/search?q={search_term_string}',
               },
               'query-input': 'required name=search_term_string',
             },
             publisher: {
               '@type': 'RealEstateAgent',
               name: 'Dr. Jan Duffy',
-              url: 'https://openhouseupdate.com/about',
+              url: 'https://grokipedia.com/about',
             },
             mainEntity: {
               '@type': 'RealEstateService',
@@ -244,8 +244,8 @@ export default component$<EnhancedStructuredDataProps>(
             '@type': 'Organization',
             name: 'Dr. Jan Duffy Real Estate',
             alternateName: 'Open House Update',
-            url: 'https://openhouseupdate.com',
-            logo: 'https://openhouseupdate.com/images/logo.png',
+            url: 'https://grokipedia.com',
+            logo: 'https://grokipedia.com/images/logo.png',
             description: 'Professional real estate services in Las Vegas, Nevada',
             address: {
               '@type': 'PostalAddress',
@@ -272,7 +272,7 @@ export default component$<EnhancedStructuredDataProps>(
             '@context': 'https://schema.org',
             '@type': 'RealEstateAgent',
             name: 'Dr. Jan Duffy Real Estate',
-            image: 'https://openhouseupdate.com/images/dr-janet-duffy.jpg',
+            image: 'https://grokipedia.com/images/dr-janet-duffy.jpg',
             telephone: '+1-702-200-3422',
             email: 'drduffy@bhhsnv.com',
             address: {
@@ -288,7 +288,7 @@ export default component$<EnhancedStructuredDataProps>(
               latitude: '36.1699',
               longitude: '-115.1398',
             },
-            url: 'https://openhouseupdate.com',
+            url: 'https://grokipedia.com',
             openingHours: 'Mo-Fr 09:00-18:00,Sa 10:00-16:00',
             priceRange: '$$',
             aggregateRating: {

@@ -78,7 +78,7 @@ export default component$<OpenGraphProps>((props) => {
     description,
     type = 'website',
     url,
-    image = 'https://openhouseupdate.com/images/og-default.jpg',
+    image = 'https://grokipedia.com/images/og-default.jpg',
     imageAlt = 'Open House Update - Las Vegas Real Estate',
     imageWidth = 1200,
     imageHeight = 630,

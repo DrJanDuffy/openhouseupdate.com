@@ -273,7 +273,7 @@ export const head: DocumentHead = ({ params }) => {
       },
       {
         property: 'og:url',
-        content: `https://openhouseupdate.com/neighborhoods/${neighborhood}`,
+        content: `https://grokipedia.com/neighborhoods/${neighborhood}`,
       },
       {
         property: 'og:site_name',
@@ -295,7 +295,7 @@ export const head: DocumentHead = ({ params }) => {
     links: [
       {
         rel: 'canonical',
-        href: `https://openhouseupdate.com/neighborhoods/${neighborhood}`,
+        href: `https://grokipedia.com/neighborhoods/${neighborhood}`,
       },
     ],
   }

@@ -15,7 +15,7 @@ This guide will help you set up Google Search Console and Google Analytics to tr
 3. Create account: "Dr. Janet Duffy Real Estate"
 4. Choose "Web" as platform
 5. Property name: "Open House Update"
-6. Website URL: `https://openhouseupdate.com`
+6. Website URL: `https://grokipedia.com`
 7. Industry: "Real Estate"
 8. Business size: Select appropriate size
 
@@ -50,7 +50,7 @@ This guide will help you set up Google Search Console and Google Analytics to tr
 1. Go to [Google Search Console](https://search.google.com/search-console/)
 2. Click "Add Property"
 3. Choose "URL prefix"
-4. Enter: `https://openhouseupdate.com`
+4. Enter: `https://grokipedia.com`
 5. Click "Continue"
 
 ### **2.2 Verify Ownership**
@@ -73,7 +73,7 @@ Choose one of these methods:
 
 ### **2.3 Submit Sitemap**
 1. In Search Console, go to Sitemaps
-2. Add sitemap: `https://openhouseupdate.com/sitemap.xml`
+2. Add sitemap: `https://grokipedia.com/sitemap.xml`
 3. Submit and monitor indexing status
 
 ---
@@ -91,7 +91,7 @@ Your website already includes structured data for:
 2. Business name: "Dr. Janet Duffy Real Estate"
 3. Address: Your Las Vegas office address
 4. Phone: Your business phone number
-5. Website: `https://openhouseupdate.com`
+5. Website: `https://grokipedia.com`
 6. Categories: "Real Estate Agent", "Real Estate Consultant"
 
 ### **3.3 Local SEO Optimization**

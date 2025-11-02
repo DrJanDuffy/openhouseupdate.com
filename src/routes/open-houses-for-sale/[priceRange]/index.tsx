@@ -360,7 +360,7 @@ export const head: DocumentHead = ({ params }) => {
       },
       {
         property: 'og:url',
-        content: `https://openhouseupdate.com/open-houses-for-sale/${priceRange}`,
+        content: `https://grokipedia.com/open-houses-for-sale/${priceRange}`,
       },
       {
         property: 'og:site_name',
@@ -382,7 +382,7 @@ export const head: DocumentHead = ({ params }) => {
     links: [
       {
         rel: 'canonical',
-        href: `https://openhouseupdate.com/open-houses-for-sale/${priceRange}`,
+        href: `https://grokipedia.com/open-houses-for-sale/${priceRange}`,
       },
     ],
   }

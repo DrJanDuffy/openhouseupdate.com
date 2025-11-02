@@ -8,7 +8,7 @@ alwaysApply: true
 ## Project Overview
 - **Business**: Las Vegas open house listings and weekend property viewing
 - **Tech Stack**: Qwik + TypeScript + Tailwind CSS + Vercel
-- **Domain**: openhouseupdate.com
+- **Domain**: grokipedia.com
 - **Agent**: Dr. Janet Duffy
 - **Focus**: Weekend open houses and property viewing
 
@@ -29,7 +29,7 @@ alwaysApply: true
 ### 3. SEO & Performance
 - Include Las Vegas geo-coordinates: 36.1699;-115.1398
 - Use Google Site Verification: 3MLLpJH2Mfg7igpQ-qC_wpBTzvBGvsOUe7V_pJdYAcM
-- Default OG image: `https://openhouseupdate.com/images/og-default.jpg`
+- Default OG image: `https://grokipedia.com/images/og-default.jpg`
 - Target Core Web Vitals < 2.5s load time
 
 ### 4. Code Quality

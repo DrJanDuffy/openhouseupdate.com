@@ -437,15 +437,15 @@ export const head: DocumentHead = {
       content:
         'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Jan Duffy, your trusted real estate agent.',
     },
-    { property: 'og:url', content: 'https://openhouseupdate.com/services/buyer-services' },
+    { property: 'og:url', content: 'https://grokipedia.com/services/buyer-services' },
     { property: 'og:site_name', content: 'Open House Update' },
     { property: 'og:locale', content: 'en_US' },
     { property: 'og:locale:alternate', content: 'es_US' },
     { property: 'og:determiner', content: 'auto' },
-    { property: 'og:image', content: 'https://openhouseupdate.com/images/og-buyer-services.jpg' },
+    { property: 'og:image', content: 'https://grokipedia.com/images/og-buyer-services.jpg' },
     {
       property: 'og:image:secure_url',
-      content: 'https://openhouseupdate.com/images/og-buyer-services.jpg',
+      content: 'https://grokipedia.com/images/og-buyer-services.jpg',
     },
     { property: 'og:image:type', content: 'image/jpeg' },
     { property: 'og:image:width', content: '1200' },
@@ -467,13 +467,13 @@ export const head: DocumentHead = {
       content:
         'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Jan Duffy, your trusted real estate agent.',
     },
-    { name: 'twitter:image', content: 'https://openhouseupdate.com/images/og-buyer-services.jpg' },
+    { name: 'twitter:image', content: 'https://grokipedia.com/images/og-buyer-services.jpg' },
     { name: 'twitter:image:alt', content: 'Buyer Services - Las Vegas Real Estate' },
   ],
   links: [
     {
       rel: 'canonical',
-      href: 'https://openhouseupdate.com/services/buyer-services',
+      href: 'https://grokipedia.com/services/buyer-services',
     },
   ],
 }

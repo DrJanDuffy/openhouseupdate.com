@@ -563,7 +563,7 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:url',
-      content: 'https://openhouseupdate.com/services/seller-services',
+      content: 'https://grokipedia.com/services/seller-services',
     },
     {
       property: 'og:site_name',
@@ -586,7 +586,7 @@ export const head: DocumentHead = {
   links: [
     {
       rel: 'canonical',
-      href: 'https://openhouseupdate.com/services/seller-services',
+      href: 'https://grokipedia.com/services/seller-services',
     },
   ],
 }

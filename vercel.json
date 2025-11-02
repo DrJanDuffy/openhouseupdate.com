@@ -56,23 +56,23 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "destination": "https://www.openhouseupdate.com/$1",
+      "destination": "https://www.grokipedia.com/$1",
       "permanent": true,
       "has": [
         {
           "type": "host",
-          "value": "openhouseupdate.com"
+          "value": "grokipedia.com"
         }
       ]
     },
     {
       "source": "/robots.txt",
-      "destination": "https://www.openhouseupdate.com/robots.txt",
+      "destination": "https://www.grokipedia.com/robots.txt",
       "permanent": true,
       "has": [
         {
           "type": "host",
-          "value": "openhouseupdate.com"
+          "value": "grokipedia.com"
         }
       ]
     },
