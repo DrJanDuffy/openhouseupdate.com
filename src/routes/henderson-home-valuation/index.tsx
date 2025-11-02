@@ -170,6 +170,8 @@ export const head: DocumentHead = {
       content:
         'Henderson home valuation, Green Valley home value, Henderson property value, Seven Hills home value, Lake Las Vegas property valuation',
     },
+  ],
+  links: [
     {
       rel: 'canonical',
       href: 'https://www.openhouseupdate.com/henderson-home-valuation/',

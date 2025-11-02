@@ -171,6 +171,8 @@ export const head: DocumentHead = {
       content:
         'Summerlin open houses, Summerlin real estate, open houses Summerlin, Summerlin homes, Summerlin properties, Las Vegas Summerlin',
     },
+  ],
+  links: [
     {
       rel: 'canonical',
       href: 'https://www.openhouseupdate.com/summerlin-open-houses/',

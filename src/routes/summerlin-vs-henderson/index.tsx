@@ -388,6 +388,8 @@ export const head: DocumentHead = {
       property: 'og:type',
       content: 'article',
     },
+  ],
+  links: [
     {
       rel: 'canonical',
       href: 'https://www.openhouseupdate.com/summerlin-vs-henderson/',
