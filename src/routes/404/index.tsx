@@ -25,7 +25,9 @@ export default component$(() => {
         {/* Quick Actions */}
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <a
-            href="/"
+            href="http://drjanduffy.realscout.com/onboarding"
+            target="_blank"
+            rel="noopener noreferrer"
             class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow text-center"
           >
             <div class="text-4xl mb-4">🏠</div>

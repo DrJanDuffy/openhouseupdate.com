@@ -173,7 +173,9 @@ export default component$(() => {
           <h2 class="text-2xl font-bold text-gray-900 text-center mb-8">Quick Links</h2>
           <div class="grid md:grid-cols-4 gap-4">
             <a
-              href="/search"
+              href="http://drjanduffy.realscout.com/onboarding"
+              target="_blank"
+              rel="noopener noreferrer"
               class="bg-white rounded-lg shadow-lg p-4 text-center hover:shadow-xl transition-shadow"
             >
               <div class="text-2xl mb-2">🔍</div>

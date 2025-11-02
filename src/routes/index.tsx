@@ -594,7 +594,7 @@ export default component$(() => {
           },
           {
             title: 'Search All Properties',
-            url: '/search/',
+            url: 'http://drjanduffy.realscout.com/onboarding',
             description: 'Browse all Las Vegas Valley homes',
           },
         ]}
