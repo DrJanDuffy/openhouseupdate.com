@@ -34,6 +34,20 @@ export default component$(() => {
           <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
           <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 
+          {/* Google tag (gtag.js) */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-Q9X8KED9X0"
+          />
+          <script
+            dangerouslySetInnerHTML={`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-Q9X8KED9X0');
+            `}
+          />
+
           {/* Enhanced RealScout script loading with error handling */}
           <script
             src="https://em.realscout.com/widgets/realscout-web-components.umd.js"

@@ -3,7 +3,6 @@ import { type DocumentHead, routeLoader$ } from '@builder.io/qwik-city'
 import { inject } from '@vercel/analytics'
 // import EnhancedErrorBoundary from '~/components/error-boundary/enhanced-error-boundary';
 import EnhancedAnalytics from '~/components/analytics/enhanced-analytics'
-import GoogleAnalytics from '~/components/analytics/google-analytics'
 import StickyHeader from '~/components/layout/header'
 import { MobileSearchButton } from '~/components/modals'
 import CrawlerManagement from '~/components/seo/crawler-management'
@@ -59,7 +58,6 @@ export default component$(() => {
 
       {/* Analytics */}
       <script dangerouslySetInnerHTML={`${inject()}`} />
-      <GoogleAnalytics measurementId="G-Q9X8KED9X0" />
       <EnhancedAnalytics measurementId="G-Q9X8KED9X0" />
 
       {/* RealScout Script with Enhanced Loading */}
@@ -328,6 +326,16 @@ export const head: DocumentHead = {
       rel: 'sitemap',
       type: 'application/xml',
       href: '/sitemap.xml',
+    },
+  ],
+  scripts: [
+    {
+      children: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q9X8KED9X0');
+      `,
     },
   ],
 }
