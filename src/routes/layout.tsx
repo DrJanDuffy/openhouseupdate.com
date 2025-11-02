@@ -3,6 +3,7 @@ import { type DocumentHead, routeLoader$ } from '@builder.io/qwik-city'
 import { inject } from '@vercel/analytics'
 // import EnhancedErrorBoundary from '~/components/error-boundary/enhanced-error-boundary';
 import EnhancedAnalytics from '~/components/analytics/enhanced-analytics'
+import GoogleAnalytics from '~/components/analytics/google-analytics'
 import StickyHeader from '~/components/layout/header'
 import { MobileSearchButton } from '~/components/modals'
 import CrawlerManagement from '~/components/seo/crawler-management'
