@@ -216,7 +216,7 @@ export default component$(() => {
             <li>Inspection coordination</li>
             <li>Closing assistance</li>
           </ul>
-          <a href="/services/buyer-services" class="service-link">
+          <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" class="service-link">
             Start Your Search
           </a>
         </div>
@@ -268,7 +268,7 @@ export default component$(() => {
           <a href="/contact" class="cta-button">
             Contact Dr. Duffy
           </a>
-          <a href="/search" class="cta-button secondary">
+          <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" class="cta-button secondary">
             Start Property Search
           </a>
         </div>

@@ -211,7 +211,9 @@ export default component$(() => {
                   <div class="text-sm opacity-90">Find out what your home is worth</div>
                 </a>
                 <a
-                  href="/search"
+                  href="http://drjanduffy.realscout.com/onboarding"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   class="block bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg p-4 transition-colors"
                 >
                   <div class="font-semibold">Search Properties</div>

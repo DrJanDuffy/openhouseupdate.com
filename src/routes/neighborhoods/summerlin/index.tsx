@@ -190,7 +190,7 @@ export default component$(() => {
             <h3>Contact Dr. Jan Duffy</h3>
             <p>Expert Summerlin real estate guidance</p>
             <p><strong>Phone:</strong> (702) 200-3422</p>
-            <a href="/contact" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: #3A8DDE; color: white; border-radius: 6px; text-decoration: none;">
+            <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: #3A8DDE; color: white; border-radius: 6px; text-decoration: none;">
               Get Started
             </a>
           </div>

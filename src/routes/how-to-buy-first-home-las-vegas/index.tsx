@@ -269,7 +269,7 @@ export default component$(() => {
           Dr. Jan Duffy specializes in helping first-time homebuyers navigate the Las Vegas market. Get expert 
           guidance, access to first-time buyer programs, and personalized support throughout your home buying journey.
         </p>
-        <a href="/contact" class="cta-button">Get Started Today</a>
+        <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" class="cta-button">Get Started Today</a>
       </div>
 
       {/* Internal Linking */}

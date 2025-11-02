@@ -395,7 +395,7 @@ export default component$(() => {
           service and expert market knowledge.
         </p>
         <div class="cta-buttons">
-          <a href="/search" class="cta-button">
+          <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" class="cta-button">
             Start Property Search
           </a>
           <a href="/contact" class="cta-button secondary">

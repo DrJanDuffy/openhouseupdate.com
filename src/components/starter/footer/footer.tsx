@@ -29,7 +29,7 @@ export default component$(() => {
             <h4 class={styles.footerSubtitle}>Property Search</h4>
             <ul class={styles.footerLinks}>
               <li>
-                <a href="/" class={styles.footerLink}>
+                <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" class={styles.footerLink}>
                   Home Search
                 </a>
               </li>
