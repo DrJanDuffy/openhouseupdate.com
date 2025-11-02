@@ -47,8 +47,8 @@ export const onGet = async () => {
     <link>https://www.openhouseupdate.com</link>
     <language>en-US</language>
     <copyright>Copyright ${new Date().getFullYear()} Dr. Jan Duffy</copyright>
-    <managingEditor>drduffy@bhhsnv.com (Dr. Jan Duffy)</managingEditor>
-    <webMaster>drduffy@bhhsnv.com (Dr. Jan Duffy)</webMaster>
+    <managingEditor>DrDuffy@OpenHouseUpdate.com (Dr. Jan Duffy)</managingEditor>
+    <webMaster>DrDuffy@OpenHouseUpdate.com (Dr. Jan Duffy)</webMaster>
     <lastBuildDate>${currentDate}</lastBuildDate>
     <category>Real Estate</category>
     <category>Las Vegas</category>

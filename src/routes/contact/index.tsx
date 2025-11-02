@@ -168,7 +168,7 @@ export default component$(() => {
                   <div class="text-blue-600 text-2xl">📧</div>
                   <div>
                     <h4 class="font-semibold text-gray-900">Email</h4>
-                    <p class="text-gray-600">drduffy@bhhsnv.com</p>
+                    <p class="text-gray-600">DrDuffy@OpenHouseUpdate.com</p>
                   </div>
                 </div>
 

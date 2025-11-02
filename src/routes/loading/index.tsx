@@ -100,7 +100,7 @@ export default component$(() => {
               📞 Call Now
             </a>
             <a
-              href="mailto:drduffy@bhhsnv.com"
+              href="mailto:DrDuffy@OpenHouseUpdate.com"
               class="bg-white bg-opacity-20 text-white py-3 px-8 rounded-lg font-semibold hover:bg-opacity-30 transition-colors"
             >
               📧 Email Us

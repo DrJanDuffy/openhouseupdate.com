@@ -36,7 +36,7 @@ export default component$<EnhancedStructuredDataProps>(
               'Professional Open House Specialist and real estate agent specializing in Las Vegas properties with over 20 years of experience in open house marketing, lead generation, and buyer conversion',
             url: 'https://www.openhouseupdate.com',
             telephone: '+1-702-200-3422',
-            email: 'drduffy@bhhsnv.com',
+            email: 'DrDuffy@OpenHouseUpdate.com',
             image: 'https://www.openhouseupdate.com/images/dr-janet-duffy.jpg',
             logo: 'https://www.openhouseupdate.com/images/logo.png',
             address: {
@@ -257,7 +257,7 @@ export default component$<EnhancedStructuredDataProps>(
               '@type': 'ContactPoint',
               telephone: '+1-702-200-3422',
               contactType: 'customer service',
-              email: 'drduffy@bhhsnv.com',
+              email: 'DrDuffy@OpenHouseUpdate.com',
               availableLanguage: ['English', 'Spanish'],
             },
             sameAs: [
@@ -274,7 +274,7 @@ export default component$<EnhancedStructuredDataProps>(
             name: 'Dr. Jan Duffy Real Estate',
             image: 'https://www.openhouseupdate.com/images/dr-janet-duffy.jpg',
             telephone: '+1-702-200-3422',
-            email: 'drduffy@bhhsnv.com',
+            email: 'DrDuffy@OpenHouseUpdate.com',
             address: {
               '@type': 'PostalAddress',
               streetAddress: '123 Main Street',

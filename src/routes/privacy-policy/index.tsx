@@ -140,7 +140,7 @@ export default component$(() => {
                   <strong>Dr. Jan Duffy</strong>
                 </p>
                 <p class="text-gray-600 mb-2">Licensed Real Estate Agent</p>
-                <p class="text-gray-600 mb-2">Email: drduffy@bhhsnv.com</p>
+                <p class="text-gray-600 mb-2">Email: DrDuffy@OpenHouseUpdate.com</p>
                 <p class="text-gray-600">Phone: (702) 200-3422</p>
               </div>
             </section>
