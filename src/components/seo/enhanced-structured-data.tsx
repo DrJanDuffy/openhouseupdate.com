@@ -31,9 +31,9 @@ export default component$<EnhancedStructuredDataProps>(
             '@type': 'RealEstateAgent',
             name: 'Dr. Jan Duffy',
             alternateName: 'Janet Duffy',
-            jobTitle: 'Open House Specialist',
+            jobTitle: 'Open House Expert',
             description:
-              'Professional Open House Specialist and real estate agent specializing in Las Vegas properties with over 20 years of experience in open house marketing, lead generation, and buyer conversion',
+              'Professional Open House Expert with Nevada License #S.0197614 specializing in Las Vegas properties with over 20 years of experience in open house marketing, lead generation, and buyer conversion',
             url: 'https://www.openhouseupdate.com',
             telephone: '+1-702-200-3422',
             email: 'DrDuffy@OpenHouseUpdate.com',

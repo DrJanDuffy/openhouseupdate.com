@@ -136,7 +136,7 @@ export default component$(() => {
             font-weight: 500;
           }
 
-          /* Open House Specialist Section Styles */
+          /* Open House Expert Section Styles */
           .specialist-section {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             margin: 4rem 0;
@@ -408,7 +408,7 @@ export default component$(() => {
             Discover Las Vegas open houses happening this weekend with our advanced property search
           </p>
           <div class="featured-agent-badge">
-            <span class="badge-text">Featured Open House Specialist</span>
+            <span class="badge-text">Featured Open House Expert</span>
             <span class="agent-name">Dr. Jan Duffy</span>
             <span class="badge-month">This Month</span>
           </div>
@@ -450,12 +450,12 @@ export default component$(() => {
         </div>
       </section>
 
-      {/* Open House Specialist Section - EEAT Content */}
+      {/* Open House Expert Section - EEAT Content */}
       <section class="specialist-section">
         <div class="container mx-auto px-6 py-16 max-w-6xl">
           <div class="text-center mb-12">
             <h2 class="text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Dr. Jan Duffy as Your Open House Specialist?
+              Why Choose Dr. Jan Duffy as Your Open House Expert?
             </h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
               With over 20 years of Las Vegas real estate experience, Dr. Jan Duffy has mastered the art of open house marketing, lead generation, and buyer conversion.
@@ -511,7 +511,7 @@ export default component$(() => {
 
           <div class="specialist-expertise">
             <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Open House Specialist Expertise Areas
+              Open House Expert Expertise Areas
             </h3>
             <div class="expertise-grid">
               <div class="expertise-item">
