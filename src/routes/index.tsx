@@ -118,6 +118,13 @@ export default component$(() => {
             box-shadow: 0 4px 15px rgba(10, 37, 64, 0.3);
             margin-bottom: 2rem;
             max-width: fit-content;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+          }
+
+          .featured-agent-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(10, 37, 64, 0.4);
           }
 
           .badge-text {
@@ -413,23 +420,6 @@ export default component$(() => {
             target="_blank"
             rel="noopener noreferrer"
             class="featured-agent-badge"
-            style="text-decoration: none; display: inline-block; cursor: pointer; transition: transform 0.2s ease;"
-            onMouseEnter$={() => {
-              if (typeof document !== 'undefined') {
-                const badge = document.querySelector('.featured-agent-badge')
-                if (badge) {
-                  badge.style.transform = 'scale(1.05)'
-                }
-              }
-            }}
-            onMouseLeave$={() => {
-              if (typeof document !== 'undefined') {
-                const badge = document.querySelector('.featured-agent-badge')
-                if (badge) {
-                  badge.style.transform = 'scale(1)'
-                }
-              }
-            }}
           >
             <span class="badge-text">Featured Open House Expert</span>
             <span class="agent-name">Dr. Jan Duffy</span>
