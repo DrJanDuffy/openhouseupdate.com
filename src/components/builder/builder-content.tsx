@@ -1,4 +1,4 @@
-import { component$, useSignal, useVisibleTask$, useTask$ } from '@builder.io/qwik'
+import { component$, useSignal, useTask$ } from '@builder.io/qwik'
 
 export interface BuilderContentProps {
   // biome-ignore lint/suspicious/noExplicitAny: Builder.io content structure is dynamic
@@ -104,6 +104,7 @@ function renderBuilderContent(content: any): string {
     if (blocks.length > 0) {
       // Render blocks to HTML
       return blocks
+        // biome-ignore lint/suspicious/noExplicitAny: Builder.io block structure is dynamic
         .map((block: any, index: number) => {
           return renderBlockToHTML(block, index)
         })

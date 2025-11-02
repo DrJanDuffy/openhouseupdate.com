@@ -127,6 +127,7 @@ export async function getAllBuilderPages(): Promise<BuilderPageData[]> {
     })
     return pages as unknown as BuilderPageData[]
   } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: This is a critical error that should be logged
     console.error('Error fetching all Builder.io pages:', error)
     return []
   }
