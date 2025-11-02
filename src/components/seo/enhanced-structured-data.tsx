@@ -397,7 +397,7 @@ export default component$<EnhancedStructuredDataProps>(
             }),
           }
 
-        case 'AggregateRating':
+        case 'AggregateRating': {
           if (reviews.length === 0) {
             // Default aggregate rating
             return {
@@ -421,6 +421,7 @@ export default component$<EnhancedStructuredDataProps>(
             bestRating: '5',
             worstRating: '1',
           }
+        }
 
         default:
           return data
@@ -435,23 +436,27 @@ export default component$<EnhancedStructuredDataProps>(
     if (Array.isArray(structuredData)) {
       return (
         <>
-          {structuredData.map((data, index) => (
-            // biome-ignore lint/security/noDangerouslySetInnerHtml: Structured data JSON is safe and controlled
-            <script
-              key={`structured-data-${index}`}
-              type="application/ld+json"
-              dangerouslySetInnerHTML={JSON.stringify(data)}
-            />
-          ))}
+          {structuredData.map((data, index) => {
+            const dataString = JSON.stringify(data)
+            return (
+              // biome-ignore lint/security/noDangerouslySetInnerHtml: Structured data JSON is safe and controlled
+              <script
+                key={`structured-data-${dataString.substring(0, 50)}-${index}`}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={dataString}
+              />
+            )
+          })}
         </>
       )
     }
 
+    const dataString = JSON.stringify(structuredData)
     return (
       // biome-ignore lint/security/noDangerouslySetInnerHtml: Structured data JSON is safe and controlled
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={JSON.stringify(structuredData)}
+        dangerouslySetInnerHTML={dataString}
       />
     )
   }

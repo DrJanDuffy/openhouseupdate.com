@@ -1,6 +1,6 @@
 import { component$, useVisibleTask$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
-import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
+import EnhancedPageSEO from '~/components/seo/enhanced-page-seo'
 import InternalLinking from '~/components/seo/internal-linking'
 
 export default component$(() => {

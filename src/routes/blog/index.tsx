@@ -2,7 +2,7 @@ import { component$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
 import { blogPosts } from '~/data/blog-posts'
 import RelatedContent from '~/components/seo/related-content'
-import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
+import { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
 
 export default component$(() => {
 

@@ -80,8 +80,8 @@ export default component$<InternalLinkingProps>(({ title = 'Related Content', li
       
       <h3>{title}</h3>
       <div class="related-links">
-        {links.map((link, index) => (
-          <a key={index} href={link.url} class="related-link">
+        {links.map((link) => (
+          <a key={link.url} href={link.url} class="related-link">
             <span class="related-link-title">{link.title}</span>
             {link.description && <p class="related-link-description">{link.description}</p>}
           </a>
