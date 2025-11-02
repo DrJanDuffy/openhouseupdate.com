@@ -200,7 +200,7 @@ export default component$(() => {
               class={styles.builderLink}
             >
               <span class={styles.spacer}>|</span>
-              <span>Made with Love By Dr. Jan Duffy</span>
+              <span>Made with ♥ By Dr. Jan Duffy</span>
             </a>
           </div>
         </div>
