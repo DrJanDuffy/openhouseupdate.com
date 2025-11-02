@@ -2,6 +2,7 @@ import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
 import PerformanceMonitor from '~/components/performance/performance-monitor'
 import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
+import InternalLinking from '~/components/seo/internal-linking'
 
 export default component$(() => {
   const showAdvanced = useSignal(true)
@@ -557,6 +558,34 @@ export default component$(() => {
         pageKey="homepage"
         showFAQs={true}
         faqTitle="Las Vegas Real Estate - Frequently Asked Questions"
+        className="mt-12"
+      />
+
+      {/* Internal Linking */}
+      <InternalLinking
+        title="Explore Las Vegas Real Estate"
+        links={[
+          {
+            title: 'This Weekend Open Houses',
+            url: '/this-weekend/',
+            description: 'Find open houses happening this weekend',
+          },
+          {
+            title: 'Summerlin vs Henderson Comparison',
+            url: '/summerlin-vs-henderson/',
+            description: 'Compare two of Las Vegas\'s top communities',
+          },
+          {
+            title: 'First-Time Homebuyer Guide',
+            url: '/how-to-buy-first-home-las-vegas/',
+            description: 'Complete guide to buying your first home',
+          },
+          {
+            title: 'Search All Properties',
+            url: '/search/',
+            description: 'Browse all Las Vegas Valley homes',
+          },
+        ]}
         className="mt-12"
       />
     </>

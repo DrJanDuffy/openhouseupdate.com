@@ -335,6 +335,69 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
       { name: 'Open Houses by Price', url: 'https://www.openhouseupdate.com/open-houses-for-sale/' },
     ],
   },
+
+  blog: {
+    title: 'Las Vegas Real Estate Blog - Market Updates & Expert Advice | Dr. Jan Duffy',
+    description:
+      'Stay informed with the latest Las Vegas real estate market updates, neighborhood insights, buyer and seller tips, and expert advice from Dr. Jan Duffy.',
+    keywords: [
+      'Las Vegas real estate blog',
+      'real estate market updates',
+      'home buying tips',
+      'selling advice',
+      'neighborhood guides',
+      'investment properties',
+      'Las Vegas market trends',
+    ],
+    faqKey: 'blog',
+    structuredDataType: 'WebSite',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
+      { name: 'Blog', url: 'https://www.openhouseupdate.com/blog/' },
+    ],
+  },
+
+  'how-to-buy-first-home': {
+    title: 'How to Buy Your First Home in Las Vegas: Complete Guide | Dr. Jan Duffy',
+    description:
+      'Complete step-by-step guide to buying your first home in Las Vegas. Learn about pre-approval, neighborhoods, first-time buyer programs, and the entire home buying process.',
+    keywords: [
+      'how to buy first home Las Vegas',
+      'first-time homebuyer guide',
+      'buy first home Las Vegas',
+      'first-time buyer programs',
+      'Las Vegas home buying process',
+      'first home buyer guide',
+    ],
+    faqKey: 'how-to-buy-first-home',
+    structuredDataType: 'RealEstateService',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
+      { name: 'Guides', url: 'https://www.openhouseupdate.com/blog/' },
+      { name: 'How to Buy Your First Home', url: 'https://www.openhouseupdate.com/how-to-buy-first-home-las-vegas/' },
+    ],
+  },
+
+  'summerlin-vs-henderson': {
+    title: 'Summerlin vs Henderson: Complete Comparison Guide | Dr. Jan Duffy',
+    description:
+      'Detailed comparison of Summerlin and Henderson neighborhoods in Las Vegas. Compare prices, schools, amenities, and lifestyle to choose the right community for you.',
+    keywords: [
+      'Summerlin vs Henderson',
+      'compare Summerlin Henderson',
+      'best neighborhood Las Vegas',
+      'Summerlin real estate',
+      'Henderson real estate',
+      'Las Vegas neighborhoods comparison',
+    ],
+    faqKey: 'summerlin-vs-henderson',
+    structuredDataType: 'LocalBusiness',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
+      { name: 'Neighborhoods', url: 'https://www.openhouseupdate.com/neighborhoods/' },
+      { name: 'Summerlin vs Henderson', url: 'https://www.openhouseupdate.com/summerlin-vs-henderson-comparison/' },
+    ],
+  },
 }
 
 export const getPageSnippet = (pageKey: string): PageSnippetConfig => {

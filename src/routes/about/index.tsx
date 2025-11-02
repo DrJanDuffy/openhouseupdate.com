@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
 import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
+import InternalLinking from '~/components/seo/internal-linking'
 
 export default component$(() => {
   return (
@@ -264,6 +265,34 @@ export default component$(() => {
         showFAQs={true}
         faqTitle="About Dr. Jan Duffy - Frequently Asked Questions"
         className="mt-12"
+      />
+
+      {/* Internal Linking */}
+      <InternalLinking
+        title="Learn More About Our Services"
+        links={[
+          {
+            title: 'Buyer Services',
+            url: '/services/buyer-services/',
+            description: 'Expert guidance for home buyers',
+          },
+          {
+            title: 'Seller Services',
+            url: '/services/seller-services/',
+            description: 'Professional home selling assistance',
+          },
+          {
+            title: 'Home Valuation',
+            url: '/services/home-valuation/',
+            description: 'Get an accurate property value estimate',
+          },
+          {
+            title: 'Contact Dr. Jan Duffy',
+            url: '/contact/',
+            description: 'Schedule a consultation',
+          },
+        ]}
+        className="mt-8"
       />
     </div>
   )

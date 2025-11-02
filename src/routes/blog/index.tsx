@@ -1,59 +1,10 @@
 import { component$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
+import { blogPosts } from '~/data/blog-posts'
+import RelatedContent from '~/components/seo/related-content'
+import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
 
 export default component$(() => {
-  const blogPosts = [
-    {
-      id: 1,
-      title: 'Las Vegas Real Estate Market Update - January 2025',
-      excerpt:
-        'Current market trends, pricing insights, and what to expect in the Las Vegas housing market this year.',
-      date: 'January 15, 2025',
-      category: 'Market Updates',
-      readTime: '5 min read',
-      featured: true,
-    },
-    {
-      id: 2,
-      title: 'First-Time Homebuyer Guide: Las Vegas Edition',
-      excerpt:
-        'Everything you need to know about buying your first home in Las Vegas, from pre-approval to closing.',
-      date: 'January 10, 2025',
-      category: 'Buyer Tips',
-      readTime: '8 min read',
-      featured: false,
-    },
-    {
-      id: 3,
-      title: 'Top 5 Neighborhoods for Families in Las Vegas',
-      excerpt:
-        'Discover the best family-friendly neighborhoods in Las Vegas with great schools and amenities.',
-      date: 'January 5, 2025',
-      category: 'Neighborhoods',
-      readTime: '6 min read',
-      featured: false,
-    },
-    {
-      id: 4,
-      title: 'Selling Your Home in Las Vegas: Pricing Strategy',
-      excerpt:
-        'Learn how to price your home competitively in the Las Vegas market for a quick and profitable sale.',
-      date: 'December 28, 2024',
-      category: 'Seller Tips',
-      readTime: '7 min read',
-      featured: false,
-    },
-    {
-      id: 5,
-      title: 'Investment Properties in Las Vegas: 2025 Outlook',
-      excerpt:
-        'Analysis of rental market trends and investment opportunities in the Las Vegas area.',
-      date: 'December 20, 2024',
-      category: 'Investment',
-      readTime: '9 min read',
-      featured: false,
-    },
-  ]
 
   const featuredPost = blogPosts.find((post) => post.featured)
   const regularPosts = blogPosts.filter((post) => !post.featured)
@@ -95,12 +46,12 @@ export default component$(() => {
                   <p class="text-gray-600 mb-6">{featuredPost.excerpt}</p>
                   <div class="flex items-center justify-between">
                     <span class="text-gray-500 text-sm">{featuredPost.date}</span>
-                    <button
-                      type="button"
-                      class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                    <a
+                      href={`/blog/${featuredPost.slug}`}
+                      class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-block"
                     >
                       Read More
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -144,12 +95,12 @@ export default component$(() => {
                   <p class="text-gray-600 mb-4">{post.excerpt}</p>
                   <div class="flex items-center justify-between">
                     <span class="text-gray-500 text-sm">{post.date}</span>
-                    <button
-                      type="button"
+                    <a
+                      href={`/blog/${post.slug}`}
                       class="text-blue-600 font-semibold hover:text-blue-800 transition-colors"
                     >
                       Read More →
-                    </button>
+                    </a>
                   </div>
                 </div>
               </article>
@@ -219,23 +170,47 @@ export default component$(() => {
             )}
           </div>
         </div>
+
+        {/* Related Content */}
+        <RelatedContent
+          title="Explore Our Services"
+          links={[
+            {
+              title: 'Home Valuation',
+              url: '/services/home-valuation',
+              description: 'Get a free, accurate home valuation for your Las Vegas property',
+            },
+            {
+              title: 'Buyer Services',
+              url: '/services/buyer-services',
+              description: 'Expert guidance for buying your dream home in Las Vegas',
+            },
+            {
+              title: 'Seller Services',
+              url: '/services/seller-services',
+              description: 'Professional marketing and selling services to maximize your home value',
+            },
+            {
+              title: 'Market Analysis',
+              url: '/services/market-analysis',
+              description: 'Comprehensive market reports and neighborhood insights',
+            },
+            {
+              title: 'This Weekend Open Houses',
+              url: '/this-weekend',
+              description: 'Find open houses happening this weekend in Las Vegas',
+            },
+            {
+              title: 'People Also Ask',
+              url: '/people-also-ask',
+              description: 'Get answers to common Las Vegas real estate questions',
+            },
+          ]}
+          className="mt-12"
+        />
       </div>
     </section>
   )
 })
 
-export const head: DocumentHead = {
-  title: 'Las Vegas Real Estate Blog - Market Updates & Expert Advice',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Stay informed with the latest Las Vegas real estate market updates, neighborhood insights, and expert advice from Dr. Jan Duffy.',
-    },
-    {
-      name: 'keywords',
-      content:
-        'Las Vegas real estate blog, market updates, home buying tips, selling advice, neighborhood guides, investment properties',
-    },
-  ],
-}
+export const head: DocumentHead = createOptimizedHead('blog')

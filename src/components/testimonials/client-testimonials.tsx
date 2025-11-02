@@ -1,4 +1,5 @@
-import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
+import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik'
+import EnhancedStructuredData from '~/components/seo/enhanced-structured-data'
 
 interface Testimonial {
   id: string
@@ -79,6 +80,15 @@ export default component$(() => {
       verified: true,
     },
   ]
+
+  // Generate reviews data for schema
+  const reviewsForSchema = testimonials.map((t) => ({
+    author: t.name,
+    rating: t.rating,
+    reviewBody: t.text,
+    datePublished: new Date(t.date).toISOString(),
+    location: t.location,
+  }))
 
   const nextTestimonial = $(() => {
     currentTestimonial.value = (currentTestimonial.value + 1) % testimonials.length
@@ -306,6 +316,10 @@ export default component$(() => {
           </div>
         </div>
       </div>
+
+      {/* Review and AggregateRating Schema Markup */}
+      <EnhancedStructuredData type="AggregateRating" reviews={reviewsForSchema} />
+      <EnhancedStructuredData type="Review" reviews={reviewsForSchema} />
     </div>
   )
 })

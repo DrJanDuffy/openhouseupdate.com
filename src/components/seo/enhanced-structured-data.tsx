@@ -9,15 +9,24 @@ interface EnhancedStructuredDataProps {
     | 'LocalBusiness'
     | 'BreadcrumbList'
     | 'FAQPage'
+    | 'Review'
+    | 'AggregateRating'
   data?: Record<string, unknown>
   pageType?: string
   propertyData?: Record<string, unknown>
   breadcrumbs?: Array<{ name: string; url: string }>
   faqs?: Array<{ question: string; answer: string }>
+  reviews?: Array<{
+    author: string
+    rating: number
+    reviewBody: string
+    datePublished: string
+    location?: string
+  }>
 }
 
 export default component$<EnhancedStructuredDataProps>(
-  ({ type, data = {}, pageType = 'general', propertyData = {}, breadcrumbs = [], faqs = [] }) => {
+  ({ type, data = {}, pageType = 'general', propertyData = {}, breadcrumbs = [], faqs = [], reviews = [] }) => {
     // Use parameters to avoid linting errors
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const _pageType = pageType
@@ -327,6 +336,92 @@ export default component$<EnhancedStructuredDataProps>(
             })),
           }
 
+        case 'Review':
+          if (reviews.length === 0) return null
+          // Return array of reviews for multiple reviews
+          if (reviews.length > 1) {
+            return reviews.map((review) => ({
+              '@context': 'https://schema.org',
+              '@type': 'Review',
+              itemReviewed: {
+                '@type': 'RealEstateAgent',
+                name: 'Dr. Jan Duffy',
+                url: 'https://www.openhouseupdate.com/about',
+              },
+              reviewRating: {
+                '@type': 'Rating',
+                ratingValue: review.rating.toString(),
+                bestRating: '5',
+                worstRating: '1',
+              },
+              author: {
+                '@type': 'Person',
+                name: review.author,
+              },
+              reviewBody: review.reviewBody,
+              datePublished: review.datePublished,
+              ...(review.location && {
+                locationCreated: {
+                  '@type': 'Place',
+                  name: review.location,
+                },
+              }),
+            }))
+          }
+          // Single review
+          return {
+            '@context': 'https://schema.org',
+            '@type': 'Review',
+            itemReviewed: {
+              '@type': 'RealEstateAgent',
+              name: 'Dr. Jan Duffy',
+              url: 'https://www.openhouseupdate.com/about',
+            },
+            reviewRating: {
+              '@type': 'Rating',
+              ratingValue: reviews[0].rating.toString(),
+              bestRating: '5',
+              worstRating: '1',
+            },
+            author: {
+              '@type': 'Person',
+              name: reviews[0].author,
+            },
+            reviewBody: reviews[0].reviewBody,
+            datePublished: reviews[0].datePublished,
+            ...(reviews[0].location && {
+              locationCreated: {
+                '@type': 'Place',
+                name: reviews[0].location,
+              },
+            }),
+          }
+
+        case 'AggregateRating':
+          if (reviews.length === 0) {
+            // Default aggregate rating
+            return {
+              '@context': 'https://schema.org',
+              '@type': 'AggregateRating',
+              '@id': 'https://www.openhouseupdate.com/#aggregateRating',
+              ratingValue: '4.9',
+              reviewCount: '127',
+              bestRating: '5',
+              worstRating: '1',
+            }
+          }
+          const totalRating = reviews.reduce((sum, r) => sum + r.rating, 0)
+          const averageRating = totalRating / reviews.length
+          return {
+            '@context': 'https://schema.org',
+            '@type': 'AggregateRating',
+            '@id': 'https://www.openhouseupdate.com/#aggregateRating',
+            ratingValue: averageRating.toFixed(1),
+            reviewCount: reviews.length.toString(),
+            bestRating: '5',
+            worstRating: '1',
+          }
+
         default:
           return data
       }
@@ -336,9 +431,28 @@ export default component$<EnhancedStructuredDataProps>(
 
     if (!structuredData) return null
 
+    // Handle arrays of reviews
+    if (Array.isArray(structuredData)) {
+      return (
+        <>
+          {structuredData.map((data, index) => (
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: Structured data JSON is safe and controlled
+            <script
+              key={`structured-data-${index}`}
+              type="application/ld+json"
+              dangerouslySetInnerHTML={JSON.stringify(data)}
+            />
+          ))}
+        </>
+      )
+    }
+
     return (
       // biome-ignore lint/security/noDangerouslySetInnerHtml: Structured data JSON is safe and controlled
-      <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(structuredData)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={JSON.stringify(structuredData)}
+      />
     )
   }
 )

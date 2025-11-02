@@ -1,6 +1,7 @@
 import { component$, useVisibleTask$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
 import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
+import InternalLinking from '~/components/seo/internal-linking'
 
 export default component$(() => {
   useVisibleTask$(() => {
@@ -409,6 +410,34 @@ export default component$(() => {
         showFAQs={true}
         faqTitle="Buyer Services - Frequently Asked Questions"
         className="mt-12"
+      />
+
+      {/* Internal Linking */}
+      <InternalLinking
+        title="Buyer Resources"
+        links={[
+          {
+            title: 'First-Time Homebuyer Guide',
+            url: '/how-to-buy-first-home-las-vegas/',
+            description: 'Complete guide to buying your first home in Las Vegas',
+          },
+          {
+            title: 'Property Search',
+            url: '/search/',
+            description: 'Browse available Las Vegas homes',
+          },
+          {
+            title: 'This Weekend Open Houses',
+            url: '/this-weekend/',
+            description: 'Find open houses happening this weekend',
+          },
+          {
+            title: 'Market Analysis',
+            url: '/services/market-analysis/',
+            description: 'Get current Las Vegas market insights',
+          },
+        ]}
+        className="mt-8"
       />
     </div>
   )

@@ -1,6 +1,7 @@
 import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
 import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
+import InternalLinking from '~/components/seo/internal-linking'
 
 export default component$(() => {
   const propertyAddress = useSignal('')
@@ -461,6 +462,34 @@ export default component$(() => {
         showFAQs={true}
         faqTitle="Home Valuation - Frequently Asked Questions"
         className="mt-12"
+      />
+
+      {/* Internal Linking */}
+      <InternalLinking
+        title="Valuation & Market Resources"
+        links={[
+          {
+            title: 'Henderson Home Valuation',
+            url: '/henderson-home-valuation/',
+            description: 'Get valuations for Henderson properties',
+          },
+          {
+            title: 'Market Analysis',
+            url: '/services/market-analysis/',
+            description: 'Comprehensive Las Vegas market reports',
+          },
+          {
+            title: 'Seller Services',
+            url: '/services/seller-services/',
+            description: 'Expert help selling your home',
+          },
+          {
+            title: 'Contact Dr. Jan Duffy',
+            url: '/contact/',
+            description: 'Schedule a personalized consultation',
+          },
+        ]}
+        className="mt-8"
       />
     </div>
   )

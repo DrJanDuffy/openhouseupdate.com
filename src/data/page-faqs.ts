@@ -219,6 +219,52 @@ export const pageFAQs: Record<string, PageFAQ[]> = {
     },
   ],
 
+  'north-las-vegas': [
+    {
+      question: 'What makes North Las Vegas a good place to buy a home?',
+      answer:
+        'North Las Vegas offers excellent value for homebuyers with more affordable housing options than many Las Vegas areas. Located in zip codes 89030, 89031, 89032, 89081, 89084, and 89086, North Las Vegas features active new construction in communities like Skye Canyon (89084) and Centennial Hills (89031), providing modern homes with energy-efficient features. The area offers more square footage for your money, good highway access to Las Vegas employment centers, and growing amenities including shopping centers and restaurants. As one of the fastest-growing areas in Las Vegas Valley, North Las Vegas presents good appreciation potential and value for first-time buyers and families seeking affordable options.',
+    },
+    {
+      question: 'What are the best neighborhoods in North Las Vegas?',
+      answer:
+        'Top neighborhoods in North Las Vegas include Skye Canyon (zip code 89084) - a master-planned community with new construction and modern amenities, Centennial Hills (89031) - established area with good schools and shopping, Aliante - community with shopping center, golf course, and parks, and Eldorado - established neighborhood with affordable options. Each area offers different benefits: Skye Canyon and Centennial Hills feature newer construction and modern amenities, while Aliante offers established community facilities. Dr. Jan Duffy can help you explore North Las Vegas neighborhoods and find the area that best matches your budget, lifestyle, and preferences.',
+    },
+    {
+      question: 'Are home prices in North Las Vegas affordable?',
+      answer:
+        'Yes, North Las Vegas offers some of the most affordable housing in Las Vegas Valley, making it an excellent option for first-time buyers and those seeking value. Entry-level homes start around $250,000-$350,000, while mid-range homes typically range from $350,000-$500,000. Newer communities like Skye Canyon (89084) may have homes up to $600,000+. The average home price in North Las Vegas is approximately $400,000-$450,000 as of November 2025. Compared to Summerlin (89134-89144) or Henderson (89002-89015), North Las Vegas offers significantly more affordable options while still providing access to Las Vegas employment centers and amenities.',
+    },
+    {
+      question: 'How are the schools in North Las Vegas?',
+      answer:
+        'North Las Vegas is served by the Clark County School District. School ratings vary by area, with newer communities like Skye Canyon (89084) and Centennial Hills (89031) having newer schools with improving ratings. Many families are attracted to North Las Vegas for its affordability and new construction options, with schools continuing to develop as the area grows. While school ratings may not be as high as premium areas like Summerlin or Henderson\'s Green Valley, the area offers good value and families often choose North Las Vegas for the combination of affordable housing and developing school systems. Dr. Jan Duffy can provide specific school information for North Las Vegas neighborhoods you\'re considering.',
+    },
+  ],
+
+  'green-valley': [
+    {
+      question: 'What is Green Valley known for?',
+      answer:
+        'Green Valley, located in Henderson zip codes 89012 and 89014, is known for its excellent schools, upscale amenities, and family-friendly atmosphere. It\'s one of Henderson\'s most desirable and established communities, featuring Green Valley Ranch - a major shopping and entertainment destination with premium retailers, restaurants, and events. Green Valley is home to top-rated schools including Coronado High School, which consistently ranks among the best in Clark County. The area offers beautiful parks, trails, and recreational facilities, along with a range of housing from established mid-range homes to luxury properties. Green Valley consistently ranks among the safest areas in Henderson.',
+    },
+    {
+      question: 'What is the average home price in Green Valley?',
+      answer:
+        'Green Valley offers a range of housing options from established mid-range homes to luxury properties. Entry-level homes start around $400,000-$500,000, while mid-range homes typically range from $500,000-$800,000. Luxury homes and custom estates can exceed $1 million. The average home price in Green Valley is approximately $650,000-$750,000 as of November 2025. Prices vary by specific neighborhood within Green Valley, proximity to Green Valley Ranch, home size and age, and property features. Premium communities like Coronado Country Club may command higher prices. Dr. Jan Duffy provides current pricing insights for Green Valley neighborhoods and can help you find homes within your budget.',
+    },
+    {
+      question: 'Are the schools in Green Valley good?',
+      answer:
+        'Yes, Green Valley is home to some of Henderson\'s top-rated schools, making it a top choice for families prioritizing education. Coronado High School consistently ranks among the best in Clark County, with many elementary and middle schools in Green Valley also having excellent ratings. Schools in Green Valley benefit from strong parent involvement, quality academic programs, and well-maintained facilities. School quality is a major factor driving Green Valley home values and family appeal. The area\'s reputation for excellent schools makes it highly sought after by families moving to Henderson. Dr. Jan Duffy can provide specific school information for Green Valley neighborhoods and help you understand how schools affect property values.',
+    },
+    {
+      question: 'What is Green Valley Ranch?',
+      answer:
+        'Green Valley Ranch is a major shopping and entertainment destination in Green Valley, Henderson, featuring premium retailers, restaurants, movie theater, and regular events. It serves as a central hub for Green Valley residents, providing convenient access to shopping and dining without traveling to the Las Vegas Strip. Green Valley Ranch includes a mix of retail stores, restaurants ranging from casual to fine dining, entertainment options, and community events. Many Green Valley residents appreciate having this premium shopping and entertainment destination nearby. The proximity to Green Valley Ranch can affect property values and desirability in surrounding neighborhoods. Dr. Jan Duffy can help you find homes in Green Valley with convenient access to Green Valley Ranch amenities.',
+    },
+  ],
+
   // This Weekend page FAQs
   'this-weekend': [
     {
