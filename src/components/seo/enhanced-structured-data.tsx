@@ -82,8 +82,8 @@ export default component$<EnhancedStructuredDataProps>(
               },
               {
                 '@type': 'EducationalOccupationalCredential',
-                credentialCategory: 'Open House Specialist Certification',
-                name: 'Open House Specialist',
+                credentialCategory: 'Open House Expert Certification',
+                name: 'Open House Expert',
                 description: 'Specialized expertise in open house marketing, staging, and lead conversion',
               },
             ],
