@@ -283,7 +283,7 @@ export default component$(() => {
           },
           {
             title: 'Home Search',
-            url: '/search/',
+            url: 'http://drjanduffy.realscout.com/onboarding',
             description: 'Browse available Las Vegas homes',
           },
           {

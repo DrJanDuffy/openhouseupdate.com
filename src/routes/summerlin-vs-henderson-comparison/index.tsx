@@ -220,7 +220,7 @@ export default component$(() => {
             },
             {
               title: 'Property Search',
-              url: '/search',
+              url: 'http://drjanduffy.realscout.com/onboarding',
               description: 'Search for homes in Summerlin, Henderson, and all Las Vegas areas',
             },
             {
