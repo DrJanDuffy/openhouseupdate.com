@@ -1,5 +1,6 @@
 import { $, component$, useSignal } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
+import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
 
 export default component$(() => {
   const name = useSignal('')
@@ -228,53 +229,16 @@ export default component$(() => {
           </div>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <EnhancedPageSEO
+        pageKey="contact"
+        showFAQs={true}
+        faqTitle="Contact Dr. Jan Duffy - Frequently Asked Questions"
+        className="mt-12"
+      />
     </section>
   )
 })
 
-export const head: DocumentHead = {
-  title: 'Contact Dr. Jan Duffy - Las Vegas Real Estate Agent',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Contact Dr. Jan Duffy for expert Las Vegas real estate services. Licensed agent specializing in buying, selling, and home valuations in Nevada.',
-    },
-    {
-      name: 'keywords',
-      content:
-        'contact real estate agent, Las Vegas realtor, Dr. Jan Duffy, Nevada real estate, property consultation',
-    },
-    {
-      name: 'robots',
-      content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
-    },
-    {
-      property: 'og:title',
-      content: 'Contact Dr. Jan Duffy - Las Vegas Real Estate Agent',
-    },
-    {
-      property: 'og:description',
-      content:
-        'Contact Dr. Jan Duffy for expert Las Vegas real estate services. Licensed agent specializing in buying, selling, and home valuations in Nevada.',
-    },
-    {
-      property: 'og:type',
-      content: 'website',
-    },
-    {
-      property: 'og:url',
-      content: 'https://www.openhouseupdate.com/contact/',
-    },
-    {
-      property: 'og:site_name',
-      content: 'Open House Update',
-    },
-  ],
-  links: [
-    {
-      rel: 'canonical',
-      href: 'https://www.openhouseupdate.com/contact/',
-    },
-  ],
-}
+export const head: DocumentHead = createOptimizedHead('contact')

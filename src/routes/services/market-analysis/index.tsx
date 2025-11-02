@@ -1,5 +1,6 @@
 import { component$, useVisibleTask$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
+import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
 
 export default component$(() => {
   useVisibleTask$(() => {
@@ -569,70 +570,16 @@ export default component$(() => {
           </a>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <EnhancedPageSEO
+        pageKey="market-analysis"
+        showFAQs={true}
+        faqTitle="Market Analysis - Frequently Asked Questions"
+        className="mt-12"
+      />
     </div>
   )
 })
 
-export const head: DocumentHead = {
-  title: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Jan Duffy',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Comprehensive market analysis and trends for Las Vegas real estate. Monthly reports, neighborhood insights, and investment analysis from Dr. Jan Duffy.',
-    },
-    {
-      name: 'keywords',
-      content:
-        'Las Vegas market analysis, real estate trends, market reports, neighborhood analysis, investment analysis, Dr. Jan Duffy, market data',
-    },
-    {
-      name: 'author',
-      content: 'Dr. Jan Duffy',
-    },
-    {
-      name: 'robots',
-      content: 'index, follow',
-    },
-    {
-      property: 'og:title',
-      content: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Jan Duffy',
-    },
-    {
-      property: 'og:description',
-      content:
-        'Comprehensive market analysis and trends for Las Vegas real estate. Monthly reports and neighborhood insights.',
-    },
-    {
-      property: 'og:type',
-      content: 'website',
-    },
-    {
-      property: 'og:url',
-      content: 'https://www.openhouseupdate.com/services/market-analysis/',
-    },
-    {
-      property: 'og:site_name',
-      content: 'Open House Update',
-    },
-    {
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    },
-    {
-      name: 'twitter:title',
-      content: 'Market Analysis - Las Vegas Real Estate Trends | Dr. Jan Duffy',
-    },
-    {
-      name: 'twitter:description',
-      content:
-        'Comprehensive market analysis and trends for Las Vegas real estate. Monthly reports and neighborhood insights.',
-    },
-  ],
-  links: [
-    {
-      rel: 'canonical',
-      href: 'https://www.openhouseupdate.com/services/market-analysis/',
-    },
-  ],
-}
+export const head: DocumentHead = createOptimizedHead('market-analysis')

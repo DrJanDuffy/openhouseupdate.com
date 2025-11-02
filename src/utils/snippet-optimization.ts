@@ -223,6 +223,118 @@ export const pageSnippets: Record<string, PageSnippetConfig> = {
       { name: 'Henderson', url: 'https://www.openhouseupdate.com/neighborhoods/henderson/' },
     ],
   },
+
+  'people-also-ask': {
+    title: 'People Also Ask - Las Vegas Real Estate Questions | Dr. Jan Duffy',
+    description:
+      'Get answers to common questions about Las Vegas real estate, open houses, market trends, and home buying. Expert insights from Open House Expert Dr. Jan Duffy.',
+    keywords: [
+      'people also ask',
+      'Las Vegas real estate questions',
+      'realtor open house payment',
+      'Las Vegas home prices',
+      'when to sell house',
+      'buy house now or wait',
+      'real estate market trends',
+      'open house expert',
+      'Dr. Jan Duffy',
+      'Las Vegas property market',
+    ],
+    faqKey: 'people-also-ask',
+    structuredDataType: 'FAQPage',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
+      { name: 'People Also Ask', url: 'https://www.openhouseupdate.com/people-also-ask/' },
+    ],
+  },
+
+  'this-weekend': {
+    title: 'This Weekend Open Houses - Las Vegas | Dr. Jan Duffy',
+    description:
+      "Find this weekend's open houses in Las Vegas. Browse Saturday and Sunday open house listings in Summerlin, Henderson, North Las Vegas and all Las Vegas Valley neighborhoods.",
+    keywords: [
+      'this weekend open houses',
+      'Las Vegas weekend open houses',
+      'Saturday open houses',
+      'Sunday open houses',
+      'weekend property viewing',
+      'open houses this weekend',
+      'Las Vegas open houses weekend',
+      'weekend real estate viewing',
+    ],
+    faqKey: 'this-weekend',
+    structuredDataType: 'RealEstateService',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
+      { name: 'This Weekend', url: 'https://www.openhouseupdate.com/this-weekend/' },
+    ],
+  },
+
+  search: {
+    title: 'Las Vegas Home Search - Property Search | Dr. Jan Duffy',
+    description:
+      'Search for homes in Las Vegas Valley. Filter by price, location, bedrooms, and more. Find properties in Summerlin, Henderson, North Las Vegas and all Las Vegas neighborhoods.',
+    keywords: [
+      'Las Vegas home search',
+      'property search Las Vegas',
+      'home search',
+      'property listings',
+      'Las Vegas real estate search',
+      'find homes Las Vegas',
+      'property search tool',
+      'home search engine',
+    ],
+    faqKey: 'search',
+    structuredDataType: 'RealEstateService',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
+      { name: 'Search', url: 'https://www.openhouseupdate.com/search/' },
+    ],
+  },
+
+  'market-analysis': {
+    title: 'Market Analysis Las Vegas - Real Estate Market Trends | Dr. Jan Duffy',
+    description:
+      'Get comprehensive market analysis for Las Vegas real estate. Current market trends, pricing data, and neighborhood insights from experienced real estate professionals.',
+    keywords: [
+      'Las Vegas market analysis',
+      'real estate market trends',
+      'market data',
+      'pricing analysis',
+      'Las Vegas market report',
+      'real estate statistics',
+      'market conditions',
+      'neighborhood market data',
+    ],
+    faqKey: 'market-analysis',
+    structuredDataType: 'RealEstateService',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
+      { name: 'Services', url: 'https://www.openhouseupdate.com/services/' },
+      { name: 'Market Analysis', url: 'https://www.openhouseupdate.com/services/market-analysis/' },
+    ],
+  },
+
+  'open-houses-for-sale': {
+    title: 'Open Houses by Price Range - Las Vegas | Dr. Jan Duffy',
+    description:
+      'Browse open houses by price range in Las Vegas. Find open houses under $400K, $400K-$600K, $600K-$800K, $800K-$1M, and over $1M across Las Vegas Valley.',
+    keywords: [
+      'open houses by price',
+      'affordable open houses',
+      'luxury open houses',
+      'open houses under 400k',
+      'open houses 400k-600k',
+      'open houses by price range',
+      'Las Vegas open houses price',
+    ],
+    faqKey: 'open-houses-for-sale',
+    structuredDataType: 'RealEstateService',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://www.openhouseupdate.com/' },
+      { name: 'Open Houses by Price', url: 'https://www.openhouseupdate.com/open-houses-for-sale/' },
+    ],
+  },
 }
 
 export const getPageSnippet = (pageKey: string): PageSnippetConfig => {

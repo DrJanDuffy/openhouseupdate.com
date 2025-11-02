@@ -1,5 +1,6 @@
 import { component$, useVisibleTask$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
+import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
 
 export default component$(() => {
   useVisibleTask$(() => {
@@ -523,70 +524,16 @@ export default component$(() => {
           </a>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <EnhancedPageSEO
+        pageKey="seller-services"
+        showFAQs={true}
+        faqTitle="Seller Services - Frequently Asked Questions"
+        className="mt-12"
+      />
     </div>
   )
 })
 
-export const head: DocumentHead = {
-  title: 'Seller Services - Expert Home Selling Support | Dr. Jan Duffy',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Professional seller services in Las Vegas. Maximize your home value with expert marketing, staging, and transaction management from Dr. Jan Duffy.',
-    },
-    {
-      name: 'keywords',
-      content:
-        'Las Vegas seller services, home selling, property marketing, real estate agent, Dr. Jan Duffy, seller representation, home sale',
-    },
-    {
-      name: 'author',
-      content: 'Dr. Jan Duffy',
-    },
-    {
-      name: 'robots',
-      content: 'index, follow',
-    },
-    {
-      property: 'og:title',
-      content: 'Seller Services - Expert Home Selling Support | Dr. Jan Duffy',
-    },
-    {
-      property: 'og:description',
-      content:
-        'Professional seller services in Las Vegas. Maximize your home value with expert marketing and transaction management.',
-    },
-    {
-      property: 'og:type',
-      content: 'website',
-    },
-    {
-      property: 'og:url',
-      content: 'https://www.openhouseupdate.com/services/seller-services/',
-    },
-    {
-      property: 'og:site_name',
-      content: 'Open House Update',
-    },
-    {
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    },
-    {
-      name: 'twitter:title',
-      content: 'Seller Services - Expert Home Selling Support | Dr. Jan Duffy',
-    },
-    {
-      name: 'twitter:description',
-      content:
-        'Professional seller services in Las Vegas. Maximize your home value with expert marketing and transaction management.',
-    },
-  ],
-  links: [
-    {
-      rel: 'canonical',
-      href: 'https://www.openhouseupdate.com/services/seller-services/',
-    },
-  ],
-}
+export const head: DocumentHead = createOptimizedHead('seller-services')

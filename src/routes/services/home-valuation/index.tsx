@@ -1,5 +1,6 @@
 import { $, component$, useSignal, useVisibleTask$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
+import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
 
 export default component$(() => {
   const propertyAddress = useSignal('')
@@ -453,79 +454,16 @@ export default component$(() => {
           </p>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <EnhancedPageSEO
+        pageKey="home-valuation"
+        showFAQs={true}
+        faqTitle="Home Valuation - Frequently Asked Questions"
+        className="mt-12"
+      />
     </div>
   )
 })
 
-export const head: DocumentHead = {
-  title: 'Free Home Valuation - Las Vegas Real Estate | Dr. Jan Duffy',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Jan Duffy.',
-    },
-    {
-      name: 'keywords',
-      content:
-        'home valuation Las Vegas, property assessment, market analysis, CMA, home value, Dr. Jan Duffy, real estate valuation',
-    },
-    {
-      name: 'author',
-      content: 'Dr. Jan Duffy',
-    },
-    {
-      name: 'robots',
-      content: 'index, follow',
-    },
-    // Open Graph metadata
-    {
-      property: 'og:title',
-      content: 'Free Home Valuation - Las Vegas Real Estate | Dr. Jan Duffy',
-    },
-    { property: 'og:type', content: 'website' },
-    {
-      property: 'og:description',
-      content:
-        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Jan Duffy.',
-    },
-    { property: 'og:url', content: 'https://www.openhouseupdate.com/services/home-valuation/' },
-    { property: 'og:site_name', content: 'Open House Update' },
-    { property: 'og:locale', content: 'en_US' },
-    { property: 'og:locale:alternate', content: 'es_US' },
-    { property: 'og:determiner', content: 'auto' },
-    { property: 'og:image', content: 'https://www.openhouseupdate.com/images/og-valuation.jpg' },
-    {
-      property: 'og:image:secure_url',
-      content: 'https://www.openhouseupdate.com/images/og-valuation.jpg',
-    },
-    { property: 'og:image:type', content: 'image/jpeg' },
-    { property: 'og:image:width', content: '1200' },
-    { property: 'og:image:height', content: '630' },
-    { property: 'og:image:alt', content: 'Free Home Valuation - Las Vegas Real Estate' },
-    { property: 'article:tag', content: 'home valuation' },
-    { property: 'article:tag', content: 'property assessment' },
-    { property: 'article:tag', content: 'market analysis' },
-    { property: 'article:tag', content: 'CMA' },
-    { property: 'article:tag', content: 'Las Vegas' },
-    // Twitter Card metadata
-    { name: 'twitter:card', content: 'summary_large_image' },
-    {
-      name: 'twitter:title',
-      content: 'Free Home Valuation - Las Vegas Real Estate | Dr. Jan Duffy',
-    },
-    {
-      name: 'twitter:description',
-      content:
-        'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Jan Duffy.',
-    },
-    { name: 'twitter:image', content: 'https://www.openhouseupdate.com/images/og-valuation.jpg' },
-    { name: 'twitter:image:alt', content: 'Free Home Valuation - Las Vegas Real Estate' },
-  ],
-  links: [
-    {
-      rel: 'canonical',
-      href: 'https://www.openhouseupdate.com/services/home-valuation/',
-    },
-  ],
-}
+export const head: DocumentHead = createOptimizedHead('home-valuation')

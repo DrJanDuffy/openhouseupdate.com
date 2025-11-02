@@ -223,6 +223,23 @@ export const getPageOGMetadata = (pageKey: string): Partial<OGSEOConfig> => {
       keywords: ['seller representation', 'home selling', 'seller agent', 'property marketing'],
       articleTags: ['seller services', 'home selling', 'seller representation', 'property marketing', 'Las Vegas'],
     },
+    'people-also-ask': {
+      keywords: [
+        'people also ask',
+        'real estate questions',
+        'Las Vegas real estate FAQ',
+        'open house questions',
+        'market trends',
+      ],
+      articleTags: [
+        'Las Vegas real estate',
+        'people also ask',
+        'real estate FAQ',
+        'open houses',
+        'market trends',
+        'home buying advice',
+      ],
+    },
   }
 
   return pageConfigs[pageKey] || {}

@@ -1,5 +1,6 @@
 import { component$, useVisibleTask$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
+import EnhancedPageSEO, { createOptimizedHead } from '~/components/seo/enhanced-page-seo'
 
 export default component$(() => {
   useVisibleTask$(() => {
@@ -401,85 +402,16 @@ export default component$(() => {
           </a>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <EnhancedPageSEO
+        pageKey="buyer-services"
+        showFAQs={true}
+        faqTitle="Buyer Services - Frequently Asked Questions"
+        className="mt-12"
+      />
     </div>
   )
 })
 
-export const head: DocumentHead = {
-  title: 'Buyer Services - Expert Home Buying Support | Dr. Jan Duffy',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Jan Duffy, your trusted real estate agent.',
-    },
-    {
-      name: 'keywords',
-      content:
-        'Las Vegas buyer services, home buying, property search, real estate agent, Dr. Jan Duffy, buyer representation, home purchase',
-    },
-    {
-      name: 'author',
-      content: 'Dr. Jan Duffy',
-    },
-    {
-      name: 'robots',
-      content: 'index, follow',
-    },
-    // Open Graph metadata
-    {
-      property: 'og:title',
-      content: 'Buyer Services - Expert Home Buying Support | Dr. Jan Duffy',
-    },
-    { property: 'og:type', content: 'website' },
-    {
-      property: 'og:description',
-      content:
-        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Jan Duffy, your trusted real estate agent.',
-    },
-    { property: 'og:url', content: 'https://www.openhouseupdate.com/services/buyer-services/' },
-    { property: 'og:site_name', content: 'Open House Update' },
-    { property: 'og:locale', content: 'en_US' },
-    { property: 'og:locale:alternate', content: 'es_US' },
-    { property: 'og:determiner', content: 'auto' },
-    {
-      property: 'og:image',
-      content: 'https://www.openhouseupdate.com/images/og-buyer-services.jpg',
-    },
-    {
-      property: 'og:image:secure_url',
-      content: 'https://www.openhouseupdate.com/images/og-buyer-services.jpg',
-    },
-    { property: 'og:image:type', content: 'image/jpeg' },
-    { property: 'og:image:width', content: '1200' },
-    { property: 'og:image:height', content: '630' },
-    { property: 'og:image:alt', content: 'Buyer Services - Las Vegas Real Estate' },
-    { property: 'article:tag', content: 'buyer services' },
-    { property: 'article:tag', content: 'home buying' },
-    { property: 'article:tag', content: 'property search' },
-    { property: 'article:tag', content: 'real estate agent' },
-    { property: 'article:tag', content: 'Las Vegas' },
-    // Twitter Card metadata
-    { name: 'twitter:card', content: 'summary_large_image' },
-    {
-      name: 'twitter:title',
-      content: 'Buyer Services - Expert Home Buying Support | Dr. Jan Duffy',
-    },
-    {
-      name: 'twitter:description',
-      content:
-        'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Jan Duffy, your trusted real estate agent.',
-    },
-    {
-      name: 'twitter:image',
-      content: 'https://www.openhouseupdate.com/images/og-buyer-services.jpg',
-    },
-    { name: 'twitter:image:alt', content: 'Buyer Services - Las Vegas Real Estate' },
-  ],
-  links: [
-    {
-      rel: 'canonical',
-      href: 'https://www.openhouseupdate.com/services/buyer-services/',
-    },
-  ],
-}
+export const head: DocumentHead = createOptimizedHead('buyer-services')
