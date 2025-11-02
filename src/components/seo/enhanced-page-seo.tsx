@@ -98,7 +98,7 @@ export const createOptimizedHead = (
       },
       {
         property: 'og:url',
-        content: `https://www.openhouseupdate.com/${pageKey === 'homepage' ? '' : `${pageKey}/`}`,
+        content: `https://www.openhouseupdate.com/${pageKey === 'homepage' ? '/' : `${pageKey}/`}`,
       },
       {
         property: 'og:site_name',
