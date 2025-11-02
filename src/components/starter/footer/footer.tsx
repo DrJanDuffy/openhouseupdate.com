@@ -180,7 +180,7 @@ export default component$(() => {
           <div class={styles.footerBottomContent}>
             <div class={styles.copyright}>
               <p>&copy; {new Date().getFullYear()} Open House Update. All rights reserved.</p>
-              <p>Dr. Jan Duffy - Licensed Real Estate Agent in Nevada</p>
+              <p>Open House Expert Dr. Jan Duffy - Nevada License #S.0197614</p>
             </div>
             <div class={styles.footerBottomLinks}>
               <a href="/privacy-policy" class={styles.footerBottomLink}>

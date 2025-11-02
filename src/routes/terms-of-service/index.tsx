@@ -45,7 +45,7 @@ export default component$(() => {
               </p>
               <div class="bg-blue-50 rounded-lg p-4">
                 <p class="text-blue-800">
-                  <strong>License Information:</strong> Nevada Real Estate License #XXXXXX
+                  <strong>License Information:</strong> Nevada Real Estate License #S.0197614
                 </p>
               </div>
             </section>
@@ -156,7 +156,7 @@ export default component$(() => {
                 <p class="text-gray-600 mb-2">
                   <strong>Dr. Jan Duffy</strong>
                 </p>
-                <p class="text-gray-600 mb-2">Licensed Real Estate Agent</p>
+                <p class="text-gray-600 mb-2">Open House Expert - Nevada License #S.0197614</p>
                 <p class="text-gray-600 mb-2">Email: drduffy@bhhsnv.com</p>
                 <p class="text-gray-600">Phone: (702) 200-3422</p>
               </div>

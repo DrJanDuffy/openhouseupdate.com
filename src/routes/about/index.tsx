@@ -216,9 +216,9 @@ export default component$(() => {
           </div>
 
           <div class="credential-item">
-            <h3>Licensed Real Estate Agent</h3>
+            <h3>Open House Expert</h3>
             <p>
-              Nevada Real Estate License with continuing education in market trends and regulations
+              Nevada License #S.0197614 with continuing education in market trends and regulations
             </p>
           </div>
 

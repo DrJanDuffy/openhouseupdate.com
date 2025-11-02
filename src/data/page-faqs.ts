@@ -43,7 +43,7 @@ export const pageFAQs: Record<string, PageFAQ[]> = {
     {
       question: "What is Dr. Jan Duffy's background in real estate?",
       answer:
-        "Dr. Jan Duffy has over 20 years of experience in Las Vegas real estate. She's a licensed real estate agent in Nevada and specializes in residential properties throughout the Las Vegas Valley.",
+        "Dr. Jan Duffy is an Open House Expert with over 20 years of experience in Las Vegas real estate. She holds Nevada License #S.0197614 and specializes in residential properties throughout the Las Vegas Valley.",
     },
     {
       question: 'What services does Dr. Jan Duffy provide?',
