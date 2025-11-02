@@ -87,7 +87,7 @@ export const generateOGDescription = (
 
   // Truncate to optimal length (155 chars for OG, leaves room for ellipsis)
   if (description.length > 155) {
-    description = description.substring(0, 152).trim() + '...'
+    description = `${description.substring(0, 152).trim()}...`
   }
 
   return description
@@ -99,7 +99,7 @@ export const generateOGDescription = (
  */
 export const generateOGImageAlt = (
   title: string,
-  pageKey: string,
+  _pageKey: string,
   keywords?: string[]
 ): string => {
   // Extract main keyword from title or use page context
