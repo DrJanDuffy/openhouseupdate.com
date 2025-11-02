@@ -8,6 +8,9 @@ const BUILDER_API_KEY =
 
 builder.init(BUILDER_API_KEY)
 
+// Builder.io API endpoint for fetching rendered content
+const BUILDER_API_URL = 'https://cdn.builder.io/api/v3/content/page'
+
 export interface BuilderPageData {
   id: string
   name: string
@@ -33,17 +36,15 @@ export async function getBuilderPage(
   preview = false
 ): Promise<BuilderPageData | null> {
   try {
-    // Normalize URL path
+    // Normalize URL path - Builder.io expects URLs to match the page's url field
     const normalizedPath = urlPath.startsWith('/') ? urlPath : `/${urlPath}`
 
-    // Build query options - Builder.io matches pages by URL field
+    // Build query options - Builder.io matches pages by URL directly
     // biome-ignore lint/suspicious/noExplicitAny: Builder.io SDK options are dynamic
     const options: any = {
+      url: normalizedPath,
       options: {
         noTargeting: true,
-      },
-      userAttributes: {
-        urlPath: normalizedPath,
       },
     }
 
@@ -53,26 +54,60 @@ export async function getBuilderPage(
       options.prerender = false
     }
 
-    // Fetch page from Builder.io by URL
-    // Builder.io automatically matches pages where data.url matches the urlPath
+    // Try fetching via Builder.io SDK first
     const page = await builder.get('page', options).promise()
 
+    // Debug: Log what we got from Builder.io
+    if (page) {
+      // biome-ignore lint/suspicious/noConsole: Debug logging for Builder.io integration
+      console.log('[Builder.io] Page found:', {
+        id: page.id,
+        name: page.name,
+        url: page.url,
+        hasData: !!page.data,
+        dataKeys: page.data ? Object.keys(page.data) : [],
+      })
+    }
+
     if (!page) {
+      // biome-ignore lint/suspicious/noConsole: Debug logging for Builder.io integration
+      console.log('[Builder.io] No page found for URL:', normalizedPath)
       // Try without leading slash as fallback
       const altPath = normalizedPath === '/' ? '/' : normalizedPath.slice(1)
       const altPage = await builder
         .get('page', {
-          ...options,
-          userAttributes: {
-            urlPath: altPath,
+          url: altPath,
+          options: {
+            noTargeting: true,
           },
         })
         .promise()
-      return altPage ? (altPage as unknown as BuilderPageData) : null
+      
+      if (altPage) {
+        return altPage as unknown as BuilderPageData
+      }
+
+      // If SDK fails, try REST API as fallback
+      try {
+        const apiUrl = `${BUILDER_API_URL}?apiKey=${BUILDER_API_KEY}&url=${encodeURIComponent(normalizedPath)}`
+        const response = await fetch(apiUrl)
+        if (response.ok) {
+          const apiPage = await response.json()
+          if (apiPage) {
+            return apiPage as unknown as BuilderPageData
+          }
+        }
+      } catch (apiError) {
+        // biome-ignore lint/suspicious/noConsole: Fallback API error logging
+        console.error('Builder.io REST API fallback failed:', apiError)
+      }
+      
+      return null
     }
 
     return page as unknown as BuilderPageData
   } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: This is a critical error that should be logged
     console.error('Error fetching Builder.io page:', error)
     return null
   }
