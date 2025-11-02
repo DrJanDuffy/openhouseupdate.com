@@ -196,13 +196,13 @@ export default component$(() => {
           </div>
           <div class={styles.builderCredit}>
             <a
-              href="https://www.builder.io/"
+              href="https://linktr.ee/drduffy"
               target="_blank"
               rel="noopener noreferrer"
               class={styles.builderLink}
             >
               <span class={styles.spacer}>|</span>
-              <span>{serverTime.value.date}</span>
+              <span>Made with Love By Dr. Jan Duffy</span>
             </a>
           </div>
         </div>
