@@ -547,4 +547,4 @@ export default component$(() => {
 })
 
 // Optimized DocumentHead with snippets and structured data
-export const _head: DocumentHead = createOptimizedHead('homepage')
+export const head: DocumentHead = createOptimizedHead('homepage')
