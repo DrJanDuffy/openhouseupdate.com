@@ -123,7 +123,7 @@ export default component$(() => {
           <a href="/about/">About Dr. Jan Duffy</a>
           <a href="/services/">Real Estate Services</a>
           <a href="/contact/">Contact Us</a>
-          <a href="/search/">Property Search</a>
+          <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer">Property Search</a>
           <a href="/map/">Property Map</a>
         </div>
       </div>
