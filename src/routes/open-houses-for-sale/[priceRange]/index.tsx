@@ -276,17 +276,32 @@ export default component$(() => {
           <h4>Why Choose This Price Range?</h4>
           <p>
             {priceInfo.display} homes in Las Vegas offer excellent value with modern amenities,
-            great locations, and strong investment potential. Perfect for first-time buyers or
-            investors looking for quality properties.
+            great locations, and strong investment potential. This price range represents some of the
+            most popular options in the Las Vegas real estate market, appealing to a wide range of
+            buyers from first-time homebuyers to seasoned investors.
+          </p>
+          <p>
+            Properties in this range typically feature updated kitchens and bathrooms, spacious
+            layouts perfect for families, energy-efficient systems, and access to excellent schools,
+            shopping, and recreational facilities. Whether you're looking for a starter home,
+            upgrading to a larger property, or making an investment, {priceInfo.display} homes in
+            Las Vegas provide outstanding opportunities.
           </p>
         </div>
 
         <div class="info-card">
           <h4>Market Insights</h4>
           <p>
-            The Las Vegas market in this price range shows strong demand with competitive pricing.
-            Properties often feature updated kitchens, spacious layouts, and access to top-rated
-            schools and amenities.
+            The Las Vegas market in this price range shows strong demand with competitive pricing
+            and healthy inventory levels. Market trends indicate steady appreciation, making this
+            price range an attractive option for both primary residences and investment properties.
+          </p>
+          <p>
+            Properties often feature updated kitchens, spacious layouts, modern amenities, and
+            access to top-rated schools and recreational facilities. Neighborhoods with homes in
+            this range typically offer strong community features, well-maintained infrastructure,
+            and convenient access to major employment centers, shopping, dining, and entertainment
+            throughout the Las Vegas metropolitan area.
           </p>
         </div>
 
@@ -294,8 +309,31 @@ export default component$(() => {
           <h4>Expert Guidance</h4>
           <p>
             Dr. Jan Duffy specializes in helping buyers find the perfect home in this price range.
-            Get personalized guidance, market insights, and expert negotiation to secure your dream
-            home.
+            With extensive knowledge of Las Vegas neighborhoods, market conditions, and property
+            values, she provides personalized guidance tailored to your specific needs, preferences,
+            and budget.
+          </p>
+          <p>
+            Get expert market insights, comprehensive property analysis, and skilled negotiation
+            support to secure your dream home. Dr. Duffy's experience with {priceInfo.display}{' '}
+            properties ensures you understand all aspects of potential purchases, from initial
+            search through closing, making your home buying journey smooth and successful.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h4>Open Houses This Weekend</h4>
+          <p>
+            Looking for open houses this weekend featuring {priceInfo.display} homes? Our advanced
+            search tools help you find available open houses matching your criteria. Browse
+            properties, view detailed information, and schedule viewings all in one convenient
+            location.
+          </p>
+          <p>
+            Dr. Jan Duffy can help you navigate open house schedules, coordinate multiple property
+            viewings, and provide expert insights on each property you visit. Whether you're
+            searching for a single-family home, townhouse, or condo, we make it easy to explore
+            {priceInfo.display} options throughout the Las Vegas area.
           </p>
         </div>
       </div>

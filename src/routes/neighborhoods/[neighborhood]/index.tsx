@@ -206,8 +206,15 @@ export default component$(() => {
           <h4>About {neighborhoodName}</h4>
           <p>
             {neighborhoodName} is one of Las Vegas's premier neighborhoods, offering exceptional
-            amenities, top-rated schools, and beautiful homes. Discover why this area is perfect for
-            your next home purchase.
+            amenities, top-rated schools, and beautiful homes. This vibrant community combines the
+            excitement of Las Vegas with the comfort of a residential neighborhood, making it ideal
+            for families, professionals, and retirees alike.
+          </p>
+          <p>
+            Residents enjoy convenient access to shopping centers, restaurants, parks, and
+            recreational facilities. The neighborhood's well-maintained streets, diverse housing
+            options, and strong sense of community make {neighborhoodName} a highly sought-after
+            location for homebuyers in the Las Vegas area.
           </p>
         </div>
 
@@ -215,8 +222,14 @@ export default component$(() => {
           <h4>Local Expertise</h4>
           <p>
             Dr. Jan Duffy has extensive experience helping buyers find their perfect home in{' '}
-            {neighborhoodName}. Get personalized guidance and expert market insights for this
-            sought-after community.
+            {neighborhoodName}. With deep knowledge of the local market, neighborhood trends, and
+            property values, she provides personalized guidance tailored to your specific needs and
+            preferences.
+          </p>
+          <p>
+            Whether you're looking for your first home, upgrading to a larger property, or investing
+            in real estate, Dr. Duffy's expertise in {neighborhoodName} ensures you make informed
+            decisions backed by comprehensive market analysis and local insights.
           </p>
         </div>
 
@@ -224,8 +237,30 @@ export default component$(() => {
           <h4>Market Trends</h4>
           <p>
             Stay informed about current market conditions, pricing trends, and available inventory
-            in {neighborhoodName}. Our advanced search tools help you find properties that match
-            your criteria.
+            in {neighborhoodName}. The local real estate market in {neighborhoodName} reflects the
+            broader Las Vegas market while maintaining its unique characteristics based on location,
+            amenities, and community features.
+          </p>
+          <p>
+            Our advanced search tools help you find properties that match your criteria, including
+            price range, number of bedrooms, square footage, and special features. Dr. Duffy
+            provides regular market updates and can help you understand how current trends might
+            affect your buying or selling timeline.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h4>Open Houses in {neighborhoodName}</h4>
+          <p>
+            Looking for open houses this weekend in {neighborhoodName}? Browse available properties
+            and schedule viewings with ease. Dr. Jan Duffy can help you navigate open house
+            schedules, coordinate multiple property viewings, and provide insights on each property
+            you visit.
+          </p>
+          <p>
+            Whether you're searching for a single-family home, townhouse, or condo in{' '}
+            {neighborhoodName}, our comprehensive property search tools and expert guidance make it
+            easy to find your dream home in this desirable Las Vegas neighborhood.
           </p>
         </div>
       </div>
