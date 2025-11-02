@@ -39,7 +39,7 @@ export default component$(() => {
             <section>
               <h2 class="text-2xl font-bold text-gray-900 mb-4">3. Real Estate License</h2>
               <p class="text-gray-600 mb-4">
-                Dr. Jan Duffy is a licensed real estate agent in the state of Nevada. All real
+                Dr. Jan Duffy is an Open House Expert with Nevada License #S.0197614. All real
                 estate services are provided in accordance with Nevada real estate laws and
                 regulations.
               </p>

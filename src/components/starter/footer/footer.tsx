@@ -21,7 +21,7 @@ export default component$(() => {
               <p>
                 <strong>Dr. Jan Duffy</strong>
               </p>
-              <p>Licensed Real Estate Agent</p>
+              <p>Open House Expert</p>
               <p>Las Vegas, Nevada</p>
             </div>
           </div>
