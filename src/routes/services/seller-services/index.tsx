@@ -563,7 +563,7 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:url',
-      content: 'https://www.openhouseupdate.com/services/seller-services',
+        content: 'https://www.openhouseupdate.com/services/seller-services/',
     },
     {
       property: 'og:site_name',
@@ -586,7 +586,7 @@ export const head: DocumentHead = {
   links: [
     {
       rel: 'canonical',
-      href: 'https://www.openhouseupdate.com/services/seller-services',
+        href: 'https://www.openhouseupdate.com/services/seller-services/',
     },
   ],
 }

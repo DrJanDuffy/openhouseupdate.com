@@ -22,6 +22,7 @@ export const useServerTimeLoader = routeLoader$(() => {
 
 export default component$(() => {
   useStyles$(styles)
+  
   return (
     <>
       {/* Enhanced Structured Data */}
@@ -41,13 +42,6 @@ export default component$(() => {
         changeFrequency="daily"
       />
 
-      <Canonicalization
-        currentUrl="https://www.openhouseupdate.com"
-        preferredUrl="https://www.openhouseupdate.com"
-        alternateUrls={[
-          { url: 'https://www.openhouseupdate.com', hreflang: 'en-US', rel: 'alternate' },
-        ]}
-      />
 
       <JavaScriptCrawling
         hasJavaScript={true}

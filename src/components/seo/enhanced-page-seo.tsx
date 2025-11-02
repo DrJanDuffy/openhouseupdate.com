@@ -101,6 +101,10 @@ export const createOptimizedHead = (
         content: `https://www.openhouseupdate.com/${pageKey === 'homepage' ? '' : `${pageKey}/`}`,
       },
       {
+        property: 'og:site_name',
+        content: 'Open House Update',
+      },
+      {
         name: 'twitter:card',
         content: 'summary_large_image',
       },

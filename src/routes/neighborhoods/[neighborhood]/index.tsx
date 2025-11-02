@@ -295,7 +295,7 @@ export const head: DocumentHead = ({ params }) => {
     links: [
       {
         rel: 'canonical',
-        href: `https://www.openhouseupdate.com/neighborhoods/${neighborhood}`,
+        href: `https://www.openhouseupdate.com/neighborhoods/${neighborhood}/`,
       },
     ],
   }

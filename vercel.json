@@ -95,6 +95,11 @@
       "source": "/market-analysis",
       "destination": "/services/market-analysis",
       "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/about/",
+      "permanent": true
     }
   ],
   "crons": [

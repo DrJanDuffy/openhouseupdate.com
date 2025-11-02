@@ -489,7 +489,7 @@ export const head: DocumentHead = {
       content:
         'Get a free, accurate home valuation for your Las Vegas property. Professional market analysis and property assessment from Dr. Jan Duffy.',
     },
-    { property: 'og:url', content: 'https://www.openhouseupdate.com/services/home-valuation' },
+    { property: 'og:url', content: 'https://www.openhouseupdate.com/services/home-valuation/' },
     { property: 'og:site_name', content: 'Open House Update' },
     { property: 'og:locale', content: 'en_US' },
     { property: 'og:locale:alternate', content: 'es_US' },
@@ -525,7 +525,7 @@ export const head: DocumentHead = {
   links: [
     {
       rel: 'canonical',
-      href: 'https://www.openhouseupdate.com/services/home-valuation',
+        href: 'https://www.openhouseupdate.com/services/home-valuation/',
     },
   ],
 }

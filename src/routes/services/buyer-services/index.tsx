@@ -437,7 +437,7 @@ export const head: DocumentHead = {
       content:
         'Professional buyer services in Las Vegas. Complete support from property search to closing with Dr. Jan Duffy, your trusted real estate agent.',
     },
-    { property: 'og:url', content: 'https://www.openhouseupdate.com/services/buyer-services' },
+    { property: 'og:url', content: 'https://www.openhouseupdate.com/services/buyer-services/' },
     { property: 'og:site_name', content: 'Open House Update' },
     { property: 'og:locale', content: 'en_US' },
     { property: 'og:locale:alternate', content: 'es_US' },
@@ -473,7 +473,7 @@ export const head: DocumentHead = {
   links: [
     {
       rel: 'canonical',
-      href: 'https://www.openhouseupdate.com/services/buyer-services',
+        href: 'https://www.openhouseupdate.com/services/buyer-services/',
     },
   ],
 }
